@@ -24,10 +24,10 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpass  # Contraseña del usuario root
-      - MYSQL_DATABASE=sistema_agencia # Base de datos inicial
-      - MYSQL_USER=agencia_user        # Crea un usuario normal (opcional)
-      - MYSQL_PASSWORD=123456         # Contraseña para el usuario normal
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=sistema_agencia
+      - MYSQL_USER=agencia_user
+      - MYSQL_PASSWORD=123456
     volumes:
       - mysql_data:/var/lib/mysql
     ports:

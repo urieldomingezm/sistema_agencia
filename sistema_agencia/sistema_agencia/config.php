@@ -10,7 +10,9 @@ define('CONFIG_PATH', PRIVATE_PATH.'config/');
 // Checar si funciona carpeta de POO
 define('POO_PATH', PRIVATE_PATH.'poo/login/'); 
 define('MODELOS_PATH', PRIVATE_PATH.'modelos/login'); 
+define('POO_HOME_PATH', PRIVATE_PATH.'modelos/home'); 
 
+define('MENU_PATH', CONFIG_PATH.'menus/');
 define('PROCESOS_PATH', CONFIG_PATH.'procesos/');    
 define('UPLOADS_PATH', PRIVATE_PATH.'uploads/');      
 define('SCRIPTS_PATH', PRIVATE_PATH.'scripts/');     
