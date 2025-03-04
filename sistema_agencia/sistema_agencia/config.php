@@ -5,7 +5,12 @@ define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/sistema_agencia/');
 // Rutas a carpetas privadas
 define('PRIVATE_PATH', ROOT_PATH.'private/');
 define('TEMPLATES_PATH', PRIVATE_PATH.'plantilla/'); 
-define('CONFIG_PATH', PRIVATE_PATH.'config/');        
+define('CONFIG_PATH', PRIVATE_PATH.'config/'); 
+
+// Checar si funciona carpeta de POO
+define('POO_PATH', PRIVATE_PATH.'poo/login/'); 
+define('MODELOS_PATH', PRIVATE_PATH.'modelos/login'); 
+
 define('PROCESOS_PATH', CONFIG_PATH.'procesos/');    
 define('UPLOADS_PATH', PRIVATE_PATH.'uploads/');      
 define('SCRIPTS_PATH', PRIVATE_PATH.'scripts/');     

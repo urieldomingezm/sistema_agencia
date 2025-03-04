@@ -4,8 +4,9 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
 require_once(CONFIG_PATH . 'bd.php');
 require_once(TEMPLATES_PATH . 'header.php');
-require_once(MODAL_PATH . 'User.php');
-require_once(MODAL_PATH . 'GestionAscTime.php');
+require_once(MODELOS_PATH. 'User.php');
+require_once(MODELOS_PATH . 'GestionAscTime.php');
+
 
 $database = new Database();
 $conn = $database->getConnection();
@@ -67,34 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>alert('Por favor, complete todos los campos correctamente.'); window.location.href = '/sistema_agencia/registrar.php';</script>";
     }
 }
-?>
 
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="text-center">Registrar Usuario</h2>
-                    </div>
-                    <div class="card-body">
-                        <form id="registerForm" method="POST">
-                            <div class="form-group">
-                                <label for="registro_usuario">Nombre de usuario</label>
-                                <input type="text" class="form-control" name="registro_usuario" id="registro_usuario" placeholder="Nombre de usuario" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="registro_password">Contraseña</label>
-                                <input type="password" class="form-control" name="registro_password" id="registro_password" placeholder="Contraseña" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
-                        </form>
-                    </div>
-                    <div class="card-footer text-center">
-                        ¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+require_once(POO_PATH . 'body_registro.php');
+require_once(TEMPLATES_PATH . 'footer.php');
+?>

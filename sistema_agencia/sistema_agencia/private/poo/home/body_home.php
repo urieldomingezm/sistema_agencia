@@ -1,5 +1,5 @@
 <?php
-class BodyLogin {
+class BodyHome {
     public function render() {
         echo '<div class="container mt-5">';
         echo '<div class="row justify-content-center">';
@@ -31,7 +31,6 @@ class BodyLogin {
     }
 }
 
-// Uso de la clase BodyLogin
-$bodyLogin = new BodyLogin();
-$bodyLogin->render();
+$bodyHome = new BodyHome();
+$bodyHome ->render();
 ?>
