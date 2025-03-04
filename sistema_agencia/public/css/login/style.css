@@ -1,4 +1,19 @@
-/* CSS REGISTROS */
+/* LOGIN CSS */
+
+:root {
+    --valentine-pink: #0072CE;
+    /* Azul Sony */
+    --valentine-dark: #000000;
+    /* Negro */
+    --valentine-light: #FFFFFF;
+    /* Blanco */
+    --valentine-white: #FFFFFF;
+    /* Blanco */
+    --valentine-accent: #555555;
+    /* Gris Sony */
+    --valentine-highlight: #B2B2B2;
+    /* Gris Claro */
+}
 
 .register-container {
     background-color: var(--valentine-dark);

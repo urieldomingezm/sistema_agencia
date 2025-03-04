@@ -70,16 +70,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <body>
-    <div class="register-container">
-        <h2>Registrar Usuario</h2>
-
-        <form id="registerForm" method="POST">
-            <input type="text" name="registro_usuario" id="registro_usuario" placeholder="Nombre de usuario" required>
-            <input type="password" name="registro_password" id="registro_password" placeholder="Contraseña" required>
-            <button type="submit">Registrar</button>
-        </form>
-        <div class="login-link">
-            ¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Registrar Usuario</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="registerForm" method="POST">
+                            <div class="form-group">
+                                <label for="registro_usuario">Nombre de usuario</label>
+                                <input type="text" class="form-control" name="registro_usuario" id="registro_usuario" placeholder="Nombre de usuario" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registro_password">Contraseña</label>
+                                <input type="password" class="form-control" name="registro_password" id="registro_password" placeholder="Contraseña" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        ¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

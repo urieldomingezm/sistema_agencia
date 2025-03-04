@@ -1,3 +1,4 @@
+<br>
 <?php
 class Footer {
     private $jsFiles = [];
@@ -7,7 +8,7 @@ class Footer {
     }
 
     public function render() {
-        echo '<footer class="bg-dark text-white text-center py-3">';
+        echo '<footer class="bg-dark text-white text-center py-3 mt-auto">';
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-md-12">';
@@ -47,6 +48,7 @@ class Footer {
     }
 }
 
+// Uso de la clase Footer
 $footer = new Footer();
 $footer->addJsFile('/sistema_agencia/public/js/custom.js');
 $footer->render();
