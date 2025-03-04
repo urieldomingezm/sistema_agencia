@@ -1,0 +1,137 @@
+/* CSS REGISTROS */
+
+.register-container {
+    background-color: var(--valentine-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid var(--valentine-accent);
+}
+
+.register-container h2 {
+    color: var(--valentine-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.register-container input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--valentine-accent);
+    border-radius: 4px;
+    background-color: var(--valentine-dark);
+    color: var(--valentine-light);
+    font-size: 1rem;
+}
+
+.register-container input::placeholder {
+    color: var(--valentine-highlight);
+}
+
+.register-container input:focus {
+    outline: none;
+    border-color: var(--valentine-pink);
+}
+
+.register-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--valentine-pink);
+    color: var(--valentine-white);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-container button:hover {
+    background-color: #005bb5;
+}
+
+.register-container .login-link {
+    margin-top: 1rem;
+    color: var(--valentine-highlight);
+}
+
+.register-container .login-link a {
+    color: var(--valentine-pink);
+    text-decoration: none;
+}
+
+.register-container .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* CSS LOGIN */
+
+    .login-container {
+        background-color: var(--valentine-dark);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        border: 1px solid var(--valentine-accent);
+    }
+
+    .login-container h2 {
+        color: var(--valentine-light);
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .login-container input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid var(--valentine-accent);
+        border-radius: 4px;
+        background-color: var(--valentine-dark);
+        color: var(--valentine-light);
+        font-size: 1rem;
+    }
+
+    .login-container input::placeholder {
+        color: var(--valentine-highlight);
+    }
+
+    .login-container input:focus {
+        outline: none;
+        border-color: var(--valentine-pink);
+    }
+
+    .login-container button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: var(--valentine-pink);
+        color: var(--valentine-white);
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-container button:hover {
+        background-color: #005bb5;
+    }
+
+    .login-container .register-link {
+        margin-top: 1rem;
+        color: var(--valentine-highlight);
+    }
+
+    .login-container .register-link a {
+        color: var(--valentine-pink);
+        text-decoration: none;
+    }
+
+    .login-container .register-link a:hover {
+        text-decoration: underline;
+    }
