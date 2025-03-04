@@ -2,7 +2,7 @@
 session_start();
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
-require_once(CONFIG_PATH . 'db.php');
+require_once(CONFIG_PATH . 'bd.php');
 require_once(TEMPLATES_PATH . 'header.php');
 
 class User {
