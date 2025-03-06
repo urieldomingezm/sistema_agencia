@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"ExampleTest::testHelloWorld":0.002}}
+{"version":1,"defects":[],"times":{"ExampleTest::testHelloWorld":0.008,"HelloWorldTest::testHelloWorld":0}}

@@ -54,13 +54,28 @@ class Navbar {
     echo '</div>';
     echo '</div>';
     echo '</nav>';
+
+    // Menú de hamburguesa para el perfil
+    echo '<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasProfile" aria-labelledby="offcanvasProfileLabel">';
+    echo '<div class="offcanvas-header">';
+    echo '<h5 class="offcanvas-title" id="offcanvasProfileLabel">Perfil</h5>';
+    echo '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>';
+    echo '</div>';
+    echo '<div class="offcanvas-body">';
+    echo '<p>Aquí puedes mostrar los datos del perfil del usuario.</p>';
+    echo '</div>';
+    echo '</div>';
+
+    echo '<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasProfile" aria-controls="offcanvasProfile">';
+    echo 'Perfil';
+    echo '</button>';
   }
 }
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']],
-  ['name' => 'Perfil', 'dropdown' => ['Chat General', 'divider', 'Cerrar session']],
+  ['name' => 'Perfil', 'dropdown' => ['Chat General', 'divider', 'Cerrar sesión']],
 ];
 
 $navbar = new Navbar('Navbar', $items);
