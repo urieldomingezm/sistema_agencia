@@ -4,8 +4,7 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
 require_once(CONFIG_PATH . 'bd.php');
 require_once(TEMPLATES_PATH . 'header.php');
-require_once(MODELOS_PATH. 'User.php');
-require_once(MODELOS_PATH . 'GestionAscTime.php');
+require_once(PROCESOS_LOGIN_PATH. 'registrar.php');
 
 
 $database = new Database();
@@ -69,6 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require_once(POO_PATH . 'body_registro.php');
+require_once(PROCESOS_LOGIN_PATH . 'body_registrar.php');
 require_once(TEMPLATES_PATH . 'footer.php');
 ?>
