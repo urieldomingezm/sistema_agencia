@@ -58,13 +58,15 @@ class Navbar {
 }
 
 $items = [
-  ['name' => 'Home', 'active' => true],
-  ['name' => 'Link'],
-  ['name' => 'Dropdown', 'dropdown' => ['Action', 'Another action', 'divider', 'Something else here']],
-  ['name' => 'Disabled', 'disabled' => true]
+  ['name' => 'Inicio', 'active' => true],
+  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']],
+  ['name' => 'Ascensos y tiempos', 'dropdown' => ['Tomar ascenso', 'Gestion de ascenso', 'divider', 'Tomar tiempo', 'Gestion de tiempos']],
+  ['name' => 'Ventas', 'dropdown' => ['Vender membresias', 'Vender rangos', 'Gestion de ventas']],
+  ['name' => 'Administrativos', 'dropdown' => ['Gestion de usuarios']],
+  ['name' => 'Perfil', 'dropdown' => ['Chat General', 'divider', 'Cerrar session']]
+ 
 ];
 
 $navbar = new Navbar('Navbar', $items);
 $navbar->render();
-
 ?>
