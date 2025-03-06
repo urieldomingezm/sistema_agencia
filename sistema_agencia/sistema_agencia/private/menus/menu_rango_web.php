@@ -63,8 +63,7 @@ $items = [
   ['name' => 'Ascensos y tiempos', 'dropdown' => ['Tomar ascenso', 'Gestion de ascenso', 'divider', 'Tomar tiempo', 'Gestion de tiempos']],
   ['name' => 'Ventas', 'dropdown' => ['Vender membresias', 'Vender rangos', 'Gestion de ventas']],
   ['name' => 'Administrativos', 'dropdown' => ['Gestion de usuarios']],
-  ['name' => 'Perfil', 'dropdown' => ['Chat General', 'divider', 'Cerrar session']]
- 
+  ['name' => 'Perfil', 'dropdown' => ['Chat General', 'divider', 'Cerrar sesión']]
 ];
 
 $navbar = new Navbar('Navbar', $items);
