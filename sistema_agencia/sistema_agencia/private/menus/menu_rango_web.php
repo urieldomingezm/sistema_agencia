@@ -13,6 +13,9 @@ class Navbar {
     $this->searchButtonText = $searchButtonText;
   }
 
+
+//sasa
+
   public function render() {
     echo '<nav class="navbar navbar-expand-lg bg-primary bg-body-tertiary" data-bs-theme="dark">';
     echo '<div class="container-fluid">';
