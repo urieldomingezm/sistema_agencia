@@ -1,28 +1,30 @@
 <br>
 <?php
-class Footer {
+class Footer
+{
     private $jsFiles = [];
 
-    public function addJsFile($filePath) {
+    public function addJsFile($filePath)
+    {
         $this->jsFiles[] = $filePath;
     }
 
-    public function render() {
-        echo '<footer class="bg-dark text-white text-center py-3 mt-auto">';
-        echo '<div class="container">';
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        echo '<p>&copy; ' . date('Y') . ' Mi Proyecto. Todos los derechos reservados.</p>';
-        echo '<div class="social-icons">';
-        echo '<a href="#" class="text-white mr-2"><i class="fab fa-facebook-f"></i></a>';
-        echo '<a href="#" class="text-white mr-2"><i class="fab fa-twitter"></i></a>';
-        echo '<a href="#" class="text-white mr-2"><i class="fab fa-instagram"></i></a>';
-        echo '<a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</footer>';
+    public function render()
+    {
+        echo '<footer class="bg-dark text-white text-center py-3 mt-auto">'; 
+        echo '<div class="container">'; 
+        echo '<div class="row">'; 
+        echo '<div class="col-md-12">'; 
+        echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados.</p>';
+        echo '</div>'; 
+        echo '</div>'; 
+        echo '</div>'; 
+        echo '</footer>'; 
+
+        // Botón de flecha hacia arriba
+        echo '<button id="scrollTopBtn" class="btn btn-primary rounded-circle" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1000;" onclick="scrollToTop()">';
+        echo '<i class="bi bi-arrow-up"></i>'; 
+        echo '</button>';
 
         // Bootstrap JS
         echo '<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>';
@@ -42,6 +44,25 @@ class Footer {
         foreach ($this->jsFiles as $file) {
             echo '<script src="' . $file . '"></script>';
         }
+
+        // Script para mostrar el botón de la flecha al hacer scroll y la función de ir arriba
+        echo '<script>
+        // Mostrar el botón de flecha al hacer scroll
+        window.onscroll = function() {toggleScrollTopBtn()};
+
+        function toggleScrollTopBtn() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                document.getElementById("scrollTopBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollTopBtn").style.display = "none";
+            }
+        }
+
+        // Función para ir arriba de la página
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        </script>';
 
         echo '</body>';
         echo '</html>';

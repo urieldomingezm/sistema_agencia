@@ -21,7 +21,7 @@ define('PROCESOS_LOGIN_PATH', PRIVATE_PATH.'config/procesos/login_registro/');
 // define('PROCESOS_LOGIN_PATH', PRIVATE_PATH.'config/procesos/login_registro/'); 
 
 // Rutas de configuracion privadas
-define('MENU_PATH', CONFIG_PATH.'menus/');   
+define('MENU_PATH', PRIVATE_PATH.'menus/');     
 define('UPLOADS_PATH', PRIVATE_PATH.'uploads/');      
 define('SCRIPTS_PATH', PRIVATE_PATH.'scripts/');     
 define('SUBSCRIPTIONS_PATH', PRIVATE_PATH.'subscriptions/');      

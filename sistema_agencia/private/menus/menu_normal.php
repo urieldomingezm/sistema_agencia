@@ -6,15 +6,13 @@ class Navbar
   private $items;
   private $searchPlaceholder;
   private $searchButtonText;
-  private $userData;
 
-  public function __construct($brand, $items, $userData, $searchPlaceholder = "Search", $searchButtonText = "Search")
+  public function __construct($brand, $items, $searchPlaceholder = "Search", $searchButtonText = "Search")
   {
     $this->brand = $brand;
     $this->items = $items;
     $this->searchPlaceholder = $searchPlaceholder;
     $this->searchButtonText = $searchButtonText;
-    $this->userData = $userData;
   }
 
   public function render()
@@ -61,20 +59,6 @@ class Navbar
     echo '<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">';
     echo '<div class="container-fluid d-flex">';
 
-    // Usuario con dropdown alineado a la izquierda
-    echo '<div class="nav-item dropdown ms-5 user-dropdown">';
-    echo '<a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-    echo '<img src="' . $this->userData['avatar'] . '" alt="Perfil" class="rounded-circle" width="35" height="35">';
-    echo '</a>';
-    echo '<ul class="dropdown-menu dropdown-menu-end">';
-    echo '<li><span class="dropdown-item-text text-white"><strong>' . $this->userData['usuario'] . '</strong></span></li>';
-    echo '<li><span class="dropdown-item-text text-white">' . $this->userData['rango'] . '</span></li>';
-    echo '<li><hr class="dropdown-divider"></li>';
-    echo '<li><a class="dropdown-item" href="#">Ver perfil</a></li>';
-    echo '<li><a class="dropdown-item" href="#">Cerrar sesión</a></li>';
-    echo '</ul>';
-    echo '</div>';
-
     // Navbar brand centrado
     echo '<a class="navbar-brand text-white" href="#">' . $this->brand . '</a>';
 
@@ -98,7 +82,14 @@ class Navbar
           if ($dropdownItem == 'divider') {
             echo '<li><hr class="dropdown-divider"></li>';
           } else {
-            echo '<li><a class="dropdown-item" href="#">' . $dropdownItem . '</a></li>';
+            // Modificando para agregar los href de 'Iniciar Session' y 'Registrarse'
+            if ($dropdownItem == 'Iniciar Session') {
+              echo '<li><a class="dropdown-item" href="login.php">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Registrarse') {
+              echo '<li><a class="dropdown-item" href="registrar.php">' . $dropdownItem . '</a></li>';
+            } else {
+              echo '<li><a class="dropdown-item" href="#">' . $dropdownItem . '</a></li>';
+            }
           }
         }
         echo '</ul>';
@@ -124,18 +115,13 @@ class Navbar
   }
 }
 
-// Datos del usuario (se pueden obtener desde una base de datos o sesión)
-$userData = [
-  'usuario' => 'Santidemg',
-  'rango' => 'Seguridad',
-  'avatar' => '/sistema_agencia/public/custom/custom_menus_usuarios/image/profile.png'
-];
-
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']]
+  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']],
+  ['name' => 'Unirse', 'dropdown' => ['Iniciar Session', 'Registrarse']]
 ];
 
-$navbar = new Navbar('Agencia Atenas', $items, $userData);
+$navbar = new Navbar('Agencia Atenas', $items);
 $navbar->render();
+
 ?>

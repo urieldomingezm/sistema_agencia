@@ -1,142 +1,178 @@
 <?php
-class BodyHome {
-    public function render() {
+class BodyHome
+{
+    public function render()
+    {
         echo '<body class="d-flex flex-column h-100">';
+
+        $this->renderHeader(); // Llamamos a la función para renderizar el header
+        $this->renderTeamSection(); // Llamamos a la función para renderizar la sección del equipo
+        $this->renderEventsSection(); // Llamamos a la función para renderizar la sección de eventos
+
+        echo '</body>';
+    }
+
+    private function renderHeader()
+    {
         echo '<main class="flex-shrink-0">';
-        echo '<!-- Header-->';
         echo '<header class="bg-dark py-5">';
         echo '<div class="container px-5">';
         echo '<div class="row gx-5 align-items-center justify-content-center">';
         echo '<div class="col-lg-8 col-xl-7 col-xxl-6">';
         echo '<div class="my-5 text-center text-xl-start">';
-        echo '<h1 class="display-5 fw-bolder text-white mb-2">A Bootstrap 5 template for modern businesses</h1>';
-        echo '<p class="lead fw-normal text-white-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>';
-        echo '<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">';
-        echo '<a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>';
-        echo '<a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>';
+        echo '<h1 class="display-5 fw-bolder text-white mb-2">Agencia Atenas</h1>';
+        echo '<p class="lead fw-normal text-white-50 mb-4">La mejor comunidad de Habbo Hotel</p>';
+        echo '<a class="btn btn-warning btn-lg px-4 me-sm-3" href="#">¡Únete ahora!</a>';
         echo '</div>';
         echo '</div>';
+        echo '<div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">';
+        echo '<img class="img-fluid rounded-3 my-5" src="https://api.a0.dev/assets/image?text=Habbo%20hotel%20with%20many%20colorful%20avatars%20in%20a%20lobby&aspect=1:1" alt="Habbo Hotel" />';
         echo '</div>';
-        echo '<div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>';
         echo '</div>';
         echo '</div>';
         echo '</header>';
-        echo '<!-- Features section-->';
-        echo '<section class="py-5" id="features">';
-        echo '<div class="container px-5 my-5">';
-        echo '<div class="row gx-5">';
-        echo '<div class="col-lg-4 mb-5 mb-lg-0">';
-        echo '<h2 class="fw-bolder mb-0">A better way to start building.</h2>';
-        echo '</div>';
-        echo '<div class="col-lg-8">';
-        echo '<div class="row gx-5 row-cols-1 row-cols-md-2">';
-        echo '<div class="col mb-5 h-100">';
-        echo '<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>';
-        echo '<h2 class="h5">Featured title</h2>';
-        echo '<p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>';
-        echo '</div>';
-        echo '<div class="col mb-5 h-100">';
-        echo '<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>';
-        echo '<h2 class="h5">Featured title</h2>';
-        echo '<p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>';
-        echo '</div>';
-        echo '<div class="col mb-5 mb-md-0 h-100">';
-        echo '<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>';
-        echo '<h2 class="h5">Featured title</h2>';
-        echo '<p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>';
-        echo '</div>';
-        echo '<div class="col h-100">';
-        echo '<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>';
-        echo '<h2 class="h5">Featured title</h2>';
-        echo '<p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</section>';
-        echo '<!-- Testimonial section-->';
-        echo '<div class="py-5 bg-light">';
-        echo '<div class="container px-5 my-5">';
-        echo '<div class="row gx-5 justify-content-center">';
-        echo '<div class="col-lg-10 col-xl-7">';
-        echo '<div class="text-center">';
-        echo '<div class="fs-4 mb-4 fst-italic">"Working with Start Bootstrap templates has saved me tons of development time when building new projects! Starting with a Bootstrap template just makes things easier!"</div>';
-        echo '<div class="d-flex align-items-center justify-content-center">';
-        echo '<img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />';
-        echo '<div class="fw-bold">';
-        echo 'Tom Ato';
-        echo '<span class="fw-bold text-primary mx-1">/</span>';
-        echo 'CEO, Pomodoro';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '<!-- Blog preview section-->';
-        echo '<section class="py-5">';
-        echo '<div class="container px-5 my-5">';
-        echo '<div class="row gx-5 justify-content-center">';
-        echo '<div class="col-lg-8 col-xl-6">';
-        echo '<div class="text-center">';
-        echo '<h2 class="fw-bolder">From our blog</h2>';
-        echo '<p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '<div class="row gx-5">';
-        echo '<div class="col-lg-4 mb-5">';
-        echo '<div class="card h-100 shadow border-0">';
-        echo '<img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />';
-        echo '<div class="card-body p-4">';
-        echo '<div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>';
-        echo '<a class="text-decoration-none link-dark stretched-link" href="#!">';
-        echo '<h5 class="card-title mb-3">Blog post title</h5>';
-        echo '</a>';
-        echo '<p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>';
-        echo '</div>';
-        echo '<div class="card-footer p-4 pt-0 bg-transparent border-top-0">';
-        echo '<div class="d-flex align-items-end justify-content-between">';
-        echo '<div class="d-flex align-items-center">';
-        echo '<img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />';
-        echo '<div class="small">';
-        echo '<div class="fw-bold">Kelly Rowan</div>';
-        echo '<div class="text-muted">March 12, 2023 &middot; 6 min read</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '<div class="col-lg-4 mb-5">';
-        echo '<div class="card h-100 shadow border-0">';
-        echo '<img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />';
-        echo '<div class="card-body p-4">';
-        echo '<div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>';
-        echo '<a class="text-decoration-none link-dark stretched-link" href="#!">';
-        echo '<h5 class="card-title mb-3">Another blog post title</h5>';
-        echo '</a>';
-        echo '<p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>';
-        echo '</div>';
-        echo '<div class="card-footer p-4 pt-0 bg-transparent border-top-0">';
-        echo '<div class="d-flex align-items-end justify-content-between">';
-        echo '<div class="d-flex align-items-center">';
-        echo '<img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />';
-        echo '<div class="small">';
-        echo '<div class="fw-bold">Josiah Barclay</div>';
-        echo '<div class="text-muted">March 23, 2023 &middot; 4 min read</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</section>';
         echo '</main>';
-        echo '</body>';
+    }
+
+    private function renderTeamSection()
+{
+    $teamMembers = [
+        [
+            'id' => '1',
+            'name' => 'Juan Pérez',
+            'role' => 'Líder de la comunidad y administrador principal',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20blonde%20hair%20and%20suit&aspect=1:1',
+            'rank' => 'Fundador',
+            'habboName' => 'JuanHabbo',
+        ],
+        [
+            'id' => '2',
+            'name' => 'Ana Gómez',
+            'role' => 'Encargada de eventos y actividades de la comunidad',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20pink%20hair&aspect=1:1',
+            'rank' => 'Directora',
+            'habboName' => 'AnaHabbo',
+        ],
+        [
+            'id' => '3',
+            'name' => 'Carlos Díaz',
+            'role' => 'Desarrollador web y encargado de la parte técnica',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair%20and%20glasses&aspect=1:1',
+            'rank' => 'Técnico',
+            'habboName' => 'CarlosHabbo',
+        ],
+        [
+            'id' => '4',
+            'name' => 'María Ruiz',
+            'role' => 'Encargada de redes sociales y comunicación',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20red%20dress&aspect=1:1',
+            'rank' => 'Community Manager',
+            'habboName' => 'MariaHabbo',
+        ],
+        [
+            'id' => '5',
+            'name' => 'Laura Sánchez',
+            'role' => 'Coordinadora de proyectos y eventos especiales',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20blue%20outfit&aspect=1:1',
+            'rank' => 'Coordinadora',
+            'habboName' => 'LauraHabbo',
+        ],
+        [
+            'id' => '6',
+            'name' => 'Pedro García',
+            'role' => 'Especialista en marketing digital y contenido',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20dark%20hair%20and%20casual%20clothes&aspect=1:1',
+            'rank' => 'Marketing',
+            'habboName' => 'PedroHabbo',
+        ],
+    ];
+
+    echo '<section class="py-5 bg-light">';
+    echo '<div class="container px-5">';
+    echo '<div class="text-center mb-5">';
+    echo '<h2 class="fw-bolder">Nuestro Equipo</h2>';
+    echo '<p class="lead fw-normal text-muted">Conoce a los miembros que hacen posible Agencia Atenas</p>';
+    echo '</div>';
+
+    echo '<div class="row gx-5 justify-content-center">';
+    foreach ($teamMembers as $member) {
+        echo '<div class="col-lg-4 col-md-6 mb-4">';
+        echo '<div class="card h-100 shadow border-0">';
+        echo '<div class="card-img-top text-center p-3">';
+        echo '<img src="' . $member['image'] . '" class="rounded-circle" alt="' . $member['name'] . '" style="width: 120px; height: 120px; border: 3px solid #4a69bd;">';
+        // Aquí centramos el badge con el rank debajo de la imagen
+        echo '<div class="badge bg-primary mt-2 d-block mx-auto" style="width: fit-content;">' . $member['rank'] . '</div>';
+        echo '</div>';
+        echo '<div class="card-body p-4 text-center">';
+        echo '<h5 class="card-title">' . $member['name'] . '</h5>';
+        echo '<p class="card-text">' . $member['role'] . '</p>';
+        echo '<div class="d-flex align-items-center justify-content-center">';
+        echo '<i class="fas fa-user me-2"></i>';
+        echo '<span>' . $member['habboName'] . '</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+    echo '</div>';
+    echo '</div>';
+    echo '</section>';
+}
+
+
+    private function renderEventsSection()
+    {
+        $events = [
+            [
+                'id' => '1',
+                'title' => 'Fiesta de Bienvenida',
+                'description' => 'Conoce a todos los miembros de Agencia Atenas en nuestra fiesta de bienvenida',
+                'date' => '15 de Marzo, 2025',
+                'image' => 'https://api.a0.dev/assets/image?text=Habbo%20party%20room%20with%20lots%20of%20avatars%20dancing&aspect=16:9',
+            ],
+            [
+                'id' => '2',
+                'title' => 'Concurso de Construcción',
+                'description' => 'Muestra tus habilidades de construcción y gana premios increíbles',
+                'date' => '22 de Marzo, 2025',
+                'image' => 'https://api.a0.dev/assets/image?text=Habbo%20building%20competition%20with%20furniture%20and%20decorations&aspect=16:9',
+            ],
+            [
+                'id' => '3',
+                'title' => 'Carrera de Obstáculos',
+                'description' => 'Supera todos los obstáculos en el menor tiempo posible',
+                'date' => '29 de Marzo, 2025',
+                'image' => 'https://api.a0.dev/assets/image?text=Habbo%20obstacle%20course%20with%20traps%20and%20challenges&aspect=16:9',
+            ],
+        ];
+
+        echo '<section class="py-5">';
+        echo '<div class="container px-5">';
+        echo '<div class="text-center mb-5">';
+        echo '<h2 class="fw-bolder">Próximos Eventos</h2>';
+        echo '<p class="lead fw-normal text-muted">No te pierdas nuestras actividades en Habbo Hotel</p>';
+        echo '</div>';
+
+        echo '<div class="row gx-5">';
+        foreach ($events as $event) {
+            echo '<div class="col-lg-4 col-md-6 mb-4">';
+            echo '<div class="card h-100 shadow border-0">';
+            echo '<img src="' . $event['image'] . '" class="card-img-top" alt="' . $event['title'] . '" style="height: 180px; object-fit: cover;">';
+            echo '<div class="card-body p-4">';
+            echo '<h5 class="card-title">' . $event['title'] . '</h5>';
+            echo '<p class="card-text">' . $event['description'] . '</p>';
+            echo '<div class="d-flex align-items-center mb-3">';
+            echo '<i class="fas fa-calendar-alt me-2"></i>';
+            echo '<span>' . $event['date'] . '</span>';
+            echo '</div>';
+            echo '<a href="#" class="btn btn-primary">Inscribirme</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        echo '</div>';
+        echo '</div>';
+        echo '</section>';
     }
 }
 
