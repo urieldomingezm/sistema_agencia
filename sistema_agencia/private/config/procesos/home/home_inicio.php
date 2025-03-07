@@ -45,7 +45,6 @@ class BodyHome
         ],
         [
             'id' => '2',
-            'name' => 'Ana Gómez',
             'name' => 'Manu',
             'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20pink%20hair&aspect=1:1',
