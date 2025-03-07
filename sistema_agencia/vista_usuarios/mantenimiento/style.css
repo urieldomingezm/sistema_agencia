@@ -94,13 +94,13 @@ habbo-client-closed, habbo-client-error {
     border-color: transparent transparent transparent #ffb900;
     right: -38px;
 }
-/* h1, h2, h3, h4, h5, h6 {
+ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     font-family: "Ubuntu Condensed","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,sans-serif;
     font-weight: 400;
     margin: .6em 0;
     line-height: 1.2;
-} */
+} 
 .hotel-button, h5, h6, p {
     font-size: 16px;
 }
