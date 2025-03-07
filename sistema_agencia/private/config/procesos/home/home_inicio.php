@@ -5,10 +5,9 @@ class BodyHome
     {
         echo '<body class="d-flex flex-column h-100">';
 
-        $this->renderHeader(); // Llamamos a la función para renderizar el header
-        $this->renderTeamSection(); // Llamamos a la función para renderizar la sección del equipo
-        $this->renderEventsSection(); // Llamamos a la función para renderizar la sección de eventos
-
+        $this->renderHeader();
+        $this->renderTeamSection(); 
+        $this->renderEventsSection();
         echo '</body>';
     }
 
@@ -39,51 +38,46 @@ class BodyHome
     $teamMembers = [
         [
             'id' => '1',
-            'name' => 'Juan Pérez',
-            'role' => 'Líder de la comunidad y administrador principal',
+            'name' => 'Santidemg',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20blonde%20hair%20and%20suit&aspect=1:1',
-            'rank' => 'Fundador',
-            'habboName' => 'JuanHabbo',
+            'rank' => 'Dueño',
         ],
         [
             'id' => '2',
             'name' => 'Ana Gómez',
-            'role' => 'Encargada de eventos y actividades de la comunidad',
+            'name' => 'Manu',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20pink%20hair&aspect=1:1',
-            'rank' => 'Directora',
-            'habboName' => 'AnaHabbo',
+            'rank' => 'Dueño',
         ],
         [
             'id' => '3',
             'name' => 'Carlos Díaz',
-            'role' => 'Desarrollador web y encargado de la parte técnica',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair%20and%20glasses&aspect=1:1',
-            'rank' => 'Técnico',
-            'habboName' => 'CarlosHabbo',
+            'rank' => 'Dueño',
         ],
         [
             'id' => '4',
             'name' => 'María Ruiz',
-            'role' => 'Encargada de redes sociales y comunicación',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20red%20dress&aspect=1:1',
-            'rank' => 'Community Manager',
-            'habboName' => 'MariaHabbo',
+            'rank' => 'Dueño',
         ],
         [
             'id' => '5',
-            'name' => 'Laura Sánchez',
-            'role' => 'Coordinadora de proyectos y eventos especiales',
+            'name' => 'Loucio',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20blue%20outfit&aspect=1:1',
-            'rank' => 'Coordinadora',
-            'habboName' => 'LauraHabbo',
+            'rank' => 'Administrador',
         ],
         [
             'id' => '6',
-            'name' => 'Pedro García',
-            'role' => 'Especialista en marketing digital y contenido',
+            'name' => 'asdasdas',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20dark%20hair%20and%20casual%20clothes&aspect=1:1',
-            'rank' => 'Marketing',
-            'habboName' => 'PedroHabbo',
+            'rank' => 'Administrador',
         ],
     ];
 
@@ -100,16 +94,11 @@ class BodyHome
         echo '<div class="card h-100 shadow border-0">';
         echo '<div class="card-img-top text-center p-3">';
         echo '<img src="' . $member['image'] . '" class="rounded-circle" alt="' . $member['name'] . '" style="width: 120px; height: 120px; border: 3px solid #4a69bd;">';
-        // Aquí centramos el badge con el rank debajo de la imagen
         echo '<div class="badge bg-primary mt-2 d-block mx-auto" style="width: fit-content;">' . $member['rank'] . '</div>';
         echo '</div>';
         echo '<div class="card-body p-4 text-center">';
         echo '<h5 class="card-title">' . $member['name'] . '</h5>';
         echo '<p class="card-text">' . $member['role'] . '</p>';
-        echo '<div class="d-flex align-items-center justify-content-center">';
-        echo '<i class="fas fa-user me-2"></i>';
-        echo '<span>' . $member['habboName'] . '</span>';
-        echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
