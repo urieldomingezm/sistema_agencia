@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - A Pen by André Gama</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
 <body>
 
 <!-- partial:index.partial.html -->
@@ -14,7 +6,7 @@
     <div class="client-error__background-frank" ng-if="!ClientErrorController.mobile">
         <span class="client-error__text-contents">
             <h1 class="client-error__title" translate="CLIENT_ERROR_TITLE">Estan en mantenimiento</h1>
-            <p translate="CLIENT_ERROR_FLASH">Perdon por las molestias causadas por el momento esta en mantenimiento este index en unos minutos vov</p>
+            <p translate="CLIENT_ERROR_FLASH">Perdon por las molestias causadas por el momento esta en mantenimiento este index en unos minutos volvera a la normalidad</p>
         </span>
         <div class="client-error__hotel-button-div">
             <a ng-href="http://www.adobe.com/go/getflashplayer" target="_blank" rel="noopener noreferrer" class="hotel-button" href="http://www.adobe.com/go/getflashplayer">
@@ -28,6 +20,3 @@
 <!-- partial -->
   
 </body>
-
-
-</html>
