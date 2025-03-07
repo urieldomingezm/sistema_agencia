@@ -16,10 +16,8 @@
     href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=6936817305946898479&zx=2fa9d285-e233-41f7-b579-9bf08ebc0786' />
 
   <!-- SCRIPT -->
-  <script src='https://code.jquery.com/jquery-1.12.1.min.js' type='text/javascript'></script>
   <script src='https://sites.google.com/a/arquivosecreto.net/teste/js/tipper.js' type='text/javascript'></script>
   <script src='https://sites.google.com/a/arquivosecreto.net/teste/js/fresco.js' type='text/javascript'></script>
-  <script src='https://static.tumblr.com/y66747w/9hlmdpcpa/nivoslider.js' type='text/javascript'></script>
   <script src='https://static.tumblr.com/y66747w/9hlmdpcpa/nivoslider.js' type='text/javascript'></script>
   <script src='https://code.jquery.com/jquery-latest.js' type='text/javascript'></script>
   <script src='https://static.tumblr.com/y66747w/9hlmdpcpa/nivoslider.js' type='text/javascript'></script>
@@ -32,399 +30,219 @@
 
 <!-- END STYLE -->
 
-<body>
-
-  <body onload='time()'>
-    <div id='preloader'>
+<body onload='time()'>
+  <!-- <div id='preloader'>
       <div id='status'></div>
-      <div id='loader'></div>
-    </div>
-    <div class='notificacao' id='notificacao'>
-      <div class='separa'><a onClick='fechar(); return false' title='Fechar'>
-          <div class='fechar'><i class='fa fa-times'></i></div>
-        </a>
-        <h3>Traduzir</h3>
-      </div>
-      <div id='google_translate_element'>
-        <div class='teste'></div>
-      </div>
-    </div>
+      <div id='loader'></div> -->
+  </div>
 
-    <!-- STAR MENU -->
+  <!-- STAR MENU -->
 
-    <div class='menu'>
-      <div class='conteudo'>
-        <div id='cssmenu'>
-          <ul>
-            <li><a href='/'><span>Agencia Atenas</span></a></li>
-            <li><a><span>Informacion</span></a>
-              <ul>
-                <li class='has-sub'><a href='#'><span>Rangos</span></a></li>
-                <li class='has-sub'><a href='/p/contato.html'><span>Requisitos</span></a></li>
-                <li class='has-sub'><a href='/p/equipe.html'><span>Membresias</span></a></li>
-              </ul>
-            </li>
-            <li><a><span>Unirse</span></a>
-              <ul>
-                <li class='has-sub'><a href='#'><span>Iniciar session</span></a></li>
-                <li class='has-sub'><a href='#'><span>Registrarse</span></a></li>
-              </ul>
-            </li>
-          </ul>
-          <div class='onlines section' id='Onlines'>
-            <div class='widget HTML' id='HTML10'>
-              <h2 class='title'>Onlines</h2>
-              <div class='widget-content'>
-                <script language="JavaScript">var fhs = document.createElement('script'); var fhs_id = "5235623";
-                  var ref = ('' + document.referrer + ''); var pn = window.location; var w_h = window.screen.width + " x " + window.screen.height;
-                  fhs.src = "//s1.freehostedscripts.net/ocounter.php?site=" + fhs_id + "&e1=Online&e2=Onlines&r=" + ref + "&wh=" + w_h + "&a=1&pn=" + pn + "";
-                  document.head.appendChild(fhs); document.write("<span id='o_" + fhs_id + "'></span>");
-                </script>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML10&action=editWidget&sectionId=Onlines'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML10"));'
-                    target='configHTML10' title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-          <div class='notifica section' id='tirinhas'>
-            <div class='widget HTML' id='HTML13'>
-              <h2 class='title'>Tirinhas</h2>
-              <div class='widget-content'>
-                <div class='botao tirinha'><i class="fa fa-paint-brush tirinha"></i>
-                  <div class='num'>0</div>
-
-                  <div class='caixa-notifica' id='tirinha-box'>
-                    <div class='seta'></div>
-                    <div class='scroll'>
-                      <div class='info'>Tirinhas</div>
-                      <div class='fechar sai-box'><i class='fa fa-times sai-box' /></i></div>
-                      <div class='clearfix'></div>
-
-                      <div class='evento e-tirinha'>
-                        <a href='#' class='fresco' data-fresco-group='tirinha' data-fresco-caption="Os Loucos">
-                          <img src='#' alt='' />
-                        </a>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML13&action=editWidget&sectionId=tirinhas'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML13"));'
-                    target='configHTML13' title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-          <div class='notifica section' id='eventos'>
-            <div class='widget HTML' id='HTML11'>
-              <h2 class='title'>Eventos</h2>
-              <div class='widget-content'>
-                <div class='botao evento'><i class="fa fa-calendar-check-o evento"></i>
-                  <div class='num'>0</div>
-
-                  <div class='caixa-notifica' id='evento-box'>
-                    <div class='seta'></div>
-                    <div class='scroll'>
-                      <div class='info'>Eventos</div>
-                      <div class='fechar sai-box'><i class='fa fa-times sai-box' /></i></div>
-                      <div class='clearfix'></div>
-
-                      <div class='evento'>
-                        <div class='tumb' style='background-image: url(https://i.imgur.com/yQ3XS56.png);'></div>
-                        <div class='titulo'>Nenhum Evento</div>
-                        <div class='mais'><i class="fa fa-calendar"></i> --/--/--</div>
-                        <div class='mais'><i class="fa fa-clock-o"></i> --:--</div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML11&action=editWidget&sectionId=eventos'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML11"));'
-                    target='configHTML11' title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-          <div class='notifica section' id='notificacaoes'>
-            <div class='widget HTML' id='HTML12'>
-              <h2 class='title'>Notificações</h2>
-              <div class='widget-content'>
-                <div class='botao notificab'><i class="fa fa-bell notificab"></i>
-                  <div class='num'>4</div>
-
-                  <div class='caixa-notifica' id='notifica-box'>
-                    <div class='seta'></div>
-                    <div class='scroll'>
-                      <div class='info'>Notificações</div>
-                      <div class='fechar sai-box'><i class='fa fa-times sai-box' /></i></div>
-                      <div class='clearfix'></div>
-
-                      <div class='evento'>
-                        <div class='tumb' style='background-image: url(https://i.imgur.com/FLOawzk.png);'></div>
-                        <div class='titulo'>Vagas Abertas</div>
-                        <a href='/2016/03/vagas-abertas.html'>
-                          <div class='mais'>Confira</div><a>
-                          </a>
-                        </a>
-                      </div>
-
-                      <div class='evento'>
-                        <div class='tumb' style='background-image: url(https://i.imgur.com/FLOawzk.png);'></div>
-                        <div class='titulo'>Coisas Grátis</div>
-                        <a href='/2016/03/novas-votacoes-no-ar.html'>
-                          <div class='mais'>Confira</div><a>
-                          </a>
-                        </a>
-                      </div>
-
-                      <div class='evento'>
-                        <div class='tumb' style='background-image: url(https://i.imgur.com/FLOawzk.png);'></div>
-                        <div class='titulo'>Novo Habbo imager</div>
-                        <a href='/p/imager.html'>
-                          <div class='mais'>Confira</div><a>
-                          </a>
-                        </a>
-                      </div>
-
-                      <div class='evento'>
-                        <div class='tumb' style='background-image: url(https://i.imgur.com/FLOawzk.png);'></div>
-                        <div class='titulo'>Seja bem-vindo</div>
-                        <a href='/2016/02/seja-bem-vindo-habobba.html'>
-                          <div class='mais'>Confira</div><a>
-                          </a>
-                        </a>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML12&action=editWidget&sectionId=notificacaoes'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML12"));'
-                    target='configHTML12' title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- END MENU -->
-
-    <div class='topo-back'>
-      <div class='nuvens'></div>
-      <div class='topo'>
-        <div class='conteudo'>
-          <div class='celular'>
-            <div class='tela'>
-              <div class='navbar'>
-                <div class='esquerda'>Habbo <i class='fa fa-wifi'></i></div>
-                <div class='meio'>
-                  <div id='hora'></div>
-                </div>
-                <div class='direita'>100% <i class='fa fa-battery-full'></i></div>
-              </div>
-              <div class='slide section' id='Slide'>
-                <div class='widget HTML' id='HTML1'>
-                  <h2 class='title'>Slide</h2>
-                  <div class='widget-content'>
-                    <div class='slide'>
-                      <div id='SlideContainer'>
-                        <div id='NivoSlider'>
-                          <img src='https://i.imgur.com/nF7KA7O.png' title='#slide1' />
-                          <img src='https://i.imgur.com/IEaNoZD.png' title='#slide2' />
-                        </div>
-
-                        <div class='nivo-html-caption' id='slide1'>
-                          <p class='titulo'>Bem-vindo à Habobba</p>
-                          <p>Desfrute da nossa versão 1!</p>
-                        </div>
-
-                        <div class='nivo-html-caption' id='slide2'>
-                          <p class='titulo'>Anuncie aqui</p>
-                          <p>Saiba mais</p>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                  <div class='clear'></div>
-                  <span class='widget-item-control'>
-                    <span class='item-control blog-admin'>
-                      <a class='quickedit'
-                        href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML1&action=editWidget&sectionId=Slide'
-                        onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML1"));'
-                        target='configHTML1' title='Editar'>
-                        <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                      </a>
-                    </span>
-                  </span>
-                  <div class='clear'></div>
-                </div>
-              </div>
-            </div>
-            <div class='botao'></div>
-          </div>
-          <a href='/'>
-            <div class='logo' id='x'>
-              <div class='slogan'><span></span>Bobba, Bobbinha, Bobbona</div>
-            </div>
-          </a>
-          <a href='https://www.facebook.com/Habobba-195614040794932/' target='_blank'>
-            <div class='botao-facebook tooltip' title='fb/HabobbaOf'><i class='fa fa-facebook'></i></div>
-          </a>
-          <a href='https://twitter.com/habobbaof' target='_blank'>
-            <div class='botao-twitter tooltip' title='@HabobbaOf'><i class='fa fa-twitter'></i></div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class='barra'>
-      <div class='conteudo'>
-        <div class='frank tooltip' title='É só me dizer oque está procurando'></div>
-        <form action='/search' class='buscar' method='get'>
-          <input class='buscar-barra' id='s' name='q' placeholder='O que você anda procurando ?' required='' type='text'
-            value='' />
-          <input class='buscar-botao' type='submit' value='Pesquisar' />
-        </form>
-      </div>
-    </div>
+  <div class='menu'>
     <div class='conteudo'>
-      <div class='titulo-g'><i class='fa fa-newspaper-o'></i> Últimas notícias</div>
-      <div class='box-dentro section' id='Box Noticias'>
-        <div class='widget HTML' id='HTML7'>
-          <h2 class='title'>Compartilhe</h2>
-          <div class='widget-content'>
-            <div
-              style="background-image: url(http://vignette1.wikia.nocookie.net/habbo/images/7/7f/MobileFriends.png/revision/latest?cb=20121219192117&path-prefix=en); background-position: 100px -80px; background-repeat: no-repeat; margin: -1px;">
+      <div id='cssmenu'>
+        <ul>
+          <li><a href='/'><span>Agencia Atenas</span></a></li>
+          <li><a><span>Informacion</span></a>
+            <ul>
+              <li class='has-sub'><a href='#'><span>Rangos</span></a></li>
+              <li class='has-sub'><a href='#'><span>Requisitos</span></a></li>
+              <li class='has-sub'><a href='#'><span>Membresias</span></a></li>
+            </ul>
+          </li>
+          <li><a><span>Unirse</span></a>
+            <ul>
+              <li class='has-sub'><a href='#'><span>Iniciar session</span></a></li>
+              <li class='has-sub'><a href='#'><span>Registrarse</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-              <div style="padding: 10px; float: left;">
-                <div class="fb-share-button" data-href="https://www.facebook.com/habobbaof/" data-layout="button_count">
+  <!-- END MENU -->
+
+  <!-- HERO IMPORTANT -->
+
+  <div class='topo-back'>
+    <div class='nuvens'></div>
+    <div class='topo'>
+      <div class='conteudo'>
+        <div class='celular'>
+          <div class='tela'>
+            <div class='navbar'>
+              <div class='esquerda'>Atenas <i class='fa fa-wifi'></i></div>
+              <div class='meio'>
+                <div id='hora'></div>
+              </div>
+              <div class='direita'>100% <i class='fa fa-battery-full'></i></div>
+            </div>
+            <div class='slide section' id='Slide'>
+              <div class='widget HTML' id='HTML1'>
+                <h2 class='title'>Slide</h2>
+                <div class='widget-content'>
+                  <div class='slide'>
+                    <div id='SlideContainer'>
+                      <div id='NivoSlider'>
+                        <img src='https://i.imgur.com/nF7KA7O.png' title='#slide1' />
+                        <img src='https://i.imgur.com/IEaNoZD.png' title='#slide2' />
+                      </div>
+                      <div class='nivo-html-caption' id='slide1'>
+                        <p class='titulo'>Agencia Atenas</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div class='clear'></div>
+                <span class='widget-item-control'>
+                  <span class='item-control blog-admin'>
+                    <a class='quickedit'
+                      href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML1&action=editWidget&sectionId=Slide'
+                      onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML1"));'
+                      target='configHTML1' title='Editar'>
+                      <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
+                    </a>
+                  </span>
+                </span>
+                <div class='clear'></div>
               </div>
-
-              <div style="padding: 10px; padding-left: 0; float: left;">
-                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt"
-                  data-related="habobbaof"></a>
-                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
-              </div>
-
-
-              <div id="fb-root"></div>
-              <script>(function (d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5&appId=370170209815335";
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
-
-              <div class='clearfix'></div>
             </div>
           </div>
-          <div class='clear'></div>
-          <span class='widget-item-control'>
-            <span class='item-control blog-admin'>
-              <a class='quickedit'
-                href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML7&action=editWidget&sectionId=Box+Noticias'
-                onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML7"));' target='configHTML7'
-                title='Editar'>
-                <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-              </a>
-            </span>
-          </span>
-          <div class='clear'></div>
+          <div class='botao'></div>
         </div>
-        <div class='widget HTML' id='HTML6'>
-          <h2 class='title'>Link-nos</h2>
-          <div class='widget-content'>
-            <center><img style='margin: 5px;'
-                src="https://4.bp.blogspot.com/-NctG9FEcOYY/VtOcFv3wOkI/AAAAAAAAEhQ/7xK2PVgGcPk/s1600/button.png" />
-            </center>
-            <textarea
-              class='area-link'>&lt;a href=&quot;habbobaof.blogspot.com.br&quot; target=&quot;_blank&quot; title=&quot;Habobba - Bobba, Bobbinha, Bobbona&quot;&gt;&lt;img src=&quot;https://i.imgur.com/cOs85Wt.png&quot; /&gt;&lt;/a&gt;</textarea>
+        <a href='/'>
+          <div class='logo' id='x'>
+            <div class='slogan'><span></span>Bienvenidos, Agencia, Atenas</div>
           </div>
-          <div class='clear'></div>
-          <span class='widget-item-control'>
-            <span class='item-control blog-admin'>
-              <a class='quickedit'
-                href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML6&action=editWidget&sectionId=Box+Noticias'
-                onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML6"));' target='configHTML6'
-                title='Editar'>
-                <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-              </a>
-            </span>
-          </span>
-          <div class='clear'></div>
-        </div>
-        <div class='widget HTML' id='HTML9'>
-          <h2 class='title'>Parceiros</h2>
-          <div class='widget-content'>
-            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+        </a>
+        <a href='https://www.facebook.com/Habobba-195614040794932/' target='_blank'>
+          <div class='botao-facebook tooltip' title='fb/HabobbaOf'><i class='fa fa-facebook'></i></div>
+        </a>
+        <a href='https://twitter.com/habobbaof' target='_blank'>
+          <div class='botao-twitter tooltip' title='@HabobbaOf'><i class='fa fa-twitter'></i></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- END HERO IMPORTANT -->
+
+  <!-- STAR BUSCADOR -->
+
+  <div class='barra'>
+    <div class='conteudo'>
+      <div class='frank tooltip' title='É só me dizer oque está procurando'></div>
+      <form action='/search' class='buscar' method='get'>
+        <input class='buscar-barra' id='s' name='q' placeholder='Ingresa para buscar' required='' type='text'
+          value='' />
+        <input class='buscar-botao' type='submit' value='Buscar' />
+      </form>
+    </div>
+  </div>
+
+  <!-- END BUSCADOR -->
+
+  <!-- STAR ULTIMAS NOTICAS -->
+
+  <div class='conteudo'>
+    <div class='titulo-g'><i class='fa fa-newspaper-o'></i> Ultimas noticias</div>
+    <div class='box-dentro section' id='Box Noticias'>
+      <div class='widget HTML' id='HTML7'>
+        <h2 class='title'>Compartilhe</h2>
+        <div class='widget-content'>
+          <div
+            style="background-image: url(http://vignette1.wikia.nocookie.net/habbo/images/7/7f/MobileFriends.png/revision/latest?cb=20121219192117&path-prefix=en); background-position: 100px -80px; background-repeat: no-repeat; margin: -1px;">
+
+            <div style="padding: 10px; float: left;">
+              <div class="fb-share-button" data-href="https://www.facebook.com/habobbaof/" data-layout="button_count">
+              </div>
+            </div>
+
+            <div style="padding: 10px; padding-left: 0; float: left;">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt"
+                data-related="habobbaof"></a>
+              <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+            </div>
 
 
-              <a href="habbobaof.blogspot.com.br" target="_blank" title="Habobba - Bobba, Bobbinha, Bobbona"
-                class='tooltip'><img
-                  src="https://4.bp.blogspot.com/-NctG9FEcOYY/VtOcFv3wOkI/AAAAAAAAEhQ/7xK2PVgGcPk/s1600/button.png" /></a>
+            <div id="fb-root"></div>
+            <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5&appId=370170209815335";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
 
-
-              <a href="site" target="_blank" title="#" class='tooltip'><img src=" " /></a>
-
-            </marquee>
+            <div class='clearfix'></div>
           </div>
-          <div class='clear'></div>
-          <span class='widget-item-control'>
-            <span class='item-control blog-admin'>
-              <a class='quickedit'
-                href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML9&action=editWidget&sectionId=Box+Noticias'
-                onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML9"));' target='configHTML9'
-                title='Editar'>
-                <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-              </a>
-            </span>
-          </span>
-          <div class='clear'></div>
         </div>
-        <div class='widget HTML' id='HTML8'>
-          <h2 class='title'>Publicidade</h2>
+        <div class='clear'></div>
+        <span class='widget-item-control'>
+          <span class='item-control blog-admin'>
+            <a class='quickedit'
+              href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML7&action=editWidget&sectionId=Box+Noticias'
+              onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML7"));' target='configHTML7'
+              title='Editar'>
+              <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
+            </a>
+          </span>
+        </span>
+        <div class='clear'></div>
+      </div>
+      <div class='widget HTML' id='HTML6'>
+        <h2 class='title'>Link-nos</h2>
+        <div class='widget-content'>
+          <center><img style='margin: 5px;'
+              src="https://4.bp.blogspot.com/-NctG9FEcOYY/VtOcFv3wOkI/AAAAAAAAEhQ/7xK2PVgGcPk/s1600/button.png" />
+          </center>
+          <textarea
+            class='area-link'>&lt;a href=&quot;habbobaof.blogspot.com.br&quot; target=&quot;_blank&quot; title=&quot;Habobba - Bobba, Bobbinha, Bobbona&quot;&gt;&lt;img src=&quot;https://i.imgur.com/cOs85Wt.png&quot; /&gt;&lt;/a&gt;</textarea>
+        </div>
+        <div class='clear'></div>
+        <span class='widget-item-control'>
+          <span class='item-control blog-admin'>
+            <a class='quickedit'
+              href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML6&action=editWidget&sectionId=Box+Noticias'
+              onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML6"));' target='configHTML6'
+              title='Editar'>
+              <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
+            </a>
+          </span>
+        </span>
+        <div class='clear'></div>
+      </div>
+      <div class='widget HTML' id='HTML9'>
+        <h2 class='title'>Parceiros</h2>
+        <div class='widget-content'>
+          <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+
+
+            <a href="habbobaof.blogspot.com.br" target="_blank" title="Habobba - Bobba, Bobbinha, Bobbona"
+              class='tooltip'><img
+                src="https://4.bp.blogspot.com/-NctG9FEcOYY/VtOcFv3wOkI/AAAAAAAAEhQ/7xK2PVgGcPk/s1600/button.png" /></a>
+
+
+            <a href="site" target="_blank" title="#" class='tooltip'><img src=" " /></a>
+
+          </marquee>
+        </div>
+        <div class='clear'></div>
+        <span class='widget-item-control'>
+          <span class='item-control blog-admin'>
+            <a class='quickedit'
+              href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML9&action=editWidget&sectionId=Box+Noticias'
+              onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML9"));' target='configHTML9'
+              title='Editar'>
+              <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
+            </a>
+          </span>
+        </span>
+        <div class='clear'></div>
+      </div>
+      <div class='widget HTML' id='HTML8'>
+        <h2 class='title'>Publicidades/h2>
           <div class='widget-content'>
           </div>
           <div class='clear'></div>
@@ -439,589 +257,366 @@
             </span>
           </span>
           <div class='clear'></div>
-        </div>
       </div>
-      <div class='conteudo-noticia'>
-        <div class='main section' id='Postagens'>
-          <div class='widget Blog' id='Blog1'>
-            <div class='blog-posts hfeed'>
+    </div>
 
-              <div class="date-outer">
+    <!-- STAR ULTIMAS NOTICIAS -->
+
+    <div class='conteudo-noticia'>
+      <div class='main section' id='Postagens'>
+        <div class='widget Blog' id='Blog1'>
+          <div class='blog-posts hfeed'>
+
+            <div class="date-outer">
 
 
-                <div class="date-posts">
+              <div class="date-posts">
 
-                  <div class='post-outer'>
-                    <div class='noticia'>
-                      <div id='summary26543994885967635796'><img class="tumb"
-                          src="https://i.imgur.com/i0bRbuo.png" /><br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
-                              src="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png" /></a>
-                        </div>
-                        <br />
-
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">A Habobba
-                          finalmente abriu portas para os usuários se inscreverem para entrar na equipe. Temos poucas
-                          opções neste momento e em breve vamos acrescentar vagas para locutor, quando tivermos a nossa
-                          rádio! Está&nbsp;ansioso&nbsp;(a) para a grande aventura de eventos e promoções
-                          e&nbsp;locuções na nossa rádio? Aguarde! Em baixo terá o formulário para entrar na nossa
-                          equipe.</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                        <iframe frameborder="0" height="1000" marginheight="0" marginwidth="0"
-                          src="https://docs.google.com/forms/d/1luHBt4b-YLMzvkjpP9K5zDIQsFaxs_Ffb5Q5ZW1Ct7M/viewform?embedded=true"
-                          width="660">A carregar...</iframe>
+                <div class='post-outer'>
+                  <div class='noticia'>
+                    <div id='summary26543994885967635796'><img class="tumb"
+                        src="https://i.imgur.com/i0bRbuo.png" /><br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                            src="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png" /></a>
                       </div>
-                      <script type='text/javascript'>createSummaryAndThumb2("summary26543994885967635796");</script>
-                      <div class='autor'><i class='fa fa-user'></i>
-                        Firtas</div>
-                      <div class='tempo'><i class='fa fa-clock-o'></i>
-                        <abbr class='timeago' title='2016-03-03T18:18:00-03:00'>quinta-feira, 3 de março de 2016</abbr>
-                      </div>
-                      <div class='comentarios'>
-                        <a class='comment-link'
-                          href='https://habobbaof.blogspot.com.br/2016/03/vagas-abertas.html#comment-form' onclick=''>
-                          <i class='fa fa-comments-o'></i>
-                          0
-                        </a>
-                      </div>
-                      <a href='https://habobbaof.blogspot.com.br/2016/03/vagas-abertas.html'>
-                        <div class='titulo'>Vagas Abertas</div>
-                      </a>
-                      <div class='imgup'></div>
-                      <div class='sombra'></div>
+                      <br />
+
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">A Habobba
+                        finalmente abriu portas para os usuários se inscreverem para entrar na equipe. Temos poucas
+                        opções neste momento e em breve vamos acrescentar vagas para locutor, quando tivermos a nossa
+                        rádio! Está&nbsp;ansioso&nbsp;(a) para a grande aventura de eventos e promoções
+                        e&nbsp;locuções na nossa rádio? Aguarde! Em baixo terá o formulário para entrar na nossa
+                        equipe.</span><br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+                      <iframe frameborder="0" height="1000" marginheight="0" marginwidth="0"
+                        src="https://docs.google.com/forms/d/1luHBt4b-YLMzvkjpP9K5zDIQsFaxs_Ffb5Q5ZW1Ct7M/viewform?embedded=true"
+                        width="660">A carregar...</iframe>
                     </div>
-                    <div class='noticia-dentro'>
+                    <script type='text/javascript'>createSummaryAndThumb2("summary26543994885967635796");</script>
+                    <div class='autor'><i class='fa fa-user'></i>
+                      Firtas</div>
+                    <div class='tempo'><i class='fa fa-clock-o'></i>
+                      <abbr class='timeago' title='2016-03-03T18:18:00-03:00'>quinta-feira, 3 de março de 2016</abbr>
+                    </div>
+                    <div class='comentarios'>
+                      <a class='comment-link'
+                        href='https://habobbaof.blogspot.com.br/2016/03/vagas-abertas.html#comment-form' onclick=''>
+                        <i class='fa fa-comments-o'></i>
+                        0
+                      </a>
+                    </div>
+                    <a href='https://habobbaof.blogspot.com.br/2016/03/vagas-abertas.html'>
                       <div class='titulo'>Vagas Abertas</div>
-                      <div class='info'>
-                        <span><i class='fa fa-user'></i>
-                          Firtas</span>
-                        <span><i class='fa fa-clock-o'></i>
-                          <abbr class='timeago' title='2016-03-03T18:18:00-03:00'>quinta-feira, 3 de março de
-                            2016</abbr></span>
-                        <span><i class='fa fa-globe'></i>
-                          <a href='https://habobbaof.blogspot.com.br/search/label/habobba' rel='tag'>habobba</a>
-                        </span>
-                        <span><i class='fa fa-comments-o'></i>
-                          0</span>
-                        <a class='item-control blog-admin pid-1575748784'>
-                          <a href='https://www.blogger.com/post-edit.g?blogID=6936817305946898479&postID=6543994885967635796&from=pencil'
-                            title='Editar mensagem'>
-                            <span><i class='fa fa-pencil-square-o'></i> Editar</span>
-                          </a>
+                    </a>
+                    <div class='imgup'></div>
+                    <div class='sombra'></div>
+                  </div>
+                  <div class='noticia-dentro'>
+                    <div class='titulo'>Vagas Abertas</div>
+                    <div class='info'>
+                      <span><i class='fa fa-user'></i>
+                        Firtas</span>
+                      <span><i class='fa fa-clock-o'></i>
+                        <abbr class='timeago' title='2016-03-03T18:18:00-03:00'>quinta-feira, 3 de março de
+                          2016</abbr></span>
+                      <span><i class='fa fa-globe'></i>
+                        <a href='https://habobbaof.blogspot.com.br/search/label/habobba' rel='tag'>habobba</a>
+                      </span>
+                      <span><i class='fa fa-comments-o'></i>
+                        0</span>
+                      <a class='item-control blog-admin pid-1575748784'>
+                        <a href='https://www.blogger.com/post-edit.g?blogID=6936817305946898479&postID=6543994885967635796&from=pencil'
+                          title='Editar mensagem'>
+                          <span><i class='fa fa-pencil-square-o'></i> Editar</span>
                         </a>
+                      </a>
+                    </div>
+                    <div class='corpo'><img class="tumb" src="https://i.imgur.com/i0bRbuo.png" /><br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                            src="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png" /></a>
                       </div>
-                      <div class='corpo'><img class="tumb" src="https://i.imgur.com/i0bRbuo.png" /><br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
-                              src="https://1.bp.blogspot.com/-Czq1xu2S6dU/VtiqWkXYBzI/AAAAAAAAAGM/nE__8p5hlSc/s1600/logo.png" /></a>
-                        </div>
-                        <br />
+                      <br />
 
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">A Habobba
-                          finalmente abriu portas para os usuários se inscreverem para entrar na equipe. Temos poucas
-                          opções neste momento e em breve vamos acrescentar vagas para locutor, quando tivermos a nossa
-                          rádio! Está&nbsp;ansioso&nbsp;(a) para a grande aventura de eventos e promoções
-                          e&nbsp;locuções na nossa rádio? Aguarde! Em baixo terá o formulário para entrar na nossa
-                          equipe.</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                        <iframe frameborder="0" height="1000" marginheight="0" marginwidth="0"
-                          src="https://docs.google.com/forms/d/1luHBt4b-YLMzvkjpP9K5zDIQsFaxs_Ffb5Q5ZW1Ct7M/viewform?embedded=true"
-                          width="660">A carregar...</iframe>
-                      </div>
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">A Habobba
+                        finalmente abriu portas para os usuários se inscreverem para entrar na equipe. Temos poucas
+                        opções neste momento e em breve vamos acrescentar vagas para locutor, quando tivermos a nossa
+                        rádio! Está&nbsp;ansioso&nbsp;(a) para a grande aventura de eventos e promoções
+                        e&nbsp;locuções na nossa rádio? Aguarde! Em baixo terá o formulário para entrar na nossa
+                        equipe.</span><br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+                      <iframe frameborder="0" height="1000" marginheight="0" marginwidth="0"
+                        src="https://docs.google.com/forms/d/1luHBt4b-YLMzvkjpP9K5zDIQsFaxs_Ffb5Q5ZW1Ct7M/viewform?embedded=true"
+                        width="660">A carregar...</iframe>
                     </div>
                   </div>
-
                 </div>
+
               </div>
+            </div>
 
 
-              <div class="date-outer">
+            <div class="date-outer">
 
 
-                <div class="date-posts">
+              <div class="date-posts">
 
-                  <div class='post-outer'>
-                    <div class='noticia'>
-                      <div id='summary2369152389595788424'><img class="tumb"
-                          src="https://i.imgur.com/ZcZawFF.png" /><br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
-                              src="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png" /></a>
-                        </div>
-                        <br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Mais uma
-                          votação chegou hoje (01/03) ao Habbo Hotel. Disponibilizaram uma votação da comunidade
-                          Habbiana e até agora está a ganhar os Jeans. Quando a votação terminar os usuários que votaram
-                          Jeans ou Couro ganham um emblema e uma preguiça de Março. Para você votar basta ir à sua
-                          página inicial do Habbo e votar no seu favorito.</span><br />
-                        <br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <br />
-                        </div>
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s1600/campanha1.PNG"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="324"
-                              src="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s640/campanha1.PNG"
-                              width="640" /></a>
-                        </div>
-                        <br />
-                        <br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Emblema
-                          disponível:</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                        <br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
-                            imageanchor="1"
-                            style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img alt=""
-                              border="0"
-                              src="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
-                              title="Jeans x Couro" /></a>
-                        </div>
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+                <div class='post-outer'>
+                  <div class='noticia'>
+                    <div id='summary2369152389595788424'><img class="tumb"
+                        src="https://i.imgur.com/ZcZawFF.png" /><br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                            src="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png" /></a>
                       </div>
-                      <script type='text/javascript'>createSummaryAndThumb2("summary2369152389595788424");</script>
-                      <div class='autor'><i class='fa fa-user'></i>
-                        Firtas</div>
-                      <div class='tempo'><i class='fa fa-clock-o'></i>
-                        <abbr class='timeago' title='2016-03-01T20:53:00-03:00'>terça-feira, 1 de março de 2016</abbr>
+                      <br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Mais uma
+                        votação chegou hoje (01/03) ao Habbo Hotel. Disponibilizaram uma votação da comunidade
+                        Habbiana e até agora está a ganhar os Jeans. Quando a votação terminar os usuários que votaram
+                        Jeans ou Couro ganham um emblema e uma preguiça de Março. Para você votar basta ir à sua
+                        página inicial do Habbo e votar no seu favorito.</span><br />
+                      <br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <br />
                       </div>
-                      <div class='comentarios'>
-                        <a class='comment-link'
-                          href='https://habobbaof.blogspot.com.br/2016/03/novas-votacoes-no-ar.html#comment-form'
-                          onclick=''>
-                          <i class='fa fa-comments-o'></i>
-                          0
-                        </a>
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s1600/campanha1.PNG"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="324"
+                            src="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s640/campanha1.PNG"
+                            width="640" /></a>
                       </div>
-                      <a href='https://habobbaof.blogspot.com.br/2016/03/novas-votacoes-no-ar.html'>
-                        <div class='titulo'>Novas votações no ar</div>
-                      </a>
-                      <div class='imgup'></div>
-                      <div class='sombra'></div>
+                      <br />
+                      <br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Emblema
+                        disponível:</span><br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+                      <br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
+                          imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img
+                            alt="" border="0"
+                            src="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
+                            title="Jeans x Couro" /></a>
+                      </div>
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
                     </div>
-                    <div class='noticia-dentro'>
+                    <script type='text/javascript'>createSummaryAndThumb2("summary2369152389595788424");</script>
+                    <div class='autor'><i class='fa fa-user'></i>
+                      Firtas</div>
+                    <div class='tempo'><i class='fa fa-clock-o'></i>
+                      <abbr class='timeago' title='2016-03-01T20:53:00-03:00'>terça-feira, 1 de março de 2016</abbr>
+                    </div>
+                    <div class='comentarios'>
+                      <a class='comment-link'
+                        href='https://habobbaof.blogspot.com.br/2016/03/novas-votacoes-no-ar.html#comment-form'
+                        onclick=''>
+                        <i class='fa fa-comments-o'></i>
+                        0
+                      </a>
+                    </div>
+                    <a href='https://habobbaof.blogspot.com.br/2016/03/novas-votacoes-no-ar.html'>
                       <div class='titulo'>Novas votações no ar</div>
-                      <div class='info'>
-                        <span><i class='fa fa-user'></i>
-                          Firtas</span>
-                        <span><i class='fa fa-clock-o'></i>
-                          <abbr class='timeago' title='2016-03-01T20:53:00-03:00'>terça-feira, 1 de março de
-                            2016</abbr></span>
-                        <span><i class='fa fa-globe'></i>
-                          <a href='https://habobbaof.blogspot.com.br/search/label/coisas%20gr%C3%A1tis' rel='tag'>coisas
-                            grátis</a>,
-                          <a href='https://habobbaof.blogspot.com.br/search/label/emblemas' rel='tag'>emblemas</a>
-                        </span>
-                        <span><i class='fa fa-comments-o'></i>
-                          0</span>
-                        <a class='item-control blog-admin pid-1575748784'>
-                          <a href='https://www.blogger.com/post-edit.g?blogID=6936817305946898479&postID=369152389595788424&from=pencil'
-                            title='Editar mensagem'>
-                            <span><i class='fa fa-pencil-square-o'></i> Editar</span>
-                          </a>
-                        </a>
-                      </div>
-                      <div class='corpo'><img class="tumb" src="https://i.imgur.com/ZcZawFF.png" /><br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
-                              src="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png" /></a>
-                        </div>
-                        <br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Mais uma
-                          votação chegou hoje (01/03) ao Habbo Hotel. Disponibilizaram uma votação da comunidade
-                          Habbiana e até agora está a ganhar os Jeans. Quando a votação terminar os usuários que votaram
-                          Jeans ou Couro ganham um emblema e uma preguiça de Março. Para você votar basta ir à sua
-                          página inicial do Habbo e votar no seu favorito.</span><br />
-                        <br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <br />
-                        </div>
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s1600/campanha1.PNG"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="324"
-                              src="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s640/campanha1.PNG"
-                              width="640" /></a>
-                        </div>
-                        <br />
-                        <br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Emblema
-                          disponível:</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                        <br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
-                            imageanchor="1"
-                            style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img alt=""
-                              border="0"
-                              src="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
-                              title="Jeans x Couro" /></a>
-                        </div>
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                      </div>
-                    </div>
+                    </a>
+                    <div class='imgup'></div>
+                    <div class='sombra'></div>
                   </div>
-
-                </div>
-              </div>
-
-
-              <div class="date-outer">
-
-
-                <div class="date-posts">
-
-                  <div class='post-outer'>
-                    <div class='noticia'>
-                      <div id='summary23066395845516403708'><img class="tumb"
-                          src="https://i.imgur.com/lSJXoVd.png" /><br />
-                        <br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://4.bp.blogspot.com/-Q7RqDel8RMg/VtO90-JjN5I/AAAAAAAAAAo/svn3LXRLufo/s1600/logo.png"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
-                              src="https://4.bp.blogspot.com/-Q7RqDel8RMg/VtO90-JjN5I/AAAAAAAAAAo/svn3LXRLufo/s1600/logo.png" /></a>
-                        </div>
-                        <br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Olá! Seja
-                          bem-vindo à Habobba, somos um novo fã site que irá dar-lhe toda a informação sobre Habbo
-                          Hotel, eventos, promoções, emblemas, etc... Brevemente a Habobba irá passar a usufruir de um
-                          domínio, para que seja mais fácil de você pesquisar no seu navegador. Temos também o nosso fã
-                          center onde pode estar entretido brincando e abusando das nossas ferramentas de mudança de
-                          avatar (Habbo Imager), criar os seus memes, entre muitas outras opções! Não é tão
-                          legal?&nbsp;</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Nas nossas
-                          notificações que se localizam no nosso menu, irão estar a avisar quando é adicionado alguma
-                          coisa ao site, por isso escusa de passar a sua vida inteira navegando pelo site, será uma
-                          espécie de atalho. Nosso sistema de contacto com o usuário é super rápido, e isso é bom,
-                          pensamos nós.&nbsp;</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">No portal de
-                          notícias ficam situadas várias categorias, onde você poderá ler informação do seu tema
-                          favorito, caso o seu tema não estiver adicionado ao nosso portal, basta entrar em contacto
-                          connosco (habobbafasite@gmail.com) para colocarmos lá, mas, obviamente que tem que respeitar a
-                          nossa etiqueta.</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Tanta coisa
-                          num só fã site não é, e você faz parte dele! Habboba - Bobba, Bobbinha, Bobbona</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                        <div style="text-align: center;">
-                          <span
-                            style="color: #cc0000; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><b>O
-                              que achou do novo Fã Site? Comente abaixo:</b></span>
-                        </div>
-                      </div>
-                      <script type='text/javascript'>createSummaryAndThumb2("summary23066395845516403708");</script>
-                      <div class='autor'><i class='fa fa-user'></i>
-                        Habobba Fã Site</div>
-                      <div class='tempo'><i class='fa fa-clock-o'></i>
-                        <abbr class='timeago' title='2016-02-29T00:53:00-03:00'>segunda-feira, 29 de fevereiro de
-                          2016</abbr>
-                      </div>
-                      <div class='comentarios'>
-                        <a class='comment-link'
-                          href='https://habobbaof.blogspot.com.br/2016/02/seja-bem-vindo-habobba.html#comment-form'
-                          onclick=''>
-                          <i class='fa fa-comments-o'></i>
-                          0
+                  <div class='noticia-dentro'>
+                    <div class='titulo'>Novas votações no ar</div>
+                    <div class='info'>
+                      <span><i class='fa fa-user'></i>
+                        Firtas</span>
+                      <span><i class='fa fa-clock-o'></i>
+                        <abbr class='timeago' title='2016-03-01T20:53:00-03:00'>terça-feira, 1 de março de
+                          2016</abbr></span>
+                      <span><i class='fa fa-globe'></i>
+                        <a href='https://habobbaof.blogspot.com.br/search/label/coisas%20gr%C3%A1tis' rel='tag'>coisas
+                          grátis</a>,
+                        <a href='https://habobbaof.blogspot.com.br/search/label/emblemas' rel='tag'>emblemas</a>
+                      </span>
+                      <span><i class='fa fa-comments-o'></i>
+                        0</span>
+                      <a class='item-control blog-admin pid-1575748784'>
+                        <a href='https://www.blogger.com/post-edit.g?blogID=6936817305946898479&postID=369152389595788424&from=pencil'
+                          title='Editar mensagem'>
+                          <span><i class='fa fa-pencil-square-o'></i> Editar</span>
                         </a>
-                      </div>
-                      <a href='https://habobbaof.blogspot.com.br/2016/02/seja-bem-vindo-habobba.html'>
-                        <div class='titulo'>Seja bem-vindo à Habobba</div>
                       </a>
-                      <div class='imgup'></div>
-                      <div class='sombra'></div>
                     </div>
-                    <div class='noticia-dentro'>
-                      <div class='titulo'>Seja bem-vindo à Habobba</div>
-                      <div class='info'>
-                        <span><i class='fa fa-user'></i>
-                          Habobba Fã Site</span>
-                        <span><i class='fa fa-clock-o'></i>
-                          <abbr class='timeago' title='2016-02-29T00:53:00-03:00'>segunda-feira, 29 de fevereiro de
-                            2016</abbr></span>
-                        <span><i class='fa fa-globe'></i>
-                          <a href='https://habobbaof.blogspot.com.br/search/label/habobba' rel='tag'>habobba</a>
-                        </span>
-                        <span><i class='fa fa-comments-o'></i>
-                          0</span>
-                        <a class='item-control blog-admin pid-881067391'>
-                          <a href='https://www.blogger.com/post-edit.g?blogID=6936817305946898479&postID=3066395845516403708&from=pencil'
-                            title='Editar mensagem'>
-                            <span><i class='fa fa-pencil-square-o'></i> Editar</span>
-                          </a>
-                        </a>
+                    <div class='corpo'><img class="tumb" src="https://i.imgur.com/ZcZawFF.png" /><br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                            src="https://3.bp.blogspot.com/-dZZp9xaHbq8/VtYo-WOqgVI/AAAAAAAAAFA/QiMaWDMbUXQ/s1600/ec7752a1d6.png" /></a>
                       </div>
-                      <div class='corpo'><img class="tumb" src="https://i.imgur.com/lSJXoVd.png" /><br />
+                      <br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Mais uma
+                        votação chegou hoje (01/03) ao Habbo Hotel. Disponibilizaram uma votação da comunidade
+                        Habbiana e até agora está a ganhar os Jeans. Quando a votação terminar os usuários que votaram
+                        Jeans ou Couro ganham um emblema e uma preguiça de Março. Para você votar basta ir à sua
+                        página inicial do Habbo e votar no seu favorito.</span><br />
+                      <br />
+                      <div class="separator" style="clear: both; text-align: center;">
                         <br />
-                        <div class="separator" style="clear: both; text-align: center;">
-                          <a href="https://4.bp.blogspot.com/-Q7RqDel8RMg/VtO90-JjN5I/AAAAAAAAAAo/svn3LXRLufo/s1600/logo.png"
-                            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
-                              src="https://4.bp.blogspot.com/-Q7RqDel8RMg/VtO90-JjN5I/AAAAAAAAAAo/svn3LXRLufo/s1600/logo.png" /></a>
-                        </div>
-                        <br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Olá! Seja
-                          bem-vindo à Habobba, somos um novo fã site que irá dar-lhe toda a informação sobre Habbo
-                          Hotel, eventos, promoções, emblemas, etc... Brevemente a Habobba irá passar a usufruir de um
-                          domínio, para que seja mais fácil de você pesquisar no seu navegador. Temos também o nosso fã
-                          center onde pode estar entretido brincando e abusando das nossas ferramentas de mudança de
-                          avatar (Habbo Imager), criar os seus memes, entre muitas outras opções! Não é tão
-                          legal?&nbsp;</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Nas nossas
-                          notificações que se localizam no nosso menu, irão estar a avisar quando é adicionado alguma
-                          coisa ao site, por isso escusa de passar a sua vida inteira navegando pelo site, será uma
-                          espécie de atalho. Nosso sistema de contacto com o usuário é super rápido, e isso é bom,
-                          pensamos nós.&nbsp;</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">No portal de
-                          notícias ficam situadas várias categorias, onde você poderá ler informação do seu tema
-                          favorito, caso o seu tema não estiver adicionado ao nosso portal, basta entrar em contacto
-                          connosco (habobbafasite@gmail.com) para colocarmos lá, mas, obviamente que tem que respeitar a
-                          nossa etiqueta.</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Tanta coisa
-                          num só fã site não é, e você faz parte dele! Habboba - Bobba, Bobbinha, Bobbona</span><br />
-                        <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
-                        <div style="text-align: center;">
-                          <span
-                            style="color: #cc0000; font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><b>O
-                              que achou do novo Fã Site? Comente abaixo:</b></span>
-                        </div>
                       </div>
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s1600/campanha1.PNG"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="324"
+                            src="https://4.bp.blogspot.com/-5IacQEIUS6o/VtYolgEVkuI/AAAAAAAAAE8/vDJYmbj0GG8/s640/campanha1.PNG"
+                            width="640" /></a>
+                      </div>
+                      <br />
+                      <br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;">Emblema
+                        disponível:</span><br />
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
+                      <br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
+                          imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img
+                            alt="" border="0"
+                            src="https://4.bp.blogspot.com/-dCgC202RMxE/VtYrDK8sJxI/AAAAAAAAAFM/aOp3FIPyNIY/s1600/PAS42.gif"
+                            title="Jeans x Couro" /></a>
+                      </div>
+                      <span style="font-family: &quot;arial&quot; , &quot;helvetica&quot; , sans-serif;"><br /></span>
                     </div>
                   </div>
-
                 </div>
-              </div>
 
+              </div>
             </div>
-            <div class='clearfix'></div>
-            <div class='setas'>
-              <div class='anterior-fix'><i class='fa fa-chevron-left'></i></div>
-              <div class='proxima-fix'><i class='fa fa-chevron-right'></i></div>
-              <a href='https://habobbaof.blogspot.com.br/'>
-                <div class='home'><i class='fa fa-home'></i></div>
-              </a>
+
+
+            <div class="date-outer">
+
+
+              <div class="date-posts">
+
+                <div class='post-outer'>
+                  <div class='noticia'>
+                    <div id='summary23066395845516403708'><img class="tumb"
+                        src="https://i.imgur.com/lSJXoVd.png" /><br />
+                      <br />
+                      <div class="separator" style="clear: both; text-align: center;">
+                        <a href="https://4.bp.blogspot.com/-Q7RqDel8RMg/VtO90-JjN5I/AAAAAAAAAAo/svn3LXRLufo/s1600/logo.png"
+                          imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                            src="https://4.bp.blogspot.com/-Q7RqDel8RMg/VtO90-JjN5I/AAAAAAAAAAo/svn3LXRLufo/s1600/logo.png" /></a>
+                      </div>
+                      <br />
+                    </div>
+                    <script type='text/javascript'>createSummaryAndThumb2("summary23066395845516403708");</script>
+                    <div class='autor'><i class='fa fa-user'></i>
+                      Habobba Fã Site</div>
+                    <div class='tempo'><i class='fa fa-clock-o'></i>
+                      <abbr class='timeago' title='2016-02-29T00:53:00-03:00'>segunda-feira, 29 de fevereiro de
+                        2016</abbr>
+                    </div>
+                    <div class='comentarios'>
+                      <a class='comment-link'
+                        href='https://habobbaof.blogspot.com.br/2016/02/seja-bem-vindo-habobba.html#comment-form'
+                        onclick=''>
+                        <i class='fa fa-comments-o'></i>
+                        0
+                      </a>
+                    </div>
+                    <a href='https://habobbaof.blogspot.com.br/2016/02/seja-bem-vindo-habobba.html'>
+                      <div class='titulo'>Seja bem-vindo à Habobba</div>
+                    </a>
+                    <div class='imgup'></div>
+                    <div class='sombra'></div>
+                  </div>
+                </div>
+
+              </div>
             </div>
-            <div class='clearfix'></div>
-            <script type="text/javascript">window.___gcfg = { 'lang': 'pt_PT' };</script>
+
           </div>
+          <div class='clearfix'></div>
+          <script type="text/javascript">window.___gcfg = { 'lang': 'pt_PT' };</script>
         </div>
       </div>
     </div>
-    <div class='conteudo-info-1' style='position: relative;'>
-      <div class='nuvens' style='top: 10px;'></div>
-      <div class='conteudo'>
-        <div class='coluna-3'>
-          <div class='box-coluna-3 section' id='Eventos'>
-            <div class='widget HTML' id='HTML2'>
-              <h2 class='title'>Coisas grátis</h2>
-              <div class='widget-content'>
-                <div class='c-gratis'>
-                  <div class='img' style='background-image: url(https://i.imgur.com/YfRdthd.gif);'></div>
-                  <a href='/2016/03/novas-votacoes-no-ar.html'>
-                    <div class='caixa tooltip' title='Jeans X Couro'>Emblema</div>
-                  </a>
-                </div>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML2&action=editWidget&sectionId=Eventos'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML2"));' target='configHTML2'
-                    title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
+  </div>
+
+  <!-- END ULTIMAS NOTICAS -->
+
+  <!-- STAR COSAS GRATIS -->
+
+  <div class='conteudo-info-1' style='position: relative;'>
+    <div class='nuvens' style='top: 10px;'></div>
+    <div class='conteudo'>
+      <div class='coluna-3'>
+        <div class='box-coluna-3 section' id='Eventos'>
+          <div class='widget HTML' id='HTML2'>
+            <h2 class='title'>Cosas gratis</h2>
+            <div class='widget-content'>
+              <!-- poner contenido -->
             </div>
           </div>
-          <div class='clearfix'></div>
-        </div>
-        <div class='coluna-3'>
-          <div class='titulo-info'>Emblemas</div>
-          <div class='hw-exportable' hw-exportable-options='f9a49174ea65a636bb09ae2f30438ce6/12-5'
-            hw-exportable-type='badges' hw-exportable-version='BUILD20140830-201938'>
-            <center style='margin-top: 50px; color: #FFF; text-shadow: 0 2px 2px rgba(0,0,0,0.2);'><i
-                class='fa fa-refresh fa-spin'></i></center>
-          </div>
-          <script>!function (d, id) { if (!d.getElementById(id)) { var hwjs; hwjs = d.createElement("script"); hwjs.id = id; hwjs.src = "http://exportables.habbo-week.fr/widgets.js"; d.body.appendChild(hwjs); } }(document, "hw-widget-js");</script>
-          <div class='clearfix'></div>
-        </div>
-        <div class='coluna-3'>
-          <div class='titulo-info' style='margin-bottom: 5px;'>Mobílias</div>
-          <div class='hw-exportable mobis' hw-exportable-options='95d15d48bbbde8a8ce62074bda08801e/16-5'
-            hw-exportable-type='furnitures' hw-exportable-version='BUILD20140830-201938'>
-            <center style='margin-top: 50px; color: #FFF; text-shadow: 0 2px 2px rgba(0,0,0,0.2);'><i
-                class='fa fa-refresh fa-spin'></i></center>
-          </div>
-          <script>!function (d, id) { if (!d.getElementById(id)) { var hwjs; hwjs = d.createElement("script"); hwjs.id = id; hwjs.src = "http://exportables.habbo-week.fr/widgets.js"; d.body.appendChild(hwjs); } }(document, "hw-widget-js");</script>
-          <div class='clearfix'></div>
         </div>
       </div>
-      <div class='clearfix'></div>
+      <div class='coluna-3'>
+        <div class='titulo-info'>Emblemas</div>
+        <!-- poner contenido -->
+      </div>
+      <div class='coluna-3'>
+        <div class='titulo-info' style='margin-bottom: 5px;'>Mobílias</div>
+        <!-- poner contenido -->
+      </div>
     </div>
     <div class='clearfix'></div>
-    <div class='conteudo-info-2'>
-      <div class='conteudo'>
-        <div class='coluna-3'>
-          <div class='box-coluna-2 section' id='Publicidade'>
-            <div class='widget HTML' id='HTML3'>
-              <h2 class='title'>Publicidade</h2>
-              <div class='widget-content'>
-                <div class='publicidade' style='background-image: url(#);'></div>
+  </div>
 
-                <a href='/p/anuncios.html'>
-                  <div class='box-botao' style='float: left;'>Saiba mais</div>
-                </a>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML3&action=editWidget&sectionId=Publicidade'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML3"));' target='configHTML3'
-                    title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-          <div class='clearfix'></div>
-        </div>
-        <div class='coluna-3'>
-          <div class='box-coluna-2 section' id='Destaque'>
-            <div class='widget HTML' id='HTML4'>
-              <h2 class='title'>Usuários Destaque</h2>
-              <div class='widget-content'>
-                <div class='destaque'>
-                  <div class='circulo'>
-                    <div class='user'
-                      style='background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?user=4Queijos&action=std&direction=2&head_direction=2&img_format=gif&gesture=std&headonly=0&size=l);'>
-                    </div>
-                  </div>
-                  <div class='nome'>
-                    4Queijos
-                  </div>
-                  <div class='pq'>
-                    Por ser melhor Gerente que já passou pelo Habbo Hotel
-                  </div>
-                </div>
+  <!-- END COSAS -->
 
-                <div class='destaque'>
-                  <div class='circulo circulo-2'>
-                    <div class='user'
-                      style='background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?user=Bromarks&action=std&direction=4&head_direction=4&img_format=gif&gesture=std&headonly=0&size=l);'>
-                    </div>
-                  </div>
-                  <div class='nome'>
-                    Bromarks
-                  </div>
-                  <div class='pq'>
-                    Por desenvolver a Habobba
-                  </div>
-                </div>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML4&action=editWidget&sectionId=Destaque'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML4"));' target='configHTML4'
-                    title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-          <div class='clearfix'></div>
-        </div>
-        <div class='coluna-3'>
-          <div class='box-coluna-2 section' id='Quartos'>
-            <div class='widget HTML' id='HTML14'>
-              <h2 class='title'>Quartos Destaques</h2>
-              <div class='widget-content'>
-                <div class='quarto'>
-                  <div class='img' style='background-image: url(https://i.imgur.com/3HlCgCV.png);'></div>
-                  <div class='titulo'>Nome do quarto </div>
-                  <div class='botao'><i class="fa fa-sign-in"></i> Ir para o quarto</div>
-                </div>
+  <!-- STAR PUBLICACIONES -->
 
-                <div class='quarto'>
-                  <div class='img' style='background-image: url(https://i.imgur.com/3HlCgCV.png);'></div>
-                  <div class='titulo'>Nome do quarto </div>
-                  <div class='botao'><i class="fa fa-sign-in"></i> Ir para o quarto</div>
-                </div>
-
-                <div class='quarto'>
-                  <div class='img' style='background-image: url(https://i.imgur.com/3HlCgCV.png);'></div>
-                  <div class='titulo'>Nome do quarto </div>
-                  <div class='botao'><i class="fa fa-sign-in"></i> Ir para o quarto</div>
-                </div>
-
-                <a href=''>
-                  <div class='box-botao'>Saiba mais</div>
-                </a>
-              </div>
-              <div class='clear'></div>
-              <span class='widget-item-control'>
-                <span class='item-control blog-admin'>
-                  <a class='quickedit'
-                    href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML14&action=editWidget&sectionId=Quartos'
-                    onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML14"));'
-                    target='configHTML14' title='Editar'>
-                    <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
-                  </a>
-                </span>
-              </span>
-              <div class='clear'></div>
-            </div>
-          </div>
-          <div class='clearfix'></div>
-        </div>
-        <div class='clearfix'></div>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-
-    <div class='rodape'>
-      <div class='conteudo'>
-        <div class='menu-rodape section' id='Menu Rodape'>
-          <div class='widget HTML' id='HTML5'>
-            <h2 class='title'>Menu Rodapé</h2>
+  <div class='conteudo-info-2'>
+    <div class='conteudo'>
+      <div class='coluna-3'>
+        <div class='box-coluna-2 section' id='Destaque'>
+          <div class='widget HTML' id='HTML4'>
+            <h2 class='title'>Ususuarios destacados</h2>
+            <!-- Star destacados -->
             <div class='widget-content'>
-              <a href='/'>
-                <div class='box-t'>Início</div>
-              </a>
-              <a href='/p/historia.html'>
-                <div class='box-t'>Sobre-nós</div>
-              </a>
-              <a href='/p/equipe.html'>
-                <div class='box-t'>Equipe</div>
-              </a>
-              <a href='/p/contato.html'>
-                <div class='box-t'>Contato</div>
-              </a>
-              <a href='#'>
-                <div class='box-t'>Anúncios</div>
-              </a>
-              <a href='/p/mapa-do-site.html'>
-                <div class='box-t'>Mapa do Site</div>
-              </a>
+              <div class='destaque'>
+                <div class='circulo'>
+                  <div class='user'
+                    style='background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?user=4Queijos&action=std&direction=2&head_direction=2&img_format=gif&gesture=std&headonly=0&size=l);'>
+                  </div>
+                </div>
+                <div class='nome'>
+                  4Queijos
+                </div>
+                <div class='pq'>
+                  Por ser melhor Gerente que já passou pelo Habbo Hotel
+                </div>
+              </div>
+
+              <div class='destaque'>
+                <div class='circulo circulo-2'>
+                  <div class='user'
+                    style='background-image: url(https://www.habbo.com.br/habbo-imaging/avatarimage?user=Bromarks&action=std&direction=4&head_direction=4&img_format=gif&gesture=std&headonly=0&size=l);'>
+                  </div>
+                </div>
+                <div class='nome'>
+                  Bromarks
+                </div>
+                <div class='pq'>
+                  Por desenvolver a Habobba
+                </div>
+              </div>
             </div>
+            <!-- end usuarios destacados -->
             <div class='clear'></div>
             <span class='widget-item-control'>
               <span class='item-control blog-admin'>
                 <a class='quickedit'
-                  href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML5&action=editWidget&sectionId=Menu+Rodape'
-                  onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML5"));' target='configHTML5'
+                  href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML4&action=editWidget&sectionId=Destaque'
+                  onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML4"));' target='configHTML4'
                   title='Editar'>
                   <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
                 </a>
@@ -1030,20 +625,99 @@
             <div class='clear'></div>
           </div>
         </div>
-        <a href='#'>
-          <div class='oficial n-oficial'></div>
-        </a>
-        <div class='creditos'>
-          <div class='clearfix'></div>
-          Copyrights &#169; Ing. Medina - 2025. Todos derechos reservados.<br />
+        <div class='clearfix'></div>
+      </div>
+      <div class='coluna-3'>
+        <div class='box-coluna-2 section' id='Quartos'>
+          <!-- cuartos destacos -->
+          <div class='widget HTML' id='HTML14'>
+            <h2 class='title'>Cuartos destacados</h2>
+            <div class='widget-content'>
+              <div class='quarto'>
+                <div class='img' style='background-image: url(https://i.imgur.com/3HlCgCV.png);'></div>
+                <div class='titulo'>Nome do quarto </div>
+                <div class='botao'><i class="fa fa-sign-in"></i> Ir para o quarto</div>
+              </div>
+
+              <div class='quarto'>
+                <div class='img' style='background-image: url(https://i.imgur.com/3HlCgCV.png);'></div>
+                <div class='titulo'>Nome do quarto </div>
+                <div class='botao'><i class="fa fa-sign-in"></i> Ir para o quarto</div>
+              </div>
+
+              <div class='quarto'>
+                <div class='img' style='background-image: url(https://i.imgur.com/3HlCgCV.png);'></div>
+                <div class='titulo'>Nome do quarto </div>
+                <div class='botao'><i class="fa fa-sign-in"></i> Ir para o quarto</div>
+              </div>
+
+            </div>
+            <div class='clear'></div>
+            <span class='widget-item-control'>
+              <span class='item-control blog-admin'>
+                <a class='quickedit'
+                  href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML14&action=editWidget&sectionId=Quartos'
+                  onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML14"));' target='configHTML14'
+                  title='Editar'>
+                  <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
+                </a>
+              </span>
+            </span>
+            <div class='clear'></div>
+          </div>
         </div>
         <div class='clearfix'></div>
       </div>
+      <div class='clearfix'></div>
     </div>
+  </div>
 
-  </body>
+  <!-- END PUBLICACIONES -->
 
-</html>
+  <!-- FOOTER -->
+
+  <div class='rodape'>
+    <div class='conteudo'>
+      <div class='menu-rodape section' id='Menu Rodape'>
+        <div class='widget HTML' id='HTML5'>
+          <div class='widget-content'>
+            <a href='/'>
+              <div class='box-t'>Início</div>
+            </a>
+            <a href='/p/historia.html'>
+              <div class='box-t'>Sobre nosotros</div>
+            </a>
+            <a href='/p/equipe.html'>
+              <div class='box-t'>Equipo</div>
+            </a>
+            <a href='/p/contato.html'>
+              <div class='box-t'>Unirse</div>
+            </a>
+          </div>
+          <div class='clear'></div>
+          <span class='widget-item-control'>
+            <span class='item-control blog-admin'>
+              <a class='quickedit'
+                href='//www.blogger.com/rearrange?blogID=6936817305946898479&widgetType=HTML&widgetId=HTML5&action=editWidget&sectionId=Menu+Rodape'
+                onclick='return _WidgetManager._PopupConfig(document.getElementById("HTML5"));' target='configHTML5'
+                title='Editar'>
+                <img alt='' height='18' src='//img1.blogblog.com/img/icon18_wrench_allbkg.png' width='18' />
+              </a>
+            </span>
+          </span>
+          <div class='clear'></div>
+        </div>
+      </div>
+      <a href='#'>
+        <div class='oficial n-oficial'></div>
+      </a>
+      <div class='creditos'>
+        <div class='clearfix'></div>
+        Copyrights &#169; Ing. Medina - 2025. Todos derechos reservados.<br />
+      </div>
+      <div class='clearfix'></div>
+    </div>
+  </div>
 
 </body>
 
