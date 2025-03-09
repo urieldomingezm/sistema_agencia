@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTable de Tiempos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-3">Gestión de tiempos</h2>
+        <table id="tablaTiempos" class="table table-bordered table-borderless table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Estatus</th>
+                    <th>Tiempo Restado</th>
+                    <th>Tiempo Acumulado</th>
+                    <th>Tiempo Total</th>
+                    <th>Tiempo Transcurrido</th>
+                    <th>Fecha Tomado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Santidemg</td>
+                    <td><span class="badge bg-success">Corriendo</span></td>
+                    <td>2h</td>
+                    <td>30m</td>
+                    <td>1h 30m</td>
+                    <td>4h</td>
+                    <td>2025-03-08</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
+                            Detalles
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Santidemg</td>
+                    <td><span class="badge bg-warning text-dark">Ausente</span></td>
+                    <td>3h</td>
+                    <td>1h</td>
+                    <td>2h</td>
+                    <td>5h</td>
+                    <td>2025-03-07</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
+                            Detalles
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Carlos Gómez</td>
+                    <td><span class="badge bg-secondary">Pausado</span></td>
+                    <td>1h</td>
+                    <td>45m</td>
+                    <td>2h 15m</td>
+                    <td>3h 30m</td>
+                    <td>2025-03-06</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
+                            Detalles
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ana Ramírez</td>
+                    <td><span class="badge bg-danger">Parado</span></td>
+                    <td>4h</td>
+                    <td>2h</td>
+                    <td>6h</td>
+                    <td>7h</td>
+                    <td>2025-03-05</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
+                            Detalles
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Luis Fernández</td>
+                    <td><span class="badge bg-purple">Completado</span></td>
+                    <td>5h</td>
+                    <td>3h</td>
+                    <td>8h</td>
+                    <td>10h</td>
+                    <td>2025-03-04</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
+                            Detalles
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="modalAccionesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAccionesLabel">Seleccionar Acción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <button class="btn btn-success m-1">Iniciar</button>
+                    <button class="btn btn-warning m-1">Ausente</button>
+                    <button class="btn btn-secondary m-1">Pausar</button>
+                    <button class="btn btn-danger m-1">Parar</button>
+                    <button class="btn btn-morado m-1">Completado</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-morado, .bg-purple {
+            background-color: #6f42c1;
+            color: white;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new simpleDatatables.DataTable("#tablaTiempos");
+        });
+    </script>
+</body>
+</html>

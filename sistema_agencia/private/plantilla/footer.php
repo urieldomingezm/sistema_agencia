@@ -1,4 +1,4 @@
-<br>
+
 <?php
 class Footer
 {
@@ -15,7 +15,7 @@ class Footer
         echo '<div class="container">'; 
         echo '<div class="row">'; 
         echo '<div class="col-md-12">'; 
-        echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados.</p>';
+        echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina.</p>';
         echo '</div>'; 
         echo '</div>'; 
         echo '</div>'; 

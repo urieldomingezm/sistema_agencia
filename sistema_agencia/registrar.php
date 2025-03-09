@@ -4,25 +4,10 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
 require_once(CONFIG_PATH . 'bd.php');
 require_once(TEMPLATES_PATH . 'header.php');
-require_once(PROCESOS_LOGIN_PATH. 'registrar.php');
-
+require_once(PROCESOS_LOGIN_PATH . 'registrar.php');
 
 $database = new Database();
 $conn = $database->getConnection();
-
-function generarCodigoUnico($conn) {
-    $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $longitud = 6;
-    $codigo_unico = '';
-    $gestionAscTime = new GestionAscTime($conn);
-
-    do {
-        $codigo_unico = '';
-        for ($i = 0; $i < $longitud; $codigo_unico .= $caracteres[rand(0, strlen($caracteres) - 1)], $i++);
-    } while ($gestionAscTime->codigoExists($codigo_unico));
-
-    return $codigo_unico;
-}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = isset($_POST['registro_usuario']) ? htmlspecialchars(trim($_POST['registro_usuario'])) : '';
@@ -42,23 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit;
             }
 
-            $user->password_registro = password_hash($password, PASSWORD_DEFAULT);
+            $user->password_registro = $password;
             $user->rol_id = 1;
             $user->fecha_registro = date('Y-m-d H:i:s');
 
             if ($user->create()) {
-                $id_persona = $user->getLastInsertId();
-                $codigo_usuario = generarCodigoUnico($conn);
-
-                $gestionAscTime = new GestionAscTime($conn);
-                $gestionAscTime->codigo_usuario = $codigo_usuario;
-                $gestionAscTime->id_usuario = $id_persona;
-
-                if ($gestionAscTime->create()) {
-                    echo "<script>alert('Registro exitoso. Ahora puedes iniciar sesión.'); window.location.href = '/sistema_agencia/login.php';</script>";
-                } else {
-                    echo "<script>alert('Error al generar el código único. Inténtelo nuevamente.'); window.location.href = '/sistema_agencia/registrar.php';</script>";
-                }
+                echo "<script>alert('Registro exitoso. Ahora puedes iniciar sesión.'); window.location.href = '/sistema_agencia/login.php';</script>";
             } else {
                 echo "<script>alert('Error en el registro. Inténtelo nuevamente.'); window.location.href = '/sistema_agencia/registrar.php';</script>";
             }

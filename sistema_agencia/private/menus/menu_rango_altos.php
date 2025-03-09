@@ -1,32 +1,99 @@
 <?php
 
-class Navbar {
+class Navbar
+{
   private $brand;
   private $items;
   private $searchPlaceholder;
   private $searchButtonText;
+  private $userData;
 
-  public function __construct($brand, $items, $searchPlaceholder = "Search", $searchButtonText = "Search") {
+  public function __construct($brand, $items, $userData, $searchPlaceholder = "Search", $searchButtonText = "Search")
+  {
     $this->brand = $brand;
     $this->items = $items;
     $this->searchPlaceholder = $searchPlaceholder;
     $this->searchButtonText = $searchButtonText;
+    $this->userData = $userData;
   }
 
-  public function render() {
-    echo '<nav class="navbar navbar-expand-lg bg-primary bg-body-tertiary" data-bs-theme="dark">';
-    echo '<div class="container-fluid">';
-    echo '<a class="navbar-brand" href="#">' . $this->brand . '</a>';
+  public function render()
+  {
+    echo '<style>
+      .dropdown-menu {
+        background-color: #343a40;
+      }
+      .dropdown-item {
+        color: white;
+      }
+      .dropdown-item:hover, .dropdown-item:focus {
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+      }
+      .user-dropdown .dropdown-toggle::after {
+        display: none;
+      }
+      .navbar-brand {
+        flex-grow: 1;
+        text-align: center;
+      }
+      .navbar-nav {
+        flex-grow: 1;
+        justify-content: flex-end;
+      }
+      .navbar-nav .nav-item {
+        margin-left: 15px;
+      }
+      .user-dropdown {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+      }
+      .user-dropdown .dropdown-toggle {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .user-dropdown img {
+        margin-right: 10px;
+      }
+    </style>';
+
+    echo '<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">';
+    echo '<div class="container-fluid d-flex">';
+
+    // Usuario con dropdown alineado a la izquierda
+    echo '<div class="nav-item dropdown ms-5 user-dropdown">';
+    echo '<a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+    echo '<img src="' . $this->userData['avatar'] . '" alt="Perfil" class="rounded-circle" width="35" height="35">';
+    echo '</a>';
+    echo '<ul class="dropdown-menu dropdown-menu-end">';
+    echo '<li><span class="dropdown-item-text text-white"><strong>' . $this->userData['usuario'] . '</strong></span></li>';
+    echo '<li><span class="dropdown-item-text text-white">' . $this->userData['rango'] . '</span></li>';
+    echo '<li><hr class="dropdown-divider"></li>';
+    echo '<li><a class="dropdown-item" href="#">Ver perfil</a></li>';
+    echo '<li><a class="dropdown-item" href="#">Cerrar sesión</a></li>';
+    echo '</ul>';
+    echo '</div>';
+
+    // Navbar brand centrado
+    echo '<a class="navbar-brand text-white" href="#">' . $this->brand . '</a>';
+
+    // Botón del toggler con SVG personalizado
     echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
-    echo '<span class="navbar-toggler-icon"></span>';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>';
     echo '</button>';
+
     echo '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
-    echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">';
-    
+
+    // Elementos alineados a la derecha
+    echo '<ul class="navbar-nav ms-auto mb-2 mb-lg-0">';
+
     foreach ($this->items as $item) {
       if (isset($item['dropdown'])) {
         echo '<li class="nav-item dropdown">';
-        echo '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+        echo '<a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
         echo $item['name'];
         echo '</a>';
         echo '<ul class="dropdown-menu">';
@@ -41,30 +108,38 @@ class Navbar {
         echo '</li>';
       } else {
         echo '<li class="nav-item">';
-        echo '<a class="nav-link' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="#">' . $item['name'] . '</a>';
+        echo '<a class="nav-link text-white' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="#">' . $item['name'] . '</a>';
         echo '</li>';
       }
     }
 
     echo '</ul>';
-    echo '<form class="d-flex" role="search">';
-    echo '<input class="form-control me-2" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
-    echo '<button class="btn btn-outline-success" type="submit">' . $this->searchButtonText . '</button>';
+
+    // Formulario de búsqueda
+    echo '<form class="d-flex ms-3" role="search">';
+    echo '<input class="form-control me-2 bg-dark text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
+
     echo '</div>';
     echo '</div>';
     echo '</nav>';
   }
 }
 
-$items = [
-  ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']],
-  ['name' => 'Ascensos y tiempos', 'dropdown' => ['Tomar ascenso', 'Gestion de ascenso', 'divider', 'Tomar tiempo', 'Gestion de tiempos']],
-  ['name' => 'Perfil', 'dropdown' => ['Chat General', 'divider', 'Cerrar session']]
- 
+// Datos del usuario (se pueden obtener desde una base de datos o sesión)
+$userData = [
+  'usuario' => 'Santidemg',
+  'rango' => 'Seguridad',
+  'avatar' => '/sistema_agencia/public/custom/custom_menus_usuarios/image/profile.png'
 ];
 
-$navbar = new Navbar('Navbar', $items);
+$items = [
+  ['name' => 'Inicio', 'active' => true],
+  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']]
+];
+
+$navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();
+
 ?>

@@ -1,0 +1,81 @@
+/* Estilo general para la página */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f8ff; /* Fondo con un toque suave */
+}
+
+/* Fondo y estilo de la bienvenida */
+.bienvenida {
+    background: url('https://www.transparenttextures.com/patterns/clouds.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    padding: 80px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.bienvenida h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.bienvenida p {
+    font-size: 1.2rem;
+}
+
+/* Estilo de las noticias */
+.noticias .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ff6f61; /* Color llamativo para las tarjetas */
+}
+
+.noticias .card-img-top {
+    border-radius: 15px 15px 0 0;
+    height: 200px;
+    object-fit: cover;
+}
+
+.noticias .card-body {
+    background-color: #ff6f61;
+    color: white;
+}
+
+/* Estilo de las tarjetas del equipo */
+.equipo .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+
+.equipo .card-img-top {
+    border-radius: 10px 10px 0 0;
+    height: 250px;
+    object-fit: cover;
+}
+
+.equipo .card-body {
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.equipo .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff6f61; /* Color de texto llamativo */
+}
+
+.equipo .card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Efecto hover sobre las tarjetas */
+.card:hover {
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}

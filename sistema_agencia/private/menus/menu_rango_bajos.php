@@ -68,22 +68,26 @@ class Navbar
     echo '</a>';
     echo '<ul class="dropdown-menu dropdown-menu-end">';
     echo '<li><span class="dropdown-item-text text-white"><strong>' . $this->userData['usuario'] . '</strong></span></li>';
+    echo '<li><hr class="dropdown-divider"></li>';
     echo '<li><span class="dropdown-item-text text-white">' . $this->userData['rango'] . '</span></li>';
     echo '<li><hr class="dropdown-divider"></li>';
-    echo '<li><a class="dropdown-item" href="#">Ver perfil</a></li>';
-    echo '<li><a class="dropdown-item" href="#">Cerrar sesión</a></li>';
+    echo '<li><a class="dropdown-item" href="index.php?page=perfil_de_usuario">Ver perfil</a></li>';
+    echo '<li><a class="dropdown-item" href="index.php?page=cerrar_session_usuario">Cerrar sesión</a></li>';
     echo '</ul>';
     echo '</div>';
 
     // Navbar brand centrado
-    echo '<a class="navbar-brand text-white" href="#">' . $this->brand . '</a>';
+    echo '<a class="navbar-brand text-white" href="index.php?page=home">' . $this->brand . '</a>';
 
+    // Botón del toggler con SVG personalizado
     echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
-    echo '<span class="navbar-toggler-icon"></span>';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>';
     echo '</button>';
 
     echo '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
-    
+
     // Elementos alineados a la derecha
     echo '<ul class="navbar-nav ms-auto mb-2 mb-lg-0">';
 
@@ -98,14 +102,22 @@ class Navbar
           if ($dropdownItem == 'divider') {
             echo '<li><hr class="dropdown-divider"></li>';
           } else {
-            echo '<li><a class="dropdown-item" href="#">' . $dropdownItem . '</a></li>';
+            if ($dropdownItem == 'Gestion de tiempo') {
+              echo '<li><a class="dropdown-item" href="index.php?page=GTA">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Gestion administrador') {
+              echo '<li><a class="dropdown-item" href="index.php?page=GTD">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Requisitos paga') {
+              echo '<li><a class="dropdown-item" href="index.php?page=Requisitos_para_paga">' . $dropdownItem . '</a></li>';
+            } else {
+              echo '<li><a class="dropdown-item" href="index.php?page=' . strtolower(str_replace(' ', '_', $dropdownItem)) . '">' . $dropdownItem . '</a></li>';
+            }
           }
         }
         echo '</ul>';
         echo '</li>';
       } else {
         echo '<li class="nav-item">';
-        echo '<a class="nav-link text-white' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="#">' . $item['name'] . '</a>';
+        echo '<a class="nav-link text-white' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="index.php?page=' . strtolower(str_replace(' ', '_', $item['name'])) . '">' . $item['name'] . '</a>';
         echo '</li>';
       }
     }
@@ -133,9 +145,8 @@ $userData = [
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']]
+  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Gestion de tiempo', 'Gestion administrador']]
 ];
 
-$navbar = new Navbar('Agencia Atenas', $items, $userData);
+$navbar = new Navbar(' ', $items, $userData);
 $navbar->render();
-?>

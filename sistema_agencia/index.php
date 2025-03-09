@@ -1,7 +1,9 @@
 <?php
-session_start();
+// Incluir el archivo de configuración
+require_once(__DIR__ . '/config.php');
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
+// Definir la ruta raíz del proyecto (relativa al contenedor Docker)
+
 
 require_once(TEMPLATES_PATH . 'header.php');
 require_once(MENU_PATH . 'menu_normal.php');

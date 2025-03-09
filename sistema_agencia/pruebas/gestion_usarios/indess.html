@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Gestión de Usuarios</h1>
+
+        <table id="userTable" class="table table-borderless table-dark table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Rango</th>
+                    <th>Misión Actual</th>
+                    <th>Ascensos</th>
+                    <th>Tiempos Tomados</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="user-1">
+                    <td class="editable" data-field="id">1</td>
+                    <td class="editable" data-field="usuario">juanperez</td>
+                    <td class="editable" data-field="rango">Capitán</td>
+                    <td class="editable" data-field="mision">Exploración de Marte</td>
+                    <td><button class="btn btn-info btn-sm" onclick="openModal('ascensos', 1)">3</button></td>
+                    <td><button class="btn btn-info btn-sm" onclick="openModal('tiempos', 1)">20</button></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editUser(1)"><i class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete(1)"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                </tr>
+                <tr id="user-2">
+                    <td class="editable" data-field="id">2</td>
+                    <td class="editable" data-field="usuario">mariagonzalez</td>
+                    <td class="editable" data-field="rango">Teniente</td>
+                    <td class="editable" data-field="mision">Estudio de la Luna</td>
+                    <td><button class="btn btn-info btn-sm" onclick="openModal('ascensos', 2)">2</button></td>
+                    <td><button class="btn btn-info btn-sm" onclick="openModal('tiempos', 2)">10</button></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editUser(2)"><i class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete(2)"><i class="bi bi-trash-fill"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para editar usuario -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <div class="mb-3">
+                            <label for="editUsuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="editUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRango" class="form-label">Rango</label>
+                            <input type="text" class="form-control" id="editRango" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMision" class="form-label">Misión Actual</label>
+                            <input type="text" class="form-control" id="editMision" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para confirmar eliminación -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar al usuario <strong id="userNameDelete"></strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteUser()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal único para mostrar Ascensos y Tiempos -->
+    <div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="genericModalLabel">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-dark" id="modalTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Quien Ascendió/Tomó el Tiempo</th>
+                                <th>Misión Anterior</th>
+                                <th>Misión Nueva</th>
+                                <th>Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalBody"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const table = new simpleDatatables.DataTable("#userTable");
+        let userIdToEdit = null; // ID del usuario a editar
+        let userIdToDelete = null; // ID del usuario a eliminar
+
+        function openModal(type, userId) {
+            const modalLabel = document.getElementById('genericModalLabel');
+            const modalBody = document.getElementById('modalBody');
+            
+            // Limpiar contenido anterior
+            modalBody.innerHTML = '';
+
+            // Determinar si se muestran ascensos o tiempos
+            if (type === 'ascensos') {
+                modalLabel.textContent = 'Historial de Ascensos';
+                // Datos de ascensos (ejemplo estático)
+                const ascensos = [
+                    { id: 1, quien: 'Comandante A', misionAnterior: 'Estudio de Júpiter', misionNueva: 'Exploración de Marte', fecha: '2025-03-07 14:00' },
+                    { id: 2, quien: 'Comandante B', misionAnterior: 'Exploración Lunar', misionNueva: 'Estudio de la Luna', fecha: '2025-03-06 16:30' }
+                ];
+                // Filtrar por el ID del usuario
+                const ascensosUsuario = ascensos.slice(0, userId); // solo para el ejemplo
+                ascensosUsuario.forEach((ascenso) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${ascenso.id}</td>
+                        <td>${ascenso.quien}</td>
+                        <td>${ascenso.misionAnterior}</td>
+                        <td>${ascenso.misionNueva}</td>
+                        <td>${ascenso.fecha}</td>
+                    `;
+                    modalBody.appendChild(row);
+                });
+            } else if (type === 'tiempos') {
+                modalLabel.textContent = 'Historial de Tiempos Tomados';
+                // Datos de tiempos (ejemplo estático)
+                const tiempos = [
+                    { id: 1, quien: 'Comandante A', rango: 'Capitán', duracion: '15h 20m', fecha: '2025-03-07 09:00' },
+                    { id: 2, quien: 'Comandante B', rango: 'Teniente', duracion: '10h 30m', fecha: '2025-03-06 12:30' }
+                ];
+                // Filtrar por el ID del usuario
+                const tiemposUsuario = tiempos.slice(0, userId); // solo para el ejemplo
+                tiemposUsuario.forEach((tiempo) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${tiempo.id}</td>
+                        <td>${tiempo.quien}</td>
+                        <td>${tiempo.rango}</td>
+                        <td>${tiempo.duracion}</td>
+                        <td>${tiempo.fecha}</td>
+                    `;
+                    modalBody.appendChild(row);
+                });
+            }
+
+            // Mostrar modal
+            new bootstrap.Modal(document.getElementById('genericModal')).show();
+        }
+
+        function editUser(userId) {
+            const row = document.getElementById(`user-${userId}`);
+            const user = {
+                id: row.cells[0].innerText,
+                usuario: row.cells[1].innerText,
+                rango: row.cells[2].innerText,
+                mision: row.cells[3].innerText
+            };
+
+            document.getElementById('editUsuario').value = user.usuario;
+            document.getElementById('editRango').value = user.rango;
+            document.getElementById('editMision').value = user.mision;
+
+            userIdToEdit = userId;
+
+            new bootstrap.Modal(document.getElementById('editModal')).show();
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const row = document.getElementById(`user-${userIdToEdit}`);
+            row.cells[1].innerText = document.getElementById('editUsuario').value;
+            row.cells[2].innerText = document.getElementById('editRango').value;
+            row.cells[3].innerText = document.getElementById('editMision').value;
+
+            // Cerrar el modal de edición
+            new bootstrap.Modal(document.getElementById('editModal')).hide();
+        });
+
+        function confirmDelete(userId) {
+            userIdToDelete = userId;
+
+            const row = document.getElementById(`user-${userId}`);
+            const userName = row.cells[1].innerText;
+            document.getElementById('userNameDelete').innerText = userName;
+
+            new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+
+        function deleteUser() {
+            const row = document.getElementById(`user-${userIdToDelete}`);
+            row.remove();
+
+            // Cerrar el modal de eliminación
+            new bootstrap.Modal(document.getElementById('deleteModal')).hide();
+        }
+    </script>
+</body>
+</html>

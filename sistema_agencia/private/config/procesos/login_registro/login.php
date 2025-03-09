@@ -24,7 +24,7 @@ class User {
             $this->password = $row['password_registro'];
             $this->rol_id = $row['rol_id'];
 
-            if (password_verify($this->password, $row['password_registro'])) {
+            if ($this->password === $row['password_registro']) { // Comparación sin password_verify
                 $_SESSION['id_usuario'] = $this->id;
                 $_SESSION['usuario_registro'] = $this->usuario;
                 $_SESSION['rol_id'] = $this->rol_id;
