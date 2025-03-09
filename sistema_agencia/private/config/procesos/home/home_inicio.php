@@ -8,6 +8,12 @@ class BodyHome
         echo '<body class="d-flex flex-column h-100" style="background-color: #FFD700; font-family: Arial, sans-serif;">';
         $this->renderHeader();
         $this->renderTeamSection();
+
+        echo '<body class="d-flex flex-column h-100">';
+
+        $this->renderHeader();
+        $this->renderTeamSection(); 
+
         $this->renderEventsSection();
         echo '</body>';
     }
@@ -28,15 +34,51 @@ class BodyHome
     }
 
     private function renderTeamSection()
-    {
-        $teamMembers = [
-            ['name' => 'Santidemg', 'role' => 'Supervisor', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20blonde%20hair%20and%20suit&aspect=1:1', 'rank' => 'Dueño'],
-            ['name' => 'Manu', 'role' => 'Supervisor', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20pink%20hair&aspect=1:1', 'rank' => 'Dueño'],
-            ['name' => 'Carlos Díaz', 'role' => 'Supervisor', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair%20and%20glasses&aspect=1:1', 'rank' => 'Dueño'],
-            ['name' => 'María Ruiz', 'role' => 'Supervisor', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20red%20dress&aspect=1:1', 'rank' => 'Dueño'],
-            ['name' => 'Loucio', 'role' => 'Administrador', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20blue%20outfit&aspect=1:1', 'rank' => 'Administrador'],
-            ['name' => 'Sofia', 'role' => 'Administradora', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20green%20dress&aspect=1:1', 'rank' => 'Administradora'],
-        ];
+{
+    $teamMembers = [
+        [
+            'id' => '1',
+            'name' => 'Santidemg',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20blonde%20hair%20and%20suit&aspect=1:1',
+            'rank' => 'Dueño',
+        ],
+        [
+            'id' => '2',
+            'name' => 'Manu',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20pink%20hair&aspect=1:1',
+            'rank' => 'Dueño',
+        ],
+        [
+            'id' => '3',
+            'name' => 'Carlos Díaz',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair%20and%20glasses&aspect=1:1',
+            'rank' => 'Dueño',
+        ],
+        [
+            'id' => '4',
+            'name' => 'María Ruiz',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20red%20dress&aspect=1:1',
+            'rank' => 'Dueño',
+        ],
+        [
+            'id' => '5',
+            'name' => 'Loucio',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20blue%20outfit&aspect=1:1',
+            'rank' => 'Administrador',
+        ],
+        [
+            'id' => '6',
+            'name' => 'asdasdas',
+            'role' => 'ATN- Supervisor -XDD -SDD #',
+            'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20dark%20hair%20and%20casual%20clothes&aspect=1:1',
+            'rank' => 'Administrador',
+        ],
+    ];
 
         echo '<section style="background-color: #87CEEB; padding: 50px 0;">';
         echo '<div class="container text-center">';
