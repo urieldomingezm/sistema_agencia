@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./html:/var/www/html/
+      - .:/var/www/html/  # Monta el directorio actual en /var/www/html
     depends_on:
       - db
     environment:
@@ -20,15 +20,12 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpass  
-      - MYSQL_DATABASE=sistema_agencia 
-      - MYSQL_USER=agencia_user       
-      - MYSQL_PASSWORD=123456         
+      MYSQL_ROOT_PASSWORD: password  
+      MYSQL_DATABASE: sistema_agencia 
+      MYSQL_USER: agencia_user       
+      MYSQL_PASSWORD: 123456         
     volumes:
       - db_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: sistema_agencia
     ports:
       - "3306:3306"
 
@@ -39,7 +36,7 @@ services:
     ports:
       - "8081:80"
     environment:
-      PMA_HOST: db  # Conecta phpMyAdmin al servicio "db"
+      PMA_HOST: db
       PMA_USER: root
       PMA_PASSWORD: password
     restart: always

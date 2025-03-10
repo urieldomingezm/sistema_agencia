@@ -16,6 +16,10 @@ RUN a2enmod rewrite
 # Copiar el contenido de tu proyecto al contenedor
 COPY . /var/www/html/
 
+# Cambiar permisos y propietario de los archivos
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
 # Establecer el directorio de trabajo
 WORKDIR /var/www/html
 

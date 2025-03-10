@@ -1,4 +1,5 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
+<?php 
+require_once(__DIR__ . '/config.php');
 require_once(MODAL_GESTION_TIME_ALTOS_PATH . 'modal_acciones.php');?>
 
 <body>

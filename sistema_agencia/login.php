@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
+require_once(__DIR__ . '/config.php');
 require_once(CONFIG_PATH . 'bd.php');
 require_once(TEMPLATES_PATH . 'header.php');
 require_once(PROCESOS_LOGIN_PATH . 'login.php');
