@@ -1,15 +1,11 @@
 <body>
-<div class="container mt-4">
+    <div class="container mt-4">
         <h2 class="mb-3">Lista de ascenso</h2>
         <table id="tabla_ascenso" class="table table-bordered table-dark table-borderless table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Usuario</th>
-                    <th>Rango</th>
-                    <th>Mision anterior</th>
-                    <th>Mision actual</th>
-                    <th>Firma</th>
                     <th>Status</th>
                     <th>Motivo</th>
                     <th>Encargado</th>
@@ -21,15 +17,12 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>santidemg</td>
-                    <td>Supervisor</td>
-                    <td>ATN- Supervisor A -XDD -SDS</td>
-                    <td>ATN- Supervisor B -XDD -SDS</td>
-                    <td>XDD</td>
+                    <td><button class="btn btn-primary text-white" type="button" data-bs-toggle="modal"
+                            data-bs-target="#modalInformacionPersona">Santidemg</button></td>
                     <td>Proceso</td>
                     <td>Despedido</td>
                     <td><button class="btn btn-primary text-white" type="button" data-bs-toggle="modal"
-                            data-bs-target="#modalInformacionPersona">goblin</button></td>
+                            data-bs-target="#modalInformacionPersonaEncargado">goblin</button></td>
                     <td>01:00:00</td>
                     <td>03/08/2024 9:17 pm</td>
                     <td>
@@ -53,10 +46,10 @@
         </table>
     </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                new simpleDatatables.DataTable("#tabla_ascenso");
-            });
-        </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            new simpleDatatables.DataTable("#tabla_ascenso");
+        });
+    </script>
 
 </body>
