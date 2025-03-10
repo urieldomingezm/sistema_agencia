@@ -29,18 +29,18 @@ class User {
                 $_SESSION['usuario_registro'] = $this->usuario;
                 $_SESSION['rol_id'] = $this->rol_id;
 
-                header("Location: /sistema_agencia/usuario/index.php");
+                header("Location: /usuario/index.php");
                 exit();
             } else {
                 echo "<script>
                         alert('Contraseña incorrecta.');
-                        window.location.href = '/sistema_agencia/login.php';
+                        window.location.href = '/login.php';
                       </script>";
             }
         } else {
             echo "<script>
                     alert('Usuario no encontrado.');
-                    window.location.href = '/sistema_agencia/login.php';
+                    window.location.href = '/login.php';
                   </script>";
         }
     }

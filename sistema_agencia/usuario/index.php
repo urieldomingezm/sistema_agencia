@@ -1,5 +1,5 @@
 <?php 
-require_once(__DIR__ . '/configs.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/sistema_agencia/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
 require_once(MENU_PATH . 'menu_rango_bajos.php');?>
 
