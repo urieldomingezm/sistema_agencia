@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DataTable de Tiempos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -39,9 +41,24 @@
                     <td>4h</td>
                     <td>2025-03-08</td>
                     <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
-                            Detalles
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="accionesMenu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accionesMenu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender"
+                                        href="#">Iniciar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Pausar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Parar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Completado</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -54,9 +71,24 @@
                     <td>5h</td>
                     <td>2025-03-07</td>
                     <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
-                            Detalles
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="accionesMenu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accionesMenu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender"
+                                        href="#">Iniciar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Pausar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Parar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Completado</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -69,9 +101,24 @@
                     <td>3h 30m</td>
                     <td>2025-03-06</td>
                     <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
-                            Detalles
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="accionesMenu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accionesMenu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender"
+                                        href="#">Iniciar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Pausar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Parar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Completado</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -84,9 +131,24 @@
                     <td>7h</td>
                     <td>2025-03-05</td>
                     <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
-                            Detalles
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="accionesMenu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accionesMenu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender"
+                                        href="#">Iniciar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Pausar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Parar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Completado</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -99,36 +161,33 @@
                     <td>10h</td>
                     <td>2025-03-04</td>
                     <td>
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalAcciones">
-                            Detalles
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="accionesMenu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="accionesMenu">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender"
+                                        href="#">Iniciar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Pausar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Parar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                        href="#">Completado</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="modalAccionesLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAccionesLabel">Seleccionar Acción</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <button class="btn btn-success m-1">Iniciar</button>
-                    <button class="btn btn-warning m-1">Ausente</button>
-                    <button class="btn btn-secondary m-1">Pausar</button>
-                    <button class="btn btn-danger m-1">Parar</button>
-                    <button class="btn btn-morado m-1">Completado</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <style>
-        .btn-morado, .bg-purple {
+        .btn-morado,
+        .bg-purple {
             background-color: #6f42c1;
             color: white;
         }
@@ -140,4 +199,5 @@
         });
     </script>
 </body>
+
 </html>
