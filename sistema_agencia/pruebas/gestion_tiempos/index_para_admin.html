@@ -15,7 +15,8 @@
 <body>
     <div class="container mt-4">
         <h2 class="mb-3">Gestión de tiempos para admins</h2>
-        <table id="tablaTiempos" class="table table-bordered table-borderless table-dark table-striped">
+        <table id="tablaTiempos"
+            class="table table-responsive table-bordered table-borderless table-dark table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -23,8 +24,8 @@
                     <th>Estatus</th>
                     <th>Restado</th>
                     <th>Acumulado</th>
-                    <th>Total</th>
-                    <th>Transcurrido</th>
+                    <th>Total de horas</th>
+                    <th>inicio</th>
                     <th>encargado</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
@@ -40,7 +41,8 @@
                     <td>30m</td>
                     <td>1h 30m</td>
                     <td>4h</td>
-                    <td>goblin</td>
+                    <td><button class="btn btn-primary text-white" type="button" data-bs-toggle="modal"
+                            data-bs-target="#modalInformacionPersonaEncargado">goblin</button></td>
                     <td>2025-03-08</td>
                     <td>
                         <div class="dropdown">
@@ -59,17 +61,51 @@
                                         href="#">Parar</a></li>
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Completado</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalModificar"
+                                        href="#">Modificar</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalEliminar"
+                                        href="#">Eliminar</a></li>
 
                             </ul>
                         </div>
-                        <button class="btn btn-sm btn-warning btn-editar" data-bs-toggle="modal"
+                        <!-- <button class="btn btn-sm btn-warning btn-editar" data-bs-toggle="modal"
                             data-bs-target="#modalModificar">Modificar</button>
                         <button class="btn btn-sm btn-danger btn-eliminar" data-bs-toggle="modal"
-                            data-bs-target="#modalEliminar">Eliminar</button>
+                            data-bs-target="#modalEliminar">Eliminar</button> -->
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Modal Información Persona encargado -->
+    <div class="modal fade" id="modalInformacionPersonaEncargado"
+        aria-labelledby="modalInformacionPersonaEncargadoLabel" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalInformacionPersonaEncargadoLabel">Persona encargada</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Primera columna -->
+                        <div class="col-md-6">
+                            <h6>Nombre: <strong id="infoNombre">Goblin</strong></h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Rango: <strong id="infoRango">Administrador</strong></h6>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <!-- Segunda fila -->
+                        <div class="col-md-12">
+                            <h6>Misión actual: <strong id="infoMision">ATN- Administrador A -XDD -SDS #</strong></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal Información Persona -->
@@ -77,7 +113,7 @@
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-success text-white">
                     <h5 class="modal-title" id="modalInformacionPersonaLabel">Información de la Persona</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -110,7 +146,7 @@
     <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-success text-white">
                     <h5 class="modal-title" id="modalModificarLabel">Modificar Registro</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -139,44 +175,18 @@
                                 <input type="text" class="form-control" id="editTiempoTranscurrido">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success">Guardar cambios</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal detalles -->
-    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="modalAccionesLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAccionesLabel">Seleccionar Acción</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <button class="btn btn-success m-1">Iniciar</button>
-                    <button class="btn btn-warning m-1">Ausente</button>
-                    <button class="btn btn-secondary m-1">Pausar</button>
-                    <button class="btn btn-danger m-1">Parar</button>
-                    <button class="btn btn-morado m-1">Completado</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .btn-morado {
-            background-color: #9b59b6;
-            color: white;
-        }
-    </style>
-
     <!-- Modal Eliminar -->
     <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
