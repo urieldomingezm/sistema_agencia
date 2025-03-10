@@ -1,5 +1,5 @@
-<!-- Modal Información Persona -->
-<div class="modal fade" id="modalInformacionPersona" aria-labelledby="modalInformacionPersonaLabel" tabindex="-1"
+    <!-- Modal Información Persona -->
+    <div class="modal fade" id="modalInformacionPersona" aria-labelledby="modalInformacionPersonaLabel" tabindex="-1"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -9,19 +9,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
-                            <h6>Nombre: <strong>goblin</strong></h6>
-                            <p id="infoNombre"></p>
+                        <!-- Primera columna -->
+                        <div class="col-md-6">
+                            <h6>Nombre: <strong id="infoNombre">Goblin</strong></h6>
                         </div>
-                        <div class="col-6">
-                            <h6>Rango: <strong>Administrador</strong></h6>
-                            <p id="infoRango"></p>
+                        <div class="col-md-6">
+                            <h6>Rango: <strong id="infoRango">Administrador</strong></h6>
                         </div>
-                        <div class="col-6">
-                            <h6>Mision actual: <strong>ATN- Administrador A -XDD -SDS #</strong></h6>
-                            <p id="infoMision"></p>
+                    </div>
+                    <div class="row mt-2">
+                        <!-- Segunda fila -->
+                        <div class="col-md-12">
+                            <h6>Misión actual: <strong id="infoMision">ATN- Administrador A -XDD -SDS #</strong></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>

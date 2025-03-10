@@ -16,7 +16,7 @@
 <body>
     <div class="container mt-4">
         <h2 class="mb-3">Lista de ascenso</h2>
-        <table id="tabla_ascenso" class="table table-bordered table-dark table-borderless table-striped">
+        <table id="tabla_ascenso" class="table table table-bordered table-dark table-borderless table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -26,6 +26,7 @@
                     <th>Mision actual</th>
                     <th>Firma</th>
                     <th>Status</th>
+                    <th>Motivo</th>
                     <th>Encargado</th>
                     <th>Proximo</th>
                     <th>Fecha</th>
@@ -41,6 +42,7 @@
                     <td>ATN- Supervisor B -XDD -SDS</td>
                     <td>XDD</td>
                     <td>Proceso</td>
+                    <td>Despedido</td>
                     <td><button class="btn btn-primary text-white" type="button" data-bs-toggle="modal"
                             data-bs-target="#modalInformacionPersona">goblin</button></td>
                     <td>01:00:00</td>
@@ -278,28 +280,31 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
-                            <h6>Nombre: <strong>goblin</strong></h6>
-                            <p id="infoNombre"></p>
+                        <!-- Primera columna -->
+                        <div class="col-md-6">
+                            <h6>Nombre: <strong id="infoNombre">Goblin</strong></h6>
                         </div>
-                        <div class="col-6">
-                            <h6>Rango: <strong>Administrador</strong></h6>
-                            <p id="infoRango"></p>
+                        <div class="col-md-6">
+                            <h6>Rango: <strong id="infoRango">Administrador</strong></h6>
                         </div>
-                        <div class="col-6">
-                            <h6>Mision actual: <strong>ATN- Administrador A -XDD -SDS #</strong></h6>
-                            <p id="infoMision"></p>
+                    </div>
+                    <div class="row mt-2">
+                        <!-- Segunda fila -->
+                        <div class="col-md-12">
+                            <h6>Misión actual: <strong id="infoMision">ATN- Administrador A -XDD -SDS #</strong></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                new simpleDatatables.DataTable("#tabla_ascenso");
-            });
-        </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new simpleDatatables.DataTable("#tabla_ascenso");
+        });
+    </script>
 
 </body>
 
