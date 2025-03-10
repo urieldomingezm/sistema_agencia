@@ -12,6 +12,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 
+<style>
+
+.bg_ausente {
+    background-color: #07e2ff;
+    color: #ffffff;
+}
+.bg_pausar{
+    background-color: #ffda07;
+    color: #ffffff;
+}
+.bg_parar {
+    background-color: #0724ff;
+    color: #ffffff;
+}
+.bg_completado {
+    background-color: #6607ff;
+    color: #ffffff;
+}
+.bg_modificar {
+    background-color: #ff07f3;
+    color: #ffffff;
+}
+
+.bg_ausente {
+    background-color: #07e2ff;
+    color: #ffffff;
+}
+
+</style>
+
 <body>
     <div class="container mt-4">
         <h2 class="mb-3">Gestión de tiempos para admins</h2>
@@ -24,7 +54,7 @@
                     <th>Estatus</th>
                     <th>Restado</th>
                     <th>Acumulado</th>
-                    <th>Total de horas</th>
+                    <th>Total</th>
                     <th>inicio</th>
                     <th>encargado</th>
                     <th>Fecha</th>
@@ -51,19 +81,19 @@
                                 Acciones
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="accionesMenu">
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender"
+                                <li><a class="dropdown-item bg-success text-white" data-bs-toggle="modal" data-bs-target="#modal_ascender"
                                         href="#">Iniciar tiempo</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                <li><a class="dropdown-item bg-warning text-white" data-bs-toggle="modal"
                                         data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                <li><a class="dropdown-item bg_pausar" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Pausar</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                <li><a class="dropdown-item bg_parar" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Parar</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                <li><a class="dropdown-item bg_completado" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Completado</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalModificar"
+                                <li><a class="dropdown-item bg_modificar" data-bs-toggle="modal" data-bs-target="#modalModificar"
                                         href="#">Modificar</a></li>
-                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalEliminar"
+                                <li><a class="dropdown-item bg-danger text-white" data-bs-toggle="modal" data-bs-target="#modalEliminar"
                                         href="#">Eliminar</a></li>
 
                             </ul>
