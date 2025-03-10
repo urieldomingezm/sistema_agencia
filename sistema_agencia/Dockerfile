@@ -1,5 +1,5 @@
 # Usar una imagen base de PHP con Apache
-FROM php:7.4-apache
+FROM php:8.2-apache
 
 # Instalar dependencias necesarias
 RUN apt-get update && apt-get install -y \
