@@ -45,17 +45,11 @@ class Header
         // SweetAlert2 CSS
         echo '<link href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css" rel="stylesheet">';
 
-        // Just-validate CSS
-        echo '<link href="https://cdn.jsdelivr.net/npm/just-validate@1.5.0/dist/css/just-validate.min.css" rel="stylesheet">';
+        // // Just-validate CSS pendiente de checar 
+        // echo '<link href="https://cdn.jsdelivr.net/npm/just-validate@1.5.0/dist/css/just-validate.min.css" rel="stylesheet">';
 
         // Chart.js CSS
         echo '<link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet">';
-
-        // Otros estilos
-        echo '<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">';
-        echo '<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">';
-        echo '<link type="text/css" rel="stylesheet" href="https://www.blogger.com/static/v1/widgets/3645911276-widget_css_bundle.css">';
-        echo '<link type="text/css" rel="stylesheet" href="https://www.blogger.com/dyn-css/authorization.css?targetBlogID=6936817305946898479&zx=2fa9d285-e233-41f7-b579-9bf08ebc0786">';
 
         // Archivos CSS adicionales de tu proyecto
         foreach ($this->cssFiles as $file) {
@@ -66,11 +60,7 @@ class Header
         foreach ($this->jsFiles as $file) {
             echo '<script src="' . $file . '" type="text/javascript"></script>';
         }
-
-        // Archivos JS externos
-        echo '<script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>';
-        echo '<script src="https://static.tumblr.com/y66747w/9hlmdpcpa/nivoslider.js" type="text/javascript"></script>';
-
+        
         echo '</head>';
         echo '<body>';
     }
@@ -78,13 +68,11 @@ class Header
 
 $header = new Header('Sistema de agencia');
 // Archivos CSS personalizados
-$header->addCssFile('/public/css/bootstrap.css');
-$header->addCssFile('/public/css/bootstrap.min.css');
-$header->addCssFile('/public/css/icons.css');
-$header->addCssFile('/public/style.css');
+$header->addCssFile('/public/custom/bootstrap/bootstrap.css');
+$header->addCssFile('/public/custom/bootstrap/bootstrap.min.css');
+$header->addCssFile('/public/custom/bootstrap/icons.css');
 
 // Archivos JS personalizados
-$header->addJsFile('/public/script.js');
-$header->addJsFile('/public/js/custom.js');
+$header->addJsFile('/public/custom/custom/js/script.js');
 
 $header->render();
