@@ -31,6 +31,7 @@ class Header
         echo '<link rel="icon" type="image/x-icon" href="/public/custom/custom_radio/img/dj.jpg">';
 
         // Cargar archivos desde CDN por defecto
+        
         echo '<link id="bootstrap-css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">';
         echo '<script id="bootstrap-js" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>';
 
