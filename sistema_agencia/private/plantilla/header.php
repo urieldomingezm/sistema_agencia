@@ -28,7 +28,7 @@ class Header
         echo '<meta charset="UTF-8">';
         echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
         echo '<title>' . $this->title . '</title>';
-        echo '<link rel="icon" type="image/x-icon" href="/favicon.ico">';
+        echo '<link rel="icon" type="image/x-icon" href="/public/custom/custom_radio/img/dj.jpg">';
 
         // Cargar archivos desde CDN por defecto
         echo '<link id="bootstrap-css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">';
