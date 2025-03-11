@@ -140,7 +140,7 @@ class Navbar
 $userData = [
   'usuario' => 'Santidemg',
   'rango' => 'Seguridad',
-  'avatar' => '/sistema_agencia/public/custom/custom_menus_usuarios/image/profile.png'
+  'avatar' => '/public/custom/custom_menus_usuarios/image/profile.png'
 ];
 
 $items = [

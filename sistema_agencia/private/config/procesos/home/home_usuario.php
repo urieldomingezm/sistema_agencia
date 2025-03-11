@@ -128,37 +128,37 @@ class BodyHome
                 'title' => 'Membresía gold',
                 'description' => 'Acceso a eventos y actividades básicas.',
                 'benefits' => 'Bonificación del 5% en paga.',
-                'image' => '/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/gold.png' // URL de la imagen
+                'image' => '/public/custom/custom_requisitos_rangos/image/membresias/gold.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía Premium',
                 'description' => 'Acceso a eventos exclusivos y bonificaciones.',
                 'benefits' => 'Bonificación del 15% en paga.',
-                'image' => '/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/premim.png' // URL de la imagen
+                'image' => '/public/custom/custom_requisitos_rangos/image/membresias/premim.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía regla libre',
                 'description' => 'Acceso a eventos VIP y atención personalizada.',
                 'benefits' => 'Bonificación del 25% en paga.',
-                'image' => '/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/regla.png' // URL de la imagen
+                'image' => '/public/custom/custom_requisitos_rangos/image/membresias/regla.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía save',
                 'description' => 'Acceso a todos los eventos y beneficios adicionales.',
                 'benefits' => 'Bonificación del 35% en paga.',
-                'image' => '/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/save.png' // URL de la imagen
+                'image' => '/public/custom/custom_requisitos_rangos/image/membresias/save.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía vip',
                 'description' => 'Acceso total y beneficios exclusivos.',
                 'benefits' => 'Bonificación del 50% en paga.',
-                'image' => '/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/vip.png' // URL de la imagen
+                'image' => '/public/custom/custom_requisitos_rangos/image/membresias/vip.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía silver',
                 'description' => 'Acceso total y beneficios exclusivos.',
                 'benefits' => 'Bonificación del 50% en paga.',
-                'image' => '/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/silver.png' // URL de la imagen
+                'image' => '/public/custom/custom_requisitos_rangos/image/membresias/silver.png' // URL de la imagen
             ],
         ];
 

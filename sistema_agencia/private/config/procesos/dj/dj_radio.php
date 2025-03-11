@@ -13,7 +13,7 @@ class RadioPlayer
     public function render()
     {
         echo '<div class="radio-container text-center">';
-        echo '    <img src="/sistema_agencia/public/custom/custom_radio/img/dj.jpg" class="radio-cover" alt="Radio Cover">';
+        echo '    <img src="/public/custom/custom_radio/img/dj.jpg" class="radio-cover" alt="Radio Cover">';
         echo '    <div class="radio-info">';
         echo '        <p class="dj-label">DJ: <span>' . htmlspecialchars($this->djName) . '</span></p>';
         echo '    </div>';

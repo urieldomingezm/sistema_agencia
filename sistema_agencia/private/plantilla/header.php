@@ -78,13 +78,13 @@ class Header
 
 $header = new Header('Sistema de agencia');
 // Archivos CSS personalizados
-$header->addCssFile('/sistema_agencia/public/css/bootstrap.css');
-$header->addCssFile('/sistema_agencia/public/css/bootstrap.min.css');
-$header->addCssFile('/sistema_agencia/public/css/icons.css');
-$header->addCssFile('/sistema_agencia/public/style.css');
+$header->addCssFile('/public/css/bootstrap.css');
+$header->addCssFile('/public/css/bootstrap.min.css');
+$header->addCssFile('/public/css/icons.css');
+$header->addCssFile('/public/style.css');
 
 // Archivos JS personalizados
-$header->addJsFile('/sistema_agencia/public/script.js');
-$header->addJsFile('/sistema_agencia/public/js/custom.js');
+$header->addJsFile('/public/script.js');
+$header->addJsFile('/public/js/custom.js');
 
 $header->render();

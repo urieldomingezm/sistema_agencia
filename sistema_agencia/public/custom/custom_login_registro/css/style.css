@@ -19,7 +19,7 @@ body, html {
 
 /* Imagen de fondo */
 .login-image {
-    background: url('/sistema_agencia/public/custom/custom_login_registro/img/hb.png') no-repeat center center;
+    background: url('/public/custom/custom_login_registro/img/hb.png') no-repeat center center;
     background-size: cover;
     height: 100%;
     border-radius: 10px;

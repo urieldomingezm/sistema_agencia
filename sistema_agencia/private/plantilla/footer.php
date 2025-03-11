@@ -71,6 +71,6 @@ class Footer
 
 // Uso de la clase Footer
 $footer = new Footer();
-$footer->addJsFile('/sistema_agencia/public/js/custom.js');
+$footer->addJsFile('/public/js/custom.js');
 $footer->render();
 ?>

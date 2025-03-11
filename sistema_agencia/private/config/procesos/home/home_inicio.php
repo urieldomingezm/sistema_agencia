@@ -38,7 +38,7 @@ class BodyHome
     $teamMembers = [
         [
             'id' => '1',
-            'name' => 'Santidemg',
+            'name' => 'Santidemgs',
             'role' => 'ATN- Supervisor -XDD -SDD #',
             'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20blonde%20hair%20and%20suit&aspect=1:1',
             'rank' => 'Dueño',

@@ -3,7 +3,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link active w-100" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/agt.png" alt="Agente" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/agt.png" alt="Agente" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -11,7 +11,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/supervisor.png" alt="Seguridad" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/supervisor.png" alt="Seguridad" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -19,7 +19,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/tec.png" alt="Tecnico" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/tec.png" alt="Tecnico" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -27,7 +27,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="logistica-tab" data-bs-toggle="tab" data-bs-target="#logistica-tab-pane" type="button" role="tab" aria-controls="logistica-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/log.png" alt="Logistica" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/log.png" alt="Logistica" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -35,7 +35,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="supervisor-tab" data-bs-toggle="tab" data-bs-target="#supervisor-tab-pane" type="button" role="tab" aria-controls="supervisor-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/seg.png" alt="Supervisor" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/seg.png" alt="Supervisor" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -43,7 +43,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="director-tab" data-bs-toggle="tab" data-bs-target="#director-tab-pane" type="button" role="tab" aria-controls="director-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/director.png" alt="Director" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/director.png" alt="Director" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -51,7 +51,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="presidente-tab" data-bs-toggle="tab" data-bs-target="#presidente-tab-pane" type="button" role="tab" aria-controls="presidente-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/presidente.png" alt="Presidente" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/presidente.png" alt="Presidente" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -59,7 +59,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="op-tab" data-bs-toggle="tab" data-bs-target="#op-tab-pane" type="button" role="tab" aria-controls="op-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/op.png" alt="Operativo" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/op.png" alt="Operativo" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -67,7 +67,7 @@
         <li class="nav-item flex-grow-1 text-center" role="presentation">
             <button class="nav-link w-100" id="jtd-tab" data-bs-toggle="tab" data-bs-target="#jtd-tab-pane" type="button" role="tab" aria-controls="jtd-tab-pane" aria-selected="false">
                 <div class="tab-content-container">
-                    <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/jd.png" alt="JTD" class="tab-img">
+                    <img src="/public/custom/custom_requisitos_rangos/image/jd.png" alt="JTD" class="tab-img">
                     <span class="tab-text"></span>
                 </div>
             </button>
@@ -211,10 +211,10 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>4 horas</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>4 horas</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>2 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>2 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -234,10 +234,10 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>2 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>2 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>1 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>1 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -260,13 +260,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>15 c</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>15 c</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>5</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>5</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>20</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>20</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -365,13 +365,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4> 6 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4> 6 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>2 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>2 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>7 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>7 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -392,13 +392,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>3 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
+                                            <h4>3 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>1 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>1 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>4 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>4 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -423,13 +423,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>17 creditos</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>17 creditos</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>8 creditos</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>8 creditos</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>25 creditos</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>25 creditos</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -538,13 +538,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>6 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>6 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>3 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>3 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>9 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>9 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -565,13 +565,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>3 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
+                                            <h4>3 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>1 hora con 30 minutos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
+                                            <h4>1 hora con 30 minutos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>4 hora con 30 minutos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
+                                            <h4>4 hora con 30 minutos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -593,13 +593,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>22 creditos</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>22 creditos</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>8 creditos</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>8 creditos</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>30 creditos</h4> <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>30 creditos</h4> <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -707,13 +707,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>4 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>4 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>4 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>4 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>8 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>8 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -734,13 +734,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>4 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>4 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>2 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>2 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>7 horas</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>7 horas</h4><img src="/public/custom/custom_requisitos_rangos/image/membresias/gold.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -762,13 +762,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>25 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>25 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>5 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>5 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>30 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>30 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -876,13 +876,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>10 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>10 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>5 acensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>5 acensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>15 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>15 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -903,13 +903,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>15 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>15 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>10 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>10 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>35 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>35 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -931,13 +931,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>10 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                            <h4>10 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>20 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>20 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>30 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
+                                            <h4>30 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1045,13 +1045,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>5 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"> 6 horas
+                                            <h4>5 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"> 6 horas
                                         </td>
                                         <td>
-                                            <h4>5 acesnsos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                            <h4>5 acesnsos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>10 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
+                                            <h4>10 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1072,13 +1072,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <h4>15 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>15 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>10 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>10 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                         <td>
-                                            <h4>35 ascensos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
+                                            <h4>35 ascensos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/silver.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/membresias/gold.png" alt="Icono" width="40">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1099,9 +1099,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><h4>10 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"></td>
-                                        <td><h4>20 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"></td>
-                                        <td><h4>30 creditos</h4><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40"></td>
+                                        <td><h4>10 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"></td>
+                                        <td><h4>20 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"></td>
+                                        <td><h4>30 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="../private/assets/images/agenciasony/paga/paga.png" alt="Icono" width="40"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1207,10 +1207,10 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"> 6 horas
+                                            <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"> 6 horas
                                         </td>
                                         <td>
-                                            <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"> 4 horas
+                                            <img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"> 4 horas
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1229,8 +1229,8 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">4 horas</td>
-                                        <td><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">2 horas</td>
+                                        <td><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">4 horas</td>
+                                        <td><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">2 horas</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1355,10 +1355,10 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"> 6 horas
+                                            <img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"> 6 horas
                                         </td>
                                         <td>
-                                            <img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"> 4 horas
+                                            <img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"> 4 horas
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1377,8 +1377,8 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">4 horas</td>
-                                        <td><img src="/sistema_agencia/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">2 horas</td>
+                                        <td><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">4 horas</td>
+                                        <td><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">2 horas</td>
                                     </tr>
                                 </tbody>
                             </table>
