@@ -145,7 +145,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesSEG" role="tabpanel" aria-labelledby="misionesSEG-tab" tabindex="0">
                         <h4>Ascienden cada 2 horas</h4>
-                        <p>Misiones: 9</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: Gratis</h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -296,7 +297,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesTEC" role="tabpanel" aria-labelledby="misionesTEC-tab" tabindex="0">
                         <h4>Ascienden cada 12 horas</h4>
-                        <p>Misiones: 9</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: gratis</h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -460,8 +462,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesLOG" role="tabpanel" aria-labelledby="misionesLOG-tab" tabindex="0">
                         <h4>Ascienden cada 24 horas</h4>
-                        <p>Misiones: 9</p>
-                        <p>Traslados free hasta logistica</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: Gratis</h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -630,7 +632,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesSUP" role="tabpanel" aria-labelledby="misionesSUP-tab" tabindex="0">
                         <h4>Ascienden cada 48 horas</h4>
-                        <p>Misiones: 9</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: </h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -799,7 +802,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesDIR" role="tabpanel" aria-labelledby="misionesDIR-tab" tabindex="0">
                         <h4>Ascienden cada 5 dias</h4>
-                        <p>Misiones: 4</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: Gratis</h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -968,7 +972,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesPRE" role="tabpanel" aria-labelledby="misionesPRE-tab" tabindex="0">
                         <h4>Ascienden cada 10 dias</h4>
-                        <p>Misiones: 4</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: </h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -1099,9 +1104,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><h4>10 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"></td>
-                                        <td><h4>20 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"></td>
-                                        <td><h4>30 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40"></td>
+                                        <td>
+                                            <h4>10 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                        </td>
+                                        <td>
+                                            <h4>20 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40">
+                                        </td>
+                                        <td>
+                                            <h4>30 creditos</h4><img src="/public/custom/custom_requisitos_rangos/image/paga/boni.png" alt="Icono" width="40"><img src="/public/custom/custom_requisitos_rangos/image/paga/paga.png" alt="Icono" width="40">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1131,7 +1142,8 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesOP" role="tabpanel" aria-labelledby="misionesOP-tab" tabindex="0">
                         <h4>Ascienden cada 30 dias</h4>
-                        <p>Misiones: 10</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: </h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
@@ -1278,8 +1290,8 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="misionesJTD" role="tabpanel" aria-labelledby="misionesJTD-tab" tabindex="0">
-                        <h4>Ascienden cada 3 hora con 30 minutos</h4>
-                        <p>Misiones: 4</p>
+                        <h4>Misiones: 9</h4>
+                        <h4>Costo de traslado: </h4>
                         <div class="table-responsive">
                             <table class="table table-striped text-center table-bordered table-borderless">
                                 <thead>
