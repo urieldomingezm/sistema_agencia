@@ -1,5 +1,5 @@
 <?php
-// Definir la ruta raíz del proyecto (relativa al contenedor Docker)
+
 define('ROOT_PATH', __DIR__ . '/');
 
 

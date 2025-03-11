@@ -9,17 +9,17 @@ require_once(MENU_PATH . 'menu_rango_bajos.php');?>
 <?php
 if (isset($_GET['page'])) {
     
-    if ($_GET['page'] == 'GTA') { // ARCHIVO GESTION TIEMPOS ALTOS
+    if ($_GET['page'] == 'Gestion de tiempo') { // ARCHIVO GESTION TIEMPOS ALTOS
         include 'gestion_tiempos_altos.php';
     } elseif ($_GET['page'] == 'inicio') { // ARCHIVO GESTION USUARIO
         include 'user.php';
-    }elseif ($_GET['page'] == 'GTD') { // ARCHIVO GESTION TIEMPOS ADMIN
+    }elseif ($_GET['page'] == 'Gestion administrador') { // ARCHIVO GESTION TIEMPOS ADMIN
         include 'gestion_tiempos_admin.php'; 
     } elseif ($_GET['page'] == 'perfil_de_usuario') { // ARCHIVO PERFIL USUARIO
         include 'perfil_usuario.php'; 
     } elseif ($_GET['page'] == 'cerrar_session_usuario') { // ARCHIVO CERRAR SESSION
         include 'cerrar_session.php';
-    } elseif ($_GET['page'] == 'Requisitos_para_paga') { // ARCHIVO HOME
+    } elseif ($_GET['page'] == 'Requisitos de paga') { // ARCHIVO HOME
         include 'requisitos_para_paga.php'; 
     } elseif ($_GET['page'] == 'GSP') { // ARCHIVO GESTION DE PAGAS
         include 'GSP.php'; 

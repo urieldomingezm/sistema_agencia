@@ -1,5 +1,6 @@
 <?php
-class User {
+class User
+{
     private $conn;
     private $table_name = "registro_usuario";
 
@@ -8,11 +9,13 @@ class User {
     public $password;
     public $rol_id;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    public function login() {
+    public function login()
+    {
         $query = "SELECT id, password_registro, rol_id FROM " . $this->table_name . " WHERE usuario_registro = :usuario";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':usuario', $this->usuario);
@@ -24,12 +27,12 @@ class User {
             $this->password = $row['password_registro'];
             $this->rol_id = $row['rol_id'];
 
-            if ($this->password === $row['password_registro']) { // Comparación sin password_verify
+            if ($this->password === $row['password_registro']) {
                 $_SESSION['id_usuario'] = $this->id;
                 $_SESSION['usuario_registro'] = $this->usuario;
                 $_SESSION['rol_id'] = $this->rol_id;
 
-                header("Location: /usuario/index.php");
+                echo '<meta http-equiv="refresh" content="0;url=/usuario/index.php">';
                 exit();
             } else {
                 echo "<script>
@@ -45,4 +48,3 @@ class User {
         }
     }
 }
-?>

@@ -103,11 +103,11 @@ class Navbar
             echo '<li><hr class="dropdown-divider"></li>';
           } else {
             if ($dropdownItem == 'Gestion de tiempo') {
-              echo '<li><a class="dropdown-item" href="index.php?page=GTA">' . $dropdownItem . '</a></li>';
+              echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Gestion administrador') {
-              echo '<li><a class="dropdown-item" href="index.php?page=GTD">' . $dropdownItem . '</a></li>';
+              echo '<li><a class="dropdown-item" href="index.php?page=Gestion administrador">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Requisitos paga') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Requisitos_para_paga">' . $dropdownItem . '</a></li>';
+              echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
             } else {
               echo '<li><a class="dropdown-item" href="index.php?page=' . strtolower(str_replace(' ', '_', $dropdownItem)) . '">' . $dropdownItem . '</a></li>';
             }
