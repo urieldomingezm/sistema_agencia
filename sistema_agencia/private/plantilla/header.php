@@ -105,6 +105,9 @@ $header->addJsFile('/public/custom/simple_datatables/js/script.js');
 $header->addCssFile('/public/custom/custom_gestion_ascensos/css/style.css');
 $header->addJsFile('/public/custom/custom_gestion_ascensos/js/script.js');
 
+// Archivos de tabla de rangos, misiones y costos CSS personalizados (versiones locales)
+// $header->addCssFile('/public/custom/custom_tabla_rangos/css/style.css');
+
 // Archivos de gestion de tiempos CSS y JS personalizados (versiones locales)
 $header->addCssFile('/public/custom/custom_gestion_tiempos/css/style.css');
 $header->addJsFile('/public/custom/custom_gestion_tiempos/js/script.js');
