@@ -144,5 +144,5 @@ $items = [
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']]
 ];
 
-$navbar = new Navbar(' ', $items, $userData);
+$navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();

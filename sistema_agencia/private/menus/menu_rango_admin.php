@@ -151,5 +151,5 @@ $items = [
   ['name' => 'Ventas', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
 ];
 
-$navbar = new Navbar(' ', $items, $userData);
+$navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();

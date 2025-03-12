@@ -11,7 +11,7 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
         'index.php' => 'Inicio',
         'GSTM.php' => 'Gestion de tiempo',
         'USR.php' => 'Inicio Usuario',
-        'PRUS.php' => 'perfil_de_usuario',
+        'PRUS.php' => 'perfil de usuario',
         'CRSS.php' => 'Cerrar sesión',
         'RQPG.php' => 'Requisitos de paga, ascensos, traslados ect',
         'GSAS.php' => 'Gestion de ascensos',
@@ -55,7 +55,7 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
         $validPages = [
             'Gestion de tiempo' => 'GSTM.php',
             'inicio' => 'USR.php',
-            'perfil_de_usuario' => 'PRUS.php',
+            'perfil de usuario' => 'PRUS.php',
             'cerrar_session_usuario' => 'CRSS.php',
             'Requisitos de paga' => 'RQPG.php',
             'gestion de ascensos' => 'GSAS.php',
