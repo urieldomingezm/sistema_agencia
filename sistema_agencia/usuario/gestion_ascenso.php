@@ -1,6 +1,6 @@
 <body>
     <div class="container mt-4">
-        <h2 class="mb-3">Lista de ascenso</h2>
+        <h2 class="mb-3">Gestion de ascensos</h2>
         <table id="tabla_ascenso" class="table table-bordered table-dark table-borderless table-striped">
             <thead>
                 <tr>
@@ -45,6 +45,15 @@
             </tbody>
         </table>
     </div>
+
+    <!-- MODALES -->
+    <?php
+    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_ascender.php');
+    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_baja.php');
+    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_despedir.php');
+    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_encargado.php');
+    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_persona.php');
+    ?>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

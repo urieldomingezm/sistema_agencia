@@ -1,5 +1,5 @@
-<!-- MODAL PARA ASCENDER PERSONA -->
-<div class="modal fade" id="modal_ascender" tabindex="-1" aria-labelledby="modal_ascenderLabel" aria-hidden="true"
+ <!-- MODAL PARA ASCENDER PERSONA -->
+ <div class="modal fade" id="modal_ascender" tabindex="-1" aria-labelledby="modal_ascenderLabel" aria-hidden="true"
         role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

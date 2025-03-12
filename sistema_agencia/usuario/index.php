@@ -1,7 +1,7 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
-require_once(MENU_PATH . 'menu_rango_bajos.php');?>
+require_once(MENU_PATH . 'menu_rango_altos.php');?>
 
 <br>
 <br>
@@ -19,10 +19,10 @@ if (isset($_GET['page'])) {
         include 'perfil_usuario.php'; 
     } elseif ($_GET['page'] == 'cerrar_session_usuario') { // ARCHIVO CERRAR SESSION
         include 'cerrar_session.php';
-    } elseif ($_GET['page'] == 'Requisitos de paga') { // ARCHIVO HOME
+    } elseif ($_GET['page'] == 'Requisitos de paga') { // ARCHIVO REQUISITOS PARA PAGA, ASCENSO, MISIONES
         include 'requisitos_para_paga.php'; 
-    } elseif ($_GET['page'] == 'GSP') { // ARCHIVO GESTION DE PAGAS
-        include 'GSP.php'; 
+    } elseif ($_GET['page'] == 'gestion de ascensos') { // ARCHIVO GESTION DE ASCENSOS
+        include 'gestion_ascenso.php'; 
     } elseif ($_GET['page'] == 'GVE') { // ARCHIVO GESTION VENTAS
         include 'GVE.php'; 
     } elseif ($_GET['page'] == 'GVP') { // ARCHIVO GESTION VENTAS PLACAS

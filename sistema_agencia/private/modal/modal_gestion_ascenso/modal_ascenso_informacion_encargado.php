@@ -1,5 +1,5 @@
-<!-- Modal Información Persona encargado -->
-<div class="modal fade" id="modalInformacionPersonaEncargado" aria-labelledby="modalInformacionPersonaEncargadoLabel" tabindex="-1"
+    <!-- Modal Información Persona encargado -->
+    <div class="modal fade" id="modalInformacionPersonaEncargado" aria-labelledby="modalInformacionPersonaEncargadoLabel" tabindex="-1"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -104,8 +104,8 @@ class Navbar
           } else {
             if ($dropdownItem == 'Gestion de tiempo') {
               echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Gestion administrador') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Gestion administrador">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Gestion ascenso') {
+              echo '<li><a class="dropdown-item" href="index.php?page=gestion de ascensos">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Requisitos paga') {
               echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
             } else {
@@ -145,7 +145,8 @@ $userData = [
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Gestion de tiempo', 'Gestion administrador']]
+  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
+  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']]
 ];
 
 $navbar = new Navbar(' ', $items, $userData);

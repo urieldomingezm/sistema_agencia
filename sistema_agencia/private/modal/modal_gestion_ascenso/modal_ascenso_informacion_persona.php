@@ -1,5 +1,5 @@
-<!-- Modal Información Persona -->
-<div class="modal fade" id="modalInformacionPersona" tabindex="-1" aria-labelledby="modalInformacionPersonaLabel"
+    <!-- Modal Información Persona -->
+    <div class="modal fade" id="modalInformacionPersona" tabindex="-1" aria-labelledby="modalInformacionPersonaLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
