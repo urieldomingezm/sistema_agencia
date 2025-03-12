@@ -1516,3 +1516,5 @@
         font-size: 12px;
     }
 </style>
+
+<?php require_once(BODY_DJ_PATH . 'dj_radio.php'); ?>
