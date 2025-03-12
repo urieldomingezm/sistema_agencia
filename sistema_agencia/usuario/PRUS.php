@@ -1,4 +1,8 @@
 <br>
+
+<!-- INFORMACION DE PERFIL DE USUARIO -->
+<meta name="keywords" content="Informacion de usuario, mision, tiempo estimado total">
+
 <?php
 
 class UserProfile

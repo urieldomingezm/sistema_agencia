@@ -1,6 +1,7 @@
 
-<meta name="keywords" content="Requisitos">
 
+<!-- INFORMACION DE CONTENIDO DE REQUISITOS PARA PAGA -->
+<meta name="keywords" content="Requisitos de paga, ascensos y misiones para los usuarios como tambien traslados">
 
 <section class="margenes">
     <ul class="nav nav-pills justify-content-center flex-wrap" id="myTab" role="tablist">

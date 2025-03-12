@@ -6,15 +6,14 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
 echo '<br><br><br>';
 
 if (isset($_GET['q']) && !empty($_GET['q'])) {
-    // Buscar en las páginas por las etiquetas <meta>
-    $query = strtolower($_GET['q']);
+    $query = strtolower(trim($_GET['q']));
     $pages = [
         'index.php' => 'Inicio',
         'GSTM.php' => 'Gestion de tiempo',
         'USR.php' => 'Inicio Usuario',
-        'PRUS.php' => 'Perfil de usuario',
+        'PRUS.php' => 'perfil_de_usuario',
         'CRSS.php' => 'Cerrar sesión',
-        'RQPG.php' => 'Requisitos',
+        'RQPG.php' => 'Requisitos de paga, ascensos, traslados ect',
         'GSAS.php' => 'Gestion de ascensos',
         'GVE.php' => 'Pendiente',
         'GVP.php' => 'Pendiente'
@@ -29,14 +28,17 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
 
             if (!empty($matches[1])) {
                 $keywords = explode(',', strtolower($matches[1]));
-                if (in_array($query, $keywords)) {
-                    $results[] = ['title' => $title, 'url' => 'index.php?page=' . urlencode($title)];
+                foreach ($keywords as $keyword) {
+                    similar_text($query, $keyword, $percentage);
+                    if ($percentage > 60 || strpos($keyword, $query) !== false) {
+                        $results[] = ['title' => $title, 'url' => 'index.php?page=' . urlencode($title)];
+                        break;
+                    }
                 }
             }
         }
     }
 
-    // 📌 Mostrar los resultados de búsqueda
     echo '<h2>Resultados de búsqueda para: "' . htmlspecialchars($query) . '"</h2>';
     if (!empty($results)) {
         echo '<ul>';
@@ -48,7 +50,6 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
         echo '<p>No se encontraron resultados.</p>';
     }
 } else {
-    // Si no hay búsqueda, cargar las páginas normalmente
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
         $validPages = [
