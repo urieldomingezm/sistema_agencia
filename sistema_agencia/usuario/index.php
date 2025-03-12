@@ -18,7 +18,7 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                         'index.php' => 'Inicio',
                         'GSTM.php' => 'Gestión de tiempo y pagos',
                         'USR.php' => 'Inicio Usuario',
-                        'PRUS.php' => 'Perfil de usuario',
+                        'PRUS.php' => 'perfil de usuario',
                         'CRSS.php' => 'Cerrar sesión',
                         'RQPG.php' => 'Requisitos de paga, ascensos, traslados, etc.',
                         'GSAS.php' => 'Gestión de ascensos',

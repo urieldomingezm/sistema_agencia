@@ -1,3 +1,8 @@
+<!-- INFORMACION DE PERFIL DE USUARIO -->
+<meta name="keywords" content="Gestion de tiempo de ascenso, tiempo de ascenso y ascensos">
+
+<!-- GESTIO DE ASCENSO -->
+
 <body>
     <div class="container mt-4">
         <h2 class="mb-3" style="text-align: center;">Gestion de ascensos</h2>

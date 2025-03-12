@@ -1,7 +1,7 @@
-<!-- TABLA DE GESTION DE TIEMPOS -->
-
 <!-- INFORMACION DE PERFIL DE USUARIO -->
 <meta name="keywords" content="Gestion de tiempo de paga, tiempo de paga o time de paga">
+
+<!-- TABLA DE GESTION DE TIEMPOS -->
 
 <body>
     <div class="container mt-4">

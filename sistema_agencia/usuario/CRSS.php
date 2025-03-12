@@ -1,3 +1,6 @@
+<!-- INFORMACION DE CERRAR SESSION -->
+<meta name="keywords" content="Cerrar cuenta, session">
+
 <?php
 session_start();
 session_unset();
