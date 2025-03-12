@@ -28,8 +28,8 @@ if (isset($_GET['page'])) {
     } else {
         echo "<h1>Página no encontrada</h1>";
         echo "<p>Redirigiendo a la página principal...</p>";
-        header("refresh:3;url=index.php");
-        exit();
+        echo '<meta http-equiv="refresh" content="3;url=index.php">';
+        exit();        
     }
 } else {
     include 'USR.php';

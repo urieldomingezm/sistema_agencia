@@ -101,6 +101,14 @@ $header->addCssFile('/public/custom/bootstrap/icons.css');
 $header->addCssFile('/public/custom/simple_datatables/css/style.css');
 $header->addJsFile('/public/custom/simple_datatables/js/script.js');
 
+// Archivos de gestion de ascenso CSS y JS personalizados (versiones locales)
+$header->addCssFile('/public/custom/custom_gestion_ascensos/css/style.css');
+$header->addJsFile('/public/custom/custom_gestion_ascensos/js/script.js');
+
+// Archivos de gestion de tiempos CSS y JS personalizados (versiones locales)
+$header->addCssFile('/public/custom/custom_gestion_tiempos/css/style.css');
+$header->addJsFile('/public/custom/custom_gestion_tiempos/js/script.js');
+
 // Archivos JS personalizados
 $header->addJsFile('/public/custom/custom/js/script.js');
 
