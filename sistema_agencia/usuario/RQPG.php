@@ -1,3 +1,7 @@
+
+<meta name="keywords" content="Requisitos">
+
+
 <section class="margenes">
     <ul class="nav nav-pills justify-content-center flex-wrap" id="myTab" role="tablist">
         <li class="nav-item flex-grow-1 text-center" role="presentation">
