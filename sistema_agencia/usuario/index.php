@@ -9,7 +9,6 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <!-- <h2 class="text-center text-primary mb-4">Buscar en el sistema</h2> -->
 
                 <?php
                 if (isset($_GET['q']) && !empty($_GET['q'])) {

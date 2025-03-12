@@ -133,8 +133,7 @@ class Navbar
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Rangos', 'Requisitos paga', 'Membresias']],
-  ['name' => 'Unirse', 'dropdown' => ['Iniciar Session', 'Registrarse']]
+  ['name' => 'Informacion', 'dropdown' => ['Rangos']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items);
