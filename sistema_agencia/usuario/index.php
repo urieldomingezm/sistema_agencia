@@ -16,12 +16,12 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                     $query = strtolower(trim($_GET['q']));
                     $pages = [
                         'index.php' => 'Inicio',
-                        'GSTM.php' => 'Gestión de tiempo y pagos',
-                        'USR.php' => 'Inicio Usuario',
+                        'GSTM.php' => 'Gestion de tiempo',
+                        'USR.php' => 'inicio',
                         'PRUS.php' => 'perfil de usuario',
-                        'CRSS.php' => 'Cerrar sesión',
-                        'RQPG.php' => 'Requisitos de paga, ascensos, traslados, etc.',
-                        'GSAS.php' => 'Gestión de ascensos',
+                        'CRSS.php' => 'cerrar session',
+                        'RQPG.php' => 'Requisitos de paga',
+                        'GSAS.php' => 'gestion de ascensos',
                         'GVE.php' => 'Pendiente',
                         'GVP.php' => 'Pendiente'
                     ];
@@ -66,7 +66,7 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                             'Gestion de tiempo' => 'GSTM.php',
                             'inicio' => 'USR.php',
                             'perfil de usuario' => 'PRUS.php',
-                            'cerrar_session_usuario' => 'CRSS.php',
+                            'cerrar session' => 'CRSS.php',
                             'Requisitos de paga' => 'RQPG.php',
                             'gestion de ascensos' => 'GSAS.php',
                             'GVE' => 'GVE.php',
