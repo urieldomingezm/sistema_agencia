@@ -28,11 +28,11 @@ if (isset($_GET['page'])) {
     } else {
         echo "<h1>Página no encontrada</h1>";
         echo "<p>Redirigiendo a la página principal...</p>";
-        header("refresh:1;url=index.php");
+        header("refresh:3;url=index.php");
         exit();
     }
 } else {
-    include 'user.php';
+    include 'USR.php';
 }
 ?>
 

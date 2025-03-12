@@ -126,7 +126,7 @@ class Navbar
 
     // Formulario de búsqueda
     echo '<form class="d-flex ms-3" role="search">';
-    echo '<input class="form-control me-2 bg-light text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<input class="form-control me-2 bg-light text-dark" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
     echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
 
