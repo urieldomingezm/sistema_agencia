@@ -1,4 +1,5 @@
 <!-- TABLA DE GESTION DE TIEMPOS -->
+
 <body>
     <div class="container mt-4">
         <h2 class="mb-3">Gestión de tiempos para admins</h2>
@@ -42,13 +43,13 @@
                                         href="#">Iniciar tiempo</a></li>
                                 <li><a class="dropdown-item" data-bs-toggle="modal"
                                         data-bs-target="#modal_despedir_persona" href="#">Ausente</a></li>
-                                <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Pausar</a></li>
-                                <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Parar</a></li>
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango"
                                         href="#">Completado</a></li>
-                                <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#modalModificar"
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalModificar"
                                         href="#">Modificar</a></li>
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalEliminar"
                                         href="#">Eliminar</a></li>
@@ -60,39 +61,12 @@
         </table>
     </div>
 
-
-    <!-- modales de acciones -->
-
-        <!-- MODALES -->
-        <?php
+    <!-- MODALES PARA ACCIONES -->
+    <?php
     require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_eliminar.php');
     require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_informacion_encargado.php');
     require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_informacion_persona.php');
     require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_modificar.php');
     ?>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            new simpleDatatables.DataTable("#tablaTiempos");
-        });
-
-        document.querySelectorAll(".btn-editar").forEach(button => {
-            button.addEventListener("click", function () {
-                let row = this.closest("tr");
-                document.getElementById("editId").value = row.cells[0].textContent;
-                document.getElementById("editNombre").value = row.cells[1].textContent;
-                document.getElementById("editTiempoRestado").value = row.cells[3].textContent;
-                document.getElementById("editTiempoAcumulado").value = row.cells[4].textContent;
-                document.getElementById("editTiempoTotal").value = row.cells[5].textContent;
-                document.getElementById("editTiempoTranscurrido").value = row.cells[6].textContent;
-            });
-        });
-
-        document.querySelectorAll(".btn-eliminar").forEach(button => {
-            button.addEventListener("click", function () {
-                let row = this.closest("tr");
-                document.getElementById("mensajeEliminar").textContent = "¿Estás seguro de que deseas eliminar a " + row.cells[1].textContent + "?";
-            });
-        });
-    </script>
+    
 </body>
