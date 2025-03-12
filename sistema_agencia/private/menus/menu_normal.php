@@ -69,7 +69,7 @@ class Navbar
       }
     </style>';
 
-    echo '<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">';
+    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 25, 96);" data-bs-theme="dark">';
     echo '<div class="container-fluid d-flex">';
 
     // Navbar brand centrado
@@ -121,7 +121,7 @@ class Navbar
 
     // Formulario de búsqueda
     echo '<form class="d-flex ms-3" role="search">';
-    echo '<input class="form-control me-2 bg-dark text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<input class="form-control me-2 bg-light text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
     echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
 

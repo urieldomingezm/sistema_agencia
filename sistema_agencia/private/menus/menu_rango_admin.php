@@ -8,7 +8,7 @@ class Navbar
   private $searchButtonText;
   private $userData;
 
-  public function __construct($brand, $items, $userData, $searchPlaceholder = "Search", $searchButtonText = "Search")
+  public function __construct($brand, $items, $userData, $searchPlaceholder = "Buscar", $searchButtonText = "Buscar")
   {
     $this->brand = $brand;
     $this->items = $items;
@@ -58,7 +58,7 @@ class Navbar
       }
     </style>';
 
-    echo '<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">';
+    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 77, 25);" data-bs-theme="dark">';
     echo '<div class="container-fluid d-flex">';
 
     // Usuario con dropdown alineado a la izquierda
@@ -104,8 +104,8 @@ class Navbar
           } else {
             if ($dropdownItem == 'Gestion de tiempo') {
               echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Gestion administrador') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Gestion administrador">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Gestion ascenso') {
+              echo '<li><a class="dropdown-item" href="index.php?page=gestion de ascensos">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Requisitos paga') {
               echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
             } else {
@@ -126,7 +126,7 @@ class Navbar
 
     // Formulario de búsqueda
     echo '<form class="d-flex ms-3" role="search">';
-    echo '<input class="form-control me-2 bg-dark text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<input class="form-control me-2 bg-light text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
     echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
 
@@ -145,7 +145,8 @@ $userData = [
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Gestion de tiempo', 'Gestion administrador']]
+  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
+  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']]
 ];
 
 $navbar = new Navbar(' ', $items, $userData);

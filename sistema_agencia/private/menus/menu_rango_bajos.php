@@ -58,7 +58,7 @@ class Navbar
       }
     </style>';
 
-    echo '<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">';
+    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 25, 96);" data-bs-theme="dark">';
     echo '<div class="container-fluid d-flex">';
 
     // Usuario con dropdown alineado a la izquierda
@@ -102,11 +102,7 @@ class Navbar
           if ($dropdownItem == 'divider') {
             echo '<li><hr class="dropdown-divider"></li>';
           } else {
-            if ($dropdownItem == 'Gestion de tiempo') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Gestion administrador') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Gestion administrador">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Requisitos paga') {
+            if ($dropdownItem == 'Requisitos paga') {
               echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
             } else {
               echo '<li><a class="dropdown-item" href="index.php?page=' . strtolower(str_replace(' ', '_', $dropdownItem)) . '">' . $dropdownItem . '</a></li>';
@@ -126,7 +122,7 @@ class Navbar
 
     // Formulario de búsqueda
     echo '<form class="d-flex ms-3" role="search">';
-    echo '<input class="form-control me-2 bg-dark text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<input class="form-control me-2 bg-light text-white" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
     echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
 
@@ -145,7 +141,7 @@ $userData = [
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Gestion de tiempo', 'Gestion administrador']]
+  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']]
 ];
 
 $navbar = new Navbar(' ', $items, $userData);

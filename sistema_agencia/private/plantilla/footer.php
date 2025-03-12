@@ -11,7 +11,7 @@ class Footer
 
     public function render()
     {
-        echo '<footer class="bg-dark text-white text-center py-3 mt-auto">'; 
+        echo '<footer style="background-color:rgb(209, 25, 96);" class="text-white text-center py-3 mt-auto">'; 
         echo '<div class="container">'; 
         echo '<div class="row">'; 
         echo '<div class="col-md-12">'; 
