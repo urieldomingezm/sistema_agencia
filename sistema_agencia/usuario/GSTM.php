@@ -2,7 +2,7 @@
 
 <body>
     <div class="container mt-4">
-        <h2 class="mb-3">Gestión de tiempos para admins</h2>
+        <h2 class="mb-3" style="text-align: center;">Gestion de tiempos</h2>
         <table id="tablaTiempos"
             class="table table-bordered table-borderless table-dark table-striped">
             <thead>
@@ -68,5 +68,12 @@
     require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_informacion_persona.php');
     require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_modificar.php');
     ?>
-    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            new simpleDatatables.DataTable("#tablaTiempos");
+        });
+    </script>
+
+
 </body>

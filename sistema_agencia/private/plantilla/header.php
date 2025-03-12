@@ -97,6 +97,10 @@ $header->addCssFile('/public/custom/bootstrap/bootstrap.css');
 $header->addCssFile('/public/custom/bootstrap/bootstrap.min.css');
 $header->addCssFile('/public/custom/bootstrap/icons.css');
 
+// Archivos de datatable simple CSS y JS personalizados (versiones locales)
+$header->addCssFile('/public/custom/simple_datatables/css/style.css');
+$header->addJsFile('/public/custom/simple_datatables/js/script.js');
+
 // Archivos JS personalizados
 $header->addJsFile('/public/custom/custom/js/script.js');
 
