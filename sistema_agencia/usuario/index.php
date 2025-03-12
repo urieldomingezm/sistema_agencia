@@ -10,7 +10,7 @@ require_once(MENU_PATH . 'menu_rango_altos.php');?>
 if (isset($_GET['page'])) {
     
     if ($_GET['page'] == 'Gestion de tiempo') { // ARCHIVO GESTION TIEMPOS ALTOS
-        include 'gestion_tiempos_altos.php';
+        include 'gestion_tiempos.php';
     } elseif ($_GET['page'] == 'inicio') { // ARCHIVO GESTION USUARIO
         include 'user.php';
     }elseif ($_GET['page'] == 'Gestion administrador') { // ARCHIVO GESTION TIEMPOS ADMIN

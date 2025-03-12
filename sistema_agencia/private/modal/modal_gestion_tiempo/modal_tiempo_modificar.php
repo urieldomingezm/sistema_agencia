@@ -1,8 +1,8 @@
-   <!-- Modal Modificar -->
-   <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">
+<!-- Modal Modificar -->
+<div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-success text-white">
                     <h5 class="modal-title" id="modalModificarLabel">Modificar Registro</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -31,7 +31,7 @@
                                 <input type="text" class="form-control" id="editTiempoTranscurrido">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success">Guardar cambios</button>
                     </form>
                 </div>
             </div>

@@ -38,8 +38,10 @@ define('CUSTOM_HOME_JS_PATH', PUBLIC_PATH . 'custom/custom_home/js/');
 define('CUSTOM_RADIO_PATH', PUBLIC_PATH . 'custom/custom_radio/');
 define('CUSTOM_RADIO_CSS_PATH', PUBLIC_PATH . 'custom/custom_radio/css/');
 
-// Ruta de carpeta para modales de ascenso
+// Ruta de carpeta para modales de gestion de ascenso
 define('MODAL_GESTION_ASCENSO_PATH', PRIVATE_PATH . 'modal/modal_gestion_ascenso/'); 
+// Ruta de carpeta para modales de gestion de tiempo
+define('MODAL_GESTION_TIEMPO_PATH', PRIVATE_PATH . 'modal/modal_gestion_tiempo/'); 
 
 // Rutas a carpetas de usuarios
 define('USUARIO_PATH', ROOT_PATH . 'usuario/');
