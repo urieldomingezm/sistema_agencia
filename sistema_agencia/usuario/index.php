@@ -9,7 +9,7 @@ if (isset($_GET['q']) && !empty($_GET['q'])) {
     $query = strtolower(trim($_GET['q']));
     $pages = [
         'index.php' => 'Inicio',
-        'GSTM.php' => 'Gestion de tiempo',
+        'GSTM.php' => 'Gestion de tiempo u time de paga',
         'USR.php' => 'Inicio Usuario',
         'PRUS.php' => 'perfil de usuario',
         'CRSS.php' => 'Cerrar sesión',
