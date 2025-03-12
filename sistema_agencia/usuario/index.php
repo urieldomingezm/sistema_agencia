@@ -10,19 +10,17 @@ require_once(MENU_PATH . 'menu_rango_altos.php');?>
 if (isset($_GET['page'])) {
     
     if ($_GET['page'] == 'Gestion de tiempo') { // ARCHIVO GESTION TIEMPOS ALTOS
-        include 'gestion_tiempos.php';
-    } elseif ($_GET['page'] == 'inicio') { // ARCHIVO GESTION USUARIO
-        include 'user.php';
-    }elseif ($_GET['page'] == 'Gestion administrador') { // ARCHIVO GESTION TIEMPOS ADMIN
-        include 'gestion_tiempos_admin.php'; 
+        include 'GSTM.php';
+    } elseif ($_GET['page'] == 'inicio') { // ARCHIVO HOME USUARIO
+        include 'USR.php';
     } elseif ($_GET['page'] == 'perfil_de_usuario') { // ARCHIVO PERFIL USUARIO
-        include 'perfil_usuario.php'; 
+        include 'PRUS.php'; 
     } elseif ($_GET['page'] == 'cerrar_session_usuario') { // ARCHIVO CERRAR SESSION
-        include 'cerrar_session.php';
+        include 'CRSS.php';
     } elseif ($_GET['page'] == 'Requisitos de paga') { // ARCHIVO REQUISITOS PARA PAGA, ASCENSO, MISIONES
-        include 'requisitos_para_paga.php'; 
+        include 'RQPG.php'; 
     } elseif ($_GET['page'] == 'gestion de ascensos') { // ARCHIVO GESTION DE ASCENSOS
-        include 'gestion_ascenso.php'; 
+        include 'GSAS.php'; 
     } elseif ($_GET['page'] == 'GVE') { // ARCHIVO GESTION VENTAS
         include 'GVE.php'; 
     } elseif ($_GET['page'] == 'GVP') { // ARCHIVO GESTION VENTAS PLACAS
