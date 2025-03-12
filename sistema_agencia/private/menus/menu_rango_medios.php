@@ -71,7 +71,7 @@ class Navbar
     echo '<li><hr class="dropdown-divider"></li>';
     echo '<li><span class="dropdown-item-text text-white">' . $this->userData['rango'] . '</span></li>';
     echo '<li><hr class="dropdown-divider"></li>';
-    echo '<li><a class="dropdown-item" href="index.php?page=perfil_de_usuario">Ver perfil</a></li>';
+    echo '<li><a class="dropdown-item" href="index.php?page=perfil de usuario">Ver perfil</a></li>';
     echo '<li><a class="dropdown-item" href="index.php?page=cerrar_session_usuario">Cerrar sesión</a></li>';
     echo '</ul>';
     echo '</div>';

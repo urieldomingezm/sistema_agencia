@@ -22,7 +22,6 @@ class BodyHome
         echo '<div class="container text-center">';
         echo '<h1 style="color: white; font-weight: bold;">🌟 Agencia Atenas 🌟</h1>';
         echo '<p style="color: #FFF; font-size: 18px;">Bienvenido a nuestra agencia esperamos y nos podemos divertir juntos</p>';
-        echo '<a href="#" style="background: #32CD32; color: white; padding: 15px 30px; border-radius: 20px; text-decoration: none; font-size: 18px;">¡Únete ahora!</a>';
         echo '</div>';
         echo '</header>';
         echo '</main>';
