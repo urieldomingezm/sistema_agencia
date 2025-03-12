@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
-require_once(MENU_PATH . 'menu_rango_altos.php'); ?>
+require_once(MENU_PATH . 'menu_rango_admin.php'); ?>
 
 <br>
 <br>

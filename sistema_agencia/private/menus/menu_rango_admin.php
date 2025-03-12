@@ -58,7 +58,7 @@ class Navbar
       }
     </style>';
 
-    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 77, 25);" data-bs-theme="dark">';
+    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 25, 96);" data-bs-theme="dark">';
     echo '<div class="container-fluid d-flex">';
 
     // Usuario con dropdown alineado a la izquierda
@@ -146,7 +146,9 @@ $userData = [
 $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
-  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']]
+  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
+  ['name' => 'Administraccion', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
+  ['name' => 'Ventas', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
 ];
 
 $navbar = new Navbar(' ', $items, $userData);
