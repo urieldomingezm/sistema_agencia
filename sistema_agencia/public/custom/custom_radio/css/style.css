@@ -15,12 +15,12 @@
 
 /* Imagen del DJ */
 .radio-cover {
-    width: 80px; /* Tamaño un poco más grande */
-    height: 80px; /* Hacerla cuadrada */
+    width: 70px; /* Tamaño un poco más grande */
+    height: 70px; /* Hacerla cuadrada */
     border-radius: 50%; /* Forma circular */
     object-fit: cover; /* Asegura que la imagen cubra el espacio */
     margin-bottom: 10px; /* Espacio entre la imagen y el texto */
-    border: 3px solid #FF4500; /* Borde naranja */
+    border: 2px solid #ff00bf; /* Borde naranja */
 }
 
 /* Información del DJ */

@@ -22,8 +22,8 @@ class Footer
         echo '</footer>'; 
 
         // Botón de flecha hacia arriba
-        echo '<button id="scrollTopBtn" class="btn btn-warning rounded-circle" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1000;" onclick="scrollToTop()">';
-        echo '<i class="bi bi-arrow-up"></i>'; 
+        echo '<button id="scrollTopBtn" class="btn rounded-circle" style="position:  fixed; bottom: 20px; right: 20px; display: none; z-index: 1000; background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);" onclick="scrollToTop()">';
+        echo '<i class="bi bi-arrow-up text-whiter"></i>'; 
         echo '</button>';
 
         // // Bootstrap JS
