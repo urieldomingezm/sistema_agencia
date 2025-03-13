@@ -150,9 +150,9 @@ $userData = [
 $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
-  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
-  ['name' => 'Administraccion', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
-  ['name' => 'Ventas', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
+  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
+  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total', 'divider','Vender membresias','Vender rangos']],
+  ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items, $userData);

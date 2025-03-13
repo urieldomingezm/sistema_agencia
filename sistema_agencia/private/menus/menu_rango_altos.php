@@ -71,8 +71,8 @@ class Navbar
     echo '<li><hr class="dropdown-divider"></li>';
     echo '<li><span class="dropdown-item-text text-white">' . $this->userData['rango'] . '</span></li>';
     echo '<li><hr class="dropdown-divider"></li>';
-    echo '<li><a class="dropdown-item" href="index.php?page=perfil_de_usuario">Ver perfil</a></li>';
-    echo '<li><a class="dropdown-item" href="index.php?page=cerrar_session_usuario">Cerrar sesión</a></li>';
+    echo '<li><a class="dropdown-item" href="index.php?page=perfil de usuario">Ver perfil</a></li>';
+    echo '<li><a class="dropdown-item" href="index.php?page=cerrar session">Cerrar sesión</a></li>';
     echo '</ul>';
     echo '</div>';
 
@@ -106,6 +106,10 @@ class Navbar
               echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Gestion ascenso') {
               echo '<li><a class="dropdown-item" href="index.php?page=gestion de ascensos">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Dar ascenso') {
+              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Tomar Time') {
+              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalTiempo">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Requisitos paga') {
               echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
             } else {
@@ -125,8 +129,8 @@ class Navbar
     echo '</ul>';
 
     // Formulario de búsqueda
-    echo '<form class="d-flex ms-3" role="search">';
-    echo '<input class="form-control me-2 bg-light text-dark" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<form class="d-flex ms-3" role="search" method="GET" action="/usuario/index.php">';
+    echo '<input class="form-control me-2 bg-light text-dark" type="search" name="q" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
     echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
 
@@ -146,8 +150,11 @@ $userData = [
 $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
-  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']]
+  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();
+
+require_once(MODALES_MENU_PATH . 'modal_ascender.php');
+require_once(MODALES_MENU_PATH . 'modal_tiempo_paga.php');
