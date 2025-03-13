@@ -45,14 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarTiempo'])) {
     $tiempo = new Tiempo($db);
 
     $resultado = $tiempo->registrarTiempo(
-        $_POST['tiempo_usuario'],
-        $_POST['tiempo_status'],
-        $_POST['restado'],
-        '00:00:00', // Aseguramos que los valores sean 00:00:00
+        $_POST['tiempo_usuario'] ?? '',
+        $_POST['tiempo_status'] ?? '',
+        $_POST['restado'] ?? '00:00:00',
         '00:00:00',
         '00:00:00',
-        $_POST['tiempo_encargado_usuario']
+        '00:00:00',
+        $_POST['tiempo_encargado_usuario'] ?? ''
     );
+    
 
     if ($resultado) {
         echo "<script>
