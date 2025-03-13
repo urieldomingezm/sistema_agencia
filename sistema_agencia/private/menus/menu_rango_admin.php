@@ -57,8 +57,9 @@ class Navbar
         margin-right: 10px;
       }
     </style>';
+    
 
-    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 25, 96);" data-bs-theme="dark">';
+    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);" data-bs-theme="dark">';
     echo '<div class="container-fluid d-flex">';
 
     // Usuario con dropdown alineado a la izquierda
@@ -77,7 +78,7 @@ class Navbar
     echo '</div>';
 
     // Navbar brand centrado
-    echo '<a class="navbar-brand text-white" href="index.php?page=home">' . $this->brand . '</a>';
+    echo '<a class="navbar-brand text-white" href="index.php">' . $this->brand . '</a>';
 
     // Botón del toggler con SVG personalizado
     echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
@@ -119,7 +120,7 @@ class Navbar
             } elseif ($dropdownItem == 'Dar ascenso') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Pagar usuario') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalusuario">' . $dropdownItem . '</a></li>';
+              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalpagar">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Vender membresias') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalmembresias">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Vender rangos') {

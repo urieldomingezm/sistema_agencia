@@ -5,6 +5,7 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
 ?>
 
 <body class="bg-light">
+
     <br>
     <div class="container mt-5">
         <div class="row">
