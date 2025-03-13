@@ -21,7 +21,13 @@ define('BODY_DJ_PATH', PRIVATE_PATH . 'config/procesos/dj/');
 define('PROCESOS_LOGIN_PATH', PRIVATE_PATH . 'config/procesos/login_registro/'); 
 
 // Rutas para modales de ascender y tomar tiempo usando menus
-define('MODALES_MENU_PATH', PRIVATE_PATH . 'modal/moda_menus_ascender/'); 
+define('MODALES_MENU_PATH', PRIVATE_PATH . 'modal/moda_menus_ascender/');
+
+// Rutas para modales de paga
+define('MODALES_MENU_PAGA_PATH', PRIVATE_PATH . 'modal/modal_menu_paga/');
+
+// Rutas para modales de venta
+define('MODALES_MENU_VENTAS_PATH', PRIVATE_PATH . 'modal/modal_menu_ventas/');
 
 // Rutas de configuración privadas
 define('MENU_PATH', PRIVATE_PATH . 'menus/');     

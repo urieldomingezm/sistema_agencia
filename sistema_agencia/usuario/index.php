@@ -23,7 +23,11 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                         'GSAS.php' => 'gestion de ascensos',
                         'GVE.php' => 'Pendiente',
                         'GVP.php' => 'Pendiente',
-                        'MEMS.php' => 'membresias'
+                        'MEMS.php' => 'membresias',
+                        'GTPS.php' => 'grafico total paga',
+                        'GEPS.php' => 'grafico de pagas',
+                        'VTM.php' => 'Venta de membresias',
+                        'VTR.php' => 'venta de rangos',
                     ];
 
                     $results = [];
@@ -69,9 +73,10 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                             'cerrar session' => 'CRSS.php',
                             'Requisitos de paga' => 'RQPG.php',
                             'gestion de ascensos' => 'GSAS.php',
-                            'membresias' => 'MEMS.php',
-                            'GVE' => 'GVE.php',
-                            'GVP' => 'GVP.php'
+                            'grafico total paga' => 'GTPS.php',
+                            'grafico de pagas' => 'GEPS.php',
+                            'venta de membresias' => 'VTM.php',
+                            'venta de rangos' => 'VTR.php'
                         ];
 
                         if (array_key_exists($page, $validPages)) {
