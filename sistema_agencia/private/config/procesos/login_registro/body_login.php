@@ -13,14 +13,16 @@ class BodyLogin {
         echo '<div class="login-container">';
         
         echo '<h2>Iniciar Sesión</h2>';
-        echo '<form id="loginForm" method="POST">';
+        echo '<form id="loginForm" class="was-validated" method="POST">';
         echo '<div class="mb-3">';
         echo '<label for="exampleInputUsername" class="form-label">Nombre de usuario</label>';
-        echo '<input type="text" class="form-control" id="exampleInputUsername" name="login_usuario" placeholder="Nombre de usuario" required>';
+        echo '<input type="text" class="form-control" id="exampleInputUsername" maxlength="16" name="login_usuario" placeholder="Nombre de usuario" required>';
+        echo '<div class="invalid-feedback">Introducir usuario correctamente</div>';
         echo '</div>';
         echo '<div class="mb-3">';
         echo '<label for="exampleInputPassword" class="form-label">Contraseña</label>';
-        echo '<input type="password" class="form-control" id="exampleInputPassword" name="login_password" placeholder="Contraseña" required>';
+        echo '<input type="password" class="form-control" id="exampleInputPassword" maxlength="10" name="login_password" placeholder="Contraseña" required>';
+        echo '<div class="invalid-feedback">Introducir contraseña correctamente</div>';
         echo '</div>';
         echo '<button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>';
         echo '</form>';

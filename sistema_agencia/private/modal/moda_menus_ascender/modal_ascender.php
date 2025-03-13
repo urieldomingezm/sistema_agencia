@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Usuario</label>
                                 <input type="text" name="ascenso_usuario" maxlength="14" class="form-control" required>
-                                <div class="invalid-feedback">Example invalid feedback text</div>
+                                <div class="invalid-feedback">Nombre de usuario importante</div>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Rango</label>
@@ -135,11 +135,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Misión Antigua</label>
-                                <input type="text" name="ascenso_mision_antigua" class="form-control">
+                                <input type="text" name="ascenso_mision_antigua" required class="form-control">
+                                <div class="invalid-feedback">Mision de antigua agencia</div>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Misión Nueva</label>
-                                <input type="text" name="ascenso_mision_nueva" placeholder="SNY- Agente -I -XDD #" class="form-control">
+                                <input type="text" name="ascenso_mision_nueva" required placeholder="SNY- Agente -I -XDD #" class="form-control">
+                                <div class="invalid-feedback">Mision correspondiente</div>
                             </div>
                         </div>
                         <div class="mt-4">
@@ -147,7 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Firma</label>
-                                    <input type="text" name="ascenso_firma" maxlength="3" class="form-control">
+                                    <input type="text" name="ascenso_firma" required maxlength="3" class="form-control">
+                                    <div class="invalid-feedback">Firma de 3 digitos en mayusculas</div>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Motivo</label>
@@ -164,7 +167,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Encargado</label>
-                                    <input type="text" name="ascenso_encargado_usuario" maxlength="16" class="form-control" required>
+                                    <input type="text" name="ascenso_encargado_usuario" required maxlength="16" class="form-control" required>
+                                    <div class="invalid-feedback">Nombre de encargado importante</div>
                                 </div>
                             </div>
                         </div>

@@ -93,15 +93,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarTiempo'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" class="was-validated">
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Usuario</label>
-                                <input type="text" name="tiempo_usuario" class="form-control" required>
+                                <input type="text" name="tiempo_usuario" maxlength="16" class="form-control" required>
+                                <div class="invalid-feedback">Nombre de usuario importante</div>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Encargado</label>
-                                <input type="text" name="tiempo_encargado_usuario" class="form-control" required>
+                                <input type="text" name="tiempo_encargado_usuario" maxlength="16" class="form-control" required>
+                                <div class="invalid-feedback">Nombre de encargado importante</div>
                             </div>
                         </div>
                         <div class="modal-footer">

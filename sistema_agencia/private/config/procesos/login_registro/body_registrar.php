@@ -15,14 +15,16 @@ class BodyRegistro {
         echo '<div class="login-container">';
 
         echo '<h2 class="text-center">Registrar usuario</h2>';
-        echo '<form id="registerForm" method="POST">';
+        echo '<form id="registerForm" class="was-validated" method="POST">';
         echo '<div class="mb-3">';
         echo '<label for="registro_usuario" class="form-label">Nombre de usuario</label>';
-        echo '<input type="text" class="form-control" id="registro_usuario" name="registro_usuario" placeholder="Nombre de usuario" required>';
+        echo '<input type="text" class="form-control" maxlength="16" id="registro_usuario" name="registro_usuario" placeholder="Nombre de usuario" required>';
+        echo '<div class="invalid-feedback">Nombre de usuario de habbo</div>';
         echo '</div>';
         echo '<div class="mb-3">';
         echo '<label for="registro_password" class="form-label">Contraseña</label>';
-        echo '<input type="password" class="form-control" id="registro_password" name="registro_password" placeholder="Contraseña" required>';
+        echo '<input type="password" class="form-control" maxlength="10" id="registro_password" name="registro_password" placeholder="Contraseña" required>';
+        echo '<div class="invalid-feedback">Poner contraseña facil de recordar</div>';
         echo '</div>';
         echo '<button type="submit" class="btn btn-primary w-100">Registrarse</button>';
         echo '</form>';
