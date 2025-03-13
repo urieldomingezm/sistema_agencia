@@ -20,6 +20,9 @@ define('BODY_DJ_PATH', PRIVATE_PATH . 'config/procesos/dj/');
 // Rutas para procesos de login, registros, etc
 define('PROCESOS_LOGIN_PATH', PRIVATE_PATH . 'config/procesos/login_registro/'); 
 
+// Rutas para modales de ascender y tomar tiempo usando menus
+define('MODALES_MENU_PATH', PRIVATE_PATH . 'modal/moda_menus_ascender/'); 
+
 // Rutas de configuración privadas
 define('MENU_PATH', PRIVATE_PATH . 'menus/');     
 define('MODAL_GESTION_TIME_ALTOS_PATH', PRIVATE_PATH . 'modal/modal_gestion_time_altos/'); 

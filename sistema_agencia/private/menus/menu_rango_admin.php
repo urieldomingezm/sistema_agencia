@@ -106,6 +106,10 @@ class Navbar
               echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Gestion ascenso') {
               echo '<li><a class="dropdown-item" href="index.php?page=gestion de ascensos">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Dar ascenso') {
+              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Tomar Time') {
+              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalTiempo">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Requisitos paga') {
               echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
             } else {
@@ -146,10 +150,13 @@ $userData = [
 $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
-  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time' ]],
+  ['name' => 'Ascenso y tiempo', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
   ['name' => 'Administraccion', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
   ['name' => 'Ventas', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();
+
+require_once(MODALES_MENU_PATH . 'modal_ascender.php');
+require_once(MODALES_MENU_PATH . 'modal_tiempo_paga.php');
