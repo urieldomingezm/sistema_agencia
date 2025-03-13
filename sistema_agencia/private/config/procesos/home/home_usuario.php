@@ -8,7 +8,7 @@ class BodyHome
         $this->renderHeader();
         $this->renderTeamSection();
         $this->renderEventsSection();
-        $this->renderPaydaySection(); 
+        $this->renderPaydaySection();
         $this->renderMembershipSection();
         echo '</body>';
     }
@@ -67,7 +67,7 @@ class BodyHome
             ['title' => 'Carrera de Obstáculos', 'description' => 'Supera todos los obstáculos en el menor tiempo posible', 'date' => '29 de Marzo, 2025', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20obstacle%20course%20with%20traps%20and%20challenges&aspect=16:9'],
         ];
 
-        echo '<section style="background: #f0f8ff; padding: 50px 0;">';
+        echo '<section style="background: #f0f8ff; padding: 10px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: black; font-weight: bold;">🎉 Noticias 🎉</h2>';
         echo '<div class="row">';
@@ -78,7 +78,7 @@ class BodyHome
             echo '<img src="' . $event['image'] . '" style="width: 100%; height: 150px; border-radius: 10px; object-fit: cover;">';
             echo '<h3 style="color: #333; margin-top: 10px;">' . $event['title'] . '</h3>';
             echo '<p style="color: #666;">' . $event['description'] . '</p>';
-            echo '<span style="background: #008080; color: white; padding: 5px 10px; border-radius: 10px;">📅 ' . $event['date'] . '</span>';
+            echo '<span style="background: #008080; color: white; padding: 5px 10px; border-radius: 10px;">' . $event['date'] . '</span>';
             echo '<br><br>';
             echo '</div>';
             echo '</div>';
@@ -99,7 +99,7 @@ class BodyHome
             ['name' => 'Chile', 'flag' => 'https://flagcdn.com/cl.svg'],
         ];
 
-        echo '<section style="background: #f0f8ff; padding: 50px 0;">';
+        echo '<section style="background: #f0f8ff; padding: 10px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: black; font-weight: bold;">💰 Día de Paga 💰</h2>';
         echo '<div class="row justify-content-center">';
@@ -124,43 +124,37 @@ class BodyHome
         $memberships = [
             [
                 'title' => 'Membresía gold',
-                'description' => 'Acceso a eventos y actividades básicas.',
                 'benefits' => 'Bonificación del 5% en paga.',
                 'image' => '/public/custom/custom_requisitos_rangos/image/membresias/gold.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía Premium',
-                'description' => 'Acceso a eventos exclusivos y bonificaciones.',
                 'benefits' => 'Bonificación del 15% en paga.',
                 'image' => '/public/custom/custom_requisitos_rangos/image/membresias/premim.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía regla libre',
-                'description' => 'Acceso a eventos VIP y atención personalizada.',
                 'benefits' => 'Bonificación del 25% en paga.',
                 'image' => '/public/custom/custom_requisitos_rangos/image/membresias/regla.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía save',
-                'description' => 'Acceso a todos los eventos y beneficios adicionales.',
                 'benefits' => 'Bonificación del 35% en paga.',
                 'image' => '/public/custom/custom_requisitos_rangos/image/membresias/save.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía vip',
-                'description' => 'Acceso total y beneficios exclusivos.',
                 'benefits' => 'Bonificación del 50% en paga.',
                 'image' => '/public/custom/custom_requisitos_rangos/image/membresias/vip.png' // URL de la imagen
             ],
             [
                 'title' => 'Membresía silver',
-                'description' => 'Acceso total y beneficios exclusivos.',
                 'benefits' => 'Bonificación del 50% en paga.',
                 'image' => '/public/custom/custom_requisitos_rangos/image/membresias/silver.png' // URL de la imagen
             ],
         ];
 
-        echo '<section style="background-color: #f0f8ff; padding: 50px 0;">';
+        echo '<section style="background-color: #f0f8ff; padding: 10px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: #333; font-weight: bold;">🌟 Membresías Disponibles 🌟</h2>';
         echo '<p style="color: #666; font-size: 18px;">Elige la membresía que mejor se adapte a tus necesidades y disfruta de nuestros beneficios exclusivos.</p>';
@@ -171,7 +165,6 @@ class BodyHome
             echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2); transition: transform 0.3s;">';
             echo '<img src="' . $membership['image'] . '" style="width: 100%; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 15px;">'; // Imagen de la membresía
             echo '<h3 style="color: #333;">' . $membership['title'] . '</h3>';
-            echo '<p style="color: #666;">' . $membership['description'] . '</p>';
             echo '<p style="color: #008080; font-weight: bold;">' . $membership['benefits'] . '</p>';
             echo '</div>';
             echo '</div>';
