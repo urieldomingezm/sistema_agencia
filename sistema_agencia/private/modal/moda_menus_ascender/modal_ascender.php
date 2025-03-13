@@ -40,16 +40,16 @@ function obtenerHoraPorRango($rango)
 {
     $horas = [
         'Agente' => '00:30:00', // 30 minutos
-        'Seguridad' => '00:45:00', // 45 minutos
-        'Técnico' => '01:00:00', // 1 hora
-        'Logística' => '01:15:00', // 1 hora 15 minutos
-        'Supervisor' => '01:30:00', // 1 hora 30 minutos
-        'Director' => '02:00:00', // 2 horas
-        'Presidente' => '02:30:00', // 2 horas 30 minutos
-        'Operativo' => '00:30:00' // 30 minutos
+        'Seguridad' => '02:00:00', // 2 horas
+        'Técnico' => '24:00:00', // 24 horas
+        'Logística' => '48:00:00', // 62 horas
+        'Supervisor' => '72:30:00', // 3 dias
+        'Director' => '120:00:00', // 5 dias
+        'Presidente' => '168:00:00', // 7 dias
+        'Operativo' => '216:00:00' // 9 dias
     ];
 
-    return isset($horas[$rango]) ? $horas[$rango] : '00:30:00'; // Si no encuentra el rango, por defecto devuelve 30 minutos
+    return isset($horas[$rango]) ? $horas[$rango] : '00:00:00';
 }
 
 // Procesar formulario si se envía
@@ -73,11 +73,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
 
     if ($resultado) {
         echo "<script>
-            alert('Ascenso registrado exitosamente');
-            window.location.href = '/usuario/index.php'; 
-        </script>";
+        Swal.fire({
+            title: '¡Éxito!',
+            text: 'Ascenso registrado exitosamente',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/usuario/index.php?page=gestion de ascensos';
+            }
+        });
+    </script>";
     } else {
-        echo "<script>alert('Error al registrar ascenso');</script>";
+        echo "<script>
+        Swal.fire({
+            title: '¡Error!',
+            text: 'Error al registrar ascenso',
+            icon: 'error',
+            confirmButtonText: 'Intentar de nuevo'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/usuario/index.php?page=gestion de ascensos';
+            }
+        });
+    </script>";
     }
 }
 ?>
@@ -93,15 +112,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" class="was-validated">
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Usuario</label>
-                                <input type="text" name="ascenso_usuario" class="form-control" required>
+                                <input type="text" name="ascenso_usuario" maxlength="14" class="form-control" required>
+                                <div class="invalid-feedback">Example invalid feedback text</div>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Rango</label>
                                 <select name="ascenso_rango" class="form-control" required onchange="cambiarHoraProxima()">
+                                    <option value="" disabled round>Seleccionar</option>
                                     <option value="Agente">Agente</option>
                                     <option value="Seguridad">Seguridad</option>
                                     <option value="Técnico">Técnico</option>
@@ -118,27 +139,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="form-label">Misión Nueva</label>
-                                <input type="text" name="ascenso_mision_nueva" class="form-control">
+                                <input type="text" name="ascenso_mision_nueva" placeholder="SNY- Agente -I -XDD #" class="form-control">
                             </div>
                         </div>
                         <div class="mt-4">
-<hr>
+                            <hr>
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Firma</label>
-                                    <input type="text" name="ascenso_firma" class="form-control">
+                                    <input type="text" name="ascenso_firma" maxlength="3" class="form-control">
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Motivo</label>
-                                    <input type="text" name="ascenso_motivo" class="form-control" required>
+                                    <select name="ascenso_motivo" class="form-control" required>
+                                        <option value="" disabled round>Seleccionar</option>
+                                        <option value="Cumple el tiempo">Cumple el tiempo</option>
+                                        <option value="Traslado">Traslado</option>
+                                        <option value="Aspirante">Aspirante</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <label class="form-label">Hora Próxima</label>
+                                    <label class="form-label">Horas para ascenso</label>
                                     <input type="text" name="ascenso_hora_proxima" id="ascenso_hora_proxima" class="form-control" value="00:00:00" disabled required>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Encargado</label>
-                                    <input type="text" name="ascenso_encargado_usuario" class="form-control" required>
+                                    <input type="text" name="ascenso_encargado_usuario" maxlength="16" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -153,26 +179,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
     </div>
 
     <script>
-        // Función para cambiar la hora según el rango seleccionado
         function cambiarHoraProxima() {
             var rango = document.querySelector('select[name="ascenso_rango"]').value;
             var horaProxima = document.getElementById('ascenso_hora_proxima');
 
             var horas = {
                 'Agente': '00:30:00',
-                'Seguridad': '00:45:00',
-                'Técnico': '01:00:00',
-                'Logística': '01:15:00',
-                'Supervisor': '01:30:00',
-                'Director': '02:00:00',
-                'Presidente': '02:30:00',
-                'Operativo': '00:30:00'
+                'Seguridad': '02:00:00',
+                'Técnico': '24:00:00',
+                'Logística': '48:00:00',
+                'Supervisor': '72:30:00',
+                'Director': '120:00:00',
+                'Presidente': '168:00:00',
+                'Operativo': '216:00:00'
             };
 
-            horaProxima.value = horas[rango] || '00:30:00'; // Cambiar la hora automáticamente según el rango
+            horaProxima.value = horas[rango] || '00:00:00'; // Cambiar la hora automáticamente según el rango
         }
 
-        // Llamar a la función al cargar la página para asegurar que la hora está configurada por defecto
         window.onload = cambiarHoraProxima;
     </script>
 

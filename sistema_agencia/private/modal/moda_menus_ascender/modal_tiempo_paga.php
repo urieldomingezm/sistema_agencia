@@ -19,7 +19,7 @@ class Tiempo {
 
             $sql = "INSERT INTO gestion_tiempo 
                     (tiempo_usuario, tiempo_status, tiempo_restado, tiempo_acumulado, tiempo_transcurrido, tiempo_total, tiempo_encargado_usuario, tiempo_fecha_registro) 
-                    VALUES (:usuario, :status, :tiempo_restado, :acumulado, :transcurrido, :total, :encargado, NOW())";
+                    VALUES (:usuario, :status, :restado, :acumulado, :transcurrido, :total, :encargado, NOW())";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
@@ -28,7 +28,7 @@ class Tiempo {
             $stmt->bindParam(':transcurrido', $transcurrido);
             $stmt->bindParam(':total', $total);
             $stmt->bindParam(':encargado', $encargado);
-            $stmt->bindParam(':tiempo_restado', $restado);
+            $stmt->bindParam(':restado', $restado);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarTiempo'])) {
     $resultado = $tiempo->registrarTiempo(
         $_POST['tiempo_usuario'],
         $_POST['tiempo_status'],
-        $_POST['tiempo_restado'],
+        $_POST['restado'],
         '00:00:00', // Aseguramos que los valores sean 00:00:00
         '00:00:00',
         '00:00:00',
@@ -56,11 +56,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarTiempo'])) {
 
     if ($resultado) {
         echo "<script>
-            alert('Tiempo registrado exitosamente');
-            window.location.href = '/usuario/index.php';
-        </script>";
+        Swal.fire({
+            title: '¡Éxito!',
+            text: 'Tiempo registrado exitosamente',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/usuario/index.php?page=Gestion de tiempo';
+            }
+        });
+    </script>";
     } else {
-        echo "<script>alert('Error al registrar tiempo');</script>";
+        echo "<script>
+        Swal.fire({
+            title: '¡Error!',
+            text: 'Error al registrar tiempo',
+            icon: 'error',
+            confirmButtonText: 'Intentar de nuevo'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/usuario/index.php?page=Gestion de tiempo';
+            }
+        });
+    </script>";
     }
 }
 ?>
