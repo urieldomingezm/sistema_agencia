@@ -38,9 +38,9 @@ class BodyHome
             ['name' => 'Sofia', 'role' => 'Administradora', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20green%20dress&aspect=1:1', 'rank' => 'Administradora'],
         ];
 
-        echo '<section style="background-color: #87CEEB; padding: 50px 0;">';
+        echo '<section style="background-color: #f0f8ff; padding: 50px 0;">';
         echo '<div class="container text-center">';
-        echo '<h2 style="color: white; font-weight: bold;">👑 Nuestro Equipo 👑</h2>';
+        echo '<h2 style="color: black; font-weight: bold;">👑 Nuestro Equipo 👑</h2>';
         echo '<div class="row justify-content-center">'; // Centrar el contenido
 
         foreach ($teamMembers as $member) {
@@ -67,9 +67,9 @@ class BodyHome
             ['title' => 'Carrera de Obstáculos', 'description' => 'Supera todos los obstáculos en el menor tiempo posible', 'date' => '29 de Marzo, 2025', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20obstacle%20course%20with%20traps%20and%20challenges&aspect=16:9'],
         ];
 
-        echo '<section style="background: #FFA07A; padding: 50px 0;">';
+        echo '<section style="background: #f0f8ff; padding: 50px 0;">';
         echo '<div class="container text-center">';
-        echo '<h2 style="color: white; font-weight: bold;">🎉 Noticias 🎉</h2>';
+        echo '<h2 style="color: black; font-weight: bold;">🎉 Noticias 🎉</h2>';
         echo '<div class="row">';
 
         foreach ($events as $event) {
@@ -99,10 +99,9 @@ class BodyHome
             ['name' => 'Chile', 'flag' => 'https://flagcdn.com/cl.svg'],
         ];
 
-        echo '<section style="background: #32CD32; padding: 50px 0;">';
+        echo '<section style="background: #f0f8ff; padding: 50px 0;">';
         echo '<div class="container text-center">';
-        echo '<h2 style="color: white; font-weight: bold;">💰 Día de Paga 💰</h2>';
-        echo '<p style="color: white; font-size: 18px;">Celebramos el día de paga con nuestros amigos de:</p>';
+        echo '<h2 style="color: black; font-weight: bold;">💰 Día de Paga 💰</h2>';
         echo '<div class="row justify-content-center">';
 
         foreach ($countries as $country) {
@@ -110,7 +109,7 @@ class BodyHome
             echo '<div style="background: white; padding: 10px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
             echo '<img src="' . $country['flag'] . '" style="width: 100%; height: auto; border-radius: 5px;">';
             echo '<p style="color: #333; margin-top: 10px;">' . $country['name'] . '</p>';
-            echo '<p style="color: #666; font-size: 14px;">🕒 Hora de paga: 14:00 hrs</p>'; // Agregar el horario de paga
+            echo '<p style="color: #666; font-size: 14px;">Hora de paga: 14:00</p>'; // Agregar el horario de paga
             echo '</div>';
             echo '</div>';
         }

@@ -39,6 +39,10 @@ define('MODAL_PATH', PRIVATE_PATH . 'modals/');
 
 // Rutas a carpetas públicas como CSS, JS, IMG
 define('PUBLIC_PATH', ROOT_PATH . 'public/');
+
+// Rutas a carpetas públicas para musica
+define('MUSIC_PATH', PUBLIC_PATH . '/music/');
+
 define('CUSTOM_LOGIN_REGISTRO_PATH', PUBLIC_PATH . 'custom/custom_login_registro/');
 define('CUSTOM_LOGIN_REGISTRO_CSS_PATH', PUBLIC_PATH . 'custom/custom_login_registro/css/');
 define('CUSTOM_HOME_PATH', PUBLIC_PATH . 'custom/custom_home/');

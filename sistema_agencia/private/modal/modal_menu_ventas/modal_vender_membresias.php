@@ -1,64 +1,62 @@
 <?php
 require_once(CONFIG_PATH . 'bd.php');
 
-class Membresia {
+class Suscripcion {
     private $conn;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
-    public function registrarVenta($titulo, $descripcion, $compra, $caducidad, $estado, $costo, $comprador, $encargado) {
+    public function registrarSuscripcion($usuario, $plan, $inicio, $fin, $estado, $costo, $encargado) {
         try {
-            $sql = "INSERT INTO gestion_ventas
-                    (venta_titulo, venta_descripcion, venta_compra, venta_caducidad, venta_estado, venta_costo, venta_comprador, venta_encargado, venta_fecha_compra) 
-                    VALUES (:titulo, :descripcion, :compra, :caducidad, :estado, :costo, :comprador, :encargado, NOW())";
+            $sql = "INSERT INTO gestion_suscripciones
+                    (suscripcion_usuario, suscripcion_plan, suscripcion_inicio, suscripcion_fin, suscripcion_estado, suscripcion_costo, suscripcion_encargado, suscripcion_fecha_registro) 
+                    VALUES (:usuario, :plan, :inicio, :fin, :estado, :costo, :encargado, NOW())";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':titulo', $titulo);
-            $stmt->bindParam(':descripcion', $descripcion);
-            $stmt->bindParam(':compra', $compra);
-            $stmt->bindParam(':caducidad', $caducidad);
+            $stmt->bindParam(':usuario', $usuario);
+            $stmt->bindParam(':plan', $plan);
+            $stmt->bindParam(':inicio', $inicio);
+            $stmt->bindParam(':fin', $fin);
             $stmt->bindParam(':estado', $estado);
             $stmt->bindParam(':costo', $costo);
-            $stmt->bindParam(':comprador', $comprador);
             $stmt->bindParam(':encargado', $encargado);
 
             return $stmt->execute();
         } catch (PDOException $e) {
-            error_log("Error al registrar venta: " . $e->getMessage());
+            error_log("Error al registrar suscripción: " . $e->getMessage());
             return false;
         }
     }
 }
 
 // Procesar formulario si se envía
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarMembresia'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarSuscripcion'])) {
     $database = new Database();
     $db = $database->getConnection();
-    $membresia = new Membresia($db);
+    $suscripcion = new Suscripcion($db);
 
-    $resultado = $membresia->registrarVenta(
-        $_POST['venta_titulo'],
-        $_POST['venta_descripcion'],
-        $_POST['venta_compra'],
-        $_POST['venta_caducidad'],
-        $_POST['venta_estado'],
-        $_POST['venta_costo'],
-        $_POST['venta_comprador'],
-        $_POST['venta_encargado']
+    $resultado = $suscripcion->registrarSuscripcion(
+        $_POST['suscripcion_usuario'],
+        $_POST['suscripcion_plan'],
+        $_POST['suscripcion_inicio'],
+        $_POST['suscripcion_fin'],
+        $_POST['suscripcion_estado'],
+        $_POST['suscripcion_costo'],
+        $_POST['suscripcion_encargado']
     );
 
     if ($resultado) {
         echo "<script>
         Swal.fire({
             title: '¡Éxito!',
-            text: 'Membresía registrada exitosamente',
+            text: 'Suscripción registrada exitosamente',
             icon: 'success',
             confirmButtonText: 'OK'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/usuario/index.php?page=Membresias';
+                window.location.href = '/usuario/index.php?page=Suscripciones';
             }
         });
         </script>";
@@ -66,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarMembresia'])) {
         echo "<script>
         Swal.fire({
             title: '¡Error!',
-            text: 'Error al registrar membresía',
+            text: 'Error al registrar suscripción',
             icon: 'error',
             confirmButtonText: 'Intentar de nuevo'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/usuario/index.php?page=Membresias';
+                window.location.href = '/usuario/index.php?page=Suscripciones';
             }
         });
         </script>";
