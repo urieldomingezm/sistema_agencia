@@ -8,8 +8,8 @@ class BodyHome
         $this->renderHeader();
         $this->renderTeamSection();
         $this->renderEventsSection();
-        $this->renderPaydaySection(); // Nueva sección de Día de Paga
-        $this->renderMembershipSection(); // Nueva sección de Membresías
+        $this->renderPaydaySection(); 
+        $this->renderMembershipSection();
         echo '</body>';
     }
 

@@ -133,6 +133,7 @@ class Navbar
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
+  ['name' => 'Unirse', 'dropdown' => ['Iniciar session','Registrarse']],
   ['name' => 'Informacion', 'dropdown' => ['Rangos']],
 ];
 

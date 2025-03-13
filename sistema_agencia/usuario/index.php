@@ -22,7 +22,8 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                         'RQPG.php' => 'Requisitos de paga',
                         'GSAS.php' => 'gestion de ascensos',
                         'GVE.php' => 'Pendiente',
-                        'GVP.php' => 'Pendiente'
+                        'GVP.php' => 'Pendiente',
+                        'MEMS.php' => 'membresias'
                     ];
 
                     $results = [];
@@ -68,6 +69,7 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                             'cerrar session' => 'CRSS.php',
                             'Requisitos de paga' => 'RQPG.php',
                             'gestion de ascensos' => 'GSAS.php',
+                            'membresias' => 'MEMS.php',
                             'GVE' => 'GVE.php',
                             'GVP' => 'GVP.php'
                         ];
