@@ -104,7 +104,7 @@ class Navbar
             } elseif ($dropdownItem == 'Registrarse') {
               echo '<li><a class="dropdown-item" href="registrar.php">' . $dropdownItem . '</a></li>';
             } else {
-              echo '<li><a class="dropdown-item" href="#">' . $dropdownItem . '</a></li>';
+              echo '<li><a class="dropdown-item" href="login.php">' . $dropdownItem . '</a></li>';
             }
           }
         }
