@@ -26,7 +26,7 @@ class Footer
         echo '<br>';
         echo '<p style="display: flex; align-items: center; justify-content: center; gap: 10px;">';
         echo '<span>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina</span>';
-        echo '<img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=2&amp;gesture=&amp;size=s&amp;headonly=1" alt="Medina Avatar" style="vertical-align: middle;">';
+        echo '<img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=3&amp;gesture=&amp;size=s&amp;headonly=1" alt="Medina Avatar" style="vertical-align: middle;">';
         echo '</p>';
         echo '</div>';
         echo '</div>';
