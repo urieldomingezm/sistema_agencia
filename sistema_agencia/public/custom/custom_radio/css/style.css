@@ -6,7 +6,7 @@
     background: #f0f8ff; /* Fondo semi-transparente */
     border-radius: 15px;
     padding: 15px;
-    width: 250px; /* Tamaño un poco más grande */
+    width: 224.5px; /* Tamaño un poco más grande */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más suave */
     z-index: 9999; /* Asegura que esté al frente */
     backdrop-filter: blur(10px); /* Efecto de desenfoque */

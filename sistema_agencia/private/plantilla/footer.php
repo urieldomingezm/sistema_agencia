@@ -11,17 +11,19 @@ class Footer
 
     public function render()
     {
-
+        echo '<br>';
+        echo '<br>';
         echo '<style>footer {
   position: fixed;
   bottom: 0;
   width: 100%;
 }</style>';
 
-        echo '<footer style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);" class="text-white text-center py-3 footer">';
+        echo '<footer style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);" class="text-white text-center">';
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-md-12">';
+        echo '<br>';
         echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=2&amp;gesture=&amp;size=s&amp;headonly=1" alt=""></p>';
         echo '</div>';
         echo '</div>';
