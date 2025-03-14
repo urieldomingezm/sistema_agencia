@@ -38,7 +38,7 @@ class BodyHome
             ['name' => 'Sofia', 'role' => 'Administradora', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20green%20dress&aspect=1:1', 'rank' => 'Administradora'],
         ];
 
-        echo '<section style="background-color: #f0f8ff; padding: 50px 0;">';
+        echo '<section style="background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 50px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: black; font-weight: bold;">👑 Nuestro Equipo 👑</h2>';
         echo '<div class="row justify-content-center">'; // Centrar el contenido
@@ -67,7 +67,7 @@ class BodyHome
             ['title' => 'Carrera de Obstáculos', 'description' => 'Supera todos los obstáculos en el menor tiempo posible', 'date' => '29 de Marzo, 2025', 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20obstacle%20course%20with%20traps%20and%20challenges&aspect=16:9'],
         ];
 
-        echo '<section style="background: #f0f8ff; padding: 10px 0;">';
+        echo '<section style="background: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 10px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: black; font-weight: bold;">🎉 Noticias 🎉</h2>';
         echo '<div class="row">';
@@ -99,17 +99,17 @@ class BodyHome
             ['name' => 'Chile', 'flag' => 'https://flagcdn.com/cl.svg'],
         ];
 
-        echo '<section style="background: #f0f8ff; padding: 10px 0;">';
+        echo '<section style="background: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 20px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: black; font-weight: bold;">💰 Día de Paga 💰</h2>';
         echo '<div class="row justify-content-center">';
 
         foreach ($countries as $country) {
-            echo '<div class="col-6 col-sm-4 col-md-2 mb-4">';
-            echo '<div style="background: white; padding: 10px; border-radius: 10px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
-            echo '<img src="' . $country['flag'] . '" style="width: 100%; height: auto; border-radius: 5px;">';
-            echo '<p style="color: #333; margin-top: 10px;">' . $country['name'] . '</p>';
-            echo '<p style="color: #666; font-size: 14px;">Hora de paga: 14:00</p>'; // Agregar el horario de paga
+            echo '<div class="col-6 col-sm-4 col-md-3 mb-4">'; // Aumentamos el tamaño de la columna
+            echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 8px 15px rgba(0,0,0,0.2);">';
+            echo '<img src="' . $country['flag'] . '" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover;">'; // Ajustamos la imagen
+            echo '<p style="color: #333; margin-top: 15px; font-size: 18px; font-weight: bold;">' . $country['name'] . '</p>';
+            echo '<p style="color: #666; font-size: 16px;">Hora de paga: 14:00</p>';
             echo '</div>';
             echo '</div>';
         }
@@ -118,6 +118,7 @@ class BodyHome
         echo '</div>';
         echo '</section>';
     }
+
 
     private function renderMembershipSection()
     {
@@ -154,7 +155,7 @@ class BodyHome
             ],
         ];
 
-        echo '<section style="background-color: #f0f8ff; padding: 10px 0;">';
+        echo '<section style="background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 10px 0;">';
         echo '<div class="container text-center">';
         echo '<h2 style="color: #333; font-weight: bold;">🌟 Membresías Disponibles 🌟</h2>';
         echo '<p style="color: #666; font-size: 18px;">Elige la membresía que mejor se adapte a tus necesidades y disfruta de nuestros beneficios exclusivos.</p>';
