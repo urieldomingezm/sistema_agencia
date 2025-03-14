@@ -89,7 +89,7 @@ class Header
     }
 }
 
-$header = new Header('Sistema de agencia');
+$header = new Header('Agencia Habbo Atenas');
 // Archivos CSS personalizados (versiones locales)
 $header->addCssFile('/public/custom/bootstrap/bootstrap.css');
 $header->addCssFile('/public/custom/bootstrap/bootstrap.min.css');
