@@ -121,9 +121,7 @@ class Navbar
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Pagar usuario') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalpagar">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Vender membresias') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalmembresias">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Vender rangos') {
+            } elseif ($dropdownItem == 'Vender membresias y rangos') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalrangos">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Tomar Time') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalTiempo">' . $dropdownItem . '</a></li>';
@@ -168,7 +166,7 @@ $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
   ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
-  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias', 'Vender rangos']],
+  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
   ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
 ];
 
@@ -178,5 +176,4 @@ $navbar->render();
 require_once(MODALES_MENU_PATH . 'modal_ascender.php');
 require_once(MODALES_MENU_PATH . 'modal_tiempo_paga.php');
 require_once(MODALES_MENU_PAGA_PATH . 'modal_pagar_usuario.php');
-require_once(MODALES_MENU_VENTAS_PATH . 'modal_vender_membresias.php');
 require_once(MODALES_MENU_VENTAS_PATH . 'modal_vender_rangos.php');
