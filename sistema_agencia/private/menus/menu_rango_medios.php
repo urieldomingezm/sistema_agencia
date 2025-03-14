@@ -18,11 +18,11 @@ class Navbar
 
   public function render()
   {
-    echo '<nav class="navbar fixed-top" style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);">';
+    echo '<nav class="navbar fixed-top" style="background: linear-gradient(45deg,rgb(25, 217, 201),rgb(72, 199, 224),rgb(127, 217, 240),rgb(25, 156, 217)">';
     echo '<div class="container-fluid">';
     
     // Marca
-    echo '<a class="navbar-brand text-white" href="index.php">' . $this->brand . '</a>';
+    echo '<a class="navbar-brand text-black" href="index.php">' . $this->brand . '</a>';
 
     // Botón del toggler para abrir el offcanvas
     echo '<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">';
@@ -115,6 +115,8 @@ $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
   ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
+  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
+  ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items, $userData);
@@ -122,5 +124,7 @@ $navbar->render();
 
 require_once(MODALES_MENU_PATH . 'modal_ascender.php');
 require_once(MODALES_MENU_PATH . 'modal_tiempo_paga.php');
+require_once(MODALES_MENU_PAGA_PATH . 'modal_pagar_usuario.php');
+require_once(MODALES_MENU_VENTAS_PATH . 'modal_vender_rangos.php');
 
 ?>

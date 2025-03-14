@@ -18,11 +18,11 @@ class Navbar
 
   public function render()
   {
-    echo '<nav class="navbar fixed-top" style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);">';
+    echo '<nav class="navbar fixed-top" style="background: linear-gradient(45deg,rgb(25, 217, 201),rgb(72, 199, 224),rgb(127, 217, 240),rgb(25, 156, 217)">';
     echo '<div class="container-fluid">';
     
     // Marca
-    echo '<a class="navbar-brand text-white" href="index.php">' . $this->brand . '</a>';
+    echo '<a class="navbar-brand text-black" href="index.php">' . $this->brand . '</a>';
 
     // Botón del toggler para abrir el offcanvas
     echo '<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">';

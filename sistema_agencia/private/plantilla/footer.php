@@ -19,12 +19,15 @@ class Footer
   width: 100%;
 }</style>';
 
-        echo '<footer style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);" class="text-white text-center">';
+        echo '<footer style="background: linear-gradient(45deg, rgb(25, 214, 217), rgb(72, 214, 224), rgb(127, 240, 238), rgb(17, 156, 147)); color: black; text-align: center;">';
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-md-12">';
         echo '<br>';
-        echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=2&amp;gesture=&amp;size=s&amp;headonly=1" alt=""></p>';
+        echo '<p style="display: flex; align-items: center; justify-content: center; gap: 10px;">';
+        echo '<span>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina</span>';
+        echo '<img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=2&amp;gesture=&amp;size=s&amp;headonly=1" alt="Medina Avatar" style="vertical-align: middle;">';
+        echo '</p>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
