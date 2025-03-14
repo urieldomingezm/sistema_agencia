@@ -4,14 +4,12 @@ class RadioPlayer
     private $defaultStreamURL;
     private $streamURL;
     private $djName;
-    private $localMusicPath;
     private $mountPoint;
 
-    public function __construct($defaultStreamURL, $localMusicPath, $djName = "DJ Desconocido", $mountPoint = "")
+    public function __construct($defaultStreamURL, $djName = "DJ Desconocido", $mountPoint = "")
     {
         $this->defaultStreamURL = $defaultStreamURL;  // La URL de la radio en vivo (por defecto)
         $this->streamURL = $defaultStreamURL;  // Por defecto se usa la radio en vivo
-        $this->localMusicPath = $localMusicPath;
         $this->djName = $djName;
         $this->mountPoint = $mountPoint;
     }
@@ -53,18 +51,6 @@ class RadioPlayer
 
     private function renderScripts()
     {
-        // Escanear la carpeta 'public/music/' para obtener los archivos de música
-        $musicFiles = glob($_SERVER['DOCUMENT_ROOT'] . '/public/music/*.mp3');
-        
-        // Verificar si hay archivos disponibles
-        if (count($musicFiles) > 0) {
-            // Seleccionar un archivo aleatorio
-            $randomMusicFile = $musicFiles[array_rand($musicFiles)];
-        } else {
-            // Si no hay archivos, podemos mostrar un mensaje o usar un archivo por defecto
-            $randomMusicFile = '/public/music/505.mp3'; // Archivo por defecto si no hay música
-        }
-
         echo '<script>
                 var radio = document.getElementById("radio");
                 var playButton = document.getElementById("playButton");
@@ -73,8 +59,7 @@ class RadioPlayer
                 var radioCover = document.querySelector(".radio-cover"); // Selecciona la imagen
 
                 var defaultStreamURL = "' . $this->defaultStreamURL . '";
-                var streamURL = "' . $this->streamURL . '";
-                var localMusicPath = "' . $randomMusicFile . '"; // Ruta de la música aleatoria
+                var streamURL = "' . $this->streamURL . '"; // Solo la URL de la radio principal
                 var mountPoint = "' . $this->mountPoint . '"; // Mount point para listen2myradio
 
                 // Función para verificar si la radio en vivo está disponible
@@ -161,15 +146,8 @@ class RadioPlayer
 
                 // Detectar error de la radio (si no está disponible)
                 radio.onerror = function() {
-                    console.log("Radio no disponible, cambiando a música local...");
-                    radio.src = localMusicPath; // Cambia a música local
-                    radio.play();
-
-                    // Activar la animación de giro
-                    radioCover.classList.add("playing");
-                    
-                    // Actualizar el mount point si la radio no está disponible
-                    document.querySelector(".mount-point-status span").textContent = "Música local";
+                    console.log("Radio no disponible");
+                    alert("La radio en vivo no está disponible en este momento.");
                 };
 
                 // Verificar la disponibilidad del stream en vivo y cambiar la fuente de la radio
@@ -177,17 +155,10 @@ class RadioPlayer
                     if (isLiveAvailable) {
                         streamURL = defaultStreamURL;
                         document.querySelector(".mount-point-status span").textContent = "Conectado a: " + streamURL;
-                    } else if (mountPoint) {
-                        // Si estamos transmitiendo, cambiar a listen2myradio
-                        streamURL = "http://37.157.242.101:36414" + mountPoint;
-                        document.querySelector(".mount-point-status span").textContent = "Conectado a: " + streamURL;
+                        playRadio(); // Reproducir la radio una vez determinado el streamURL
                     } else {
-                        // Si no hay conexión de radio y no estamos transmitiendo, cambiar a música local
-                        streamURL = localMusicPath;
-                        document.querySelector(".mount-point-status span").textContent = "Música local";
+                        document.querySelector(".mount-point-status span").textContent = "Radio no disponible";
                     }
-
-                    playRadio(); // Reproducir la radio una vez determinado el streamURL
                 });
 
                 // Actualizar el estado de los botones cuando la radio se reproduce o se pausa automáticamente
@@ -217,13 +188,9 @@ class RadioPlayer
 
 // URL de la radio principal
 $defaultStreamURL = "https://radionoyabrsk.ru:8443";  // Radio en vivo (por defecto)
-// Path de música local en caso de desconexión
-$localMusicPath = "/public/music/505.mp3";
-// Mount point para listen2myradio
-$mountPoint = "/stream"; // El punto de montaje que se muestra
 
 // Crear la instancia del radio
-$radio = new RadioPlayer($defaultStreamURL, $localMusicPath, "DJ Nocturno", $mountPoint);
+$radio = new RadioPlayer($defaultStreamURL, "DJ Nocturno");
 $radio->render();
 
 // Si decides conectar a listen2myradio (por ejemplo, al hacer click en un botón o alguna acción)
