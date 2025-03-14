@@ -9,21 +9,27 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
-                            <h6>Nombre: <strong>Santidemg</strong></h6>
+                        <!-- Columna Izquierda - Información -->
+                        <div class="col-7">
+                            <h6>Nombre: <strong>Goblinslayer88</strong></h6>
                             <p id="infoNombre"></p>
-                        </div>
-                        <div class="col-6">
-                            <h6>Rango: <strong>Supervisor</strong></h6>
+                            <h6>Rango: <strong>Dueño</strong></h6>
                             <p id="infoRango"></p>
-                        </div>
-                        <div class="col-6">
-                            <h6>Mision actual: <strong>ATN- Supervisor A -XDD -SDS #</strong></h6>
+                            <h6>Misión Anterior: <strong>ATN- Supervisor A -XDD -SDS</strong></h6>
                             <p id="infoMision"></p>
-                        </div>
-                        <div class="col-6">
-                            <h6>Membresia: <strong>Diamante</strong></h6>
+                            <h6>Misión Nueva: <strong>ATN- Supervisor B -XDD -SDS</strong></h6>
                             <p id="infoMembresia"></p>
+                            <h6>Firma: <strong>XDD</strong></h6>
+                            <p id="infoFirma"></p>
+                        </div>
+                        <!-- Línea divisoria -->
+                        <div class="col-1 d-flex align-items-center">
+                            <div style="width: 1px; height: 100%; background-color: #ccc;"></div>
+                        </div>
+                        <!-- Columna Derecha - Imagen -->
+                        <div class="col-4 text-center">
+                            <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=2&amp;head_direction=2&amp;gesture=&amp;size=sl&amp;headonly=2"
+                                style="width: 100px; border-radius: 10px;">
                         </div>
                     </div>
                 </div>
