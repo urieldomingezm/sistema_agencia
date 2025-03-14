@@ -45,18 +45,15 @@ class Header
         echo '<link id="sweetalert-css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css" rel="stylesheet">';
         echo '<link id="chart-css" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet">';
 
-        // Archivos CSS adicionales de tu proyecto
         foreach ($this->cssFiles as $file) {
             echo '<link href="' . $file . '" rel="stylesheet">';
         }
 
-        // Archivos JS adicionales de tu proyecto
         foreach ($this->jsFiles as $file) {
             echo '<script src="' . $file . '" type="text/javascript"></script>';
         }
 
         echo '<script>
-            // Función para verificar si un archivo se cargó correctamente
             function checkAndLoadCDN(id, fallbackUrl) {
                 var element = document.getElementById(id);
                 if (!element || element.sheet === null) {
@@ -76,8 +73,6 @@ class Header
                     document.head.appendChild(newElement);
                 }
             }
-
-            // Verifica y carga recursos locales si es necesario
             window.onload = function () {
                 checkAndLoadCDN("bootstrap-css", "/public/custom/bootstrap/bootstrap.css");
                 checkAndLoadCDN("bootstrap-js", "/public/custom/bootstrap/bootstrap.bundle.min.js");

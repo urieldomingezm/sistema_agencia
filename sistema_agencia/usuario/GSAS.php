@@ -59,11 +59,11 @@ try {
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     <?php foreach ($ascensos as $ascenso) : ?>
                         <tr data-id="<?= $ascenso['ascenso_id'] ?>">
                             <td><?= $ascenso['ascenso_id'] ?></td>
-                            <td><button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona"><?= $ascenso['ascenso_usuario'] ?></button></td>
+                            <td><button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona"><?= $ascenso['ascenso_usuario'] ?></td>
                             <td><?= $ascenso['ascenso_rango'] ?></td>
                             <td class="estado">
                                 <span class="badge <?= $ascenso['ascenso_status'] == 'Disponible' ? 'bg-success' : 'bg-secondary' ?>"><?= $ascenso['ascenso_status'] ?></span>

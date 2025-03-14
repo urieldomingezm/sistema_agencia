@@ -23,7 +23,7 @@ class RadioPlayer
         if ($this->mountPoint) {
             echo '        <p class="mount-point-status">Conectado a: <span>' . htmlspecialchars($this->mountPoint) . '</span></p>';
         } else {
-            echo '        <p class="mount-point-status">Conectando a la radio en vivo...</p>';
+            echo '        <p class="mount-point-status">Radio en vivo...</p>';
         }
         echo '    </div>';
         echo '    <audio id="radio" src="' . htmlspecialchars($this->streamURL) . '" preload="none"></audio>';
@@ -193,9 +193,7 @@ $defaultStreamURL = "https://radionoyabrsk.ru:8443";  // Radio en vivo (por defe
 $radio = new RadioPlayer($defaultStreamURL, "DJ Nocturno");
 $radio->render();
 
-// Si decides conectar a listen2myradio (por ejemplo, al hacer click en un botón o alguna acción)
 if (isset($_POST['changeStream'])) {
     $radio->switchToStream("http://37.157.242.101:36414/stream", "/stream");  // Cambiar la URL a listen2myradio
     $radio->render();
 }
-?>

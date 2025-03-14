@@ -15,20 +15,17 @@ class Footer
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-md-12">';
-        echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina.</p>';
+        echo '';
+        echo '<p>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para  Ing. Medina <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=2&amp;gesture=&amp;size=s&amp;headonly=1" alt=""></p>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</footer>';
 
-
         // Botón de flecha hacia arriba
         echo '<button id="scrollTopBtn" class="btn rounded-circle" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1000; background: #6A0DAD;" onclick="scrollToTop()">';
         echo '<i class="bi bi-arrow-up text-white fs-5 fw-bold"></i>';
         echo '</button>';
-
-
-
 
         // // Bootstrap JS
         // echo '<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>';
