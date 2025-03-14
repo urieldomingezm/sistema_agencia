@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class BodyHome
 {
@@ -15,13 +16,16 @@ class BodyHome
 
     private function renderHeader()
     {
+        // Verifica si el nombre de usuario está en la sesión
+        $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Invitado'; // Si no está, usar "Invitado"
+
         echo '<br>';
         echo '<br>';
         echo '<main class="flex-shrink-0">';
         echo '<header style="background: linear-gradient(180deg, #FFCC00, #FFAA00); padding: 40px 0;">';
         echo '<div class="container text-center">';
         echo '<h1 style="color: white; font-weight: bold;">🌟 Agencia Atenas 🌟</h1>';
-        echo '<p style="color: #FFF; font-size: 18px;">Bienvenido a nuestra agencia esperamos y nos podemos divertir juntos</p>';
+        echo '<p style="color: #FFF; font-size: 18px;">Bienvenido ' . htmlspecialchars($username) . ', esperamos y nos podamos divertir juntos</p>';
         echo '</div>';
         echo '</header>';
         echo '</main>';
@@ -97,6 +101,9 @@ class BodyHome
             ['name' => 'Colombia', 'flag' => 'https://flagcdn.com/co.svg'],
             ['name' => 'Perú', 'flag' => 'https://flagcdn.com/pe.svg'],
             ['name' => 'Chile', 'flag' => 'https://flagcdn.com/cl.svg'],
+            ['name' => 'Brasil', 'flag' => 'https://flagcdn.com/br.svg'],
+            ['name' => 'España', 'flag' => 'https://flagcdn.com/es.svg'],
+            ['name' => 'Estados Unidos', 'flag' => 'https://flagcdn.com/us.svg'],
         ];
 
         echo '<section style="background: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 20px 0;">';
@@ -105,9 +112,9 @@ class BodyHome
         echo '<div class="row justify-content-center">';
 
         foreach ($countries as $country) {
-            echo '<div class="col-6 col-sm-4 col-md-3 mb-4">'; // Aumentamos el tamaño de la columna
+            echo '<div class="col-6 col-sm-4 col-md-3 mb-4">';
             echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 8px 15px rgba(0,0,0,0.2);">';
-            echo '<img src="' . $country['flag'] . '" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover;">'; // Ajustamos la imagen
+            echo '<img src="' . $country['flag'] . '" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover;">';
             echo '<p style="color: #333; margin-top: 15px; font-size: 18px; font-weight: bold;">' . $country['name'] . '</p>';
             echo '<p style="color: #666; font-size: 16px;">Hora de paga: 14:00</p>';
             echo '</div>';

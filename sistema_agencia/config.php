@@ -23,6 +23,9 @@ define('PROCESOS_LOGIN_PATH', PRIVATE_PATH . 'config/procesos/login_registro/');
 // Rutas para modales de ascender y tomar tiempo usando menus
 define('MODALES_MENU_PATH', PRIVATE_PATH . 'modal/moda_menus_ascender/');
 
+// Rutas para autenticacion de usuario
+define('PROCESO_ATHUR_PATH', PRIVATE_PATH . 'config/procesos/autenticacion/');
+
 // Rutas para modales de paga
 define('MODALES_MENU_PAGA_PATH', PRIVATE_PATH . 'modal/modal_menu_paga/');
 

@@ -21,6 +21,22 @@
     object-fit: cover; /* Asegura que la imagen cubra el espacio */
     margin-bottom: 10px; /* Espacio entre la imagen y el texto */
     border: 2px solid #ff00bf; /* Borde naranja */
+    transition: transform 0.3s ease; /* Suaviza la transición del giro */
+}
+
+/* Animación de rotación cuando la radio está reproduciéndose */
+.radio-container.playing .radio-cover {
+    animation: spin 2s linear infinite; /* Gira de manera infinita con 2 segundos por vuelta */
+}
+
+/* Definir la animación de giro */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Información del DJ */

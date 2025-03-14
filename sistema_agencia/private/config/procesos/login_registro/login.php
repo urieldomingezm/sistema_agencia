@@ -18,6 +18,8 @@ class User {
         $stmt->bindParam(':usuario', $this->usuario);
         $stmt->execute();
 
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'; // Importar SweetAlert2
+
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $this->id = $row['id'];
@@ -29,19 +31,37 @@ class User {
                 $_SESSION['usuario_registro'] = $this->usuario;
                 $_SESSION['rol_id'] = $this->rol_id;
 
-                echo '<meta http-equiv="refresh" content="0;url=/usuario/index.php">';
-exit();
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Inicio de sesión exitoso',
+                        text: 'Redirigiendo...'
+                    }).then(() => {
+                        window.location.href = '/usuario/index.php';
+                    });
+                </script>";
+                exit();
             } else {
                 echo "<script>
-                        alert('Contraseña incorrecta.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Contraseña incorrecta.'
+                    }).then(() => {
                         window.location.href = '/login.php';
-                      </script>";
+                    });
+                </script>";
             }
         } else {
             echo "<script>
-                    alert('Usuario no encontrado.');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Usuario no encontrado',
+                    text: 'Por favor, verifique sus credenciales.'
+                }).then(() => {
                     window.location.href = '/login.php';
-                  </script>";
+                });
+            </script>";
         }
     }
 }

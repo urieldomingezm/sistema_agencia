@@ -19,7 +19,7 @@ class UserProfile
     {
         echo '<header style="background: linear-gradient(180deg, #FFCC00, #FFAA00); padding: 40px 0;">';
         echo '<div class="container text-center">';
-        echo '<h1 style="color: white; font-weight: bold;">👤 Perfil de Usuario 👤</h1>';
+        echo '<h1 style="color: white; font-weight: bold;">Perfil de Usuario</h1>';
         echo '<p style="color: #FFF; font-size: 18px;">Bienvenido a tu perfil, aquí puedes ver tu información.</p>';
         echo '</div>';
         echo '</header>';
@@ -45,10 +45,10 @@ class UserProfile
         // Tarjeta de Día de Paga
         echo '<div class="col-12 col-md-4 mb-4">';
         echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
-        echo '<h3 style="color: #333;">💰 Proxima paga 💰</h3>';
+        echo '<h3 style="color: #333;">Proxima paga</h3>';
         echo '<p style="color: #666;">Próximo día de paga: 15 de cada mes.</p>';
         echo '<p style="color: #666;">Pais perteneciente: Mexico.</p>';
-        echo '<p style="color: #666;">🕒 Hora: 14:00 hrs</p>';
+        echo '<p style="color: #666;">Hora: 14:00 hrs</p>';
         echo '<hr style="border: 1px solid #ddd;">';
         echo '<h3 style="color: #333;">Tiempo de paga</h3>';
         echo '<p style="color: #666;">Horas restadas: 1:00</p>';
@@ -60,7 +60,7 @@ class UserProfile
         // Tarjeta de Ascenso
         echo '<div class="col-12 col-md-4 mb-4">';
         echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
-        echo '<h3 style="color: #333;">📈 Ascenso 📈</h3>';
+        echo '<h3 style="color: #333;">Ascenso</h3>';
         echo '<p style="color: #666;">Mision actual: AGT- Supervisor G -XDD -SDS #</p>';
         echo '<p style="color: #666;">Proxima mision: AGT- Supervisor D -XDD -SDS #</p>';
         echo '<p style="color: #666;">Tiempo proximado: 2 dias</p>';

@@ -14,16 +14,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = isset($_POST['registro_password']) ? trim($_POST['registro_password']) : '';
     $ip_usuario = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
 
+    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'; // Importar SweetAlert2
+
     if (!empty($usuario) && !empty($password)) {
         $user = new User($conn);
         $user->usuario_registro = $usuario;
         $user->ip_registro = $ip_usuario;
 
         if ($user->userExists()) {
-            echo "<script>alert('El usuario ya existe.'); window.location.href = '/registrar.php';</script>";
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'El usuario ya existe.'
+                }).then(() => {
+                    window.location.href = '/registrar.php';
+                });
+            </script>";
         } else {
             if ($user->ipRegistrations() >= 1) {
-                echo "<script>alert('Se han registrado más de 2 veces desde esta IP. Por favor, contacte al soporte.'); window.location.href = '/registrar.php';</script>";
+                echo "<script>
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Advertencia',
+                        text: 'Se han registrado más de 2 veces desde esta IP. Por favor, contacte al soporte.'
+                    }).then(() => {
+                        window.location.href = '/registrar.php';
+                    });
+                </script>";
                 exit;
             }
 
@@ -32,13 +50,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user->fecha_registro = date('Y-m-d H:i:s');
 
             if ($user->create()) {
-                echo "<script>alert('Registro exitoso. Ahora puedes iniciar sesión.'); window.location.href = '/login.php';</script>";
+                // Iniciar sesión después del registro
+                $_SESSION['usuario_id'] = $user->getLastInsertId(); // Guardar el ID del usuario en sesión
+                $_SESSION['usuario_registro'] = $usuario;
+                $_SESSION['rol_id'] = $user->rol_id;
+
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registro exitoso',
+                        text: 'Bienvenido, " . $usuario . "'
+                    }).then(() => {
+                        window.location.href = '/usuario/index.php'; // Redirigir a una página protegida
+                    });
+                </script>";
             } else {
-                echo "<script>alert('Error en el registro. Inténtelo nuevamente.'); window.location.href = '/registrar.php';</script>";
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error en el registro. Inténtelo nuevamente.'
+                    }).then(() => {
+                        window.location.href = '/registrar.php';
+                    });
+                </script>";
             }
         }
     } else {
-        echo "<script>alert('Por favor, complete todos los campos correctamente.'); window.location.href = '/registrar.php';</script>";
+        echo "<script>
+            Swal.fire({
+                icon: 'info',
+                title: 'Atención',
+                text: 'Por favor, complete todos los campos correctamente.'
+            }).then(() => {
+                window.location.href = '/registrar.php';
+            });
+        </script>";
     }
 }
 
