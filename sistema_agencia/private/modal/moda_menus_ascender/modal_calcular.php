@@ -18,7 +18,6 @@
                                 <option value="trabajador">Trabajador</option>
                                 <option value="nuevo">Nuevo</option>
                             </select>
-                            <div class="invalid-feedback">Seleccion de tipo eres</div>
                         </div>
                     </div>
 
@@ -26,9 +25,6 @@
                         <!-- Aquí se insertarán los campos dinámicamente -->
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
                 </form>
             </div>
         </div>
@@ -82,7 +78,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <label class="form-label">Costo</label>
-                            <input type="number" class="form-control" id="costo" required>
+                            <input type="number" class="form-control" id="costo" disabled required>
                         </div>
                     `;
                     break;
@@ -101,7 +97,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                             <label class="form-label">Costo</label>
-                            <input type="number" class="form-control" id="costo_nuevo" required>
+                            <input type="number" class="form-control" id="costo_nuevo" disabled required>
                         </div>
                     `;
                     break;
