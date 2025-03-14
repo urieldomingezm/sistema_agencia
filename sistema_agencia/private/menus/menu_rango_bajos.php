@@ -1,5 +1,4 @@
 <?php
-
 class Navbar
 {
   private $brand;
@@ -8,7 +7,7 @@ class Navbar
   private $searchButtonText;
   private $userData;
 
-  public function __construct($brand, $items, $userData, $searchPlaceholder = "Search", $searchButtonText = "Search")
+  public function __construct($brand, $items, $userData, $searchPlaceholder = "Buscar", $searchButtonText = "Buscar")
   {
     $this->brand = $brand;
     $this->items = $items;
@@ -19,120 +18,93 @@ class Navbar
 
   public function render()
   {
-    echo '<style>
-      .dropdown-menu {
-        background-color: #343a40;
-      }
-      .dropdown-item {
-        color: white;
-      }
-      .dropdown-item:hover, .dropdown-item:focus {
-        background-color: rgba(0, 0, 0, 0.7);
-        color: white;
-      }
-      .user-dropdown .dropdown-toggle::after {
-        display: none;
-      }
-      .navbar-brand {
-        flex-grow: 1;
-        text-align: center;
-      }
-      .navbar-nav {
-        flex-grow: 1;
-        justify-content: flex-end;
-      }
-      .navbar-nav .nav-item {
-        margin-left: 15px;
-      }
-      .user-dropdown {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-      }
-      .user-dropdown .dropdown-toggle {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-      .user-dropdown img {
-        margin-right: 10px;
-      }
-    </style>';
+    echo '<nav class="navbar fixed-top" style="background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);">';
+    echo '<div class="container-fluid">';
+    
+    // Marca
+    echo '<a class="navbar-brand text-white" href="index.php">' . $this->brand . '</a>';
 
-    echo '<nav class="navbar navbar-expand-lg fixed-top" style="background-color:rgb(209, 25, 96);" data-bs-theme="dark">';
-    echo '<div class="container-fluid d-flex">';
-
-    // Usuario con dropdown alineado a la izquierda
-    echo '<div class="nav-item dropdown ms-5 user-dropdown">';
-    echo '<a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-    echo '<img src="' . $this->userData['avatar'] . '" alt="Perfil" class="rounded-circle" width="35" height="35">';
-    echo '</a>';
-    echo '<ul class="dropdown-menu dropdown-menu-end">';
-    echo '<li><span class="dropdown-item-text text-white"><strong>' . $this->userData['usuario'] . '</strong></span></li>';
-    echo '<li><hr class="dropdown-divider"></li>';
-    echo '<li><span class="dropdown-item-text text-white">' . $this->userData['rango'] . '</span></li>';
-    echo '<li><hr class="dropdown-divider"></li>';
-    echo '<li><a class="dropdown-item" href="index.php?page=perfil_de_usuario">Ver perfil</a></li>';
-    echo '<li><a class="dropdown-item" href="index.php?page=cerrar_session_usuario">Cerrar sesión</a></li>';
-    echo '</ul>';
-    echo '</div>';
-
-    // Navbar brand centrado
-    echo '<a class="navbar-brand text-white" href="index.php?page=home">' . $this->brand . '</a>';
-
-    // Botón del toggler con SVG personalizado
-    echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-          </svg>';
+    // Botón del toggler para abrir el offcanvas
+    echo '<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">';
+    echo '<span class="navbar-toggler-icon"></span>';
     echo '</button>';
 
-    echo '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
-
-    // Elementos alineados a la derecha
-    echo '<ul class="navbar-nav ms-auto mb-2 mb-lg-0">';
+    // Offcanvas Menu
+    echo '<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">';
+    echo '<div class="offcanvas-header">';
+    echo '<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>';
+    echo '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>';
+    echo '</div>';
+    
+    echo '<div class="offcanvas-body">';
+    echo '<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">';
 
     foreach ($this->items as $item) {
-      if (isset($item['dropdown'])) {
-        echo '<li class="nav-item dropdown">';
-        echo '<a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        echo $item['name'];
-        echo '</a>';
-        echo '<ul class="dropdown-menu">';
-        foreach ($item['dropdown'] as $dropdownItem) {
-          if ($dropdownItem == 'divider') {
-            echo '<li><hr class="dropdown-divider"></li>';
-          } else {
-            if ($dropdownItem == 'Requisitos paga') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
+        if (isset($item['dropdown'])) {
+          echo '<li class="nav-item dropdown">';
+          echo '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
+          echo $item['name'];
+          echo '</a>';
+          echo '<ul class="dropdown-menu">';
+          foreach ($item['dropdown'] as $dropdownItem) {
+            if ($dropdownItem == 'divider') {
+              echo '<li><hr class="dropdown-divider"></li>';
             } else {
-              echo '<li><a class="dropdown-item" href="index.php?page=' . strtolower(str_replace(' ', '_', $dropdownItem)) . '">' . $dropdownItem . '</a></li>';
+              if ($dropdownItem == 'Gestion de tiempo') {
+                echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Gestion ascenso') {
+                echo '<li><a class="dropdown-item" href="index.php?page=gestion de ascensos">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Ventas membresias') {
+                echo '<li><a class="dropdown-item" href="index.php?page=Venta de membresias">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Ventas rangos') {
+                echo '<li><a class="dropdown-item" href="index.php?page=venta de rangos">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Grafico total ventas') {
+                echo '<li><a class="dropdown-item" href="index.php?page=grafico total ventas">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Gestion de pagas') {
+                echo '<li><a class="dropdown-item" href="index.php?page=grafico total paga">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Grafico total de pagas') {
+                echo '<li><a class="dropdown-item" href="index.php?page=grafico total paga">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Dar ascenso') {
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Pagar usuario') {
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalpagar">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Vender membresias y rangos') {
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalrangos">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Tomar Time') {
+                echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalTiempo">' . $dropdownItem . '</a></li>';
+              } elseif ($dropdownItem == 'Requisitos paga') {
+                echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
+              } else {
+                echo '<li><a class="dropdown-item" href="index.php?page=' . strtolower(str_replace(' ', '_', $dropdownItem)) . '">' . $dropdownItem . '</a></li>';
+              }
             }
           }
+          echo '</ul>';
+          echo '</li>';
+        } else {
+          echo '<li class="nav-item">';
+          echo '<a class="nav-link text-black' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="index.php?page=' . strtolower(str_replace(' ', '_', $item['name'])) . '">' . $item['name'] . '</a>';
+          echo '</li>';
         }
-        echo '</ul>';
-        echo '</li>';
-      } else {
-        echo '<li class="nav-item">';
-        echo '<a class="nav-link text-white' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="index.php?page=' . strtolower(str_replace(' ', '_', $item['name'])) . '">' . $item['name'] . '</a>';
-        echo '</li>';
       }
-    }
 
     echo '</ul>';
 
     // Formulario de búsqueda
-    echo '<form class="d-flex ms-3" role="search">';
-    echo '<input class="form-control me-2 bg-light text-dark" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
-    echo '<button class="btn btn-light" type="submit">' . $this->searchButtonText . '</button>';
+    echo '<form class="d-flex mt-3" role="search" method="GET" action="/usuario/index.php">';
+    echo '<input class="form-control me-2" name="q" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
+    echo '<button class="btn btn-outline-success" type="submit">' . $this->searchButtonText . '</button>';
     echo '</form>';
+    
+    echo '</div>';
+    echo '</div>'; // Cierra offcanvas
 
-    echo '</div>';
-    echo '</div>';
+    echo '</div>'; // Cierra container-fluid
     echo '</nav>';
   }
 }
 
-// Datos del usuario (se pueden obtener desde una base de datos o sesión)
+// Datos del usuario
 $userData = [
   'usuario' => 'Santidemg',
   'rango' => 'Seguridad',
@@ -141,8 +113,18 @@ $userData = [
 
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']]
+  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga']],
+  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
+  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
+  ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();
+
+require_once(MODALES_MENU_PATH . 'modal_ascender.php');
+require_once(MODALES_MENU_PATH . 'modal_tiempo_paga.php');
+require_once(MODALES_MENU_PAGA_PATH . 'modal_pagar_usuario.php');
+require_once(MODALES_MENU_VENTAS_PATH . 'modal_vender_rangos.php');
+
+?>
