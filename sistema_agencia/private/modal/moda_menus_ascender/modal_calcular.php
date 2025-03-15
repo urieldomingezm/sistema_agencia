@@ -36,27 +36,34 @@
         // Definir las misiones por rango
         const misionesPorRango = {
             agente: ['SNY- Aspirante', 'SNY- Agente -I', 'SNY- Agente -II', 'SNY- Agente -III'],
-            seguridad: ['SNY - Seguridad -VIII', 'SNY - Seguridad -VII', 'SNY - Seguridad -VI', 'SNY - Seguridad -V', 
-                       'SNY - Seguridad -IV', 'SNY - Seguridad -III', 'SNY - Seguridad -II', 'SNY - Seguridad -I', 
-                       'SNY - JEFE DE Seguridad'],
+            seguridad: ['SNY - Seguridad -VIII', 'SNY - Seguridad -VII', 'SNY - Seguridad -VI', 'SNY - Seguridad -V',
+                'SNY - Seguridad -IV', 'SNY - Seguridad -III', 'SNY - Seguridad -II', 'SNY - Seguridad -I',
+                'SNY - JEFE DE Seguridad'
+            ],
             tecnico: ['SNY - Tecnico VIII', 'SNY - Tecnico VII', 'SNY - Tecnico VI', 'SNY - Tecnico V',
-                     'SNY - Tecnico IV', 'SNY - Tecnico III', 'SNY - Tecnico II', 'SNY - Tecnico I',
-                     'SNY - INSPECTOR DE TECNICO'],
+                'SNY - Tecnico IV', 'SNY - Tecnico III', 'SNY - Tecnico II', 'SNY - Tecnico I',
+                'SNY - INSPECTOR DE TECNICO'
+            ],
             logistica: ['SNY - Logistica VIII', 'SNY - Logistica VII', 'SNY - Logistica VI', 'SNY - Logistica V',
-                       'SNY - Logistica IV', 'SNY - Logistica III', 'SNY - Logistica II', 'SNY - Logistica I',
-                       'SNY - ING. Logistico'],
+                'SNY - Logistica IV', 'SNY - Logistica III', 'SNY - Logistica II', 'SNY - Logistica I',
+                'SNY - ING. Logistico'
+            ],
             supervisor: ['SNY - Supervisor VIII', 'SNY - Supervisor VII', 'SNY - Supervisor VI', 'SNY - Supervisor V',
-                        'SNY - Supervisor IV', 'SNY - Supervisor III', 'SNY - Supervisor II', 'SNY - Supervisor I',
-                        'SNY - SUP. EJECUTIVO'],
+                'SNY - Supervisor IV', 'SNY - Supervisor III', 'SNY - Supervisor II', 'SNY - Supervisor I',
+                'SNY - SUP. EJECUTIVO'
+            ],
             director: ['SNY - Director VIII', 'SNY - Director VII', 'SNY - Director VI', 'SNY - Director V',
-                      'SNY - Director IV', 'SNY - Director III', 'SNY - Director II', 'SNY - Director I',
-                      'SNY - Director SUPREMO'],
+                'SNY - Director IV', 'SNY - Director III', 'SNY - Director II', 'SNY - Director I',
+                'SNY - Director SUPREMO'
+            ],
             presidente: ['SNY - Presidente VIII', 'SNY - Presidente VII', 'SNY - Presidente VI', 'SNY - Presidente V',
-                        'SNY - Presidente IV', 'SNY - Presidente III', 'SNY - Presidente II', 'SNY - Presidente I',
-                        'SNY - Presidente MAYOR'],
+                'SNY - Presidente IV', 'SNY - Presidente III', 'SNY - Presidente II', 'SNY - Presidente I',
+                'SNY - Presidente MAYOR'
+            ],
             operativo: ['SNY - Operativo VIII', 'SNY - Operativo VII', 'SNY - Operativo VI', 'SNY - Operativo V',
-                       'SNY - Operativo IV', 'SNY - Operativo III', 'SNY - Operativo II', 'SNY - Operativo I',
-                       'SNY - JEFE DPTO. OP']
+                'SNY - Operativo IV', 'SNY - Operativo III', 'SNY - Operativo II', 'SNY - Operativo I',
+                'SNY - JEFE DPTO. OP'
+            ]
         };
 
         // Definir los rangos disponibles para ascenso según el rango actual
@@ -127,7 +134,7 @@
             supervisor: {
                 'SNY - Supervisor VIII': 100,
                 'SNY - Supervisor VII': 110,
-                'SNY - Supervisor VI': 120,              
+                'SNY - Supervisor VI': 120,
                 'SNY - Supervisor V': 130,
                 'SNY - Supervisor IV': 145,
                 'SNY - Supervisor III': 160,
@@ -166,7 +173,7 @@
                 'SNY - Operativo III': 1700,
                 'SNY - Operativo II': 1800,
                 'SNY - Operativo I': 2000,
-                'SNY - JEFE DPTO. OP': 2200 
+                'SNY - JEFE DPTO. OP': 2200
             }
         };
 
@@ -261,7 +268,7 @@
                 $('#rango_deseado, #mision_deseada').change(function() {
                     const rangoDeseado = $('#rango_deseado').val();
                     const misionDeseada = $('#mision_deseada').val();
-                    
+
                     if (rangoDeseado && misionDeseada) {
                         const costoRango = costosPorRango[rangoDeseado];
                         const costoMision = costosPorMision[rangoDeseado][misionDeseada];
@@ -286,7 +293,7 @@
                 $('#rango_deseado_nuevo, #mision_nuevo').change(function() {
                     const rangoDeseado = $('#rango_deseado_nuevo').val();
                     const misionSeleccionada = $('#mision_nuevo').val();
-                    
+
                     if (rangoDeseado && misionSeleccionada) {
                         const costoRango = costosPorRango[rangoDeseado];
                         const costoMision = costosPorMision[rangoDeseado][misionSeleccionada];
