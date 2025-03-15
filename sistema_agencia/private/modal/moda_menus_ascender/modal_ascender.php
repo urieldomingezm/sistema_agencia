@@ -101,28 +101,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
 }
 ?>
 
-<body>
-
-    <!-- Modal para Dar Ascenso -->
-    <div class="modal fade" id="modalAscenso" tabindex="-1" aria-labelledby="modalAscensoLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="modalAscensoLabel">Dar Ascenso</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="modalAscenso" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-gradient-success border-0">
+                <h5 class="modal-title text-white">
+                    <i class="fas fa-user-plus me-2"></i>Nuevo Ascenso
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="promotion-status text-center mb-4">
+                    <div class="promotion-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="promotion-text">Nuevo Ascenso en Proceso</div>
                 </div>
-                <div class="modal-body">
-                    <form method="POST" class="was-validated">
-                        <div class="row">
-                            <div class="col-md-6 mb-2">
-                                <label class="form-label">Usuario</label>
-                                <input type="text" name="ascenso_usuario" maxlength="14" class="form-control" required>
-                                <div class="invalid-feedback">Nombre de usuario importante</div>
+
+                <form method="POST" class="was-validated needs-validation">
+                    <div class="row g-3">
+                        <!-- Primera sección -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="ascenso_usuario" maxlength="14" class="form-control" required placeholder="Usuario">
+                                <label><i class="fas fa-user text-success me-2"></i>Usuario</label>
+                                <div class="invalid-feedback">Nombre de usuario requerido</div>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <label class="form-label">Rango</label>
-                                <select name="ascenso_rango" class="form-control" required onchange="cambiarHoraProxima()">
-                                    <option value="" disabled round>Seleccionar</option>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <select name="ascenso_rango" class="form-select" required onchange="cambiarHoraProxima()">
+                                    <option value="" disabled selected>Seleccionar rango</option>
                                     <option value="Agente">Agente</option>
                                     <option value="Seguridad">Seguridad</option>
                                     <option value="Técnico">Técnico</option>
@@ -132,55 +142,132 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarAscenso'])) {
                                     <option value="Presidente">Presidente</option>
                                     <option value="Operativo">Operativo</option>
                                 </select>
+                                <label><i class="fas fa-star text-success me-2"></i>Rango</label>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <label class="form-label">Misión Antigua</label>
-                                <input type="text" name="ascenso_mision_antigua" required class="form-control">
-                                <div class="invalid-feedback">Mision de antigua agencia</div>
+                        </div>
+
+                        <!-- Segunda sección -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="ascenso_mision_antigua" required class="form-control" placeholder="Misión Antigua">
+                                <label><i class="fas fa-history text-success me-2"></i>Misión Antigua</label>
+                                <div class="invalid-feedback">Misión antigua requerida</div>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <label class="form-label">Misión Nueva</label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
                                 <input type="text" name="ascenso_mision_nueva" required placeholder="SNY- Agente -I -XDD #" class="form-control">
-                                <div class="invalid-feedback">Mision correspondiente</div>
+                                <label><i class="fas fa-tasks text-success me-2"></i>Misión Nueva</label>
+                                <div class="invalid-feedback">Formato: SNY- Rango -I -XDD #</div>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <label class="form-label">Firma</label>
-                                    <input type="text" name="ascenso_firma" required maxlength="3" class="form-control">
-                                    <div class="invalid-feedback">Firma de 3 digitos en mayusculas</div>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label class="form-label">Motivo</label>
-                                    <select name="ascenso_motivo" class="form-control" required>
-                                        <option value="" disabled round>Seleccionar</option>
-                                        <option value="Cumple el tiempo">Cumple el tiempo</option>
-                                        <option value="Traslado">Traslado</option>
-                                        <option value="Aspirante">Aspirante</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label class="form-label">Horas para ascenso</label>
-                                    <input type="text" name="ascenso_hora_proxima" id="ascenso_hora_proxima" class="form-control" value="00:00:00" disabled required>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label class="form-label">Encargado</label>
-                                    <input type="text" name="ascenso_encargado_usuario" required maxlength="16" class="form-control" required>
-                                    <div class="invalid-feedback">Nombre de encargado importante</div>
-                                </div>
+
+                        <!-- Tercera sección -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="ascenso_firma" required maxlength="3" class="form-control text-uppercase" placeholder="Firma">
+                                <label><i class="fas fa-signature text-success me-2"></i>Firma</label>
+                                <div class="invalid-feedback">3 caracteres en mayúsculas</div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="guardarAscenso" class="btn btn-success">Registrar ascenso</button>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <select name="ascenso_motivo" class="form-select" required>
+                                    <option value="" disabled selected>Seleccionar motivo</option>
+                                    <option value="Cumple el tiempo">Cumple el tiempo</option>
+                                    <option value="Traslado">Traslado</option>
+                                    <option value="Aspirante">Aspirante</option>
+                                </select>
+                                <label><i class="fas fa-info-circle text-success me-2"></i>Motivo</label>
+                            </div>
                         </div>
-                    </form>
-                </div>
+
+                        <!-- Cuarta sección -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" id="ascenso_hora_proxima" class="form-control" value="00:00:00" disabled>
+                                <label><i class="fas fa-clock text-success me-2"></i>Tiempo de Espera</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="ascenso_encargado_usuario" required maxlength="16" class="form-control" placeholder="Encargado">
+                                <label><i class="fas fa-user-shield text-success me-2"></i>Encargado</label>
+                                <div class="invalid-feedback">Nombre del encargado requerido</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0 px-0 pb-0">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancelar
+                        </button>
+                        <button type="submit" name="guardarAscenso" class="btn btn-success">
+                            <i class="fas fa-check me-2"></i>Confirmar Ascenso
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
+<style>
+.bg-gradient-success {
+    background: linear-gradient(45deg, #1cc88a, #169b6b);
+}
+
+.modal-content {
+    border-radius: 15px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.promotion-status {
+    background: #f8f9fc;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.promotion-icon {
+    font-size: 2.5rem;
+    color: #1cc88a;
+    margin-bottom: 0.5rem;
+}
+
+.promotion-text {
+    color: #5a5c69;
+    font-weight: 500;
+}
+
+.form-floating > label {
+    padding-left: 1.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #1cc88a;
+    box-shadow: 0 0 0 0.2rem rgba(28, 200, 138, 0.25);
+}
+
+.form-control, .form-select {
+    border: 1px solid #e3e6f0;
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #1cc88a, #169b6b);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(45deg, #169b6b, #147d55);
+}
+
+.invalid-feedback {
+    font-size: 80%;
+}
+</style>
 
     <script>
         function cambiarHoraProxima() {

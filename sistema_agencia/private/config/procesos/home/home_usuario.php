@@ -4,30 +4,204 @@ class BodyHome
 {
     public function render()
     {
-        echo '<body class="d-flex flex-column h-100" style="background-color: #FFD700; font-family: Arial, sans-serif;">';
-        $this->renderHeader();
-        $this->renderTeamSection();
-        $this->renderEventsSection();
-        $this->renderPaydaySection();
-        $this->renderMembershipSection();
-        echo '</body>';
+        ?>
+        <div class="home-container">
+            <?php
+            $this->renderHeader();
+            $this->renderTeamSection();
+            $this->renderEventsSection();
+            $this->renderPaydaySection();
+            $this->renderMembershipSection();
+            ?>
+        </div>
+
+        <style>
+        .home-container {
+            background: linear-gradient(135deg, #f6f8fd 0%, #f0f3fa 100%);
+            min-height: 100vh;
+            padding-bottom: 4rem;
+        }
+
+        .welcome-header {
+            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/public/custom/custom_home/img/pattern.png');
+            opacity: 0.1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00c6fb, #005bea);
+            border-radius: 2px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #005bea;
+            padding: 3px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover .team-avatar {
+            transform: scale(1.1);
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .country-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .country-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .country-flag {
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .membership-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .membership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #00c6fb, #005bea);
+        }
+
+        .membership-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .membership-image {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .section-container {
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-header {
+                padding: 2rem 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .team-avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        </style>
+        <?php
     }
 
     private function renderHeader()
     {
-        // Verifica si el nombre de usuario está en la sesión
-        $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Invitado'; // Si no está, usar "Invitado"
-
-        echo '<br>';
-        echo '<br>';
-        echo '<main class="flex-shrink-0">';
-        echo '<header style="background: linear-gradient(180deg, #FFCC00, #FFAA00); padding: 40px 0;">';
-        echo '<div class="container text-center">';
-        echo '<h1 style="color: white; font-weight: bold;">🌟 Agencia Atenas 🌟</h1>';
-        echo '<p style="color: #FFF; font-size: 18px;">Bienvenido ' . htmlspecialchars($username) . ', esperamos y nos podamos divertir juntos</p>';
-        echo '</div>';
-        echo '</header>';
-        echo '</main>';
+        $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Invitado';
+        ?>
+        <header class="welcome-header text-center">
+            <div class="container">
+                <h1 class="display-4 text-white mb-3">
+                    <i class="fas fa-star me-2"></i>Agencia Atenas
+                </h1>
+                <p class="lead text-white mb-0">
+                    Bienvenido <?= htmlspecialchars($username) ?>, esperamos que disfrutes tu estancia
+                </p>
+            </div>
+        </header>
+        <?php
     }
 
     private function renderTeamSection()

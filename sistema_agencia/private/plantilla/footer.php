@@ -11,78 +11,103 @@ class Footer
 
     public function render()
     {
-        echo '<br>';
-        echo '<br>';
-        echo '<style>footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}</style>';
+        ?>
+        <footer class="custom-footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <div class="footer-content">
+                            <span class="copyright">
+                                &copy; <?= date('Y') ?> Agencia Atenas. Todos los derechos reservados para Ing. Medina
+                            </span>
+                            <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&action=none&direction=0&head_direction=3&gesture=&size=s&headonly=1" 
+                                 alt="Medina Avatar" 
+                                 class="avatar-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-        echo '<footer style="background: linear-gradient(45deg, rgb(25, 214, 217), rgb(72, 214, 224), rgb(127, 240, 238), rgb(17, 156, 147)); color: black; text-align: center;">';
-        echo '<div class="container">';
-        echo '<div class="row">';
-        echo '<div class="col-md-12">';
-        echo '<br>';
-        echo '<p style="display: flex; align-items: center; justify-content: center; gap: 10px;">';
-        echo '<span>&copy; ' . date('Y') . ' Agencia Atenas. Todos los derechos reservados para Ing. Medina</span>';
-        echo '<img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=0&amp;head_direction=3&amp;gesture=&amp;size=s&amp;headonly=1" alt="Medina Avatar" style="vertical-align: middle;">';
-        echo '</p>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</footer>';
+        <button id="scrollTopBtn" class="scroll-top-btn" onclick="scrollToTop()">
+            <i class="bi bi-arrow-up"></i>
+        </button>
 
-        // Botón de flecha hacia arriba
-        echo '<button id="scrollTopBtn" class="btn rounded-circle" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1000; background: linear-gradient(45deg, #d91960, #e0487c, #f07fa2, #d91960);" onclick="scrollToTop()">';
-        echo '<i class="bi bi-arrow-up text-white fs-5 fw-bold"></i>';
-        echo '</button>';
+        <style>
+        .custom-footer {
+            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            color: #000;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-        // // Bootstrap JS
-        // echo '<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>';
-        // echo '<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>';
-        // echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>';
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
 
-        // // SweetAlert2 JS
-        // echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.all.min.js"></script>';
+        .copyright {
+            font-weight: 500;
+        }
 
-        // // Just-validate JS
-        // echo '<script src="https://cdn.jsdelivr.net/npm/just-validate@1.5.0/dist/js/just-validate.min.js"></script>';
+        .avatar-image {
+            vertical-align: middle;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
 
-        // // Chart.js JS
-        // echo '<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>';
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            border: none;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-        // // Archivos JS de tu proyecto
-        // foreach ($this->jsFiles as $file) {
-        //     echo '<script src="' . $file . '"></script>';
-        // }
+        .scroll-top-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-        // Script para mostrar el botón de la flecha al hacer scroll y la función de ir arriba
-        echo '<script>
-        // Mostrar el botón de flecha al hacer scroll
-        window.onscroll = function() {toggleScrollTopBtn()};
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        </style>
 
-        function toggleScrollTopBtn() {
+        <script>
+        window.onscroll = function() {
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 document.getElementById("scrollTopBtn").style.display = "block";
             } else {
                 document.getElementById("scrollTopBtn").style.display = "none";
             }
-        }
+        };
 
-        // Función para ir arriba de la página
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
-        </script>';
-
-        echo '</body>';
-        echo '</html>';
+        </script>
+        <?php
     }
 }
 
-// Uso de la clase Footer
 $footer = new Footer();
-// $footer->addJsFile('/public/custom/custom/js/script.js');
 $footer->render();
 ?>

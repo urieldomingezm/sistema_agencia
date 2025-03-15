@@ -16,95 +16,235 @@ class Navbar
 
   public function render()
   {
-    echo '<nav class="navbar fixed-top" style="background: linear-gradient(45deg,rgb(25, 217, 201),rgb(72, 199, 224),rgb(127, 217, 240),rgb(25, 156, 217)">';
-    echo '<div class="container-fluid">';
+?>
+    <nav class="custom-navbar navbar fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.php">
+          <i class="fas fa-building me-2"></i><?= $this->brand ?>
+        </a>
 
-    // Marca
-    echo '<a class="navbar-brand text-black" href="index.php">' . $this->brand . '</a>';
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+          <i class="fas fa-bars"></i>
+        </button>
 
-    // Botón del toggler para abrir el offcanvas
-    echo '<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">';
-    echo '<span class="navbar-toggler-icon"></span>';
-    echo '</button>';
+        <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title">
+              <i class="fas fa-compass me-2"></i>Menú Principal
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+          </div>
 
-    // Offcanvas Menu
-    echo '<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">';
-    echo '<div class="offcanvas-header">';
-    echo '<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>';
-    echo '<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>';
-    echo '</div>';
+          <div class="offcanvas-body">
+            <ul class="navbar-nav">
+              <?php foreach ($this->items as $item): ?>
+                <?php if (isset($item['dropdown'])): ?>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                      <i class="<?= $this->getMenuIcon($item['name']) ?> me-2"></i>
+                      <?= $item['name'] ?>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <?php foreach ($item['dropdown'] as $dropdownItem): ?>
+                        <?php if ($dropdownItem == 'divider'): ?>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                        <?php else: ?>
+                          <li>
+                            <a class="dropdown-item" href="<?= $this->getItemUrl($dropdownItem) ?>">
+                              <i class="<?= $this->getDropdownIcon($dropdownItem) ?> me-2"></i>
+                              <?= $dropdownItem ?>
+                            </a>
+                          </li>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    </ul>
+                  </li>
+                <?php else: ?>
+                  <li class="nav-item">
+                    <a class="nav-link<?= (isset($item['active']) && $item['active'] ? ' active' : '') ?>"
+                      href="index.php?page=<?= strtolower(str_replace(' ', '_', $item['name'])) ?>">
+                      <i class="<?= $this->getMenuIcon($item['name']) ?> me-2"></i>
+                      <?= $item['name'] ?>
+                    </a>
+                  </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
 
-    echo '<div class="offcanvas-body">';
-    echo '<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">';
+            <form class="search-form" role="search" method="GET" action="/usuario/index.php">
+              <div class="input-group">
+                <input type="search"
+                  class="form-control"
+                  name="q"
+                  placeholder="<?= $this->searchPlaceholder ?>"
+                  aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-    foreach ($this->items as $item) {
-      if (isset($item['dropdown'])) {
-        echo '<li class="nav-item dropdown">';
-        echo '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-        echo $item['name'];
-        echo '</a>';
-        echo '<ul class="dropdown-menu">';
-        foreach ($item['dropdown'] as $dropdownItem) {
-          if ($dropdownItem == 'divider') {
-            echo '<li><hr class="dropdown-divider"></li>';
-          } else {
-            if ($dropdownItem == 'Gestion de tiempo') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Gestion de tiempo">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Gestion ascenso') {
-              echo '<li><a class="dropdown-item" href="index.php?page=gestion de ascensos">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Ventas membresias') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Venta de membresias">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Ventas rangos') {
-              echo '<li><a class="dropdown-item" href="index.php?page=venta de rangos">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Grafico total ventas') {
-              echo '<li><a class="dropdown-item" href="index.php?page=grafico total ventas">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Gestion de pagas') {
-              echo '<li><a class="dropdown-item" href="index.php?page=grafico total paga">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Grafico total de pagas') {
-              echo '<li><a class="dropdown-item" href="index.php?page=grafico total paga">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Ver perfil') {
-              echo '<li><a class="dropdown-item" href="index.php?page=perfil de usuario">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Cerrar session') {
-              echo '<li><a class="dropdown-item" href="index.php?page=cerrar session">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Dar ascenso') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Calcular rango') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCalcular">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Pagar usuario') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalpagar">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Vender membresias y rangos') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalrangos">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Tomar Time') {
-              echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalTiempo">' . $dropdownItem . '</a></li>';
-            } elseif ($dropdownItem == 'Requisitos paga') {
-              echo '<li><a class="dropdown-item" href="index.php?page=Requisitos de paga">' . $dropdownItem . '</a></li>';
-            } else {
-              echo '<li><a class="dropdown-item" href="index.php?page=' . strtolower(str_replace(' ', '_', $dropdownItem)) . '">' . $dropdownItem . '</a></li>';
-            }
-          }
-        }
-        echo '</ul>';
-        echo '</li>';
-      } else {
-        echo '<li class="nav-item">';
-        echo '<a class="nav-link text-black' . (isset($item['active']) && $item['active'] ? ' active' : '') . '" href="index.php?page=' . strtolower(str_replace(' ', '_', $item['name'])) . '">' . $item['name'] . '</a>';
-        echo '</li>';
+    <style>
+      .custom-navbar {
+        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        padding: 1rem;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
       }
+
+      .navbar-brand {
+        color: #000;
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+
+      .navbar-brand:hover {
+        color: rgba(0, 0, 0, 0.8);
+      }
+
+      .navbar-toggler {
+        color: #000;
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        color: #000 !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+      }
+
+      .nav-link:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #000 !important;
+      }
+
+      .nav-link.active {
+        background: rgba(0, 0, 0, 0.15);
+        color: #000 !important;
+      }
+
+      .dropdown-menu {
+        border: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 0.5rem;
+      }
+
+      .dropdown-item {
+        color: #000;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-item:hover {
+        background: rgba(0, 123, 255, 0.1);
+        color: #000;
+      }
+
+      .search-form {
+        margin-top: 1rem;
+      }
+
+      .search-form .form-control {
+        border-radius: 20px 0 0 20px;
+        border: 2px solid #000;
+        border-right: none;
+        color: #000;
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .search-form .btn {
+        border-radius: 0 20px 20px 0;
+        border: 2px solid #000;
+        border-left: none;
+        color: #000;
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .search-form .btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .search-form .form-control::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .search-form .btn {
+        border-radius: 0 20px 20px 0;
+        border: none;
+        color: #000;
+      }
+
+      .offcanvas-header {
+        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        color: #000;
+      }
+
+      .offcanvas-title {
+        color: #000;
+      }
+
+      .btn-close {
+        filter: none;
+      }
+    </style>
+<?php
+  }
+
+  private function getMenuIcon($itemName)
+  {
+    $icons = [
+      'Inicio' => 'fas fa-home',
+      'Perfil' => 'fas fa-user',
+      'Informacion' => 'fas fa-info-circle',
+      'Ascenso' => 'fas fa-arrow-up',
+      'Ventas' => 'fas fa-shopping-cart',
+      'Paga' => 'fas fa-money-bill-wave'
+    ];
+    return $icons[$itemName] ?? 'fas fa-circle';
+  }
+
+  private function getDropdownIcon($itemName)
+  {
+    $icons = [
+      'Ver perfil' => 'fas fa-user-circle',
+      'Cerrar session' => 'fas fa-sign-out-alt',
+      'Requisitos paga' => 'fas fa-list-check',
+      'Calcular rango' => 'fas fa-calculator',
+      'Gestion de tiempo' => 'fas fa-clock',
+      'Gestion ascenso' => 'fas fa-users',
+      'Ventas membresias' => 'fas fa-id-card',
+      'Ventas rangos' => 'fas fa-star',
+      'Grafico total ventas' => 'fas fa-chart-line',
+      'Vender membresias y rangos' => 'fas fa-tags',
+      'Gestion de pagas' => 'fas fa-wallet',
+      'Pagar usuario' => 'fas fa-hand-holding-usd',
+      'Grafico total de pagas' => 'fas fa-chart-pie'
+    ];
+    return $icons[$itemName] ?? 'fas fa-circle';
+  }
+
+  private function getItemUrl($item)
+  {
+    $modalItems = [
+      'Calcular rango' => '#" data-bs-toggle="modal" data-bs-target="#modalCalcular',
+      'Pagar usuario' => '#" data-bs-toggle="modal" data-bs-target="#modalpagar',
+      'Vender membresias y rangos' => '#" data-bs-toggle="modal" data-bs-target="#modalrangos'
+    ];
+
+    if (isset($modalItems[$item])) {
+      return $modalItems[$item];
     }
 
-    echo '</ul>';
-
-    // Formulario de búsqueda
-    echo '<form class="d-flex mt-3" role="search" method="GET" action="/usuario/index.php">';
-    echo '<input class="form-control me-2" name="q" type="search" placeholder="' . $this->searchPlaceholder . '" aria-label="Search">';
-    echo '<button class="btn btn-outline-success" type="submit">' . $this->searchButtonText . '</button>';
-    echo '</form>';
-
-    echo '</div>';
-    echo '</div>'; // Cierra offcanvas
-
-    echo '</div>'; // Cierra container-fluid
-    echo '</nav>';
+    return 'index.php?page=' . strtolower(str_replace(' ', '_', $item));
   }
 }
 
@@ -112,7 +252,7 @@ $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Perfil', 'dropdown' => ['Ver perfil', 'Cerrar session']],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Calcular rango']],
-  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
+  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
   ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
   ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
 ];
@@ -120,8 +260,7 @@ $items = [
 $navbar = new Navbar('Agencia Atenas', $items, $userData);
 $navbar->render();
 
-require_once(MODALES_MENU_PATH . 'modal_ascender.php');
-require_once(MODALES_MENU_PATH . 'modal_tiempo_paga.php');
+
 require_once(MODALES_MENU_PATH . 'modal_calcular.php');
 require_once(MODALES_MENU_PAGA_PATH . 'modal_pagar_usuario.php');
 require_once(MODALES_MENU_VENTAS_PATH . 'modal_vender_rangos.php');

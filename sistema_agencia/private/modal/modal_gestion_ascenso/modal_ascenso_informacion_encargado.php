@@ -1,74 +1,45 @@
-<!-- Modal Información Persona encargado -->
-<div class="modal fade" id="modalInformacionPersonaEncargado" aria-labelledby="modalInformacionPersonaEncargadoLabel" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header bg-gradient-success text-white border-0">
-                <h5 class="modal-title" id="modalInformacionPersonaEncargadoLabel">
-                    <i class="fas fa-user-shield me-2"></i>Información del Encargado
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="modalInformacionPersonaEncargado" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-gradient-primary border-0 py-2">
+                <h6 class="modal-title text-white mb-0">
+                    <i class="fas fa-id-card me-2"></i>Perfil Encargado
+                </h6>
+                <button type="button" class="btn-close btn-close-white btn-sm" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body p-4">
-                <div class="row">
-                    <!-- Columna Derecha - Imagen y Estado -->
-                    <div class="col-md-4 text-center mb-3 mb-md-0">
-                        <div class="avatar-container position-relative">
-                            <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=2&amp;head_direction=2&amp;gesture=&amp;size=sl&amp;headonly=2"
-                                 class="img-fluid rounded-circle border border-3 border-success shadow-sm"
-                                 style="width: 120px; height: 120px; object-fit: cover;">
-                            <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-2 border-white rounded-circle">
-                                <span class="visually-hidden">Online</span>
-                            </span>
-                        </div>
-                        <div class="mt-3">
-                            <span class="badge bg-success-subtle text-success px-3 py-2">
-                                <i class="fas fa-circle me-1 small"></i>En línea
-                            </span>
+            <div class="modal-body p-0">
+                <!-- Profile Header -->
+                <div class="profile-header text-center p-3">
+                    <div class="avatar-wrapper mb-2">
+                        <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=2&amp;head_direction=2&amp;gesture=&amp;size=sl&amp;headonly=2"
+                             class="avatar-img">
+                        <span class="status-badge"></span>
+                    </div>
+                    <h5 class="mb-0">Goblinslayer88</h5>
+                    <span class="badge bg-gradient-warning text-dark mt-1">Dueño</span>
+                </div>
+
+                <!-- Profile Info -->
+                <div class="profile-info">
+                    <div class="info-row">
+                        <i class="fas fa-history text-primary"></i>
+                        <div class="info-content">
+                            <small class="text-muted">Misión Anterior</small>
+                            <p class="mb-0">ATN- Supervisor A -XDD -SDS</p>
                         </div>
                     </div>
-
-                    <!-- Columna Izquierda - Información -->
-                    <div class="col-md-8">
-                        <div class="info-container">
-                            <div class="info-item mb-3">
-                                <label class="text-muted small mb-1">Nombre</label>
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-user text-primary me-2"></i>
-                                    <span class="fw-bold">Goblinslayer88</span>
-                                </div>
-                            </div>
-
-                            <div class="info-item mb-3">
-                                <label class="text-muted small mb-1">Rango</label>
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-star text-warning me-2"></i>
-                                    <span class="fw-bold">Dueño</span>
-                                </div>
-                            </div>
-
-                            <div class="info-item mb-3">
-                                <label class="text-muted small mb-1">Misión Anterior</label>
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-history text-info me-2"></i>
-                                    <span class="fw-bold">ATN- Supervisor A -XDD -SDS</span>
-                                </div>
-                            </div>
-
-                            <div class="info-item mb-3">
-                                <label class="text-muted small mb-1">Misión Nueva</label>
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-arrow-right text-success me-2"></i>
-                                    <span class="fw-bold">ATN- Supervisor B -XDD -SDS</span>
-                                </div>
-                            </div>
-
-                            <div class="info-item">
-                                <label class="text-muted small mb-1">Firma</label>
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-signature text-secondary me-2"></i>
-                                    <span class="fw-bold">XDD</span>
-                                </div>
-                            </div>
+                    <div class="info-row">
+                        <i class="fas fa-arrow-right text-success"></i>
+                        <div class="info-content">
+                            <small class="text-muted">Misión Nueva</small>
+                            <p class="mb-0">ATN- Supervisor B -XDD -SDS</p>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-signature text-info"></i>
+                        <div class="info-content">
+                            <small class="text-muted">Firma</small>
+                            <p class="mb-0">XDD</p>
                         </div>
                     </div>
                 </div>
@@ -78,41 +49,78 @@
 </div>
 
 <style>
-.bg-gradient-success {
-    background: linear-gradient(45deg, #28a745, #20c997);
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #4e73df, #224abe);
 }
 
-.avatar-container img {
-    transition: transform 0.3s ease;
+.bg-gradient-warning {
+    background: linear-gradient(45deg, #f6c23e, #f4b619);
 }
 
-.avatar-container img:hover {
-    transform: scale(1.05);
+.profile-header {
+    background: #f8f9fc;
+    border-bottom: 1px solid rgba(0,0,0,.05);
 }
 
-.info-container {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 10px;
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-.info-item {
-    transition: all 0.3s ease;
+.avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.status-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    background: #2ecc71;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.profile-info {
     padding: 0.5rem;
-    border-radius: 8px;
 }
 
-.info-item:hover {
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(0,0,0,.05);
 }
 
-.modal-content {
-    border-radius: 15px;
+.info-row:last-child {
+    border-bottom: none;
 }
 
-.modal-header {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+.info-row i {
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.info-content small {
+    display: block;
+    font-size: 0.75rem;
+}
+
+.info-content p {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.modal-sm {
+    max-width: 300px;
 }
 </style>

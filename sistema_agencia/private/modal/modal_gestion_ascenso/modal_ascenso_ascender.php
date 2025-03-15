@@ -1,83 +1,184 @@
- <!-- MODAL PARA ASCENDER PERSONA -->
- <div class="modal fade" id="modal_ascender" tabindex="-1" aria-labelledby="modal_ascenderLabel" aria-hidden="true"
-        role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="modal_ascenderLabel">Ascender persona</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="modal_ascender" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-gradient-success border-0">
+                <h5 class="modal-title text-white">
+                    <i class="fas fa-arrow-up me-2"></i>Promoción de Personal
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="promotion-indicator text-center mb-4">
+                    <div class="rank-change">
+                        <i class="fas fa-user-circle current-rank"></i>
+                        <i class="fas fa-arrow-up arrow-up"></i>
+                        <i class="fas fa-user-circle new-rank"></i>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <!-- Primera columna -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Usuario:</label>
-                                    <input type="text" class="form-control" name="ascenso_usuario" id="recipient-name"
-                                        disabled readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="mision-anterior" class="col-form-label">Misión anterior:</label>
-                                    <input class="form-control" id="mision-anterior" readonly disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="mision-nueva" class="col-form-label">Misión nueva:</label>
-                                    <input class="form-control" id="mision-nueva" name="ascenso_mision_nueva">
-                                </div>
-                                <div class="form-group">
-                                    <label for="firma" class="col-form-label">Firma:</label>
-                                    <input class="form-control" id="firma" name="ascenso_firma">
-                                </div>
+
+                <form id="promotionForm">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-user text-success me-2"></i>Usuario
+                                </label>
+                                <input type="text" class="form-control" name="ascenso_usuario" readonly>
                             </div>
 
-                            <!-- Segunda columna -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="rango">Rango:</label>
-                                    <select class="form-select" name="ascenso_rango">
-                                        <option selected disabled>Seleccionar en el menú</option>
-                                        <option value="Agente">Agente</option>
-                                        <option value="Seguridad">Seguridad</option>
-                                        <option value="Tecnico">Técnico</option>
-                                        <option value="Logistica">Logística</option>
-                                        <option value="Supervisor">Supervisor</option>
-                                        <option value="Director">Director</option>
-                                        <option value="Presidente">Presidente</option>
-                                        <option value="Operativo">Operativo</option>
-                                        <option value="Junta directiva">Junta directiva</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="status" class="col-form-label">Estado:</label>
-                                    <input class="form-control" id="status" name="ascenso_status">
-                                </div>
-                                <div class="form-group">
-                                    <label for="encargado" class="col-form-label">Encargado:</label>
-                                    <input class="form-control" id="encargado" name="ascenso_encargado_usuario">
-                                </div>
-                                <div class="form-group">
-                                    <label for="hora-proxima">Hora próxima:</label>
-                                    <select class="form-select" name="ascenso_hora_proxima">
-                                        <option selected disabled>Seleccionar en el menú</option>
-                                        <option value="00:30:00">Agente</option>
-                                        <option value="02:00:00">Seguridad</option>
-                                        <option value="24:00:00">Tecnico</option>
-                                        <option value="48:00:00">Logistica</option>
-                                        <option value="72:00:00">Supervisor</option>
-                                        <option value="120:00:00">Director</option>
-                                        <option value="168:00:00">Presidente</option>
-                                        <option value="240:00:00">Operativo</option>
-                                        <option value="360:00:00">Junta directiva</option>
-                                    </select>
-                                </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label">
+                                    <i class="fas fa-history text-success me-2"></i>Misión Anterior
+                                </label>
+                                <input class="form-control" id="mision-anterior" readonly>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label class="form-label">
+                                    <i class="fas fa-tasks text-success me-2"></i>Misión Nueva
+                                </label>
+                                <input class="form-control" name="ascenso_mision_nueva" required>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label class="form-label">
+                                    <i class="fas fa-signature text-success me-2"></i>Firma
+                                </label>
+                                <input class="form-control" name="ascenso_firma" required>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Ascender</button>
-                </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-star text-success me-2"></i>Nuevo Rango
+                                </label>
+                                <select class="form-select" name="ascenso_rango" required>
+                                    <option value="" disabled selected>Seleccionar rango...</option>
+                                    <option value="Agente">Agente</option>
+                                    <option value="Seguridad">Seguridad</option>
+                                    <option value="Tecnico">Técnico</option>
+                                    <option value="Logistica">Logística</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Director">Director</option>
+                                    <option value="Presidente">Presidente</option>
+                                    <option value="Operativo">Operativo</option>
+                                    <option value="Junta directiva">Junta directiva</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label class="form-label">
+                                    <i class="fas fa-info-circle text-success me-2"></i>Estado
+                                </label>
+                                <input class="form-control" name="ascenso_status" required>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label class="form-label">
+                                    <i class="fas fa-user-shield text-success me-2"></i>Encargado
+                                </label>
+                                <input class="form-control" name="ascenso_encargado_usuario" required>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label class="form-label">
+                                    <i class="fas fa-clock text-success me-2"></i>Tiempo de Espera
+                                </label>
+                                <select class="form-select" name="ascenso_hora_proxima" required>
+                                    <option value="" disabled selected>Seleccionar tiempo...</option>
+                                    <option value="00:30:00">30 minutos</option>
+                                    <option value="02:00:00">2 horas</option>
+                                    <option value="24:00:00">1 día</option>
+                                    <option value="48:00:00">2 días</option>
+                                    <option value="72:00:00">3 días</option>
+                                    <option value="120:00:00">5 días</option>
+                                    <option value="168:00:00">1 semana</option>
+                                    <option value="240:00:00">10 días</option>
+                                    <option value="360:00:00">15 días</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 bg-light">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancelar
+                </button>
+                <button type="submit" class="btn btn-success" form="promotionForm">
+                    <i class="fas fa-arrow-up me-2"></i>Confirmar Promoción
+                </button>
             </div>
         </div>
     </div>
+</div>
+
+<style>
+.bg-gradient-success {
+    background: linear-gradient(45deg, #1cc88a, #169b6b);
+}
+
+.modal-content {
+    border-radius: 15px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.promotion-indicator {
+    padding: 1rem;
+    background: #f8f9fc;
+    border-radius: 10px;
+}
+
+.rank-change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2rem;
+}
+
+.current-rank {
+    color: #858796;
+}
+
+.arrow-up {
+    color: #1cc88a;
+    font-size: 1.5rem;
+    animation: bounce 1s infinite;
+}
+
+.new-rank {
+    color: #4e73df;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.form-control, .form-select {
+    border: 1px solid #e3e6f0;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #1cc88a;
+    box-shadow: 0 0 0 0.2rem rgba(28, 200, 138, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #5a5c69;
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #1cc88a, #169b6b);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(45deg, #169b6b, #147d55);
+}
+</style>

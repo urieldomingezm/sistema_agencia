@@ -3,6 +3,162 @@
 <!-- INFORMACION DE CONTENIDO DE REQUISITOS PARA PAGA -->
 <meta name="keywords" content="Requisitos de paga, ascensos y misiones para los usuarios como tambien traslados">
 
+<style>
+.rank-tabs {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-pills .nav-link {
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.5rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #333;
+    border: 1px solid #dee2e6;
+}
+
+.nav-pills .nav-link.active {
+    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.tab-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tab-img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover .tab-img {
+    transform: scale(1.1);
+}
+
+.table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.table thead th {
+    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 1rem;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    padding: 1rem;
+    border-color: #f0f0f0;
+}
+
+.requirement-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.requirement-card:hover {
+    transform: translateY(-3px);
+}
+
+.requirement-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.requirement-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #00c6fb, #005bea);
+    border-radius: 2px;
+}
+
+.icon-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.icon-container img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.icon-container:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .nav-pills {
+        flex-direction: column;
+    }
+    
+    .nav-pills .nav-link {
+        margin: 0.25rem;
+    }
+    
+    .table-responsive {
+        margin: 0 -1rem;
+    }
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.section-header h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.mission-info {
+    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.mission-info h4 {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+</style>
+
 <section class="margenes">
     <ul class="nav nav-pills justify-content-center flex-wrap" id="myTab" role="tablist">
         <li class="nav-item flex-grow-1 text-center" role="presentation">
