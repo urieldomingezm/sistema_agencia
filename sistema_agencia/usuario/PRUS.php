@@ -1,78 +1,234 @@
-<br>
-
-<!-- INFORMACION DE PERFIL DE USUARIO -->
-<meta name="keywords" content="Informacion de usuario, perfil de usuario, mision, tiempo estimado total">
-
 <?php
+class UserProfile {
+    private $userData;
 
-class UserProfile
-{
-    public function render()
-    {
-        echo '<body class="d-flex flex-column h-100" style="background-color: #FFD700; font-family: Arial, sans-serif;">';
-        $this->renderHeader();
-        $this->renderProfileSection();
-        echo '</body>';
+    public function __construct() {
+        $this->userData = [
+            'username' => 'Santidemg',
+            'role' => 'Supervisor',
+            'mission' => 'AGT- Supervisor G -XDD -SDS #',
+            'avatar' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair&aspect=1:1',
+            'nextMission' => 'AGT- Supervisor D -XDD -SDS #',
+            'paymentTime' => '14:00',
+            'paymentDate' => '15',
+            'hoursDeducted' => '1:00',
+            'totalHours' => '5:00',
+            'estimatedTime' => '2 días',
+            'status' => 'Pendiente',
+            'joinDate' => '01/01/2023'
+        ];
     }
 
-    private function renderHeader()
-    {
-        echo '<header style="background: linear-gradient(180deg, #FFCC00, #FFAA00); padding: 40px 0;">';
-        echo '<div class="container text-center">';
-        echo '<h1 style="color: white; font-weight: bold;">Perfil de Usuario</h1>';
-        echo '<p style="color: #FFF; font-size: 18px;">Bienvenido a tu perfil, aquí puedes ver tu información.</p>';
-        echo '</div>';
-        echo '</header>';
-    }
+    public function render() {
+        ?>
+        <body class="bg-gradient">
+            <div class="profile-header text-center py-5">
+                <div class="container">
+                    <div class="avatar-container mb-4">
+                        <img src="<?php echo $this->userData['avatar']; ?>" 
+                             class="rounded-circle shadow-lg" 
+                             alt="Profile Avatar">
+                        <div class="status-badge"></div>
+                    </div>
+                    <h1 class="display-4 fw-bold text-white mb-2"><?php echo $this->userData['username']; ?></h1>
+                    <p class="lead text-white-50"><?php echo $this->userData['role']; ?></p>
+                </div>
+            </div>
 
-    private function renderProfileSection()
-    {
-        echo '<section style="background-color: #87CEEB; padding: 50px 0;">';
-        echo '<div class="container text-center">';
-        echo '<h2 style="color: white; font-weight: bold;">Información del Usuario</h2>';
-        echo '<div class="row justify-content-center">';
+            <div class="container py-5">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="profile-card">
+                            <div class="card-header">
+                                <i class="fas fa-user-circle me-2"></i>
+                                <h3>Información Personal</h3>
+                            </div>
+                            <div class="stats-card">
+                                <div class="info-item">
+                                    <span class="info-label">Usuario</span>
+                                    <span class="info-value"><?php echo $this->userData['username']; ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Rango</span>
+                                    <span class="info-value"><?php echo $this->userData['role']; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        // Tarjeta de Información del Usuario
-        echo '<div class="col-12 col-md-4 mb-4">';
-        echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
-        echo '<img src="https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair&aspect=1:1" style="border-radius: 50%; width: 100px; height: 100px; border: 3px solid #FFD700;">';
-        echo '<h3 style="color: #333;">Santidemg</h3>';
-        echo '<p style="color: #666;">Rol: Supervisor</p>';
-        echo '<p style="color: #666;">Misión: AGT- Supervisor G -XDD -SDS #</p>';
-        echo '</div>';
-        echo '</div>';
+                    <div class="col-md-4">
+                        <div class="profile-card">
+                            <div class="card-header">
+                                <i class="fas fa-money-bill-wave me-2"></i>
+                                <h3>Información de Paga</h3>
+                            </div>
+                            <div class="stats-card">
+                                <div class="info-item">
+                                    <span class="info-label">Día de paga</span>
+                                    <span class="info-value"><?php echo $this->userData['paymentDate']; ?> de cada mes</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Hora</span>
+                                    <span class="info-value"><?php echo $this->userData['paymentTime']; ?> hrs</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Total de horas</span>
+                                    <span class="info-value highlight"><?php echo $this->userData['totalHours']; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        // Tarjeta de Día de Paga
-        echo '<div class="col-12 col-md-4 mb-4">';
-        echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
-        echo '<h3 style="color: #333;">Proxima paga</h3>';
-        echo '<p style="color: #666;">Próximo día de paga: 15 de cada mes.</p>';
-        echo '<p style="color: #666;">Pais perteneciente: Mexico.</p>';
-        echo '<p style="color: #666;">Hora: 14:00 hrs</p>';
-        echo '<hr style="border: 1px solid #ddd;">';
-        echo '<h3 style="color: #333;">Tiempo de paga</h3>';
-        echo '<p style="color: #666;">Horas restadas: 1:00</p>';
-        echo '<p style="color: #666;">Total: 5:00</p>';
-        echo '</div>';
-        echo '</div>';
-        
-
-        // Tarjeta de Ascenso
-        echo '<div class="col-12 col-md-4 mb-4">';
-        echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">';
-        echo '<h3 style="color: #333;">Ascenso</h3>';
-        echo '<p style="color: #666;">Mision actual: AGT- Supervisor G -XDD -SDS #</p>';
-        echo '<p style="color: #666;">Proxima mision: AGT- Supervisor D -XDD -SDS #</p>';
-        echo '<p style="color: #666;">Tiempo proximado: 2 dias</p>';
-        echo '<p style="color: #666;">Estatus: Pendiente</p>';
-        echo '</div>';
-        echo '</div>';
-
-        echo '</div>'; // Cierre de la fila
-        echo '</div>'; // Cierre del contenedor
-        echo '</section>';
+                    <div class="col-md-4">
+                        <div class="profile-card">
+                            <div class="card-header">
+                                <i class="fas fa-tasks me-2"></i>
+                                <h3>Información de Misión</h3>
+                            </div>
+                            <div class="stats-card">
+                                <div class="info-item">
+                                    <span class="info-label">Misión actual</span>
+                                    <span class="info-value"><?php echo $this->userData['mission']; ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Próxima misión</span>
+                                    <span class="info-value"><?php echo $this->userData['nextMission']; ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Tiempo estimado</span>
+                                    <span class="info-value"><?php echo $this->userData['estimatedTime']; ?></span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Estado</span>
+                                    <span class="status-pill"><?php echo $this->userData['status']; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        <?php
     }
 }
 
 $userProfile = new UserProfile();
 $userProfile->render();
+?>
+
+<style>
+    .bg-gradient {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        min-height: 100vh;
+    }
+
+    .profile-header {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        backdrop-filter: blur(10px);
+        margin-bottom: 2rem;
+    }
+
+    .avatar-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .avatar-container img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .avatar-container img:hover {
+        transform: scale(1.05);
+    }
+
+    .status-badge {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #2ecc71;
+        border: 3px solid white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .profile-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-header {
+        background: linear-gradient(45deg, #2193b0, #6dd5ed);
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .stats-card {
+        padding: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        color: #666;
+        font-weight: 500;
+    }
+
+    .info-value {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    .highlight {
+        color: #2ecc71;
+        font-size: 1.1rem;
+    }
+
+    .status-pill {
+        background: #ffd700;
+        color: #000;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .profile-card {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

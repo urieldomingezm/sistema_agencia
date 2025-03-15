@@ -5,15 +5,13 @@ class Navbar
   private $items;
   private $searchPlaceholder;
   private $searchButtonText;
-  private $userData;
 
-  public function __construct($brand, $items, $userData, $searchPlaceholder = "Buscar", $searchButtonText = "Buscar")
+  public function __construct($brand, $items, $searchPlaceholder = "Buscar", $searchButtonText = "Buscar")
   {
     $this->brand = $brand;
     $this->items = $items;
     $this->searchPlaceholder = $searchPlaceholder;
     $this->searchButtonText = $searchButtonText;
-    $this->userData = $userData;
   }
 
   public function render()
@@ -64,11 +62,15 @@ class Navbar
               echo '<li><a class="dropdown-item" href="index.php?page=grafico total paga">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Grafico total de pagas') {
               echo '<li><a class="dropdown-item" href="index.php?page=grafico total paga">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Ver perfil') {
+              echo '<li><a class="dropdown-item" href="index.php?page=perfil de usuario">' . $dropdownItem . '</a></li>';
+            } elseif ($dropdownItem == 'Cerrar session') {
+              echo '<li><a class="dropdown-item" href="index.php?page=cerrar session">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Dar ascenso') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAscenso">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Calcular rango') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCalcular">' . $dropdownItem . '</a></li>';
-            }elseif ($dropdownItem == 'Pagar usuario') {
+            } elseif ($dropdownItem == 'Pagar usuario') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalpagar">' . $dropdownItem . '</a></li>';
             } elseif ($dropdownItem == 'Vender membresias y rangos') {
               echo '<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalrangos">' . $dropdownItem . '</a></li>';
@@ -106,16 +108,10 @@ class Navbar
   }
 }
 
-// Datos del usuario
-$userData = [
-  'usuario' => 'Santidemg',
-  'rango' => 'Seguridad',
-  'avatar' => '/public/custom/custom_menus_usuarios/image/profile.png'
-];
-
 $items = [
   ['name' => 'Inicio', 'active' => true],
-  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga','Calcular rango']],
+  ['name' => 'Perfil', 'dropdown' => ['Ver perfil', 'Cerrar session']],
+  ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Calcular rango']],
   ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso', 'divider', 'Dar ascenso', 'Tomar Time']],
   ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
   ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
