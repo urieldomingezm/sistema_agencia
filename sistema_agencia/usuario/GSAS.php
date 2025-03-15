@@ -41,55 +41,163 @@ try {
 
 <meta name="keywords" content="Gestion de tiempo de ascenso, tiempo de ascenso y ascensos">
 
-<body>
-    <div class="container mt-4 text-center">
-        <h2 class="mb-3">Gestión de ascensos</h2>
-        <div class="d-flex justify-content-center">
-            <table id="tablaAscenso" class="table table-bordered table-dark table-striped w-auto">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Usuario</th>
-                        <th>Rango</th>
-                        <th>Status</th>
-                        <th>Motivo</th>
-                        <th>Encargado</th>
-                        <th>Próximo</th>
-                        <th>Fecha</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    <?php foreach ($ascensos as $ascenso) : ?>
-                        <tr data-id="<?= $ascenso['ascenso_id'] ?>">
-                            <td><?= $ascenso['ascenso_id'] ?></td>
-                            <td><button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona"><?= $ascenso['ascenso_usuario'] ?></td>
-                            <td><?= $ascenso['ascenso_rango'] ?></td>
-                            <td class="estado">
-                                <span class="badge <?= $ascenso['ascenso_status'] == 'Disponible' ? 'bg-success' : 'bg-secondary' ?>"><?= $ascenso['ascenso_status'] ?></span>
-                            </td>
-                            <td><?= $ascenso['ascenso_motivo'] ?></td>
-                            <td><button class="btn btn-primary text-white" type="button" data-bs-toggle="modal" data-bs-target="#modalInformacionPersonaEncargado"><?= $ascenso['ascenso_encargado_usuario'] ?></button></td>
-                            <td class="tiempo-restante"><?= $ascenso['ascenso_hora_proxima'] ?></td>
-                            <td><?= $ascenso['ascenso_fecha_registro'] ?></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        Acciones
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender">Ascender</a></li>
-                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_despedir_persona">Despedir</a></li>
-                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">Bajar rango</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+<body class="bg-light">
+    <div class="dashboard-container">
+        <div class="container py-4">
+            <div class="header-section mb-4">
+                <h2 class="text-primary text-center fw-bold">
+                    <i class="fas fa-users-cog me-2"></i>
+                    Gestión de Ascensos
+                </h2>
+                <p class="text-muted text-center">Sistema de gestión y control de ascensos del personal</p>
+            </div>
+
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tablaAscenso" class="table table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th>Usuario</th>
+                                    <th>Rango</th>
+                                    <th class="text-center">Status</th>
+                                    <th>Motivo</th>
+                                    <th>Encargado</th>
+                                    <th class="text-center">Próximo</th>
+                                    <th>Fecha</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($ascensos as $ascenso) : ?>
+                                    <tr data-id="<?= $ascenso['ascenso_id'] ?>" class="align-middle">
+                                        <td class="text-center"><?= $ascenso['ascenso_id'] ?></td>
+                                        <td>
+                                            <button class="btn btn-link text-decoration-none user-btn" type="button" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona">
+                                                <i class="fas fa-user-circle me-2"></i>
+                                                <?= $ascenso['ascenso_usuario'] ?>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info text-dark">
+                                                <?= $ascenso['ascenso_rango'] ?>
+                                            </span>
+                                        </td>
+                                        <td class="text-center estado">
+                                            <span class="badge-status <?= $ascenso['ascenso_status'] == 'Disponible' ? 'available' : 'pending' ?>">
+                                                <?= $ascenso['ascenso_status'] ?>
+                                            </span>
+                                        </td>
+                                        <td><?= $ascenso['ascenso_motivo'] ?></td>
+                                        <td>
+                                            <button class="btn btn-link text-decoration-none admin-btn" type="button" data-bs-toggle="modal" data-bs-target="#modalInformacionPersonaEncargado">
+                                                <i class="fas fa-user-shield me-2"></i>
+                                                <?= $ascenso['ascenso_encargado_usuario'] ?>
+                                            </button>
+                                        </td>
+                                        <td class="text-center tiempo-restante fw-bold"><?= $ascenso['ascenso_hora_proxima'] ?></td>
+                                        <td><?= $ascenso['ascenso_fecha_registro'] ?></td>
+                                        <td class="text-center">
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                    <i class="fas fa-cog me-1"></i> Acciones
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li>
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal_ascender">
+                                                            <i class="fas fa-arrow-up text-success me-2"></i> Ascender
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal_despedir_persona">
+                                                            <i class="fas fa-user-times text-danger me-2"></i> Despedir
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
+                                                            <i class="fas fa-arrow-down text-warning me-2"></i> Bajar rango
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Modales existentes... -->
+
+    <style>
+
+        .header-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .badge-status {
+            padding: 0.5em 1em;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .badge-status.available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .user-btn, .admin-btn {
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .user-btn:hover {
+            color: #3498db;
+        }
+
+        .admin-btn:hover {
+            color: #e74c3c;
+        }
+
+        .table {
+            vertical-align: middle;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .tiempo-restante {
+            font-family: 'Courier New', monospace;
+            color: #2c3e50;
+        }
+    </style>
+
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Existing scripts... -->
+</body>
 
     <!-- MODALES -->
     <?php
