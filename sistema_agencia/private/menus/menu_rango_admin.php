@@ -92,9 +92,9 @@ class Navbar
 
     <style>
       .custom-navbar {
-        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
         padding: 1rem;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 15px rgba(139, 92, 246, 0.2);
       }
 
       .navbar-brand {
@@ -121,13 +121,18 @@ class Navbar
       }
 
       .nav-link:hover {
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(167, 139, 250, 0.2);
         color: #000 !important;
       }
 
       .nav-link.active {
-        background: rgba(0, 0, 0, 0.15);
+        background: rgba(139, 92, 246, 0.25);
         color: #000 !important;
+      }
+
+      .dropdown-item:hover {
+        background: rgba(167, 139, 250, 0.1);
+        color: #000;
       }
 
       .dropdown-menu {
@@ -159,6 +164,7 @@ class Navbar
         border-right: none;
         color: #000;
         background-color: rgba(255, 255, 255, 0.9);
+        height: 45px;
       }
 
       .search-form .btn {
@@ -167,14 +173,30 @@ class Navbar
         border-left: none;
         color: #000;
         background-color: rgba(255, 255, 255, 0.9);
+        padding: 0 20px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .search-form .btn:hover {
         background-color: rgba(0, 0, 0, 0.1);
+        color: #000;
+      }
+
+      .search-form .form-control:focus {
+        box-shadow: none;
+        border-color: #000;
       }
 
       .search-form .form-control::placeholder {
         color: rgba(0, 0, 0, 0.6);
+      }
+
+      .search-form .input-group {
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
       .search-form .btn {
@@ -184,16 +206,12 @@ class Navbar
       }
 
       .offcanvas-header {
-        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
         color: #000;
       }
 
-      .offcanvas-title {
-        color: #000;
-      }
-
-      .btn-close {
-        filter: none;
+      .search-form .btn:hover {
+        background-color: rgba(139, 92, 246, 0.1);
       }
     </style>
 <?php
@@ -257,7 +275,7 @@ $items = [
   ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
 ];
 
-$navbar = new Navbar('Agencia Atenas', $items, $userData);
+$navbar = new Navbar('Agencia Atenas', $items);
 $navbar->render();
 
 

@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// Add session check (except for login and register pages)
+$currentPage = basename($_SERVER['PHP_SELF']);
+if (!in_array($currentPage, ['login.php', 'registrar.php']) && !isset($_SESSION['user_id'])) {
+    header('Location: /login.php');
+    exit;
+}
+
 class Header
 {
     private $title;
@@ -105,6 +114,7 @@ $header->addJsFile('/public/custom/custom_gestion_ascensos/js/script.js');
 
 // Archivos de tabla de rangos, misiones y costos CSS personalizados (versiones locales)
 // $header->addCssFile('/public/custom/custom_tabla_rangos/css/style.css');
+$header->addCssFile('/public/custom/custom/css/style.css');
 
 // Archivos de gestion de tiempos CSS y JS personalizados (versiones locales)
 $header->addCssFile('/public/custom/custom_gestion_tiempos/css/style.css');

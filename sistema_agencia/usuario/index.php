@@ -2,9 +2,15 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
 require_once(MENU_PATH . 'menu_rango_admin.php');
+
+// Add session check here
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>window.location.href = '/login.php';</script>";
+    exit;
+}
 ?>
 
-<body class="bg-gradient-light">
+<body>
     <div class="page-container">
         <div class="container mt-5 mb-5">
             <div class="row justify-content-center">
@@ -17,7 +23,7 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                             'GSTM.php' => 'Gestion de tiempo',
                             'USR.php' => 'inicio',
                             'PRUS.php' => 'perfil de usuario',
-                            'CRSS.php' => 'cerrar session',
+                            'CRSS.php' => 'cerrar_session',
                             'RQPG.php' => 'Requisitos de paga',
                             'GSAS.php' => 'gestion de ascensos',
                             'GVE.php' => 'Pendiente',
@@ -88,7 +94,7 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
                                 'Gestion de tiempo' => 'GSTM.php',
                                 'inicio' => 'USR.php',
                                 'perfil de usuario' => 'PRUS.php',
-                                'cerrar session' => 'CRSS.php',
+                                'cerrar_session' => 'CRSS.php',
                                 'Requisitos de paga' => 'RQPG.php',
                                 'gestion de ascensos' => 'GSAS.php',
                                 'grafico total paga' => 'GTPS.php',
@@ -116,75 +122,89 @@ require_once(MENU_PATH . 'menu_rango_admin.php');
     </div>
 
     <style>
-    .bg-gradient-light {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-
-    .page-container {
-        min-height: calc(100vh - 400px);
-        padding: 2rem 0;
-    }
-
-    .search-results-container {
-        animation: fadeIn 0.3s ease-in-out;
-    }
-
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
-        padding: 1.5rem;
-    }
-
-    .result-item {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .result-item:hover {
-        background-color: rgba(0, 123, 255, 0.05);
-        color: inherit;
-    }
-
-    .transition-hover {
-        transition: all 0.3s ease;
-    }
-
-    .transition-hover:hover {
-        transform: translateX(5px);
-    }
-
-    .card {
-        border-radius: 15px;
-        overflow: hidden;
-    }
-
-    .card-header h4 {
-        font-weight: 600;
-    }
-
-    .results-list {
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .border-bottom {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-    }
-
-    .border-bottom:last-child {
-        border-bottom: none !important;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-        .page-container {
-            padding: 1rem 0;
+        .bg-gradient-light {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
-    }
+        
+        .page-container {
+            min-height: calc(100vh - 400px);
+            padding: 2rem 0;
+        }
+
+        .search-results-container {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        body {
+            background-color: #F3F0FF;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            padding: 1.5rem;
+        }
+
+        .result-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .result-item:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+            color: inherit;
+        }
+
+        .transition-hover {
+            transition: all 0.3s ease;
+        }
+
+        .transition-hover:hover {
+            transform: translateX(5px);
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .card-header h4 {
+            font-weight: 600;
+        }
+
+        .results-list {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .border-bottom:last-child {
+            border-bottom: none !important;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 1rem 0;
+            }
+        }
     </style>
 
 </body>

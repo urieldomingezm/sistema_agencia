@@ -1,7 +1,22 @@
 <?php
-
 class BodyHome
 {
+    private $userData;
+
+    public function __construct() {
+
+        if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+            echo "<script>window.location.href = '/login.php';</script>";
+            exit;
+        }
+
+        $this->userData = [
+            'id' => $_SESSION['user_id'],
+            'username' => $_SESSION['username'],
+            'rol_id' => $_SESSION['rol_id'] ?? 1
+        ];
+    }
+    
     public function render()
     {
         ?>
@@ -23,7 +38,7 @@ class BodyHome
         }
 
         .welcome-header {
-            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            background: linear-gradient(90deg, #8A2BE2, #9370DB);
             padding: 3rem 0;
             margin-bottom: 2rem;
             position: relative;
@@ -37,7 +52,7 @@ class BodyHome
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('/public/custom/custom_home/img/pattern.png');
+            background: url('/public/custom/custom_login_registro/img/hb.png');
             opacity: 0.1;
         }
 
@@ -189,19 +204,33 @@ class BodyHome
 
     private function renderHeader()
     {
-        $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Invitado';
+        $username = htmlspecialchars($this->userData['username']);
+        $rolName = $this->getRolName($this->userData['rol_id']);
         ?>
         <header class="welcome-header text-center">
             <div class="container">
                 <h1 class="display-4 text-white mb-3">
-                    <i class="fas fa-star me-2"></i>Agencia Atenas
+                    <i class="fas fa-star me-2"></i> Agencia Atenas <i class="fas fa-star me-2"></i>
                 </h1>
-                <p class="lead text-white mb-0">
-                    Bienvenido <?= htmlspecialchars($username) ?>, esperamos que disfrutes tu estancia
+                <p class="lead text-white mb-2">
+                    Bienvenido <?= $username ?> 
+                </p>
+                <p class="text-white-50">
+                    Rango: <?= $rolName ?>
                 </p>
             </div>
         </header>
         <?php
+    }
+
+    private function getRolName($rolId) {
+        $roles = [
+            1 => 'Usuario',
+            2 => 'Moderador',
+            3 => 'Administrador',
+            4 => 'Super Administrador'
+        ];
+        return $roles[$rolId] ?? 'Usuario';
     }
 
     private function renderTeamSection()

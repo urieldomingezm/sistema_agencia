@@ -57,7 +57,7 @@ try {
                 </div>
             </div>
         </div>
-        
+
         <div class="card-body">
             <div class="table-responsive">
                 <table id="tablaAscenso" class="table table-hover">
@@ -94,7 +94,8 @@ try {
                                     </span>
                                 </td>
                                 <td class="text-center estado">
-                                    <span class="badge rounded-pill px-3 <?= $ascenso['ascenso_status'] == 'Disponible' ? 'bg-success' : 'bg-warning text-dark' ?>">
+                                    <span class="badge rounded-pill px-3 <?= $ascenso['ascenso_status'] == 'Disponible' ? 'bg-purple' : 'bg-warning text-dark' ?>"
+                                        <?= $ascenso['ascenso_status'] == 'Disponible' ? 'style="background-color: #8B5CF6;"' : '' ?>>
                                         <i class="fas <?= $ascenso['ascenso_status'] == 'Disponible' ? 'fa-check' : 'fa-clock' ?> me-1"></i>
                                         <?= $ascenso['ascenso_status'] ?>
                                     </span>
@@ -160,116 +161,137 @@ try {
 </div>
 
 <style>
-.bg-gradient-primary {
-    background: linear-gradient(45deg, #4e73df, #224abe);
-}
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #A78BFA, #8B5CF6);
+    }
 
-.bg-gradient-info {
-    background: linear-gradient(45deg, #36b9cc, #1a8a9c);
-}
+    .bg-gradient-info {
+        background: linear-gradient(45deg, #36b9cc, #1a8a9c);
+    }
 
-.avatar-xs {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-}
+    .avatar-xs {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
 
-.table th {
-    font-weight: 600;
-    background-color: #f8f9fc;
-    border-top: none;
-}
+    .table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
 
-.dropdown-menu {
-    font-size: 0.875rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
+    .table th,
+    .table td {
+        border: 1px solid #e3e6f0;
+        padding: 1rem;
+    }
 
-.dropdown-item {
-    padding: 0.5rem 1rem;
-}
+    .table th {
+        font-weight: 600;
+        background-color: #f8f9fc;
+        border-top: none;
+        border-bottom: 2px solid #e3e6f0;
+    }
 
-.dropdown-item i {
-    width: 1rem;
-    text-align: center;
-}
+    .table tbody tr:hover {
+        background-color: rgba(167, 139, 250, 0.05);
+    }
 
-.badge {
-    font-weight: 500;
-}
+    .table tbody td {
+        transition: all 0.3s ease;
+    }
 
-.tiempo-restante {
-    font-family: 'Courier New', monospace;
-}
+    .card-body {
+        padding: 1.5rem;
+        background-color: #ffffff;
+        border-radius: 0 0 0.5rem 0.5rem;
+    }
 
-.btn-light {
-    background-color: #f8f9fc;
-    border-color: #e3e6f0;
-}
+    .dropdown-menu {
+        font-size: 0.875rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
 
-.btn-light:hover {
-    background-color: #e3e6f0;
-    border-color: #d1d3e2;
-}
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+    }
+
+    .dropdown-item i {
+        width: 1rem;
+        text-align: center;
+    }
+
+    .badge {
+        font-weight: 500;
+    }
+
+    .tiempo-restante {
+        font-family: 'Courier New', monospace;
+    }
+
+    .btn-light {
+        background-color: #f8f9fc;
+        border-color: #e3e6f0;
+    }
+
+    .btn-light:hover {
+        background-color: #e3e6f0;
+        border-color: #d1d3e2;
+    }
 </style>
 
-    <!-- MODALES -->
-    <?php
-    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_ascender.php');
-    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_baja.php');
-    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_despedir.php');
-    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_encargado.php');
-    require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_persona.php');
-    ?>
+<!-- MODALES -->
+<?php
+require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_ascender.php');
+require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_baja.php');
+require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_despedir.php');
+require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_encargado.php');
+require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_persona.php');
+?>
 
-    <!-- Incluye jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new simpleDatatables.DataTable('#tablaAscenso');
 
-    <!-- Script para inicializar Simple DataTables y manejar el tiempo restante -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar Simple DataTables
-            new simpleDatatables.DataTable('#tablaAscenso');
+        // Funciones para manejar el tiempo restante
+        function timeToSeconds(time) {
+            const [hours, minutes, seconds] = time.split(":").map(Number);
+            return (hours * 3600) + (minutes * 60) + seconds;
+        }
 
-            // Funciones para manejar el tiempo restante
-            function timeToSeconds(time) {
-                const [hours, minutes, seconds] = time.split(":").map(Number);
-                return (hours * 3600) + (minutes * 60) + seconds;
-            }
+        function secondsToTime(seconds) {
+            const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+            const remainingSeconds = String(seconds % 60).padStart(2, '0');
+            return `${hours}:${minutes}:${remainingSeconds}`;
+        }
 
-            function secondsToTime(seconds) {
-                const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
-                const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-                const remainingSeconds = String(seconds % 60).padStart(2, '0');
-                return `${hours}:${minutes}:${remainingSeconds}`;
-            }
+        function updateAscensoTime() {
+            $(".tiempo-restante").each(function() {
+                const tiempoElem = $(this);
+                let tiempoRestante = timeToSeconds(tiempoElem.text());
 
-            function updateAscensoTime() {
-                $(".tiempo-restante").each(function() {
-                    const tiempoElem = $(this);
-                    let tiempoRestante = timeToSeconds(tiempoElem.text());
+                if (tiempoRestante > 0) {
+                    tiempoRestante--;
+                    tiempoElem.text(secondsToTime(tiempoRestante));
 
-                    if (tiempoRestante > 0) {
-                        tiempoRestante--;
-                        tiempoElem.text(secondsToTime(tiempoRestante));
+                    const ascensoId = tiempoElem.closest("tr").data("id");
+                    $.post("", {
+                        ascenso_id: ascensoId,
+                        tiempo_restante: tiempoRestante
+                    });
+                } else {
+                    const estadoElem = tiempoElem.closest("tr").find(".estado");
+                    estadoElem.html('<span class="badge bg-purple" style="background-color: #8B5CF6;">Disponible</span>');
+                }
+            });
+        }
 
-                        const ascensoId = tiempoElem.closest("tr").data("id");
-                        $.post("", {
-                            ascenso_id: ascensoId,
-                            tiempo_restante: tiempoRestante
-                        });
-                    } else {
-                        const estadoElem = tiempoElem.closest("tr").find(".estado");
-                        estadoElem.html('<span class="badge bg-success">Disponible</span>');
-                    }
-                });
-            }
-
-            // Actualizar el tiempo cada segundo
-            setInterval(updateAscensoTime, 1000);
-        });
-    </script>
+        // Actualizar el tiempo cada segundo
+        setInterval(updateAscensoTime, 1000);
+    });
+</script>
 </body>

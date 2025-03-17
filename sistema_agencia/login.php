@@ -1,29 +1,227 @@
 <?php
 session_start();
 
-require_once(__DIR__ . '/config.php');
-require_once(CONFIG_PATH . 'bd.php');
-require_once(TEMPLATES_PATH . 'header.php');
-require_once(PROCESOS_LOGIN_PATH . 'login.php');
+class Database {
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
+    private $conn;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $database = new Database();
-    $db = $database->getConnection();
+    public function __construct() {
+        $this->host = getenv('MYSQL_HOST') ?: 'localhost';
+        $this->db_name = getenv('MYSQL_DATABASE') ?: 'sistema_agencia';
+        $this->username = getenv('MYSQL_USER') ?: 'root';
+        $this->password = getenv('MYSQL_PASSWORD') ?: '';
 
-    $user = new User($db);
-    $user->usuario = isset($_POST['login_usuario']) ? htmlspecialchars($_POST['login_usuario']) : '';
-    $user->password = isset($_POST['login_password']) ? htmlspecialchars($_POST['login_password']) : '';
+        if (!$this->host || !$this->db_name || !$this->username || !$this->password) {
+            error_log("Error: Algunas variables de entorno no están definidas.");
+        }
+    }
 
-    if (!empty($user->usuario) && !empty($user->password)) {
-        $user->login();
-    } else {
-        echo "<script>
-                alert('Por favor, complete todos los campos.');
-                window.location.href = '/sistema_agencia/login.php';
-              </script>";
+    public function getConnection() {
+        $this->conn = null;
+
+        try {
+            $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db_name;
+            $this->conn = new PDO($dsn, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            error_log("Error de conexión: " . $exception->getMessage());
+            echo "Error de conexión a la base de datos.";
+        }
+
+        return $this->conn;
     }
 }
 
-require_once(PROCESOS_LOGIN_PATH . 'body_login.php');
-require_once(TEMPLATES_PATH . 'footer.php');
+class UserLogin {
+    private $conn;
+    private $table = 'registro_usuario';
+
+    public function __construct() {
+        try {
+            $database = new Database();
+            $this->conn = $database->getConnection();
+            if (!$this->conn) {
+                throw new Exception("Error de conexión a la base de datos");
+            }
+        } catch (Exception $e) {
+            error_log("Error en constructor UserLogin: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    public function login($username, $password) {
+        try {
+            if (empty($username) || empty($password)) {
+                return ['success' => false, 'message' => 'Usuario y contraseña son requeridos'];
+            }
+
+            $query = "SELECT id, usuario_registro, password_registro, rol_id FROM {$this->table} 
+                     WHERE usuario_registro = :username";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                if (password_verify($password, $user['password_registro'])) {
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['username'] = $user['usuario_registro'];
+                    $_SESSION['rol_id'] = $user['rol_id'];
+                    
+                    return ['success' => true, 'message' => '¡Bienvenido!'];
+                }
+            }
+            
+            return ['success' => false, 'message' => 'Usuario o contraseña incorrectos'];
+            
+        } catch (PDOException $e) {
+            error_log("Error en login: " . $e->getMessage());
+            return ['success' => false, 'message' => 'Error al iniciar sesión'];
+        }
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $login = new UserLogin();
+        $result = $login->login($_POST['username'], $_POST['password']);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    } catch (Exception $e) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    }
+    exit;
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Agencia Atenas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #F3F0FF 0%, #E9D5FF 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .card-header {
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            border: none;
+            padding: 20px;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 2px solid #E9D5FF;
+        }
+        .form-control:focus {
+            border-color: #8B5CF6;
+            box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4 class="mb-0">✨ Iniciar Sesión ✨</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label class="form-label">Usuario</label>
+                                <input type="text" class="form-control" name="username" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="registrar.php" class="text-decoration-none" style="color: #8B5CF6;">¿No tienes cuenta? Regístrate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            fetch('login.php', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Bienvenido!',
+                        text: data.message,
+                        confirmButtonColor: '#8B5CF6'
+                    }).then(() => {
+                        window.location.href = 'usuario/index.php';
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message,
+                        confirmButtonColor: '#8B5CF6'
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error al iniciar sesión',
+                    confirmButtonColor: '#8B5CF6'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,94 +1,332 @@
 <?php
 session_start();
 
-require_once(__DIR__ . '/config.php');
-require_once(CONFIG_PATH . 'bd.php');
-require_once(TEMPLATES_PATH . 'header.php');
-require_once(PROCESOS_LOGIN_PATH . 'registrar.php');
+class Database
+{
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
+    private $conn;
 
-$database = new Database();
-$conn = $database->getConnection();
+    public function __construct()
+    {
+        $this->host = getenv('MYSQL_HOST') ?: 'localhost';
+        $this->db_name = getenv('MYSQL_DATABASE') ?: 'sistema_agencia';
+        $this->username = getenv('MYSQL_USER') ?: 'root';
+        $this->password = getenv('MYSQL_PASSWORD') ?: '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $usuario = isset($_POST['registro_usuario']) ? htmlspecialchars(trim($_POST['registro_usuario'])) : '';
-    $password = isset($_POST['registro_password']) ? trim($_POST['registro_password']) : '';
-    $ip_usuario = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'];
-
-    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'; // Importar SweetAlert2
-
-    if (!empty($usuario) && !empty($password)) {
-        $user = new User($conn);
-        $user->usuario_registro = $usuario;
-        $user->ip_registro = $ip_usuario;
-
-        if ($user->userExists()) {
-            echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'El usuario ya existe.'
-                }).then(() => {
-                    window.location.href = '/registrar.php';
-                });
-            </script>";
-        } else {
-            if ($user->ipRegistrations() >= 1) {
-                echo "<script>
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Advertencia',
-                        text: 'Se han registrado más de 2 veces desde esta IP. Por favor, contacte al soporte.'
-                    }).then(() => {
-                        window.location.href = '/registrar.php';
-                    });
-                </script>";
-                exit;
-            }
-
-            $user->password_registro = $password;
-            $user->rol_id = 1;
-            $user->fecha_registro = date('Y-m-d H:i:s');
-
-            if ($user->create()) {
-                // Iniciar sesión después del registro
-                $_SESSION['usuario_id'] = $user->getLastInsertId(); // Guardar el ID del usuario en sesión
-                $_SESSION['usuario_registro'] = $usuario;
-                $_SESSION['rol_id'] = $user->rol_id;
-
-                echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Registro exitoso',
-                        text: 'Bienvenido, " . $usuario . "'
-                    }).then(() => {
-                        window.location.href = '/usuario/index.php'; // Redirigir a una página protegida
-                    });
-                </script>";
-            } else {
-                echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Error en el registro. Inténtelo nuevamente.'
-                    }).then(() => {
-                        window.location.href = '/registrar.php';
-                    });
-                </script>";
-            }
+        if (!$this->host || !$this->db_name || !$this->username || !$this->password) {
+            error_log("Error: Algunas variables de entorno no están definidas.");
         }
-    } else {
-        echo "<script>
-            Swal.fire({
-                icon: 'info',
-                title: 'Atención',
-                text: 'Por favor, complete todos los campos correctamente.'
-            }).then(() => {
-                window.location.href = '/registrar.php';
-            });
-        </script>";
+    }
+
+    public function getConnection()
+    {
+        $this->conn = null;
+
+        try {
+            $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db_name;
+            $this->conn = new PDO($dsn, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $exception) {
+            error_log("Error de conexión: " . $exception->getMessage());
+            echo "Error de conexión a la base de datos.";
+        }
+
+        return $this->conn;
     }
 }
 
-require_once(PROCESOS_LOGIN_PATH . 'body_registrar.php');
-require_once(TEMPLATES_PATH . 'footer.php');
+class UserRegistration
+{
+    private $conn;
+    private $table = 'registro_usuario';
+
+    public function __construct()
+    {
+        try {
+            $database = new Database();
+            $this->conn = $database->getConnection();
+            if (!$this->conn) {
+                throw new Exception("Error de conexión a la base de datos");
+            }
+        } catch (Exception $e) {
+            error_log("Error en constructor UserRegistration: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    private function getClientIP()
+    {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+
+    private function checkExistingIP($ip)
+    {
+        $query = "SELECT COUNT(*) FROM {$this->table} WHERE ip_registro = :ip";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':ip', $ip);
+        $stmt->execute();
+        return $stmt->fetchColumn() > 0;
+    }
+
+    private function validatePassword($password)
+    {
+        return strlen($password) >= 8 &&
+            preg_match('/[A-Z]/', $password) &&
+            preg_match('/[a-z]/', $password) &&
+            preg_match('/[0-9]/', $password);
+    }
+
+    private function generateVerificationCode()
+    {
+        return 'AT' . strtoupper(substr(md5(uniqid()), 0, 3));
+    }
+
+    public function register($username, $password, $habboName, $verificationCode = null)
+    {
+        try {
+            if (empty($username) || empty($password) || empty($habboName)) {
+                return ['success' => false, 'message' => 'Todos los campos son requeridos'];
+            }
+
+            $ip = $this->getClientIP();
+            
+            if ($this->checkExistingIP($ip)) {
+                return ['success' => false, 'message' => 'Ya existe un registro con esta IP'];
+            }
+
+            // Primera fase: Generar código
+            if (empty($verificationCode)) {
+                $code = $this->generateVerificationCode();
+                $_SESSION['temp_data'] = [
+                    'username' => $username,
+                    'password' => $password,
+                    'habbo_name' => $habboName,
+                    'verification_code' => $code,
+                    'ip' => $ip
+                ];
+                return [
+                    'success' => true,
+                    'verification' => true,
+                    'code' => $code,
+                    'message' => 'Por favor, coloca este código en tu lema/motto de Habbo'
+                ];
+            }
+
+            // Segunda fase: Verificación y registro
+            if (!isset($_SESSION['temp_data']) || !isset($_SESSION['temp_data']['verification_code'])) {
+                return ['success' => false, 'message' => 'Sesión expirada, por favor intenta nuevamente'];
+            }
+
+            if ($verificationCode !== $_SESSION['temp_data']['verification_code']) {
+                return ['success' => false, 'message' => 'Código de verificación incorrecto'];
+            }
+
+            // Verificar si el nombre de Habbo ya existe
+            $checkHabbo = "SELECT COUNT(*) FROM {$this->table} WHERE nombre_habbo = :habbo_name";
+            $stmt = $this->conn->prepare($checkHabbo);
+            $stmt->bindParam(':habbo_name', $_SESSION['temp_data']['habbo_name']);
+            $stmt->execute();
+            if ($stmt->fetchColumn() > 0) {
+                return ['success' => false, 'message' => 'Este nombre de Habbo ya está registrado'];
+            }
+
+            $hashedPassword = password_hash($_SESSION['temp_data']['password'], PASSWORD_DEFAULT);
+            $query = "INSERT INTO {$this->table} 
+                     (usuario_registro, password_registro, nombre_habbo, rol_id, rango, fecha_registro, ip_registro, verificado) 
+                     VALUES (:username, :password, :habbo_name, 1, 'Agente', NOW(), :ip, 0)";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':username', $_SESSION['temp_data']['username']);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':habbo_name', $_SESSION['temp_data']['habbo_name']);
+            $stmt->bindParam(':ip', $_SESSION['temp_data']['ip']);
+            
+            if ($stmt->execute()) {
+                $_SESSION['user_id'] = $this->conn->lastInsertId();
+                $_SESSION['username'] = $_SESSION['temp_data']['username'];
+                $_SESSION['rango'] = 'Agente';
+                unset($_SESSION['temp_data']);
+                return ['success' => true, 'message' => '¡Registro exitoso! Esperando verificación del moderador'];
+            }
+            
+            return ['success' => false, 'message' => 'Error al guardar el registro'];
+        } catch (PDOException $e) {
+            error_log("Error en registro: " . $e->getMessage());
+            return ['success' => false, 'message' => 'Error en el registro: ' . $e->getMessage()];
+        }
+    }
+}
+
+// Manejo de la solicitud POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $registration = new UserRegistration();
+        $result = $registration->register($_POST['username'], $_POST['password'], $_POST['habboName'], isset($_POST['verificationCode']) ? $_POST['verificationCode'] : null);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    } catch (Exception $e) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+    }
+    exit;
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Agencia Atenas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #F3F0FF 0%, #E9D5FF 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            border: none;
+            padding: 20px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 2px solid #E9D5FF;
+        }
+
+        .form-control:focus {
+            border-color: #8B5CF6;
+            box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4 class="mb-0">✨ Registro Agencia Atenas ✨</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="registrationForm">
+                            <div class="mb-3">
+                                <label class="form-label">Usuario</label>
+                                <input type="text" class="form-control" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nombre en Habbo</label>
+                                <input type="text" class="form-control" name="habboName" required>
+                                <small class="form-text text-muted">Ingresa tu nombre exacto de Habbo</small>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div id="verificationSection" style="display: none;" class="mb-3">
+                                <label class="form-label">Código de Verificación</label>
+                                <input type="text" class="form-control" name="verificationCode">
+                                <small class="form-text text-muted">Ingresa el código que colocaste en tu lema/motto de Habbo</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="login.php" class="text-decoration-none" style="color: #8B5CF6;">¿Ya tienes cuenta? Inicia sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            fetch('registrar.php', {
+                    method: 'POST',
+                    body: new FormData(this)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.verification) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Código de Verificación',
+                            html: `Tu código es: <strong>${data.code}</strong><br>
+                       Por favor, coloca este código en tu lema/motto de Habbo.<br>
+                       Una vez colocado, ingresa el código aquí para completar el registro.`,
+                            confirmButtonColor: '#8B5CF6'
+                        }).then(() => {
+                            document.getElementById('verificationSection').style.display = 'block';
+                        });
+                    } else if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Registro Exitoso!',
+                            text: data.message,
+                            confirmButtonColor: '#8B5CF6'
+                        }).then(() => {
+                            window.location.href = 'usuario/index.php';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message,
+                            confirmButtonColor: '#8B5CF6'
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error en el registro',
+                        confirmButtonColor: '#8B5CF6'
+                    });
+                });
+        });
+    </script>
+</body>
+
+</html>

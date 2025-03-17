@@ -15,6 +15,8 @@ try {
 }
 ?>
 
+
+
 <!-- INFORMACION DE PERFIL DE USUARIO -->
 <meta name="keywords" content="Gestion de tiempo de paga, tiempo de paga o time de paga">
 
@@ -34,7 +36,7 @@ try {
                 </div>
             </div>
         </div>
-        
+
         <div class="card-body">
             <div class="table-responsive">
                 <table id="tablaTiempos" class="table table-hover">
@@ -52,258 +54,203 @@ try {
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tablaBody"></tbody>
+                    <tbody>
+                        <?php foreach ($tiempos as $tiempo) : ?>
+                            <tr data-id="<?= $tiempo['tiempo_id'] ?>" class="align-middle">
+                                <td class="text-center"><?= $tiempo['tiempo_id'] ?></td>
+                                <td>
+                                    <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-xs me-2">
+                                                <i class="fas fa-user-circle text-primary"></i>
+                                            </div>
+                                            <?= $tiempo['tiempo_usuario'] ?>
+                                        </div>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge rounded-pill px-3 <?= getStatusClass($tiempo['tiempo_status']) ?>">
+                                        <i class="fas <?= getStatusIcon($tiempo['tiempo_status']) ?> me-1"></i>
+                                        <?= $tiempo['tiempo_status'] ?>
+                                    </span>
+                                </td>
+                                <td class="text-center font-monospace"><?= $tiempo['tiempo_restado'] ?></td>
+                                <td class="text-center font-monospace"><?= $tiempo['tiempo_acumulado'] ?></td>
+                                <td class="text-center font-monospace"><?= $tiempo['tiempo_transcurrido'] ?></td>
+                                <td class="text-center font-monospace"><?= $tiempo['tiempo_total'] ?></td>
+                                <td>
+                                    <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersonaEncargado">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-xs me-2">
+                                                <i class="fas fa-user-shield text-primary"></i>
+                                            </div>
+                                            <?= $tiempo['tiempo_encargado_usuario'] ?>
+                                        </div>
+                                    </button>
+                                </td>
+                                <td class="text-center"><?= formatDate($tiempo['tiempo_fecha_registro']) ?></td>
+                                <td class="text-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li>
+                                                <a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_ascender">
+                                                    <i class="fas fa-play me-2"></i>Iniciar tiempo
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#modal_despedir_persona">
+                                                    <i class="fas fa-user-clock me-2"></i>Ausente
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
+                                                    <i class="fas fa-pause me-2"></i>Pausar
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
+                                                    <i class="fas fa-stop me-2"></i>Parar
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-info" href="#" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
+                                                    <i class="fas fa-check me-2"></i>Completado
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalModificar">
+                                                    <i class="fas fa-edit me-2"></i>Modificar
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#modalEliminar">
+                                                    <i class="fas fa-trash me-2"></i>Eliminar
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const tablaBody = document.getElementById("tablaBody");
-    const tiempos = <?php echo json_encode($tiempos); ?>;
-
-    if (tiempos.length > 0) {
-        tiempos.forEach(tiempo => {
-            const fila = document.createElement("tr");
-            fila.innerHTML = `
-                <td class="text-center align-middle">${tiempo.tiempo_id}</td>
-                <td class="align-middle">
-                    <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar-xs me-2">
-                                <i class="fas fa-user-circle text-primary"></i>
-                            </div>
-                            ${tiempo.tiempo_usuario}
-                        </div>
-                    </button>
-                </td>
-                <td class="text-center align-middle">
-                    <span class="badge ${getStatusClass(tiempo.tiempo_status)} rounded-pill px-3">
-                        <i class="fas ${getStatusIcon(tiempo.tiempo_status)} me-1"></i>${tiempo.tiempo_status}
-                    </span>
-                </td>
-                <td class="text-center align-middle font-monospace">${tiempo.tiempo_restado}</td>
-                <td class="text-center align-middle font-monospace">${tiempo.tiempo_acumulado}</td>
-                <td class="text-center align-middle font-monospace">${tiempo.tiempo_transcurrido}</td>
-                <td class="text-center align-middle font-monospace">${tiempo.tiempo_total}</td>
-                <td class="align-middle">
-                    <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersonaEncargado">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar-xs me-2">
-                                <i class="fas fa-user-shield text-primary"></i>
-                            </div>
-                            ${tiempo.tiempo_encargado_usuario}
-                        </div>
-                    </button>
-                </td>
-                <td class="text-center align-middle">${formatDate(tiempo.tiempo_fecha_registro)}</td>
-                <td class="text-center align-middle">
-                    <div class="dropdown">
-                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item text-success" data-bs-toggle="modal" data-bs-target="#modal_ascender">
-                                    <i class="fas fa-play me-2"></i>Iniciar tiempo
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#modal_despedir_persona">
-                                    <i class="fas fa-user-clock me-2"></i>Ausente
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-warning" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
-                                    <i class="fas fa-pause me-2"></i>Pausar
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
-                                    <i class="fas fa-stop me-2"></i>Parar
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-info" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
-                                    <i class="fas fa-check me-2"></i>Completado
-                                </a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalModificar">
-                                    <i class="fas fa-edit me-2"></i>Modificar
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar">
-                                    <i class="fas fa-trash me-2"></i>Eliminar
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            `;
-            tablaBody.appendChild(fila);
-        });
-
-        new simpleDatatables.DataTable("#tablaTiempos", {
-            searchable: true,
-            fixedHeight: true,
-            perPage: 10
-        });
-    }
-
-    function getStatusClass(status) {
-        switch (status.toLowerCase()) {
-            case 'corriendo': return 'bg-success';
-            case 'pausado': return 'bg-warning text-dark';
-            case 'completado': return 'bg-info';
-            case 'ausente': return 'bg-danger';
-            default: return 'bg-secondary';
-        }
-    }
-
-    function getStatusIcon(status) {
-        switch (status.toLowerCase()) {
-            case 'corriendo': return 'fa-play';
-            case 'pausado': return 'fa-pause';
-            case 'completado': return 'fa-check';
-            case 'ausente': return 'fa-user-clock';
-            default: return 'fa-circle';
-        }
-    }
-
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('es-ES', { 
-            year: 'numeric', 
-            month: '2-digit', 
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    }
-});
-</script>
-
 <style>
-.bg-gradient-primary {
-    background: linear-gradient(45deg, #4e73df, #224abe);
-}
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #A78BFA, #8B5CF6);
+    }
 
-.avatar-xs {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-}
+    .bg-gradient-info {
+        background: linear-gradient(45deg, #36b9cc, #258391);
+    }
 
-.table th {
-    font-weight: 600;
-    background-color: #f8f9fc;
-    border-top: none;
-}
+    .table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
 
-.table td {
-    vertical-align: middle;
-}
+    .table th,
+    .table td {
+        border: 1px solid #e3e6f0;
+        padding: 1rem;
+    }
 
-.badge {
-    font-weight: 500;
-}
+    .table th {
+        font-weight: 600;
+        background-color: #f8f9fc;
+        border-top: none;
+        border-bottom: 2px solid #e3e6f0;
+    }
 
-.dropdown-menu {
-    font-size: 0.875rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
+    .table tbody tr:hover {
+        background-color: rgba(167, 139, 250, 0.05);
+    }
 
-.dropdown-item {
-    padding: 0.5rem 1rem;
-}
+    .table tbody td {
+        transition: all 0.3s ease;
+    }
 
-.dropdown-item i {
-    width: 1rem;
-    text-align: center;
-}
+    .card-body {
+        padding: 1.5rem;
+        background-color: #ffffff;
+        border-radius: 0 0 0.5rem 0.5rem;
+    }
 
-.card {
-    margin-bottom: 1.5rem;
-}
+    .avatar-xs {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    .font-monospace {
+        font-family: 'Roboto Mono', monospace;
+    }
+
+    .dropdown-menu {
+        font-size: 0.875rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+    }
+
+    .dropdown-item i {
+        width: 1rem;
+        text-align: center;
+    }
 </style>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const tablaBody = document.getElementById("tablaBody");
-
-            // Datos obtenidos desde PHP
-            const tiempos = <?php echo json_encode($tiempos); ?>;
-
-            if (tiempos.length > 0) {
-                tiempos.forEach(tiempo => {
-                    const fila = document.createElement("tr");
-
-                    fila.innerHTML = `
-                        <td>${tiempo.tiempo_id}</td>
-                        <td><button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modalInformacionPersona">${tiempo.tiempo_usuario}</button></td>
-                        <td><span class="badge ${getStatusClass(tiempo.tiempo_status)}">${tiempo.tiempo_status}</span></td>
-                        <td>${tiempo.tiempo_restado}</td>
-                        <td>${tiempo.tiempo_acumulado}</td>
-                        <td>${tiempo.tiempo_transcurrido}</td>
-                        <td>${tiempo.tiempo_total}</td>
-                        <td><button class="btn btn-primary text-white" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modalInformacionPersonaEncargado">${tiempo.tiempo_encargado_usuario}</button></td>
-                        <td>${tiempo.tiempo_fecha_registro}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                    Acciones
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_ascender">Iniciar tiempo</a></li>
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_despedir_persona">Ausente</a></li>
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">Pausar</a></li>
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">Parar</a></li>
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">Completado</a></li>
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalModificar">Modificar</a></li>
-                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    `;
-                    tablaBody.appendChild(fila);
-                });
-
-                // Inicializar DataTable
-                new simpleDatatables.DataTable("#tablaTiempos");
-            }
-
-            function getStatusClass(status) {
-                switch (status.toLowerCase()) {
-                    case 'corriendo':
-                        return 'bg-success';
-                    case 'pausado':
-                        return 'bg-warning text-dark';
-                    case 'completado':
-                        return 'bg-info';
-                    case 'ausente':
-                        return 'bg-danger';
-                    default:
-                        return 'bg-secondary';
-                }
-            }
-        });
-    </script>
-</body>
-
-<!-- MODALES PARA ACCIONES -->
 <?php
-require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_eliminar.php');
-require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_informacion_encargado.php');
-require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_informacion_persona.php');
-require_once(MODAL_GESTION_TIEMPO_PATH . 'modal_tiempo_modificar.php');
+function getStatusClass($status)
+{
+    switch (strtolower($status)) {
+        case 'corriendo':
+            return 'bg-success';
+        case 'pausado':
+            return 'bg-warning text-dark';
+        case 'completado':
+            return 'bg-info';
+        case 'ausente':
+            return 'bg-danger';
+        default:
+            return 'bg-secondary';
+    }
+}
+
+function getStatusIcon($status)
+{
+    switch (strtolower($status)) {
+        case 'corriendo':
+            return 'fa-play';
+        case 'pausado':
+            return 'fa-pause';
+        case 'completado':
+            return 'fa-check';
+        case 'ausente':
+            return 'fa-user-clock';
+        default:
+            return 'fa-circle';
+    }
+}
+
+function formatDate($date)
+{
+    return date('d/m/Y H:i', strtotime($date));
+}
 ?>
+
+

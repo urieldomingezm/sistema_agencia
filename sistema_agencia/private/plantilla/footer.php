@@ -20,9 +20,6 @@ class Footer
                             <span class="copyright">
                                 &copy; <?= date('Y') ?> Agencia Atenas. Todos los derechos reservados para Ing. Medina
                             </span>
-                            <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&action=none&direction=0&head_direction=3&gesture=&size=s&headonly=1" 
-                                 alt="Medina Avatar" 
-                                 class="avatar-image">
                         </div>
                     </div>
                 </div>
@@ -35,13 +32,13 @@ class Footer
 
         <style>
         .custom-footer {
-            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
             color: #000;
             padding: 1rem 0;
             position: fixed;
             bottom: 0;
             width: 100%;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -2px 10px rgba(139, 92, 246, 0.2);
         }
 
         .footer-content {
@@ -67,27 +64,20 @@ class Footer
             right: 20px;
             display: none;
             z-index: 1000;
-            background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            background: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
             border: none;
             color: #000;
             width: 40px;
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.2);
             transition: all 0.3s ease;
         }
 
         .scroll-top-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                gap: 10px;
-            }
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
         </style>
 

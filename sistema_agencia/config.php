@@ -17,6 +17,9 @@ define('POO_HOME_PATH', PRIVATE_PATH . 'modelos/home/');
 define('BODY_HOME_PATH', PRIVATE_PATH . 'config/procesos/home/'); 
 define('BODY_DJ_PATH', PRIVATE_PATH . 'config/procesos/dj/'); 
 
+// Ruta de autenticacion
+define('AUTH_DJ_PATH', PRIVATE_PATH . 'config/procesos/autenticacion/'); 
+
 // Rutas para procesos de login, registros, etc
 define('PROCESOS_LOGIN_PATH', PRIVATE_PATH . 'config/procesos/login_registro/'); 
 
