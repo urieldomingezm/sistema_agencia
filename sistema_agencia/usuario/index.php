@@ -18,21 +18,21 @@ if (!isset($_SESSION['user_id'])) {
                     <?php
                     if (isset($_GET['q']) && !empty($_GET['q'])) {
                         $query = strtolower(trim($_GET['q']));
+                        // Funcion de buscar
                         $pages = [
-                            'index.php' => 'Inicio',
-                            'GSTM.php' => 'Gestion de tiempo',
+                            'GSTM.php' => 'gestion_de_tiempo',
                             'USR.php' => 'inicio',
-                            'PRUS.php' => 'perfil de usuario',
+                            'PRUS.php' => 'ver_perfil',
                             'CRSS.php' => 'cerrar_session',
-                            'RQPG.php' => 'Requisitos de paga',
-                            'GSAS.php' => 'gestion de ascensos',
+                            'RQPG.php' => 'Requisitos_paga',
+                            'GSAS.php' => 'gestion_ascenso',
                             'GVE.php' => 'Pendiente',
                             'GVP.php' => 'Pendiente',
                             'MEMS.php' => 'membresias',
-                            'GTPS.php' => 'grafico total paga',
+                            'GTPS.php' => 'gestion_de_pagas',
                             'GEPS.php' => 'grafico de pagas',
-                            'VTM.php' => 'Venta de membresias',
-                            'VTR.php' => 'venta de rangos',
+                            'VTM.php' => 'ventas_membresias',
+                            'VTR.php' => 'venta_rangos',
                         ];
 
                         $results = [];
@@ -77,6 +77,7 @@ if (!isset($_SESSION['user_id'])) {
                             }
                             echo '</div>';
                         } else {
+                            echo '<br>';
                             echo '<div class="text-center p-4">';
                             echo '<i class="fas fa-search-minus fa-3x text-muted mb-3"></i>';
                             echo '<div class="alert alert-warning mb-0">';
@@ -91,23 +92,53 @@ if (!isset($_SESSION['user_id'])) {
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                             $validPages = [
-                                'Gestion de tiempo' => 'GSTM.php',
-                                'inicio' => 'USR.php',
-                                'perfil de usuario' => 'PRUS.php',
-                                'cerrar_session' => 'CRSS.php',
-                                'Requisitos de paga' => 'RQPG.php',
-                                'gestion de ascensos' => 'GSAS.php',
-                                'grafico total paga' => 'GTPS.php',
-                                'grafico de pagas' => 'GEPS.php',
-                                'venta de membresias' => 'VTM.php',
-                                'venta de rangos' => 'VTR.php'
+                                'gestion_de_tiempo' => ['file' => 'GSTM.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
+                                'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva']],
+                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva']],
+                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva']],
+                                'Requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
+                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']],
+                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']],
+                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']],
+                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
+                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']]
                             ];
 
-                            if (array_key_exists($page, $validPages)) {
-                                include $validPages[$page];
+                            // Al inicio del archivo, después de las verificaciones de sesión
+                            // Verificación de rango usando la clase Database
+                            $userRango = '';
+                            if (isset($_SESSION['user_id'])) {
+                                require_once(CONFIG_PATH . 'bd.php');
+                                $database = new Database();
+                                $conn = $database->getConnection();
+                                
+                                try {
+                                    $query = "SELECT rango FROM registro_usuario WHERE id = :user_id";
+                                    $stmt = $conn->prepare($query);
+                                    $stmt->bindParam(':user_id', $_SESSION['user_id']);
+                                    $stmt->execute();
+                                    
+                                    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        $userRango = $row['rango'];
+                                        $_SESSION['rango'] = $userRango;
+                                    }
+                                } catch(PDOException $e) {
+                                    error_log("Error en la consulta: " . $e->getMessage());
+                                    echo '<div class="alert alert-danger">Error al verificar permisos</div>';
+                                    exit();
+                                }
+                            }
+
+                            // Resto del código de validación
+                            if (array_key_exists($page, $validPages) && in_array($userRango, $validPages[$page]['roles'])) {
+                                include $validPages[$page]['file'];
                             } else {
-                                echo '<div class="alert alert-danger text-center"><h4>Página no encontrada</h4>';
-                                echo '<p>Redirigiendo a la página principal...</p></div>';
+                                echo '<div class="alert alert-danger text-center mt-5">';
+                                echo '<h4 class="alert-heading">Acceso Denegado</h4>';
+                                echo '<p>No tienes los permisos necesarios para acceder a esta página.</p>';
+                                echo '<p>Tu rango actual es: ' . htmlspecialchars($userRango) . '</p>';
+                                echo '<p>Redirigiendo a la página principal...</p>';
+                                echo '</div>';
                                 echo '<meta http-equiv="refresh" content="3;url=index.php">';
                                 exit();
                             }
@@ -128,11 +159,20 @@ if (!isset($_SESSION['user_id'])) {
         
         .page-container {
             min-height: calc(100vh - 400px);
-            padding: 2rem 0;
+            padding: 4rem 0; /* Aumentado el padding vertical */
         }
 
         .search-results-container {
             animation: fadeIn 0.3s ease-in-out;
+            margin-top: 80px; /* Añadido margen superior */
+        }
+
+        .card-header {
+            padding: 1.5rem !important;
+        }
+
+        .card-body {
+            padding: 2rem !important;
         }
 
         body {

@@ -163,7 +163,7 @@ class Navbar
         border: 2px solid #000;
         border-right: none;
         color: #000;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(167, 139, 250, 0.9);
         height: 45px;
       }
 
@@ -172,7 +172,7 @@ class Navbar
         border: 2px solid #000;
         border-left: none;
         color: #000;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(138, 43, 226, 0.9);
         padding: 0 20px;
         height: 45px;
         display: flex;

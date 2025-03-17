@@ -3,7 +3,7 @@
         <div class="modal-content border-0">
             <div class="modal-header bg-gradient-success border-0">
                 <h5 class="modal-title text-white">
-                    <i class="fas fa-arrow-up me-2"></i>Promoción de Personal
+                    <i class="fas fa-arrow-up me-2"></i>Registrar ascenso
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
@@ -23,14 +23,14 @@
                                 <label class="form-label">
                                     <i class="fas fa-user text-success me-2"></i>Usuario
                                 </label>
-                                <input type="text" class="form-control" name="ascenso_usuario" readonly>
+                                <input type="text" class="form-control" name="ascenso_usuario">
                             </div>
 
                             <div class="form-group mt-3">
                                 <label class="form-label">
                                     <i class="fas fa-history text-success me-2"></i>Misión Anterior
                                 </label>
-                                <input class="form-control" id="mision-anterior" readonly>
+                                <input class="form-control" id="mision-anterior">
                             </div>
 
                             <div class="form-group mt-3">
@@ -78,7 +78,9 @@
                                 <label class="form-label">
                                     <i class="fas fa-user-shield text-success me-2"></i>Encargado
                                 </label>
-                                <input class="form-control" name="ascenso_encargado_usuario" required>
+                                <input class="form-control" name="ascenso_encargado_usuario" 
+                                       value="<?php echo htmlspecialchars($_SESSION['username']); ?>" 
+                                       readonly required>
                             </div>
 
                             <div class="form-group mt-3">

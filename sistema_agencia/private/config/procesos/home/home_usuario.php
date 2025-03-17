@@ -13,7 +13,7 @@ class BodyHome
         $this->userData = [
             'id' => $_SESSION['user_id'],
             'username' => $_SESSION['username'],
-            'rol_id' => $_SESSION['rol_id'] ?? 1
+            'rol_id' => $_SESSION['rol_id'] ?? 2
         ];
     }
     
@@ -216,7 +216,7 @@ class BodyHome
                     Bienvenido <?= $username ?> 
                 </p>
                 <p class="text-white-50">
-                    Rango: <?= $rolName ?>
+                    Estatus: <span class="badge bg-warning"><?= $rolName ?></span>
                 </p>
             </div>
         </header>
@@ -225,12 +225,9 @@ class BodyHome
 
     private function getRolName($rolId) {
         $roles = [
-            1 => 'Usuario',
-            2 => 'Moderador',
-            3 => 'Administrador',
-            4 => 'Super Administrador'
+            1 => 'En espera de ser verficado'
         ];
-        return $roles[$rolId] ?? 'Usuario';
+        return $roles[$rolId] ?? 'En espera de ser verficado';
     }
 
     private function renderTeamSection()
