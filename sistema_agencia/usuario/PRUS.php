@@ -1,33 +1,81 @@
 <?php
-class UserProfile {
+class UserProfile
+{
     private $userData;
 
-    public function __construct() {
-        $this->userData = [
-            'username' => 'Santidemg',
-            'role' => 'Supervisor',
-            'mission' => 'AGT- Supervisor G -XDD -SDS #',
-            'avatar' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair&aspect=1:1',
-            'nextMission' => 'AGT- Supervisor D -XDD -SDS #',
-            'paymentTime' => '14:00',
-            'paymentDate' => '15',
-            'hoursDeducted' => '1:00',
-            'totalHours' => '5:00',
-            'estimatedTime' => '2 días',
-            'status' => 'Pendiente',
-            'joinDate' => '01/01/2023'
-        ];
+    public function __construct()
+    {
+        if (isset($_SESSION['user_id'])) {
+            require_once(CONFIG_PATH . 'bd.php');
+            $database = new Database();
+            $conn = $database->getConnection();
+
+            try {
+                // Primero obtenemos la información básica del usuario
+                $query = "SELECT usuario_registro, rango FROM registro_usuario WHERE id = :user_id";
+                $stmt = $conn->prepare($query);
+                $stmt->bindParam(':user_id', $_SESSION['user_id']);
+                $stmt->execute();
+                $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // Luego buscamos la información de ascenso usando el nombre de usuario
+                $ascensoQuery = "SELECT ascenso_rango, ascenso_mision_nueva, ascenso_status, 
+                                      ascenso_hora_proxima, ascenso_encargado_usuario 
+                               FROM gestion_ascenso 
+                               WHERE ascenso_usuario = :username 
+                               ORDER BY ascenso_fecha_registro DESC LIMIT 1";
+                $stmt = $conn->prepare($ascensoQuery);
+                $stmt->bindParam(':username', $userData['usuario_registro']);
+                $stmt->execute();
+                $ascensoData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // Combinamos la información
+                $this->userData = [
+                    'username' => $userData['usuario_registro'],
+                    'role' => $userData['rango'],
+                    'mission' => $ascensoData ? $ascensoData['ascenso_mision_nueva'] : 'Sin misión asignada',
+                    'avatar' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair&aspect=1:1',
+                    'nextMission' => 'Pendiente',
+                    'paymentTime' => '14:00',
+                    'paymentDate' => '15',
+                    'hoursDeducted' => '1:00',
+                    'totalHours' => '5:00',
+                    'estimatedTime' => $ascensoData ? $ascensoData['ascenso_hora_proxima'] : 'No disponible',
+                    'status' => $ascensoData ? $ascensoData['ascenso_status'] : 'Pendiente',
+                    'encargado' => $ascensoData ? $ascensoData['ascenso_encargado_usuario'] : 'No asignado'
+                ];
+            } catch (PDOException $e) {
+                error_log("Error al obtener datos del usuario: " . $e->getMessage());
+                // Datos por defecto en caso de error
+                $this->userData = [
+                    'username' => 'Usuario',
+                    'role' => 'No disponible',
+                    'mission' => 'AGT- Supervisor G -XDD -SDS #',
+                    'avatar' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair&aspect=1:1',
+                    'nextMission' => 'AGT- Supervisor D -XDD -SDS #',
+                    'paymentTime' => '14:00',
+                    'paymentDate' => '15',
+                    'hoursDeducted' => '1:00',
+                    'totalHours' => '5:00',
+                    'estimatedTime' => '2 días',
+                    'status' => 'Pendiente',
+                    'joinDate' => '01/01/2023'
+                ];
+            }
+        }
     }
 
-    public function render() {
-        ?>
+    public function render()
+    {
+?>
+
         <body class="bg-gradient">
             <div class="profile-header text-center py-5">
                 <div class="container">
                     <div class="avatar-container mb-4">
-                        <img src="<?php echo $this->userData['avatar']; ?>" 
-                             class="rounded-circle shadow-lg" 
-                             alt="Profile Avatar">
+                        <img src="<?php echo $this->userData['avatar']; ?>"
+                            class="rounded-circle shadow-lg"
+                            alt="Profile Avatar">
                         <div class="status-badge"></div>
                     </div>
                     <h1 class="display-4 fw-bold text-white mb-2"><?php echo $this->userData['username']; ?></h1>
@@ -91,11 +139,11 @@ class UserProfile {
                                     <span class="info-value"><?php echo $this->userData['mission']; ?></span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Próxima misión</span>
-                                    <span class="info-value"><?php echo $this->userData['nextMission']; ?></span>
+                                    <span class="info-label">Encargado</span>
+                                    <span class="info-value"><?php echo $this->userData['encargado']; ?></span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Tiempo estimado</span>
+                                    <span class="info-label">Próxima hora</span>
                                     <span class="info-value"><?php echo $this->userData['estimatedTime']; ?></span>
                                 </div>
                                 <div class="info-item">
@@ -108,7 +156,7 @@ class UserProfile {
                 </div>
             </div>
         </body>
-        <?php
+<?php
     }
 }
 
@@ -154,13 +202,13 @@ $userProfile->render();
         border-radius: 50%;
         background-color: #2ecc71;
         border: 3px solid white;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .profile-card {
         background: white;
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         transition: transform 0.3s ease;
     }

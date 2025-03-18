@@ -223,9 +223,6 @@ class Navbar
       'Inicio' => 'fas fa-home',
       'Perfil' => 'fas fa-user',
       'Informacion' => 'fas fa-info-circle',
-      'Ascenso' => 'fas fa-arrow-up',
-      'Ventas' => 'fas fa-shopping-cart',
-      'Paga' => 'fas fa-money-bill-wave'
     ];
     return $icons[$itemName] ?? 'fas fa-circle';
   }
@@ -237,15 +234,6 @@ class Navbar
       'Cerrar session' => 'fas fa-sign-out-alt',
       'Requisitos paga' => 'fas fa-list-check',
       'Calcular rango' => 'fas fa-calculator',
-      'Gestion de tiempo' => 'fas fa-clock',
-      'Gestion ascenso' => 'fas fa-users',
-      'Ventas membresias' => 'fas fa-id-card',
-      'Ventas rangos' => 'fas fa-star',
-      'Grafico total ventas' => 'fas fa-chart-line',
-      'Vender membresias y rangos' => 'fas fa-tags',
-      'Gestion de pagas' => 'fas fa-wallet',
-      'Pagar usuario' => 'fas fa-hand-holding-usd',
-      'Grafico total de pagas' => 'fas fa-chart-pie'
     ];
     return $icons[$itemName] ?? 'fas fa-circle';
   }
@@ -254,9 +242,7 @@ class Navbar
   {
     $modalItems = [
       'Calcular rango' => '#" data-bs-toggle="modal" data-bs-target="#modalCalcular',
-      'Pagar usuario' => '#" data-bs-toggle="modal" data-bs-target="#modalpagar',
-      'Vender membresias y rangos' => '#" data-bs-toggle="modal" data-bs-target="#modalrangos'
-    ];
+      ];
 
     if (isset($modalItems[$item])) {
       return $modalItems[$item];
@@ -270,9 +256,6 @@ $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Perfil', 'dropdown' => ['Ver perfil', 'Cerrar session']],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Calcular rango']],
-  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
-  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
-  ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items);

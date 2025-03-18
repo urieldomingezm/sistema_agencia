@@ -1,7 +1,53 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 require_once(TEMPLATES_PATH . 'header.php');
-require_once(MENU_PATH . 'menu_rango_admin.php');
+
+// Obtener el rango del usuario y cargar el menú correspondiente
+if (isset($_SESSION['user_id'])) {
+    require_once(CONFIG_PATH . 'bd.php');
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    try {
+        $query = "SELECT rango FROM registro_usuario WHERE id = :user_id";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $userRango = $row['rango'];
+            // Determinar qué menú cargar según el rango
+            switch ($userRango) {
+                case 'Agente':
+                case 'Seguridad':
+                case 'Tecnico':
+                    require_once(MENU_PATH . 'menu_rango_bajos.php');
+                    break;
+                case 'Logistica':
+                case 'Supervisor':
+                    require_once(MENU_PATH . 'menu_rango_medios.php');
+                    break;
+                case 'Director':
+                case 'Presidente':
+                case 'Operativo':
+                case 'Junta directiva':
+                    require_once(MENU_PATH . 'menu_rango_altos.php');
+                    break;
+                case 'Administrador':
+                case 'Manager':
+                case 'Dueno':
+                case 'Fundador':
+                    require_once(MENU_PATH . 'menu_rango_admin.php');
+                    break;
+                default:
+                    require_once(MENU_PATH . 'menu_rango_bajos.php');
+            }
+        }
+    } catch (PDOException $e) {
+        error_log("Error al obtener rango: " . $e->getMessage());
+        require_once(MENU_PATH . 'menu_rango_bajos.php'); // Menú por defecto en caso de error
+    }
+}
 
 // Add session check here
 if (!isset($_SESSION['user_id'])) {
@@ -111,18 +157,18 @@ if (!isset($_SESSION['user_id'])) {
                                 require_once(CONFIG_PATH . 'bd.php');
                                 $database = new Database();
                                 $conn = $database->getConnection();
-                                
+
                                 try {
                                     $query = "SELECT rango FROM registro_usuario WHERE id = :user_id";
                                     $stmt = $conn->prepare($query);
                                     $stmt->bindParam(':user_id', $_SESSION['user_id']);
                                     $stmt->execute();
-                                    
+
                                     if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         $userRango = $row['rango'];
                                         $_SESSION['rango'] = $userRango;
                                     }
-                                } catch(PDOException $e) {
+                                } catch (PDOException $e) {
                                     error_log("Error en la consulta: " . $e->getMessage());
                                     echo '<div class="alert alert-danger">Error al verificar permisos</div>';
                                     exit();
@@ -156,15 +202,17 @@ if (!isset($_SESSION['user_id'])) {
         .bg-gradient-light {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
-        
+
         .page-container {
             min-height: calc(100vh - 400px);
-            padding: 4rem 0; /* Aumentado el padding vertical */
+            padding: 4rem 0;
+            /* Aumentado el padding vertical */
         }
 
         .search-results-container {
             animation: fadeIn 0.3s ease-in-out;
-            margin-top: 80px; /* Añadido margen superior */
+            margin-top: 80px;
+            /* Añadido margen superior */
         }
 
         .card-header {
