@@ -138,16 +138,16 @@ if (!isset($_SESSION['user_id'])) {
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                             $validPages = [
-                                'gestion_de_tiempo' => ['file' => 'GSTM.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
-                                'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva']],
-                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva']],
-                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva']],
-                                'Requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
-                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']],
-                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']],
-                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']],
-                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
-                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Director', 'Presidente', 'Junta directiva']]
+                                'gestion_de_tiempo' => ['file' => 'GSTM.php', 'roles' => ['Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
+                                'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
+                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
+                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
+                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica','Supervisor', 'Director', 'Presidente', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
+                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
+                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']],
+                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']],
+                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']],
+                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']]
                             ];
 
                             // Al inicio del archivo, después de las verificaciones de sesión
