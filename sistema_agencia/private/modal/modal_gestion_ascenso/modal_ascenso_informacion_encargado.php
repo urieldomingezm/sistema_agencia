@@ -3,7 +3,7 @@
         <div class="modal-content border-0">
             <div class="modal-header bg-gradient-primary border-0 py-2">
                 <h6 class="modal-title text-white mb-0">
-                    <i class="fas fa-id-card me-2"></i>Perfil Encargado
+                    <i class="fas fa-id-card me-2"></i>Informacion del encargado
                 </h6>
                 <button type="button" class="btn-close btn-close-white btn-sm" data-bs-dismiss="modal"></button>
             </div>
@@ -11,12 +11,11 @@
                 <!-- Profile Header -->
                 <div class="profile-header text-center p-3">
                     <div class="avatar-wrapper mb-2">
-                        <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=goblinslayer88&amp;action=none&amp;direction=2&amp;head_direction=2&amp;gesture=&amp;size=sl&amp;headonly=2"
-                             class="avatar-img">
+                        <img id="encargadoAvatar" src="" class="avatar-img">
                         <span class="status-badge"></span>
                     </div>
-                    <h5 class="mb-0">Goblinslayer88</h5>
-                    <span class="badge bg-gradient-warning text-dark mt-1">Dueño</span>
+                    <h5 class="mb-0" id="encargadoNombre"></h5>
+                    <span class="badge bg-gradient-warning text-dark mt-1" id="encargadoRango"></span>
                 </div>
 
                 <!-- Profile Info -->
@@ -25,21 +24,21 @@
                         <i class="fas fa-history text-primary"></i>
                         <div class="info-content">
                             <small class="text-muted">Misión Anterior</small>
-                            <p class="mb-0">ATN- Supervisor A -XDD -SDS</p>
+                            <p class="mb-0" id="misionAntigua"></p>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-arrow-right text-success"></i>
                         <div class="info-content">
                             <small class="text-muted">Misión Nueva</small>
-                            <p class="mb-0">ATN- Supervisor B -XDD -SDS</p>
+                            <p class="mb-0" id="misionNueva"></p>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-signature text-info"></i>
                         <div class="info-content">
                             <small class="text-muted">Firma</small>
-                            <p class="mb-0">XDD</p>
+                            <p class="mb-0" id="firma"></p>
                         </div>
                     </div>
                 </div>
@@ -47,6 +46,31 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modalInformacionPersonaEncargado');
+    modal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const encargado = button.getAttribute('data-encargado');
+        const rango = button.getAttribute('data-rango');
+        const misionAntigua = button.getAttribute('data-mision-antigua');
+        const misionNueva = button.getAttribute('data-mision-nueva');
+        const firma = button.getAttribute('data-firma');
+
+        // Update avatar
+        document.getElementById('encargadoAvatar').src = 
+            `https://www.habbo.es/habbo-imaging/avatarimage?user=${encargado}&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=2`;
+        
+        // Update other information
+        document.getElementById('encargadoNombre').textContent = encargado;
+        document.getElementById('encargadoRango').textContent = rango;
+        document.getElementById('misionAntigua').textContent = misionAntigua;
+        document.getElementById('misionNueva').textContent = misionNueva;
+        document.getElementById('firma').textContent = firma;
+    });
+});
+</script>
 
 <style>
 .bg-gradient-primary {

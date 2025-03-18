@@ -146,7 +146,7 @@ if (!isset($_SESSION['user_id'])) {
                                 'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva']],
+                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],

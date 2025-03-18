@@ -11,12 +11,11 @@
                 <!-- Profile Header -->
                 <div class="profile-header text-center p-3">
                     <div class="avatar-wrapper mb-2">
-                        <img src="https://www.habbo.es/habbo-imaging/avatarimage?user=santidemg&amp;action=none&amp;direction=2&amp;head_direction=2&amp;gesture=&amp;size=sl&amp;headonly=2"
-                             class="avatar-img">
+                        <img id="usuarioAvatar" src="" class="avatar-img">
                         <span class="status-badge"></span>
                     </div>
-                    <h5 class="mb-0">Santidemg</h5>
-                    <span class="badge bg-gradient-primary text-white mt-1">Supervisor</span>
+                    <h5 class="mb-0" id="usuarioNombre"></h5>
+                    <span class="badge bg-gradient-warning text-dark mt-1" id="usuarioRango"></span>
                 </div>
 
                 <!-- Profile Info -->
@@ -25,21 +24,21 @@
                         <i class="fas fa-history text-primary"></i>
                         <div class="info-content">
                             <small class="text-muted">Misión Anterior</small>
-                            <p class="mb-0">ATN- Supervisor A -XDD -SDS</p>
+                            <p class="mb-0" id="misionAntigua"></p>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-arrow-right text-success"></i>
                         <div class="info-content">
                             <small class="text-muted">Misión Nueva</small>
-                            <p class="mb-0">ATN- Supervisor B -XDD -SDS</p>
+                            <p class="mb-0" id="misionNueva"></p>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-signature text-info"></i>
                         <div class="info-content">
                             <small class="text-muted">Firma</small>
-                            <p class="mb-0">XDD</p>
+                            <p class="mb-0" id="firma"></p>
                         </div>
                     </div>
                 </div>
@@ -47,6 +46,33 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modalInformacionPersona');
+    modal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const usuario = button.getAttribute('data-usuario');
+        const rango = button.getAttribute('data-rango');
+        const misionAntigua = button.getAttribute('data-mision-antigua');
+        const misionNueva = button.getAttribute('data-mision-nueva');
+        const firma = button.getAttribute('data-firma');
+
+        // Update avatar with keko or default image if no user
+        document.getElementById('usuarioAvatar').src = 
+            usuario !== 'No disponible' 
+                ? `https://www.habbo.es/habbo-imaging/avatarimage?user=${usuario}&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=2`
+                : 'ruta/a/imagen/por/defecto.png';
+        
+        // Update information with specific fallbacks
+        document.getElementById('usuarioNombre').textContent = usuario || 'No disponible';
+        document.getElementById('usuarioRango').textContent = rango || 'No disponible';
+        document.getElementById('misionAntigua').textContent = misionAntigua || 'Información no disponible';
+        document.getElementById('misionNueva').textContent = misionNueva || 'Información no disponible';
+        document.getElementById('firma').textContent = firma || 'Información no disponible';
+    });
+});
+</script>
 
 <style>
 .bg-gradient-info {

@@ -79,12 +79,19 @@ try {
                             <tr data-id="<?= $ascenso['ascenso_id'] ?>" class="align-middle">
                                 <td class="text-center"><?= $ascenso['ascenso_id'] ?></td>
                                 <td>
-                                    <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersona">
+                                    <button class="btn btn-link text-decoration-none p-0"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalInformacionPersona"
+                                        data-usuario="<?= htmlspecialchars($ascenso['ascenso_usuario'] ?? 'No disponible') ?>"
+                                        data-rango="<?= htmlspecialchars($ascenso['ascenso_rango'] ?? 'No disponible') ?>"
+                                        data-mision-antigua="<?= htmlspecialchars($ascenso['ascenso_mision_antigua'] ?? 'Información no disponible') ?>"
+                                        data-mision-nueva="<?= htmlspecialchars($ascenso['ascenso_mision_nueva'] ?? 'Información no disponible') ?>"
+                                        data-firma="<?= htmlspecialchars($ascenso['ascenso_firma'] ?? 'Información no disponible') ?>">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-xs me-2">
                                                 <i class="fas fa-user-circle text-primary"></i>
                                             </div>
-                                            <?= $ascenso['ascenso_usuario'] ?>
+                                            <?= $ascenso['ascenso_usuario'] ?? 'No disponible' ?>
                                         </div>
                                     </button>
                                 </td>
@@ -106,7 +113,14 @@ try {
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersonaEncargado">
+                                    <button class="btn btn-link text-decoration-none p-0"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalInformacionPersonaEncargado"
+                                        data-encargado="<?= htmlspecialchars($ascenso['ascenso_encargado_usuario']) ?>"
+                                        data-rango="<?= htmlspecialchars($ascenso['ascenso_rango']) ?>"
+                                        data-mision-antigua="<?= htmlspecialchars($ascenso['ascenso_mision_antigua']) ?>"
+                                        data-mision-nueva="<?= htmlspecialchars($ascenso['ascenso_mision_nueva']) ?>"
+                                        data-firma="<?= htmlspecialchars($ascenso['ascenso_firma']) ?>">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-xs me-2">
                                                 <i class="fas fa-user-shield text-primary"></i>
@@ -250,6 +264,7 @@ require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_baja.php');
 require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_despedir.php');
 require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_encargado.php');
 require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_informacion_persona.php');
+require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_registro.php');
 ?>
 
 <script>
