@@ -5,10 +5,87 @@ try {
     $database = new Database();
     $conn = $database->getConnection();
 
-    $query = "SELECT * FROM gestion_tiempo";
+    $query = "SELECT *, 
+        TIMESTAMPDIFF(SECOND, tiempo_fecha_registro, NOW()) as segundos_transcurridos 
+    FROM gestion_tiempo";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $tiempos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tiempo_id']) && isset($_POST['tiempo_transcurrido'])) {
+        $tiempo_id = $_POST['tiempo_id'];
+        $tiempo_transcurrido = $_POST['tiempo_transcurrido'];
+        
+        $horas = str_pad(floor($tiempo_transcurrido / 3600), 2, "0", STR_PAD_LEFT);
+        $minutos = str_pad(floor(($tiempo_transcurrido % 3600) / 60), 2, "0", STR_PAD_LEFT);
+        $segundos = str_pad($tiempo_transcurrido % 60, 2, "0", STR_PAD_LEFT);
+        $tiempo_formateado = "$horas:$minutos:$segundos";
+
+        $updateQuery = "UPDATE gestion_tiempo SET tiempo_transcurrido = :tiempo_formateado WHERE tiempo_id = :tiempo_id";
+        $stmt = $conn->prepare($updateQuery);
+        $stmt->bindParam(':tiempo_formateado', $tiempo_formateado, PDO::PARAM_STR);
+        $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
+        $stmt->execute();
+        exit;
+    }
+    // Add after existing POST handlers
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tiempo_id']) && isset($_POST['accion'])) {
+        $tiempo_id = $_POST['tiempo_id'];
+        $accion = $_POST['accion'];
+        
+        switch($accion) {
+            case 'iniciar':
+                $updateQuery = "UPDATE gestion_tiempo SET 
+                    tiempo_status = 'Corriendo',
+                    tiempo_fecha_registro = NOW()
+                    WHERE tiempo_id = :tiempo_id";
+                break;
+                
+            case 'pausar':
+                $updateQuery = "UPDATE gestion_tiempo SET 
+                    tiempo_status = 'Pausado'
+                    WHERE tiempo_id = :tiempo_id";
+                break;
+        }
+        
+        if (isset($updateQuery)) {
+            $stmt = $conn->prepare($updateQuery);
+            $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
+            $stmt->execute();
+            exit;
+        }
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tiempo_id']) && isset($_POST['accion']) && $_POST['accion'] === 'detener') {
+        $tiempo_id = $_POST['tiempo_id'];
+        $tiempo_transcurrido = $_POST['tiempo_transcurrido'];
+        
+        // Get current accumulated time
+        $queryActual = "SELECT tiempo_acumulado FROM gestion_tiempo WHERE tiempo_id = :tiempo_id";
+        $stmt = $conn->prepare($queryActual);
+        $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $tiempoActual = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Sum times
+        $tiempo_actual = strtotime("1970-01-01 " . $tiempoActual['tiempo_acumulado'] . " UTC");
+        $tiempo_nuevo = $tiempo_actual + $tiempo_transcurrido;
+        
+        // Format new accumulated time
+        $tiempo_acumulado = gmdate("H:i:s", $tiempo_nuevo);
+        
+        // Update database
+        $updateQuery = "UPDATE gestion_tiempo SET 
+            tiempo_acumulado = :tiempo_acumulado,
+            tiempo_transcurrido = '00:00:00',
+            tiempo_status = 'Pausado'
+            WHERE tiempo_id = :tiempo_id";
+        
+        $stmt = $conn->prepare($updateQuery);
+        $stmt->bindParam(':tiempo_acumulado', $tiempo_acumulado, PDO::PARAM_STR);
+        $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
+        $stmt->execute();
+        exit;
+    }
 } catch (PDOException $e) {
     error_log("Error al obtener datos: " . $e->getMessage());
     $tiempos = [];
@@ -76,7 +153,12 @@ try {
                                 </td>
                                 <td class="text-center font-monospace"><?= $tiempo['tiempo_restado'] ?></td>
                                 <td class="text-center font-monospace"><?= $tiempo['tiempo_acumulado'] ?></td>
-                                <td class="text-center font-monospace"><?= $tiempo['tiempo_transcurrido'] ?></td>
+                                <td class="text-center tiempo-transcurrido" data-segundos="<?= $tiempo['segundos_transcurridos'] ?>">
+                                    <span class="badge bg-light text-dark border">
+                                        <i class="fas fa-hourglass-half me-1"></i>
+                                        <?= $tiempo['tiempo_transcurrido'] ?>
+                                    </span>
+                                </td>
                                 <td class="text-center font-monospace"><?= $tiempo['tiempo_total'] ?></td>
                                 <td>
                                     <button class="btn btn-link text-decoration-none p-0" data-bs-toggle="modal" data-bs-target="#modalInformacionPersonaEncargado">
@@ -118,19 +200,6 @@ try {
                                             <li>
                                                 <a class="dropdown-item text-info" href="#" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
                                                     <i class="fas fa-check me-2"></i>Completado
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalModificar">
-                                                    <i class="fas fa-edit me-2"></i>Modificar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#modalEliminar">
-                                                    <i class="fas fa-trash me-2"></i>Eliminar
                                                 </a>
                                             </li>
                                         </ul>
@@ -252,5 +321,119 @@ function formatDate($date)
     return date('d/m/Y H:i', strtotime($date));
 }
 ?>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new simpleDatatables.DataTable('#tablaTiempos');
+
+        // Handle all action buttons
+        document.querySelectorAll('.dropdown-item').forEach(button => {
+            button.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const row = this.closest('tr');
+                const tiempoId = row.dataset.id;
+                const action = this.querySelector('i').className;
+
+                if (action.includes('fa-play')) {
+                    const result = await Swal.fire({
+                        title: '¿Iniciar tiempo?',
+                        text: '¿Deseas iniciar el conteo de tiempo?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, iniciar',
+                        cancelButtonText: 'Cancelar'
+                    });
+
+                    if (result.isConfirmed) {
+                        fetch('', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: `tiempo_id=${tiempoId}&accion=iniciar`
+                        }).then(() => {
+                            Swal.fire('¡Iniciado!', 'El tiempo ha comenzado a correr.', 'success')
+                                .then(() => location.reload());
+                        });
+                    }
+                } else if (action.includes('fa-stop')) {
+                    const result = await Swal.fire({
+                        title: '¿Detener tiempo?',
+                        text: 'El tiempo transcurrido se sumará al acumulado',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, detener',
+                        cancelButtonText: 'Cancelar'
+                    });
+
+                    if (result.isConfirmed) {
+                        const tiempoElem = row.querySelector('.tiempo-transcurrido');
+                        const segundos = parseInt(tiempoElem.dataset.segundos);
+                        
+                        fetch('', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: `tiempo_id=${tiempoId}&accion=detener&tiempo_transcurrido=${segundos}`
+                        }).then(() => {
+                            Swal.fire('¡Detenido!', 'El tiempo se ha detenido y acumulado.', 'success')
+                                .then(() => location.reload());
+                        });
+                    }
+                } else if (action.includes('fa-pause')) {
+                    const result = await Swal.fire({
+                        title: '¿Pausar tiempo?',
+                        text: '¿Deseas pausar el conteo de tiempo?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, pausar',
+                        cancelButtonText: 'Cancelar'
+                    });
+
+                    if (result.isConfirmed) {
+                        fetch('', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                            body: `tiempo_id=${tiempoId}&accion=pausar`
+                        }).then(() => {
+                            Swal.fire('¡Pausado!', 'El tiempo se ha pausado.', 'success')
+                                .then(() => location.reload());
+                        });
+                    }
+                }
+            });
+        });
+
+        // Keep existing updateTiempoTranscurrido function
+        function updateTiempoTranscurrido() {
+            document.querySelectorAll(".tiempo-transcurrido, .tiempo-restado").forEach(function(tiempoElem) {
+                const row = tiempoElem.closest('tr');
+                const status = row.querySelector('.badge').textContent.trim().toLowerCase();
+                const isRestado = tiempoElem.classList.contains('tiempo-restado');
+                
+                if ((status === 'corriendo' && !isRestado) || (status === 'ausente' && isRestado)) {
+                    let segundos = parseInt(tiempoElem.dataset.segundos);
+                    segundos++;
+                    tiempoElem.dataset.segundos = segundos;
+                    
+                    const hours = String(Math.floor(segundos / 3600)).padStart(2, '0');
+                    const minutes = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
+                    const seconds = String(segundos % 60).padStart(2, '0');
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+                    
+                    tiempoElem.querySelector('span').innerHTML = 
+                        `<i class="fas fa-hourglass-half me-1"></i>${timeString}`;
+
+                    const postData = isRestado ? 'tiempo_restado' : 'tiempo_transcurrido';
+                    fetch('', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: `tiempo_id=${row.dataset.id}&${postData}=${segundos}`
+                    });
+                }
+            });
+        }
+
+        setInterval(updateTiempoTranscurrido, 1000);
+    });
+</script>
 
 

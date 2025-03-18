@@ -20,7 +20,7 @@ try {
         $tiempo_restante = $_POST['tiempo_restante'];
 
         if ($tiempo_restante == 0) {
-            $nuevo_estado = "Disponible";
+            $nuevo_estado = "Disponible para ascenso";
             $updateQuery = "UPDATE gestion_ascenso SET ascenso_hora_proxima = '00:00:00', ascenso_status = :nuevo_estado WHERE ascenso_id = :ascenso_id";
             $stmt = $conn->prepare($updateQuery);
             $stmt->bindParam(':nuevo_estado', $nuevo_estado, PDO::PARAM_STR);
@@ -106,9 +106,9 @@ try {
                                     </span>
                                 </td>
                                 <td class="text-center estado">
-                                    <span class="badge rounded-pill px-3 <?= $ascenso['ascenso_status'] == 'Disponible' ? 'bg-purple' : 'bg-warning text-dark' ?>"
-                                        <?= $ascenso['ascenso_status'] == 'Disponible' ? 'style="background-color: #8B5CF6;"' : '' ?>>
-                                        <i class="fas <?= $ascenso['ascenso_status'] == 'Disponible' ? 'fa-check' : 'fa-clock' ?> me-1"></i>
+                                    <span class="badge rounded-pill px-3 <?= $ascenso['ascenso_status'] == 'Disponible para ascenso' ? 'bg-purple' : 'bg-warning text-dark' ?>"
+                                        <?= $ascenso['ascenso_status'] == 'Disponible para ascenso' ? 'style="background-color: #8B5CF6;"' : '' ?>>
+                                        <i class="fas <?= $ascenso['ascenso_status'] == 'Disponible para ascenso' ? 'fa-check' : 'fa-clock' ?> me-1"></i>
                                         <?= $ascenso['ascenso_status'] ?>
                                     </span>
                                 </td>
@@ -305,7 +305,7 @@ require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_registro.php');
                     if (segundos === 0) {
                         const estadoElem = tiempoElem.closest("tr").querySelector(".estado");
                         estadoElem.innerHTML = '<span class="badge bg-purple" style="background-color: #8B5CF6;">' +
-                            '<i class="fas fa-check me-1"></i>Disponible</span>';
+                            '<i class="fas fa-check me-1"></i>Disponible para ascenso</span>';
                     }
                 }
             });
