@@ -60,13 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update avatar with keko or default image if no user
         document.getElementById('usuarioAvatar').src = 
-            usuario !== 'No disponible' 
+            usuario !== 'Información no disponible' 
                 ? `https://www.habbo.es/habbo-imaging/avatarimage?user=${usuario}&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=2`
                 : 'ruta/a/imagen/por/defecto.png';
         
         // Update information with specific fallbacks
-        document.getElementById('usuarioNombre').textContent = usuario || 'No disponible';
-        document.getElementById('usuarioRango').textContent = rango || 'No disponible';
+        document.getElementById('usuarioNombre').textContent = usuario || 'Información no disponible';
+        document.getElementById('usuarioRango').textContent = rango || 'Información no disponible';
         document.getElementById('misionAntigua').textContent = misionAntigua || 'Información no disponible';
         document.getElementById('misionNueva').textContent = misionNueva || 'Información no disponible';
         document.getElementById('firma').textContent = firma || 'Información no disponible';

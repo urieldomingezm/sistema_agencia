@@ -82,8 +82,8 @@ try {
                                     <button class="btn btn-link text-decoration-none p-0"
                                         data-bs-toggle="modal"
                                         data-bs-target="#modalInformacionPersona"
-                                        data-usuario="<?= htmlspecialchars($ascenso['ascenso_usuario'] ?? 'No disponible') ?>"
-                                        data-rango="<?= htmlspecialchars($ascenso['ascenso_rango'] ?? 'No disponible') ?>"
+                                        data-usuario="<?= htmlspecialchars($ascenso['ascenso_usuario'] ?? 'Información no disponible') ?>"
+                                        data-rango="<?= htmlspecialchars($ascenso['ascenso_rango'] ?? 'Información no disponible') ?>"
                                         data-mision-antigua="<?= htmlspecialchars($ascenso['ascenso_mision_antigua'] ?? 'Información no disponible') ?>"
                                         data-mision-nueva="<?= htmlspecialchars($ascenso['ascenso_mision_nueva'] ?? 'Información no disponible') ?>"
                                         data-firma="<?= htmlspecialchars($ascenso['ascenso_firma'] ?? 'Información no disponible') ?>">
@@ -91,13 +91,13 @@ try {
                                             <div class="avatar-xs me-2">
                                                 <i class="fas fa-user-circle text-primary"></i>
                                             </div>
-                                            <?= $ascenso['ascenso_usuario'] ?? 'No disponible' ?>
+                                            <?= $ascenso['ascenso_usuario'] ?? 'Información no disponible' ?>
                                         </div>
                                     </button>
                                 </td>
                                 <td>
                                     <span class="badge bg-gradient-info text-white rounded-pill px-3">
-                                        <i class="fas fa-star me-1"></i><?= $ascenso['ascenso_rango'] ?>
+                                        <i class="fas fa-star me-1"></i><?= $ascenso['ascenso_rango'] ?? 'Información no disponible' ?>
                                     </span>
                                 </td>
                                 <td class="text-center estado">
