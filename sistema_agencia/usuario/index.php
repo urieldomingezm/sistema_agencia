@@ -200,7 +200,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
-    <body> tag
+    <body>
     <div id="loader-wrapper" class="loader-wrapper">
     <div class="loader">
         <div class="loader-inner"></div>
@@ -308,7 +308,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <?php require_once(TEMPLATES_PATH . 'footer.php'); ?>
 
-// Add these styles before the closing </style> tag
+
 <style>
     .loader-wrapper {
         position: fixed;
@@ -358,8 +358,7 @@ if (!isset($_SESSION['user_id'])) {
         100% { transform: rotate(360deg); }
     }
 </style>
-
-// Add this before the closing </body> tag
+</body>
 <script>
     window.addEventListener('load', function() {
         const loader = document.getElementById('loader-wrapper');
