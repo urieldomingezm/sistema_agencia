@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update avatar
         document.getElementById('encargadoAvatar').src = 
-            `https://www.habbo.es/habbo-imaging/avatarimage?user=${encargado}&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=2`;
+            `https://www.habbo.es/habbo-imaging/avatarimage?user=${encargado}&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=1`;
         
         // Update other information
         document.getElementById('encargadoNombre').textContent = encargado;

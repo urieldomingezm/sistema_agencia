@@ -25,7 +25,6 @@ define('PROCESOS_LOGIN_PATH', PRIVATE_PATH . 'config/procesos/login_registro/');
 
 // Rutas para modales de ascender y tomar tiempo usando menus
 define('MODALES_MENU_PATH', PRIVATE_PATH . 'modal/moda_menus_ascender/');
-
 // Rutas para autenticacion de usuario
 define('PROCESO_ATHUR_PATH', PRIVATE_PATH . 'config/procesos/autenticacion/');
 
@@ -37,7 +36,7 @@ define('MODALES_MENU_VENTAS_PATH', PRIVATE_PATH . 'modal/modal_menu_ventas/');
 
 // Rutas de configuración privadas
 define('MENU_PATH', PRIVATE_PATH . 'menus/');     
-define('MODAL_GESTION_TIME_ALTOS_PATH', PRIVATE_PATH . 'modal/modal_gestion_time_altos/'); 
+define('MODAL_GESTION_TIME_PATH', PRIVATE_PATH . 'modal/modal_gestion_tiempo/'); 
 define('MODAL_GESTION_TIME_ADMIN_PATH', PRIVATE_PATH . 'modal/modal_gestion_time_admin/');      
 define('SCRIPTS_PATH', PRIVATE_PATH . 'scripts/');     
 define('SUBSCRIPTIONS_PATH', PRIVATE_PATH . 'subscriptions/');      
