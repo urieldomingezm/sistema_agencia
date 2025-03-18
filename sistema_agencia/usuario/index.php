@@ -126,7 +126,6 @@ if (!isset($_SESSION['user_id'])) {
                             }
                             echo '</div>';
                         } else {
-                            echo '<br>';
                             echo '<div class="text-center p-4">';
                             echo '<i class="fas fa-search-minus fa-3x text-muted mb-3"></i>';
                             echo '<div class="alert alert-warning mb-0">';

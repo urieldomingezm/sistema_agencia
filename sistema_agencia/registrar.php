@@ -185,6 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- Add Just-Validate library -->
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -234,6 +236,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
             transform: translateY(-2px);
         }
+    
+    /* Add validation styles */
+    .just-validate-error-label {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+
+    .just-validate-error-field {
+        border-color: #dc3545 !important;
+    }
+
+    .just-validate-success-field {
+        border-color: #198754 !important;
+    }
     </style>
 </head>
 
@@ -279,12 +296,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Initialize Just-Validate
+        const validator = new JustValidate('#registrationForm', {
+            validateBeforeSubmitting: true,
+        });
 
-            fetch('registrar.php', {
+        validator
+            .addField('[name="username"]', [
+                {
+                    rule: 'required',
+                    errorMessage: 'El usuario es requerido'
+                },
+                {
+                    rule: 'minLength',
+                    value: 3,
+                    errorMessage: 'El usuario debe tener al menos 3 caracteres'
+                }
+            ])
+            .addField('[name="habboName"]', [
+                {
+                    rule: 'required',
+                    errorMessage: 'El nombre de Habbo es requerido'
+                },
+                {
+                    rule: 'minLength',
+                    value: 3,
+                    errorMessage: 'El nombre debe tener al menos 3 caracteres'
+                }
+            ])
+            .addField('[name="password"]', [
+                {
+                    rule: 'required',
+                    errorMessage: 'La contraseña es requerida'
+                },
+                {
+                    rule: 'password',
+                    errorMessage: 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número'
+                }
+            ])
+            .onSuccess((event) => {
+                const form = event.target;
+                fetch('registrar.php', {
                     method: 'POST',
-                    body: new FormData(this)
+                    body: new FormData(form)
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -293,11 +347,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             icon: 'info',
                             title: 'Código de Verificación',
                             html: `Tu código es: <strong>${data.code}</strong><br>
-                       Por favor, coloca este código en tu lema/motto de Habbo.<br>
-                       Una vez colocado, ingresa el código aquí para completar el registro.`,
+                           Por favor, coloca este código en tu lema/motto de Habbo.<br>
+                           Una vez colocado, ingresa el código aquí para completar el registro.`,
                             confirmButtonColor: '#8B5CF6'
                         }).then(() => {
                             document.getElementById('verificationSection').style.display = 'block';
+                            validator.addField('[name="verificationCode"]', [
+                                {
+                                    rule: 'required',
+                                    errorMessage: 'El código de verificación es requerido'
+                                },
+                                {
+                                    rule: 'minLength',
+                                    value: 5,
+                                    errorMessage: 'El código debe tener 5 caracteres'
+                                }
+                            ]);
                         });
                     } else if (data.success) {
                         Swal.fire({
@@ -325,8 +390,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         confirmButtonColor: '#8B5CF6'
                     });
                 });
-        });
+            });
+
+        // Remove the old event listener since Just-Validate handles it now
+        // document.getElementById('registrationForm').addEventListener('submit'... 
     </script>
 </body>
-
 </html>
