@@ -144,8 +144,8 @@ if (!isset($_SESSION['user_id'])) {
                                 'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo','Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Logistica', 'Supervisor', 'Operativo','Director', 'Presidente', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
@@ -198,6 +198,13 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
+    </div>
+
+    <body> tag
+    <div id="loader-wrapper" class="loader-wrapper">
+    <div class="loader">
+        <div class="loader-inner"></div>
+    </div>
     </div>
 
     <style>
@@ -300,3 +307,75 @@ if (!isset($_SESSION['user_id'])) {
 </body>
 
 <?php require_once(TEMPLATES_PATH . 'footer.php'); ?>
+
+// Add these styles before the closing </style> tag
+<style>
+    .loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(243, 240, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+    }
+
+    .loader-wrapper.fade-out {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid #00c6fb;
+        border-bottom: 5px solid #005bea;
+        animation: spin 1s linear infinite;
+    }
+
+    .loader-inner {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid #005bea;
+        border-bottom: 5px solid #00c6fb;
+        top: 50%;
+        left: 50%;
+        margin: -15px 0 0 -15px;
+        animation: spin 0.8s linear infinite reverse;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+// Add this before the closing </body> tag
+<script>
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('loader-wrapper');
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 300);
+    });
+
+    // Show loader when navigating
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (link && !link.hasAttribute('target') && link.href.indexOf('#') === -1) {
+            const loader = document.getElementById('loader-wrapper');
+            loader.style.display = 'flex';
+            loader.classList.remove('fade-out');
+        }
+    });
+</script>
