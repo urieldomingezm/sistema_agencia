@@ -18,6 +18,9 @@ if (isset($_SESSION['user_id'])) {
             $userRango = $row['rango'];
             // Determinar qué menú cargar según el rango
             switch ($userRango) {
+                case 'En Espera de ser verificado':
+                    require_once(MENU_PATH . 'menu_aunno_verificado.php');
+                    break;
                 case 'Agente':
                 case 'Seguridad':
                 case 'Tecnico':
@@ -138,20 +141,20 @@ if (!isset($_SESSION['user_id'])) {
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                             $validPages = [
-                                'gestion_de_tiempo' => ['file' => 'GSTM.php', 'roles' => ['Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
-                                'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
-                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
-                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
-                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica','Supervisor', 'Director', 'Presidente', 'Junta directiva','Administrador','Manager','Dueño','Fundador']],
-                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Supervisor', 'Director', 'Presidente', 'Junta directiva']],
-                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']],
-                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']],
-                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']],
-                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador','Manager','Dueño','Fundador']]
+                                'gestion_de_tiempo' => ['file' => 'GSTM.php', 'roles' => ['Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'inicio' => ['file' => 'USR.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'ver_perfil' => ['file' => 'PRUS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'cerrar_session' => ['file' => 'CRSS.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'requisitos_paga' => ['file' => 'RQPG.php', 'roles' => ['Agente', 'Seguridad', 'Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva', 'Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'gestion_ascenso' => ['file' => 'GSAS.php', 'roles' => ['Logistica', 'Supervisor', 'Director', 'Presidente', 'Junta directiva']],
+                                'gestion_de_pagas' => ['file' => 'GTPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'verificar_usuario' => ['file' => 'VER.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']]
                             ];
 
-                            // Al inicio del archivo, después de las verificaciones de sesión
-                            // Verificación de rango usando la clase Database
+
                             $userRango = '';
                             if (isset($_SESSION['user_id'])) {
                                 require_once(CONFIG_PATH . 'bd.php');

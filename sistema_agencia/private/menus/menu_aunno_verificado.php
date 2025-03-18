@@ -222,8 +222,7 @@ class Navbar
     $icons = [
       'Inicio' => 'fas fa-home',
       'Perfil' => 'fas fa-user',
-      'Informacion' => 'fas fa-info-circle',
-      'Ascenso' => 'fas fa-arrow-up'
+      'Informacion' => 'fas fa-info-circle'
     ];
     return $icons[$itemName] ?? 'fas fa-circle';
   }
@@ -235,8 +234,6 @@ class Navbar
       'Cerrar session' => 'fas fa-sign-out-alt',
       'Requisitos paga' => 'fas fa-list-check',
       'Calcular rango' => 'fas fa-calculator',
-      'Gestion de tiempo' => 'fas fa-clock',
-      'Gestion ascenso' => 'fas fa-users',
     ];
     return $icons[$itemName] ?? 'fas fa-circle';
   }
@@ -261,13 +258,10 @@ $items = [
   ['name' => 'Inicio', 'active' => true],
   ['name' => 'Perfil', 'dropdown' => ['Ver perfil', 'Cerrar session']],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Calcular rango']],
-  ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items);
 $navbar->render();
 
-
 require_once(MODALES_MENU_PATH . 'modal_calcular.php');
-require_once(MODALES_MENU_PAGA_PATH . 'modal_pagar_usuario.php');
-require_once(MODALES_MENU_VENTAS_PATH . 'modal_vender_rangos.php');
+

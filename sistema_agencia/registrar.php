@@ -147,7 +147,7 @@ class UserRegistration
             if ($stmt->execute()) {
                 $_SESSION['user_id'] = $this->conn->lastInsertId();
                 $_SESSION['username'] = $_SESSION['temp_data']['username'];
-                $_SESSION['rango'] = 'Agente';
+                $_SESSION['rango'] = 'En Espera de ser verificado';
                 unset($_SESSION['temp_data']);
                 return ['success' => true, 'message' => '¡Registro exitoso! Esperando verificación del moderador'];
             }
