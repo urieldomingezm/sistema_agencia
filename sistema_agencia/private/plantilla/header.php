@@ -53,6 +53,7 @@ class Header
         echo '<link id="icons-css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">';
         echo '<link id="sweetalert-css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.7/dist/sweetalert2.min.css" rel="stylesheet">';
         echo '<link id="chart-css" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet">';
+        echo '<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>';
 
         foreach ($this->cssFiles as $file) {
             echo '<link href="' . $file . '" rel="stylesheet">';
