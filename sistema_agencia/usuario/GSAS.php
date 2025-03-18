@@ -5,7 +5,12 @@ try {
     $database = new Database();
     $conn = $database->getConnection();
 
-    $query = "SELECT * FROM gestion_ascenso";
+    $query = "SELECT *, 
+        TIMESTAMPDIFF(SECOND, NOW(), 
+            DATE_ADD(ascenso_fecha_registro, 
+            INTERVAL TIME_TO_SEC(ascenso_hora_proxima) SECOND)
+        ) as segundos_restantes 
+    FROM gestion_ascenso";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $ascensos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -129,7 +134,8 @@ try {
                                         </div>
                                     </button>
                                 </td>
-                                <td class="text-center tiempo-restante">
+                                <td class="text-center tiempo-restante" 
+                                    data-segundos="<?= max(0, $ascenso['segundos_restantes']) ?>">
                                     <span class="badge bg-light text-dark border">
                                         <i class="fas fa-hourglass-half me-1"></i>
                                         <?= $ascenso['ascenso_hora_proxima'] ?>
@@ -271,41 +277,40 @@ require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_registro.php');
     document.addEventListener('DOMContentLoaded', function() {
         new simpleDatatables.DataTable('#tablaAscenso');
 
-        // Funciones para manejar el tiempo restante
-        function timeToSeconds(time) {
-            const [hours, minutes, seconds] = time.split(":").map(Number);
-            return (hours * 3600) + (minutes * 60) + seconds;
-        }
-
-        function secondsToTime(seconds) {
-            const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
-            const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-            const remainingSeconds = String(seconds % 60).padStart(2, '0');
-            return `${hours}:${minutes}:${remainingSeconds}`;
-        }
-
         function updateAscensoTime() {
-            $(".tiempo-restante").each(function() {
-                const tiempoElem = $(this);
-                let tiempoRestante = timeToSeconds(tiempoElem.text());
-
-                if (tiempoRestante > 0) {
-                    tiempoRestante--;
-                    tiempoElem.text(secondsToTime(tiempoRestante));
-
-                    const ascensoId = tiempoElem.closest("tr").data("id");
-                    $.post("", {
-                        ascenso_id: ascensoId,
-                        tiempo_restante: tiempoRestante
+            document.querySelectorAll(".tiempo-restante").forEach(function(tiempoElem) {
+                let segundos = parseInt(tiempoElem.dataset.segundos);
+                
+                if (segundos > 0) {
+                    segundos--;
+                    tiempoElem.dataset.segundos = segundos;
+                    
+                    const hours = String(Math.floor(segundos / 3600)).padStart(2, '0');
+                    const minutes = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
+                    const seconds = String(segundos % 60).padStart(2, '0');
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+                    
+                    tiempoElem.querySelector('span').innerHTML = 
+                        `<i class="fas fa-hourglass-half me-1"></i>${timeString}`;
+    
+                    const ascensoId = tiempoElem.closest("tr").dataset.id;
+                    fetch('', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `ascenso_id=${ascensoId}&tiempo_restante=${segundos}`
                     });
-                } else {
-                    const estadoElem = tiempoElem.closest("tr").find(".estado");
-                    estadoElem.html('<span class="badge bg-purple" style="background-color: #8B5CF6;">Disponible</span>');
+    
+                    if (segundos === 0) {
+                        const estadoElem = tiempoElem.closest("tr").querySelector(".estado");
+                        estadoElem.innerHTML = '<span class="badge bg-purple" style="background-color: #8B5CF6;">' +
+                            '<i class="fas fa-check me-1"></i>Disponible</span>';
+                    }
                 }
             });
         }
 
-        // Actualizar el tiempo cada segundo
         setInterval(updateAscensoTime, 1000);
     });
 </script>
