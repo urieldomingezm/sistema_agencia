@@ -150,7 +150,7 @@ if (!isset($_SESSION['user_id'])) {
                                 'grafico de pagas' => ['file' => 'GEPS.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
-                                'verificar_usuario' => ['file' => 'VER.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']]
+                                'verificar_usuarios' => ['file' => 'VER.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
                             ];
 
 
@@ -200,11 +200,12 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
-    <body>
+<body>
     <div id="loader-wrapper" class="loader-wrapper">
-    <div class="loader">
-        <div class="loader-inner"></div>
-    </div>
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-ring-inner"></div>
+        </div>
     </div>
 
     <style>
@@ -215,13 +216,11 @@ if (!isset($_SESSION['user_id'])) {
         .page-container {
             min-height: calc(100vh - 400px);
             padding: 4rem 0;
-            /* Aumentado el padding vertical */
         }
 
         .search-results-container {
             animation: fadeIn 0.3s ease-in-out;
             margin-top: 80px;
-            /* Añadido margen superior */
         }
 
         .card-header {
@@ -285,12 +284,75 @@ if (!isset($_SESSION['user_id'])) {
             border-bottom: none !important;
         }
 
+        /* Loader styles */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(243, 240, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-image {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            z-index: 2;
+            animation: none;  /* Asegura que la imagen no tenga animación */
+            transform: none;  /* Previene cualquier transformación */
+        }
+
+        .loader-ring {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            border-top: 4px solid #00c6fb;
+            border-bottom: 4px solid #005bea;
+            animation: spin 2s linear infinite;
+        }
+
+        .loader-ring-inner {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            border-left: 4px solid #00c6fb;
+            border-right: 4px solid #005bea;
+            animation: spin-reverse 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -301,9 +363,24 @@ if (!isset($_SESSION['user_id'])) {
             .page-container {
                 padding: 1rem 0;
             }
+            .loader {
+                width: 120px;
+                height: 120px;
+            }
+            .loader-image {
+                width: 60px;
+                height: 60px;
+            }
+            .loader-ring {
+                width: 120px;
+                height: 120px;
+            }
+            .loader-ring-inner {
+                width: 90px;
+                height: 90px;
+            }
         }
     </style>
-
 </body>
 
 <?php require_once(TEMPLATES_PATH . 'footer.php'); ?>
@@ -359,6 +436,8 @@ if (!isset($_SESSION['user_id'])) {
     }
 </style>
 </body>
+
+
 <script>
     window.addEventListener('load', function() {
         const loader = document.getElementById('loader-wrapper');

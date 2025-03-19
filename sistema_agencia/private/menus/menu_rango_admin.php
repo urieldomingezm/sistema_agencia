@@ -246,7 +246,9 @@ class Navbar
       'Vender membresias y rangos' => 'fas fa-tags',
       'Gestion de pagas' => 'fas fa-wallet',
       'Pagar usuario' => 'fas fa-hand-holding-usd',
-      'Grafico total de pagas' => 'fas fa-chart-pie'
+      'Grafico total de pagas' => 'fas fa-chart-pie',
+      'Verificar usuarios' => 'fas fa-user-shield', 
+      'Gestionar usuarios' => 'fas fa-users-cog'
     ];
     return $icons[$itemName] ?? 'fas fa-circle';
   }
@@ -274,7 +276,7 @@ $items = [
   ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
   ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
   ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
-  ['name' => 'Gestion de usuarios'],
+  ['name' => 'Gestion de usuarios', 'dropdown' => ['Verificar usuarios', 'Gestionar usuarios']],
 ];
 
 $navbar = new Navbar('Agencia Atenas', $items);
