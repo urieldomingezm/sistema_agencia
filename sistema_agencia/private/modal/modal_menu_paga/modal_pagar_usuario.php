@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarPago'])) {
             confirmButtonText: 'OK'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/usuario/index.php?page=Requisitos de paga';
+                window.location.href = '/usuario/index.php?page=gestion_de_pagas';
             }
         });
         </script>";
