@@ -8,37 +8,35 @@
                 <button type="button" class="btn-close btn-close-white btn-sm" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-0">
-                <!-- Profile Header -->
                 <div class="profile-header text-center p-3">
                     <div class="avatar-wrapper mb-2">
-                        <img id="encargadoAvatar" src="" class="avatar-img">
+                        <img id="encargadoAvatarImg" src="" class="avatar-img">
                         <span class="status-badge"></span>
                     </div>
-                    <h5 class="mb-0" id="encargadoNombre"></h5>
-                    <span class="badge bg-gradient-warning text-dark mt-1" id="encargadoRango"></span>
+                    <h5 class="mb-0" id="encargadoNombreSpan"></h5>
+                    <span class="badge bg-gradient-warning text-dark mt-1" id="encargadoRangoSpan"></span>
                 </div>
 
-                <!-- Profile Info -->
                 <div class="profile-info">
                     <div class="info-row">
                         <i class="fas fa-history text-primary"></i>
                         <div class="info-content">
                             <small class="text-muted">Misión Anterior</small>
-                            <p class="mb-0" id="misionAntigua"></p>
+                            <p class="mb-0" id="encargadoMisionAntigua"></p>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-arrow-right text-success"></i>
                         <div class="info-content">
                             <small class="text-muted">Misión Nueva</small>
-                            <p class="mb-0" id="misionNueva"></p>
+                            <p class="mb-0" id="encargadoMisionNueva"></p>
                         </div>
                     </div>
                     <div class="info-row">
                         <i class="fas fa-signature text-info"></i>
                         <div class="info-content">
                             <small class="text-muted">Firma</small>
-                            <p class="mb-0" id="firma"></p>
+                            <p class="mb-0" id="encargadoFirma"></p>
                         </div>
                     </div>
                 </div>
@@ -49,25 +47,25 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modalInformacionPersonaEncargado');
-    modal.addEventListener('show.bs.modal', function(event) {
+    const modalEncargado = document.getElementById('modalInformacionPersonaEncargado');
+    modalEncargado.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
-        const encargado = button.getAttribute('data-encargado');
-        const rango = button.getAttribute('data-rango');
-        const misionAntigua = button.getAttribute('data-mision-antigua');
-        const misionNueva = button.getAttribute('data-mision-nueva');
-        const firma = button.getAttribute('data-firma');
+        const encargado = button.getAttribute('data-encargado-nombre');
+        const rangoEncargado = button.getAttribute('data-encargado-rango');
+        const misionAntiguaEncargado = button.getAttribute('data-encargado-mision-antigua');
+        const misionNuevaEncargado = button.getAttribute('data-encargado-mision-nueva');
+        const firmaEncargado = button.getAttribute('data-encargado-firma');
 
         // Update avatar
-        document.getElementById('encargadoAvatar').src = 
+        document.getElementById('encargadoAvatarImg').src = 
             `https://www.habbo.es/habbo-imaging/avatarimage?user=${encargado}&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=1`;
         
         // Update other information
-        document.getElementById('encargadoNombre').textContent = encargado;
-        document.getElementById('encargadoRango').textContent = rango;
-        document.getElementById('misionAntigua').textContent = misionAntigua;
-        document.getElementById('misionNueva').textContent = misionNueva;
-        document.getElementById('firma').textContent = firma;
+        document.getElementById('encargadoNombreSpan').textContent = encargado;
+        document.getElementById('encargadoRangoSpan').textContent = rangoEncargado;
+        document.getElementById('encargadoMisionAntigua').textContent = misionAntiguaEncargado;
+        document.getElementById('encargadoMisionNueva').textContent = misionNuevaEncargado;
+        document.getElementById('encargadoFirma').textContent = firmaEncargado;
     });
 });
 </script>

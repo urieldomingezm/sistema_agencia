@@ -111,3 +111,25 @@
     color: #5a5c69;
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const dismissalModal = document.getElementById('modal_despedir_persona');
+    dismissalModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const usuario = button.getAttribute('data-usuario');
+        const rango = button.getAttribute('data-rango');
+        
+        // Update modal content
+        document.getElementById('userName').textContent = usuario;
+        document.querySelector('#modal_despedir_persona .badge').textContent = rango;
+        document.querySelector('.avatar-img').src = 
+            `https://www.habbo.es/habbo-imaging/avatarimage?user=${usuario}&action=none&direction=2&head_direction=2&gesture=&size=l`;
+        
+        // Set hidden input for form submission
+        const form = document.getElementById('dismissalForm');
+        form.querySelector('[name="usuario"]').value = usuario;
+        form.querySelector('[name="encargado"]').value = '<?= $_SESSION['usuario_registro'] ?>';
+    });
+});
+</script>

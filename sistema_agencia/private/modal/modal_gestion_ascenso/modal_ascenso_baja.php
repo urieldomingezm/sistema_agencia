@@ -178,3 +178,29 @@
     color: #fff;
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const demotionModal = document.getElementById('modal_bajar_rango');
+    demotionModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const usuario = button.getAttribute('data-usuario');
+        const rango = button.getAttribute('data-rango');
+        const mision = button.getAttribute('data-mision');
+        
+        // Populate form fields
+        const form = document.getElementById('demotionForm');
+        form.querySelector('[name="ascenso_usuario"]').value = usuario;
+        form.querySelector('[name="mision_actual"]').value = mision;
+        form.querySelector('[name="ascenso_encargado_usuario"]').value = '<?= $_SESSION['usuario_registro'] ?>';
+        
+        // Set current rank in select
+        const rangoSelect = form.querySelector('[name="ascenso_rango"]');
+        Array.from(rangoSelect.options).forEach(option => {
+            if (option.value === rango) {
+                option.disabled = true;
+            }
+        });
+    });
+});
+</script>

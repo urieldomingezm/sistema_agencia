@@ -121,11 +121,11 @@ try {
                                     <button class="btn btn-link text-decoration-none p-0"
                                         data-bs-toggle="modal"
                                         data-bs-target="#modalInformacionPersonaEncargado"
-                                        data-encargado="<?= htmlspecialchars($ascenso['ascenso_encargado_usuario']) ?>"
-                                        data-rango="<?= htmlspecialchars($ascenso['ascenso_rango']) ?>"
-                                        data-mision-antigua="<?= htmlspecialchars($ascenso['ascenso_mision_antigua']) ?>"
-                                        data-mision-nueva="<?= htmlspecialchars($ascenso['ascenso_mision_nueva']) ?>"
-                                        data-firma="<?= htmlspecialchars($ascenso['ascenso_firma']) ?>">
+                                        data-encargado-nombre="<?= htmlspecialchars($ascenso['ascenso_encargado_usuario']) ?>"
+                                        data-encargado-rango="<?= htmlspecialchars($ascenso['ascenso_rango_encargado'] ?? 'No especificado') ?>"
+                                        data-encargado-mision-antigua="<?= htmlspecialchars($ascenso['ascenso_mision_antigua_encargado'] ?? 'No especificado') ?>"
+                                        data-encargado-mision-nueva="<?= htmlspecialchars($ascenso['ascenso_mision_nueva_encargado'] ?? 'No especificado') ?>"
+                                        data-encargado-firma="<?= htmlspecialchars($ascenso['ascenso_firma_encargado'] ?? 'No especificado') ?>">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-xs me-2">
                                                 <i class="fas fa-user-shield text-primary"></i>
@@ -154,17 +154,31 @@ try {
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
-                                                <a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#modal_ascender">
+                                                <a class="dropdown-item text-success" href="#" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modal_ascender"
+                                                    data-usuario="<?= htmlspecialchars($ascenso['ascenso_usuario']) ?>"
+                                                    data-rango="<?= htmlspecialchars($ascenso['ascenso_rango']) ?>"
+                                                    data-mision="<?= htmlspecialchars($ascenso['ascenso_mision_nueva']) ?>">
                                                     <i class="fas fa-arrow-up me-2"></i>Ascender
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#modal_despedir_persona">
+                                                <a class="dropdown-item text-danger" href="#" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modal_despedir_persona"
+                                                    data-usuario="<?= htmlspecialchars($ascenso['ascenso_usuario']) ?>"
+                                                    data-rango="<?= htmlspecialchars($ascenso['ascenso_rango']) ?>">
                                                     <i class="fas fa-user-times me-2"></i>Despedir
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modal_bajar_rango">
+                                                <a class="dropdown-item text-warning" href="#" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modal_bajar_rango"
+                                                    data-usuario="<?= htmlspecialchars($ascenso['ascenso_usuario']) ?>"
+                                                    data-rango="<?= htmlspecialchars($ascenso['ascenso_rango']) ?>"
+                                                    data-mision="<?= htmlspecialchars($ascenso['ascenso_mision_nueva']) ?>">
                                                     <i class="fas fa-arrow-down me-2"></i>Bajar rango
                                                 </a>
                                             </li>
