@@ -83,12 +83,241 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="chart-header">
                 <h2><i class="fas fa-chart-bar"></i> Análisis de Pagas</h2>
             </div>
-            <div class="chart-container">
-                <canvas id="pagasChart"></canvas>
+            <div class="charts-grid">
+                <div class="chart-box">
+                    <h3>Pagos Diarios</h3>
+                    <div id="dailyChart" class="chart-container"></div>
+                </div>
+                <div class="chart-box">
+                    <h3>Distribución por Usuario</h3>
+                    <div id="userChart" class="chart-container"></div>
+                </div>
+                <div class="chart-box">
+                    <h3>Total Acumulado</h3>
+                    <div id="accumulatedChart" class="chart-container"></div>
+                </div>
+                <div class="chart-box">
+                    <h3>Distribución por Motivo</h3>
+                    <div id="motivoChart" class="chart-container"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Add amCharts scripts -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+<script>
+am5.ready(function() {
+    const pagasData = <?php echo json_encode($pagas); ?>;
+
+    // Process data
+    const processData = () => {
+        const dailyData = {};
+        const userData = {};
+        const motivoData = {};
+        let accumulatedData = [];
+        let totalAccumulated = 0;
+
+        pagasData.forEach(paga => {
+            const fecha = paga.pagas_fecha_registro.split(' ')[0];
+            const monto = parseFloat(paga.pagas_recibio);
+
+            // Daily data
+            dailyData[fecha] = (dailyData[fecha] || 0) + monto;
+
+            // User data
+            userData[paga.pagas_usuario] = (userData[paga.pagas_usuario] || 0) + monto;
+
+            // Motivo data
+            motivoData[paga.pagas_motivo] = (motivoData[paga.pagas_motivo] || 0) + monto;
+
+            // Accumulated data
+            totalAccumulated += monto;
+            accumulatedData.push({
+                date: new Date(fecha).getTime(),
+                value: totalAccumulated
+            });
+        });
+
+        return {
+            daily: Object.entries(dailyData).map(([date, value]) => ({
+                date: new Date(date).getTime(),
+                value: value
+            })),
+            users: Object.entries(userData).map(([name, value]) => ({
+                category: name,
+                value: value
+            })),
+            motivos: Object.entries(motivoData).map(([name, value]) => ({
+                category: name,
+                value: value
+            })),
+            accumulated: accumulatedData
+        };
+    };
+
+    const data = processData();
+
+    // Create root elements
+    const dailyRoot = am5.Root.new("dailyChart");
+    const userRoot = am5.Root.new("userChart");
+    const accumulatedRoot = am5.Root.new("accumulatedChart");
+    const motivoRoot = am5.Root.new("motivoChart");
+
+    // Set themes
+    dailyRoot.setThemes([am5themes_Animated.new(dailyRoot)]);
+    userRoot.setThemes([am5themes_Animated.new(userRoot)]);
+    accumulatedRoot.setThemes([am5themes_Animated.new(accumulatedRoot)]);
+    motivoRoot.setThemes([am5themes_Animated.new(motivoRoot)]);
+
+    // Daily Payments Chart (Column Chart)
+    const dailyChart = dailyRoot.container.children.push(
+        am5xy.XYChart.new(dailyRoot, {
+            panX: false,
+            panY: false,
+            wheelX: "none",
+            wheelY: "none"
+        })
+    );
+
+    const dailyXAxis = dailyChart.xAxes.push(
+        am5xy.DateAxis.new(dailyRoot, {
+            maxDeviation: 0,
+            baseInterval: { timeUnit: "day", count: 1 },
+            renderer: am5xy.AxisRendererX.new(dailyRoot, {}),
+            tooltip: am5.Tooltip.new(dailyRoot, {})
+        })
+    );
+
+    const dailyYAxis = dailyChart.yAxes.push(
+        am5xy.ValueAxis.new(dailyRoot, {
+            renderer: am5xy.AxisRendererY.new(dailyRoot, {})
+        })
+    );
+
+    const dailySeries = dailyChart.series.push(
+        am5xy.ColumnSeries.new(dailyRoot, {
+            name: "Pagos",
+            xAxis: dailyXAxis,
+            yAxis: dailyYAxis,
+            valueYField: "value",
+            valueXField: "date",
+            tooltip: am5.Tooltip.new(dailyRoot, {
+                labelText: "{valueY} créditos"
+            })
+        })
+    );
+    dailySeries.data.setAll(data.daily);
+
+    // User Distribution Chart (Pie Chart)
+    const userChart = userRoot.container.children.push(
+        am5percent.PieChart.new(userRoot, {
+            radius: am5.percent(90),
+            innerRadius: am5.percent(50)
+        })
+    );
+
+    const userSeries = userChart.series.push(
+        am5percent.PieSeries.new(userRoot, {
+            name: "Users",
+            valueField: "value",
+            categoryField: "category",
+            alignLabels: false
+        })
+    );
+    userSeries.data.setAll(data.users);
+
+    // Accumulated Payments Chart (Line Chart)
+    const accumulatedChart = accumulatedRoot.container.children.push(
+        am5xy.XYChart.new(accumulatedRoot, {
+            panX: false,
+            panY: false,
+            wheelX: "none",
+            wheelY: "none"
+        })
+    );
+
+    const accumulatedXAxis = accumulatedChart.xAxes.push(
+        am5xy.DateAxis.new(accumulatedRoot, {
+            maxDeviation: 0,
+            baseInterval: { timeUnit: "day", count: 1 },
+            renderer: am5xy.AxisRendererX.new(accumulatedRoot, {}),
+            tooltip: am5.Tooltip.new(accumulatedRoot, {})
+        })
+    );
+
+    const accumulatedYAxis = accumulatedChart.yAxes.push(
+        am5xy.ValueAxis.new(accumulatedRoot, {
+            renderer: am5xy.AxisRendererY.new(accumulatedRoot, {})
+        })
+    );
+
+    const accumulatedSeries = accumulatedChart.series.push(
+        am5xy.LineSeries.new(accumulatedRoot, {
+            name: "Total",
+            xAxis: accumulatedXAxis,
+            yAxis: accumulatedYAxis,
+            valueYField: "value",
+            valueXField: "date",
+            tooltip: am5.Tooltip.new(accumulatedRoot, {
+                labelText: "{valueY} créditos"
+            })
+        })
+    );
+    accumulatedSeries.strokes.template.setAll({
+        strokeWidth: 3
+    });
+    accumulatedSeries.data.setAll(data.accumulated);
+
+    // Motivo Distribution Chart (Donut Chart)
+    const motivoChart = motivoRoot.container.children.push(
+        am5percent.PieChart.new(motivoRoot, {
+            radius: am5.percent(90),
+            innerRadius: am5.percent(50)
+        })
+    );
+
+    const motivoSeries = motivoChart.series.push(
+        am5percent.PieSeries.new(motivoRoot, {
+            name: "Motivos",
+            valueField: "value",
+            categoryField: "category",
+            alignLabels: false
+        })
+    );
+    motivoSeries.data.setAll(data.motivos);
+
+    // Add legends
+    userChart.children.push(am5.Legend.new(userRoot, {
+        centerX: am5.percent(50),
+        x: am5.percent(50),
+        layout: userRoot.horizontalLayout
+    }));
+
+    motivoChart.children.push(am5.Legend.new(motivoRoot, {
+        centerX: am5.percent(50),
+        x: am5.percent(50),
+        layout: motivoRoot.horizontalLayout
+    }));
+
+    // Animate charts
+    dailySeries.appear(1000);
+    userSeries.appear(1000);
+    accumulatedSeries.appear(1000);
+    motivoSeries.appear(1000);
+
+    // Clean up on dispose
+    dailyRoot._logo.dispose();
+    userRoot._logo.dispose();
+    accumulatedRoot._logo.dispose();
+    motivoRoot._logo.dispose();
+});
+</script>
 
 <style>
 .dashboard-container {
@@ -187,13 +416,6 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     border-spacing: 0;
 }
 
-.display-table th {
-    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
-    color: white;
-    padding: 1rem;
-    font-weight: 500;
-}
-
 .display-table td {
     padding: 1rem;
     border-bottom: 1px solid #f0f0f0;
@@ -231,59 +453,3 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 </style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const table = new simpleDatatables.DataTable("#pagasTable", {
-        searchable: true,
-        fixedHeight: true,
-        perPage: 10
-    });
-
-    const ctx = document.getElementById('pagasChart').getContext('2d');
-    const pagasData = <?php echo json_encode($pagas); ?>;
-    
-    const usuarios = pagasData.map(paga => paga.pagas_usuario);
-    const cantidades = pagasData.map(paga => paga.pagas_recibio);
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: usuarios,
-            datasets: [{
-                label: 'Pagas Recibidas',
-                data: cantidades,
-                backgroundColor: 'rgba(0, 198, 251, 0.5)',
-                borderColor: 'rgba(0, 91, 234, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Distribución de Pagas por Usuario'
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.05)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
