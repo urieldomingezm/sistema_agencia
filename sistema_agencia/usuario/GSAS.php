@@ -275,7 +275,22 @@ require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_registro.php');
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        new simpleDatatables.DataTable('#tablaAscenso');
+        const dataTable = new simpleDatatables.DataTable("#tablaAscenso", {
+            searchable: true,
+            fixedHeight: true,
+            perPage: 5,
+            labels: {
+                placeholder: "Buscar usuarios...",
+                perPage: "Mostrar registros",
+                noRows: "No se encontraron registros",
+                info: "Mostrando {start} a {end} de {rows} registros",
+                noResults: "No hay resultados"
+            },
+            layout: {
+                top: "{search}",
+                bottom: "{info}{pager}"
+            }
+        });
 
         function updateAscensoTime() {
             document.querySelectorAll(".tiempo-restante").forEach(function(tiempoElem) {
@@ -314,4 +329,3 @@ require_once(MODAL_GESTION_ASCENSO_PATH . 'modal_ascenso_registro.php');
         setInterval(updateAscensoTime, 1000);
     });
 </script>
-</body>

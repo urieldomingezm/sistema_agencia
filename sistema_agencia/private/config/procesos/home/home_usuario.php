@@ -13,7 +13,7 @@ class BodyHome
         $this->userData = [
             'id' => $_SESSION['user_id'],
             'username' => $_SESSION['username'],
-            'rol_id' => $_SESSION['rol_id'] ?? 2
+            'verificado' => $_SESSION['verificado'] ?? 0
         ];
     }
     
@@ -202,10 +202,21 @@ class BodyHome
         <?php
     }
 
+    private function getRolName($rolId) {
+        $roles = [
+            0 => 'En espera de ser verificado',
+            1 => 'Usuario Verificado',
+            2 => 'Usuario Rechazado'
+        ];
+        return $roles[$rolId] ?? 'En espera de ser verificado';
+    }
+
     private function renderHeader()
     {
         $username = htmlspecialchars($this->userData['username']);
-        $rolName = $this->getRolName($this->userData['rol_id']);
+        // Modificar para usar verificado en lugar de rol_id
+        $verificado = $_SESSION['verificado'] ?? 0;
+        $rolName = $this->getRolName($verificado);
         ?>
         <header class="welcome-header text-center">
             <div class="container">
@@ -216,18 +227,11 @@ class BodyHome
                     Bienvenido <?= $username ?> 
                 </p>
                 <p class="text-white-50">
-                    Estatus: <span class="badge bg-warning"><?= $rolName ?></span>
+                    Estatus: <span class="badge <?= $verificado == 1 ? 'bg-success' : ($verificado == 2 ? 'bg-danger' : 'bg-warning') ?>"><?= $rolName ?></span>
                 </p>
             </div>
         </header>
         <?php
-    }
-
-    private function getRolName($rolId) {
-        $roles = [
-            1 => 'En espera de ser verficado'
-        ];
-        return $roles[$rolId] ?? 'En espera de ser verficado';
     }
 
     private function renderTeamSection()

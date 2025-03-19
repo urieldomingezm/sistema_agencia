@@ -151,6 +151,7 @@ if (!isset($_SESSION['user_id'])) {
                                 'ventas_membresias' => ['file' => 'VTM.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'verificar_usuarios' => ['file' => 'VER.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'gestionar_usuarios' => ['file' => 'GEUS.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
                             ];
 
 

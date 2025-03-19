@@ -1,35 +1,112 @@
 <?php
 require_once(CONFIG_PATH . 'bd.php');
 
-// Handle POST request for status update
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'updateStatus') {
+class VerificacionManager {
+    private $conn;
+    private $session;
+
+    public function __construct($conn, $session) {
+        $this->conn = $conn;
+        $this->session = $session;
+    }
+
+    public function updateUserStatus($userId, $status) {
+        try {
+            $this->conn->beginTransaction();
+            
+            $updateQuery = "UPDATE registro_usuario SET verificado = ? WHERE id = ?";
+            $updateStmt = $this->conn->prepare($updateQuery);
+            $result = $updateStmt->execute([$status, $userId]);
+            
+            if ($result) {
+                $accion = $status == 1 ? 'Verificación de cuenta' : 'Rechazo de cuenta';
+                $detalles = "Usuario {$this->session['usuario_registro']} ha realizado la acción: $accion para el ID: $userId";
+                
+                $blimQuery = "INSERT INTO blim (usuario, accion, detalles, fecha) VALUES (?, ?, ?, NOW())";
+                $blimStmt = $this->conn->prepare($blimQuery);
+                $blimResult = $blimStmt->execute([
+                    $this->session['usuario_registro'],
+                    $accion,
+                    $detalles
+                ]);
+
+                if ($blimResult) {
+                    $this->conn->commit();
+                    return ['success' => true];
+                }
+            }
+            
+            $this->conn->rollBack();
+            return ['success' => false, 'error' => 'Error al actualizar estado'];
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            error_log("Error en verificación: " . $e->getMessage());
+            return ['success' => false, 'error' => 'Error en base de datos'];
+        }
+    }
+
+    public function changeUserPassword($userId, $newPassword) {
+        try {
+            $this->conn->beginTransaction();
+            
+            // Hash the password using the same method as in registration
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $updateQuery = "UPDATE registro_usuario SET password_registro = ? WHERE id = ?";
+            $updateStmt = $this->conn->prepare($updateQuery);
+            $result = $updateStmt->execute([$hashedPassword, $userId]);
+            
+            if ($result) {
+                // Log in BLIM
+                $blimQuery = "INSERT INTO blim (usuario, accion, detalles, fecha) VALUES (?, ?, ?, NOW())";
+                $blimStmt = $this->conn->prepare($blimQuery);
+                $blimResult = $blimStmt->execute([
+                    $this->session['usuario_registro'],
+                    'Cambio de contraseña',
+                    "Usuario {$this->session['usuario_registro']} realizó un cambio de contraseña para el usuario ID: $userId"
+                ]);
+
+                if ($blimResult) {
+                    $this->conn->commit();
+                    return ['success' => true];
+                }
+            }
+            
+            $this->conn->rollBack();
+            return ['success' => false, 'error' => 'Error al cambiar contraseña'];
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            error_log("Error al cambiar contraseña: " . $e->getMessage());
+            return ['success' => false, 'error' => 'Error en base de datos'];
+        }
+    }
+}
+
+// Manejo de solicitudes POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     header('Content-Type: application/json');
     $database = new Database();
     $conn = $database->getConnection();
 
     if (!$conn) {
-        echo json_encode(['success' => false, 'error' => 'Database connection failed']);
+        echo json_encode(['success' => false, 'error' => 'Error de conexión']);
         exit;
     }
 
-    try {
+    $verificacionManager = new VerificacionManager($conn, $_SESSION);
+
+    if ($_POST['action'] === 'updateStatus') {
         $userId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
         $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_NUMBER_INT);
-        
-        $updateQuery = "UPDATE registro_usuario SET verificado = ? WHERE id = ?";
-        $updateStmt = $conn->prepare($updateQuery);
-        $result = $updateStmt->execute([$status, $userId]);
-        
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Update failed']);
-        }
-    } catch (PDOException $e) {
-        error_log("Error in update: " . $e->getMessage());
-        echo json_encode(['success' => false, 'error' => 'Database error']);
+        echo json_encode($verificacionManager->updateUserStatus($userId, $status));
+        exit;
     }
-    exit;
+
+    if ($_POST['action'] === 'changePassword') {
+        $userId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $newPassword = $_POST['newPassword'];
+        echo json_encode($verificacionManager->changeUserPassword($userId, $newPassword));
+        exit;
+    }
 }
 
 // Regular page load database query
@@ -109,6 +186,9 @@ try {
                                             <i class="fas fa-times"></i>
                                         </button>
                                     <?php endif; ?>
+                                    <button class="btn btn-warning btn-sm" onclick="changePassword(<?= $usuario['id'] ?>)">
+                                        <i class="fas fa-key"></i>
+                                    </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -191,6 +271,70 @@ function updateStatus(userId, status) {
                 Swal.fire({
                     title: 'Error',
                     text: 'Hubo un error al procesar la solicitud',
+                    icon: 'error'
+                });
+            });
+        }
+    });
+}
+// Add this function after the updateStatus function
+function changePassword(userId) {
+    Swal.fire({
+        title: 'Cambiar Contraseña',
+        input: 'password',
+        inputLabel: 'Nueva Contraseña',
+        inputPlaceholder: 'Ingrese la nueva contraseña',
+        showCancelButton: true,
+        confirmButtonText: 'Cambiar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#ffc107',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Por favor ingrese una contraseña';
+            }
+            // Validar requisitos de contraseña como en el registro
+            if (value.length < 8) {
+                return 'La contraseña debe tener al menos 8 caracteres';
+            }
+            if (!/[A-Z]/.test(value)) {
+                return 'La contraseña debe contener al menos una mayúscula';
+            }
+            if (!/[a-z]/.test(value)) {
+                return 'La contraseña debe contener al menos una minúscula';
+            }
+            if (!/[0-9]/.test(value)) {
+                return 'La contraseña debe contener al menos un número';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const formData = new FormData();
+            formData.append('action', 'changePassword');
+            formData.append('id', userId);
+            formData.append('newPassword', result.value);
+
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        title: '¡Completado!',
+                        text: 'La contraseña ha sido actualizada exitosamente',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                } else {
+                    throw new Error(data.error || 'Error al actualizar la contraseña');
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Hubo un error al cambiar la contraseña',
                     icon: 'error'
                 });
             });
