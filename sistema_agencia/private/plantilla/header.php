@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Add session check (except for login and register pages)
 $currentPage = basename($_SERVER['PHP_SELF']);
 if (!in_array($currentPage, ['login.php', 'registrar.php']) && !isset($_SESSION['user_id'])) {
     header('Location: /login.php');

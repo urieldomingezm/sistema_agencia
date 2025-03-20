@@ -34,6 +34,8 @@ class BodyHome
                 'role' => 'ATN- Supervisor -XDD -SDD #',
                 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20blonde%20hair%20and%20suit&aspect=1:1',
                 'rank' => 'Dueño',
+                'discord' => '#santidemgs',
+                'habbo' => 'Santidemgs'
             ],
             [
                 'id' => '2',
@@ -41,6 +43,8 @@ class BodyHome
                 'role' => 'ATN- Supervisor -XDD -SDD #',
                 'image' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20female%20with%20pink%20hair&aspect=1:1',
                 'rank' => 'Dueño',
+                'discord' => '#alys',
+                'habbo' => 'Alys'
             ],
             [
                 'id' => '3',
@@ -72,27 +76,75 @@ class BodyHome
             ],
         ];
 
-            echo '<section style="background-color: #87CEEB; padding: 50px 0;">';
-            echo '<div class="container text-center">';
-            echo '<h2 style="color: white; font-weight: bold;">👑 Nuestro Equipo 👑</h2>';
-            echo '<div class="row justify-content-center">'; // Centrar el contenido
-    
+            echo '<section class="team-section py-5" style="background: linear-gradient(135deg, #87CEEB 0%, #6495ED 100%);">
+                <div class="container">
+                    <h2 class="text-center mb-5" style="color: white; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                        <i class="fas fa-crown me-2" style="color: #FFD700;"></i>
+                        Nuestro Equipo
+                        <i class="fas fa-crown ms-2" style="color: #FFD700;"></i>
+                    </h2>
+                    <div class="row justify-content-center g-4">';
+
             foreach ($teamMembers as $member) {
-                echo '<div class="col-12 col-sm-6 col-md-4 mb-4">'; // 1 columna en móvil, 2 en tablet, 3 en PC
-                echo '<div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2); transition: transform 0.3s;">';
-                echo '<img src="' . $member['image'] . '" style="border-radius: 50%; width: 100px; height: 100px; border: 3px solid #FFD700;">';
-                echo '<h3 style="color: #333;">' . $member['name'] . '</h3>';
-                echo '<p style="color: #666;">' . $member['role'] . '</p>';
-                echo '<span style="background: #FF4500; color: white; padding: 5px 10px; border-radius: 10px;">' . $member['rank'] . '</span>';
-                echo '</div>';
-                echo '</div>';
+                echo '<div class="col-12 col-sm-6 col-lg-4">
+                    <div class="team-card" style="background: white; border-radius: 20px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                        <div class="position-relative">
+                            <div class="team-banner" style="height: 80px; background: linear-gradient(45deg, #4158D0, #C850C0);"></div>
+                            <div class="text-center" style="margin-top: -50px;">
+                                <img src="' . $member['image'] . '" class="team-avatar" style="width: 100px; height: 100px; border-radius: 50%; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="mb-2" style="color: #333; font-weight: 600;">' . $member['name'] . '</h3>
+                            <p class="text-muted mb-3" style="font-size: 0.9rem;">' . $member['role'] . '</p>
+                            <span class="rank-badge" style="background: linear-gradient(45deg, #FF416C, #FF4B2B); color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 500;">
+                                <i class="fas fa-star me-1"></i>' . $member['rank'] . '
+                            </span>
+                            <div class="social-links mt-4">
+                                <a href="https://discord.com" class="mx-2" style="color: #7289DA;"><i class="fab fa-discord fa-lg"></i></a>
+                                <a href="https://www.habbo.es" class="mx-2" style="color: #FF6B6B;"><i class="fas fa-hotel fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
             }
-    
-            echo '</div>';
-            echo '</div>';
-            echo '</section>';
-        }
-    
+
+            echo '</div></div></section>';
+
+            // Add CSS for animations
+            echo '<style>
+                .team-card {
+                    transform: translateY(0);
+                    transition: all 0.3s ease;
+                }
+                .team-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+                }
+                .team-avatar {
+                    transition: all 0.3s ease;
+                }
+                .team-card:hover .team-avatar {
+                    transform: scale(1.1);
+                }
+                .social-links a {
+                    transition: all 0.3s ease;
+                    opacity: 0.8;
+                }
+                .social-links a:hover {
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
+                .rank-badge {
+                    transition: all 0.3s ease;
+                }
+                .team-card:hover .rank-badge {
+                    transform: scale(1.1);
+                    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.3);
+                }
+            </style>';
+    }
+
     private function renderEventsSection()
     {
         $events = [
