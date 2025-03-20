@@ -14,6 +14,7 @@ class BodyHome
             'id' => $_SESSION['user_id'],
             'username' => $_SESSION['username'],
             'verificado' => $_SESSION['verificado'] ?? 0
+            
         ];
     }
     

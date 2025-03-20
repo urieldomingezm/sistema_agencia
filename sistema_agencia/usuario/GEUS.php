@@ -21,7 +21,7 @@ try {
 
 <div class="container-fluid mt-4">
     <div class="card shadow">
-        <div class="card-header bg-dark">
+        <div class="card-header bg-gradient-primary">
             <h5 class="text-white mb-0">
                 <i class="fas fa-history me-2"></i>Historial de Verificaciones
             </h5>

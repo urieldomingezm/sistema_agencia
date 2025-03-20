@@ -130,7 +130,7 @@ try {
 
 <div class="container-fluid mt-4">
     <div class="card shadow">
-        <div class="card-header bg-dark">
+        <div class="card-header bg-gradient-primary">
             <div class="row align-items-center">
                 <div class="col">
                     <h5 class="text-white mb-0">

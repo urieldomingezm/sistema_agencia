@@ -86,11 +86,11 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="charts-container">
                 <div class="charts-grid">
                     <div class="chart-box">
-                        <h3 class="text-center">Pagos Diarios</h3>
+                        <h3 class="text-center">Pagos a trabajadores</h3>
                         <canvas id="dailyChart"></canvas>
                     </div>
                     <div class="chart-box">
-                        <h3 class="text-center">Distribución por Usuario</h3>
+                        <h3 class="text-center">Pagos mediante rangos</h3>
                         <canvas id="userChart"></canvas>
                     </div>
                     <div class="chart-box">
@@ -98,7 +98,7 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <canvas id="accumulatedChart"></canvas>
                     </div>
                     <div class="chart-box">
-                        <h3 class="text-center">Distribución por Motivo</h3>
+                        <h3 class="text-center">Placas mas usadas</h3>
                         <canvas id="motivoChart"></canvas>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     width: 100%;
                     padding: 1rem;
                 }
-                
+
                 .charts-grid {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
@@ -121,7 +121,7 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     background: #ffffff;
                     border-radius: 10px;
                     padding: 1rem;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
 
                 @media (max-width: 768px) {
@@ -135,293 +135,293 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <style>
-.dashboard-container {
-    padding: 2rem;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    min-height: 100vh;
-}
-
-.dashboard-header {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.dashboard-header h1 {
-    color: #2c3e50;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.dashboard-grid {
-    display: grid;
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.stat-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-}
-
-.stat-icon {
-    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.stat-info h3 {
-    color: #6c757d;
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-}
-
-.stat-info p {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.table-section, .chart-section {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.table-header, .chart-header {
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 1rem;
-}
-
-.table-header h2, .chart-header h2 {
-    color: #2c3e50;
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.display-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-.display-table td {
-    padding: 1rem;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.status-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-.status-badge.complete {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-badge.incomplete {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.chart-container {
-    height: 400px;
-    position: relative;
-}
-
-@media (max-width: 768px) {
     .dashboard-container {
-        padding: 1rem;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+    }
+
+    .dashboard-header {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .dashboard-header h1 {
+        color: #2c3e50;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
     .stats-container {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
     }
-}
+
+    .stat-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-icon {
+        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .stat-info h3 {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .stat-info p {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .table-section,
+    .chart-section {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .table-header,
+    .chart-header {
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 1rem;
+    }
+
+    .table-header h2,
+    .chart-header h2 {
+        color: #2c3e50;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .display-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .display-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .status-badge.complete {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.incomplete {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .chart-container {
+        height: 400px;
+        position: relative;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            padding: 1rem;
+        }
+
+        .stats-container {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
-<!-- Add Chart.js before closing body tag -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const pagas = <?php echo json_encode($pagas); ?>;
-    
-    // Daily Payments Chart
-    const dailyData = {};
-    pagas.forEach(paga => {
-        const date = paga.pagas_fecha_registro.split(' ')[0];
-        dailyData[date] = (dailyData[date] || 0) + parseInt(paga.pagas_recibio);
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const pagas = <?php echo json_encode($pagas); ?>;
 
-    new Chart('dailyChart', {
-        type: 'bar',
-        data: {
-            labels: Object.keys(dailyData),
-            datasets: [{
-                label: 'Pagos Diarios',
-                data: Object.values(dailyData),
-                borderColor: '#00c6fb',
-                backgroundColor: 'rgba(0, 198, 251, 0.1)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            }
-        }
-    });
+        // Daily Payments Chart
+        const dailyData = {};
+        pagas.forEach(paga => {
+            const date = paga.pagas_fecha_registro.split(' ')[0];
+            dailyData[date] = (dailyData[date] || 0) + parseInt(paga.pagas_recibio);
+        });
 
-    // User Distribution Chart
-    const userData = {};
-    pagas.forEach(paga => {
-        userData[paga.pagas_usuario] = (userData[paga.pagas_usuario] || 0) + parseInt(paga.pagas_recibio);
-    });
-
-    new Chart('userChart', {
-        type: 'doughnut',
-        data: {
-            labels: Object.keys(userData),
-            datasets: [{
-                data: Object.values(userData),
-                backgroundColor: [
-                    '#00c6fb', '#005bea', '#00fb9a', '#ea00d9',
-                    '#0099cc', '#66ccff', '#3366cc', '#003366'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'right',
-                    align: 'center'
-                }
-            }
-        }
-    });
-
-    // Accumulated Total Chart
-    const accData = {};
-    let accumulated = 0;
-    [...pagas].reverse().forEach(paga => {
-        const date = paga.pagas_fecha_registro.split(' ')[0];
-        accumulated += parseInt(paga.pagas_recibio);
-        accData[date] = accumulated;
-    });
-
-    new Chart('accumulatedChart', {
-        type: 'line',
-        data: {
-            labels: Object.keys(accData),
-            datasets: [{
-                label: 'Total Acumulado',
-                data: Object.values(accData),
-                borderColor: '#005bea',
-                backgroundColor: 'rgba(0, 91, 234, 0.1)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top'
-                }
-            }
-        }
-    });
-
-    // Motivo Distribution Chart
-    const motivoData = {};
-    pagas.forEach(paga => {
-        motivoData[paga.pagas_motivo] = (motivoData[paga.pagas_motivo] || 0) + parseInt(paga.pagas_recibio);
-    });
-
-    new Chart('motivoChart', {
-        type: 'bar',
-        data: {
-            labels: Object.keys(motivoData),
-            datasets: [{
-                label: 'Distribución por Motivo',
-                data: Object.values(motivoData),
-                backgroundColor: '#00c6fb',
-                borderColor: '#005bea',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top'
-                }
+        new Chart('dailyChart', {
+            type: 'bar',
+            data: {
+                labels: Object.keys(dailyData),
+                datasets: [{
+                    label: 'Pagos',
+                    data: Object.values(dailyData),
+                    borderColor: '#00c6fb',
+                    backgroundColor: 'rgba(0, 197, 251, 0.86)',
+                    fill: true,
+                    tension: 0.4
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
                 }
             }
-        }
+        });
+
+        // User Distribution Chart
+        const userData = {};
+        pagas.forEach(paga => {
+            userData[paga.pagas_usuario] = (userData[paga.pagas_usuario] || 0) + parseInt(paga.pagas_recibio);
+        });
+
+        new Chart('userChart', {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(userData),
+                datasets: [{
+                    data: Object.values(userData),
+                    backgroundColor: [
+                        '#00c6fb', '#005bea', '#00fb9a', '#ea00d9',
+                        '#0099cc', '#66ccff', '#3366cc', '#003366'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        align: 'center'
+                    }
+                }
+            }
+        });
+
+        // Accumulated Total Chart
+        const accData = {};
+        let accumulated = 0;
+        [...pagas].reverse().forEach(paga => {
+            const date = paga.pagas_fecha_registro.split(' ')[0];
+            accumulated += parseInt(paga.pagas_recibio);
+            accData[date] = accumulated;
+        });
+
+        new Chart('accumulatedChart', {
+            type: 'line',
+            data: {
+                labels: Object.keys(accData),
+                datasets: [{
+                    label: 'Total gastado',
+                    data: Object.values(accData),
+                    borderColor: '#005bea',
+                    backgroundColor: 'rgba(0, 91, 234, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // Motivo Distribution Chart
+        const motivoData = {};
+        pagas.forEach(paga => {
+            motivoData[paga.pagas_motivo] = (motivoData[paga.pagas_motivo] || 0) + parseInt(paga.pagas_recibio);
+        });
+
+        new Chart('motivoChart', {
+            type: 'bar',
+            data: {
+                labels: Object.keys(motivoData),
+                datasets: [{
+                    label: 'Membresias',
+                    data: Object.values(motivoData),
+                    backgroundColor: '#00c6fb',
+                    borderColor: '#005bea',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     });
-});
 </script>
 
 <style>
-.chart-box {
-    height: 400px;
-    padding: 20px;
-}
-
-.charts-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
-}
-
-@media (max-width: 768px) {
-    .charts-grid {
-        grid-template-columns: 1fr;
+    .chart-box {
+        height: 400px;
+        padding: 20px;
     }
-}
+
+    .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .charts-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
