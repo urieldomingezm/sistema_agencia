@@ -447,6 +447,36 @@ if (!isset($_SESSION['user_id'])) {
         loader.classList.add('fade-out');
         setTimeout(() => {
             loader.style.display = 'none';
+            
+            // Check if welcome message has been shown today
+            const lastShown = localStorage.getItem('welcomeLastShown');
+            const today = new Date().toDateString();
+            
+            if (!lastShown || lastShown !== today) {
+                Swal.fire({
+                    title: '¡Bienvenido al Sistema!',
+                    html: `
+                        <div class="text-center">
+                            <p class="mb-2"><strong>Sistema en Fase de Pruebas</strong></p>
+                            <p class="text-muted">Estamos trabajando para mejorar tu experiencia.<br>
+                            Algunas funciones podrían estar en desarrollo.</p>
+                        </div>
+                    `,
+                    icon: 'info',
+                    confirmButtonText: 'Entendido',
+                    confirmButtonColor: '#8A2BE2',
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                // Save today's date
+                localStorage.setItem('welcomeLastShown', today);
+            }
         }, 300);
     });
 

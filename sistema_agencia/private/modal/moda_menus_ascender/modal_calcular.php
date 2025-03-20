@@ -3,37 +3,25 @@
 <!-- Modal para Dar Ascenso -->
 <div class="modal fade" id="modalCalcular" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0">
-            <div class="modal-header bg-gradient-primary border-0">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white">
-                    <i class="fas fa-calculator me-2"></i>Calculadora de Rangos
+                    <i class="fas fa-calculator"></i> Calculadora de Rangos
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body p-4">
-                <div class="calculator-status text-center mb-4">
-                    <div class="calculator-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="calculator-text">Calcula tu próximo rango</div>
-                </div>
-
-                <form>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <select class="form-select" required id="seleccion_eres">
-                                    <option value="" disabled selected>Seleccionar</option>
-                                    <option value="trabajador">Trabajador</option>
-                                    <option value="nuevo">Nuevo</option>
-                                </select>
-                                <label><i class="fas fa-user-tag text-primary me-2"></i>Eres</label>
-                            </div>
-                        </div>
+            <div class="modal-body">
+                <form id="calculatorForm">
+                    <div class="mb-3">
+                        <select class="form-select" required id="seleccion_eres">
+                            <option value="" disabled selected>Selecciona tu estado</option>
+                            <option value="trabajador">Trabajador</option>
+                            <option value="nuevo">Nuevo</option>
+                        </select>
                     </div>
 
-                    <div id="campos_dinamicos" class="row g-3 mt-2">
-                        <!-- Campos dinámicos aquí -->
+                    <div id="campos_dinamicos" class="row g-2">
+                        <!-- Los campos dinámicos se insertarán aquí -->
                     </div>
                 </form>
             </div>
@@ -42,88 +30,36 @@
 </div>
 
 <style>
-.bg-gradient-primary {
-    background: linear-gradient(45deg, #4e73df, #224abe);
-}
-
 .modal-content {
-    border-radius: 15px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.calculator-status {
-    background: #f8f9fc;
-    padding: 1.5rem;
     border-radius: 10px;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
-
-.calculator-icon {
-    font-size: 2.5rem;
-    color: #4e73df;
-    margin-bottom: 0.5rem;
-    animation: pulse 2s infinite;
+.modal-header {
+    background: linear-gradient(45deg, #4e73df, #224abe);
+    border: none;
+    padding: 1rem;
 }
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+.modal-body {
+    padding: 1rem;
 }
-
-.calculator-text {
-    color: #5a5c69;
-    font-weight: 500;
-}
-
-.form-floating > label {
-    padding-left: 1.75rem;
-}
-
-.form-control, .form-select {
+.form-select, .form-control {
+    font-size: 0.9rem;
+    padding: 0.5rem;
     border: 1px solid #e3e6f0;
-    height: 3.2rem;
 }
-
-.form-control:focus, .form-select:focus {
+.form-select:focus, .form-control:focus {
     border-color: #4e73df;
     box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
 }
-
+#campos_dinamicos .col-md-6 {
+    margin-bottom: 0.5rem;
+}
 .form-control[readonly] {
     background-color: #f8f9fc;
-    border-color: #e3e6f0;
-}
-
-.cost-display {
-    background: linear-gradient(45deg, #1cc88a, #169b6b);
-    color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.cost-display h4 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-/* Estilos para los campos dinámicos */
-#campos_dinamicos .form-floating {
-    margin-bottom: 1rem;
-}
-
-#campos_dinamicos .form-control[readonly] {
-    background: linear-gradient(45deg, #f6c23e, #f4b619);
-    color: white;
-    font-weight: bold;
-}
-
-#campos_dinamicos label {
-    color: #5a5c69;
 }
 </style>
 
+<!-- Mantener todos los scripts existentes sin cambios -->
 <script>
     $(document).ready(function() {
         // Definir las misiones por rango
@@ -307,19 +243,19 @@
                     <div class="col-md-6 mb-2">
                         <label class="form-label">Misión</label>
                         <select class="form-select" required id="mision_actual">
-                            <option disabled selected>Seleccione primero su rango</option>
+                            <option disabled selected>Seleccione</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label class="form-label">Rango deseado</label>
                         <select class="form-select" required id="rango_deseado">
-                            <option disabled selected>Seleccione primero su rango actual</option>
+                            <option disabled selected>Seleccione</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label class="form-label">Misión deseada</label>
                         <select class="form-select" required id="mision_deseada">
-                            <option disabled selected>Seleccione primero el rango deseado</option>
+                            <option disabled selected>Seleccione</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-2">
@@ -338,12 +274,12 @@
                     <div class="col-md-6 mb-2">
                         <label class="form-label">Misión</label>
                         <select class="form-select" required id="mision_nuevo">
-                            <option disabled selected>Seleccione primero el rango</option>
+                            <option disabled selected>Seleccione</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label class="form-label">Costo</label>
-                        <input type="number" class="form-control" id="costo_nuevo" readonly required>
+                        <input class="form-control" id="costo_nuevo" readonly required>
                     </div>
                 `;
             }

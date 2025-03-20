@@ -22,44 +22,71 @@ try {
         $segundos = str_pad($tiempo_transcurrido % 60, 2, "0", STR_PAD_LEFT);
         $tiempo_formateado = "$horas:$minutos:$segundos";
 
-        // Get current status and accumulated time
-        $queryActual = "SELECT tiempo_status, tiempo_acumulado FROM gestion_tiempo WHERE tiempo_id = :tiempo_id";
+        // Get current status and times
+        $queryActual = "SELECT tiempo_status, tiempo_acumulado, tiempo_total, tiempo_restado FROM gestion_tiempo WHERE tiempo_id = :tiempo_id";
         $stmt = $conn->prepare($queryActual);
         $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
         $stmt->execute();
         $tiempoActual = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Convert accumulated time to seconds
+        // Convert times to seconds for calculations
         $tiempo_acumulado_segundos = strtotime("1970-01-01 " . $tiempoActual['tiempo_acumulado'] . " UTC");
+        $tiempo_total_segundos = strtotime("1970-01-01 " . $tiempoActual['tiempo_total'] . " UTC");
+        $tiempo_restado_segundos = strtotime("1970-01-01 " . $tiempoActual['tiempo_restado'] . " UTC");
 
-        // Calculate new total based on status
-        if ($tiempoActual['tiempo_status'] === 'Ausente') {
-            $tiempo_total_segundos = $tiempo_acumulado_segundos - $tiempo_transcurrido;
-        } else {
-            $tiempo_total_segundos = $tiempo_acumulado_segundos + $tiempo_transcurrido;
+        if ($tiempoActual['tiempo_status'] === 'Corriendo') {
+            // Add elapsed time to both accumulated and total time
+            $tiempo_acumulado_segundos += $tiempo_transcurrido;
+            $tiempo_total_segundos += $tiempo_transcurrido;
+        } elseif ($tiempoActual['tiempo_status'] === 'Ausente') {
+            // Add to restado time
+            $tiempo_restado_segundos += $tiempo_transcurrido;
+            // Subtract from accumulated time
+            $tiempo_acumulado_segundos = max(0, $tiempo_acumulado_segundos - $tiempo_transcurrido);
+            // Update total time with the new accumulated time
+            $tiempo_total_segundos = $tiempo_acumulado_segundos;
         }
 
-        // Format times
+        // Format final times
+        $tiempo_acumulado = gmdate("H:i:s", $tiempo_acumulado_segundos);
         $tiempo_total = gmdate("H:i:s", $tiempo_total_segundos);
+        $tiempo_restado = gmdate("H:i:s", $tiempo_restado_segundos);
 
-        // Update database with all time values
+        // Update database
         $updateQuery = "UPDATE gestion_tiempo SET 
             tiempo_transcurrido = :tiempo_formateado,
-            tiempo_total = :tiempo_total 
+            tiempo_acumulado = :tiempo_acumulado,
+            tiempo_total = :tiempo_total,
+            tiempo_restado = :tiempo_restado
             WHERE tiempo_id = :tiempo_id";
-
+    
         $stmt = $conn->prepare($updateQuery);
         $stmt->bindParam(':tiempo_formateado', $tiempo_formateado, PDO::PARAM_STR);
+        $stmt->bindParam(':tiempo_acumulado', $tiempo_acumulado, PDO::PARAM_STR);
         $stmt->bindParam(':tiempo_total', $tiempo_total, PDO::PARAM_STR);
+        $stmt->bindParam(':tiempo_restado', $tiempo_restado, PDO::PARAM_STR);
         $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
         $stmt->execute();
         exit;
     }
+
     // Handler for updating time status and calculations
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tiempo_id']) && isset($_POST['accion'])) {
         $tiempo_id = $_POST['tiempo_id'];
         $accion = $_POST['accion'];
-
+    
+        // Get current times before updating
+        $queryActual = "SELECT tiempo_transcurrido, tiempo_acumulado, tiempo_total FROM gestion_tiempo WHERE tiempo_id = :tiempo_id";
+        $stmt = $conn->prepare($queryActual);
+        $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $tiempoActual = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // Convert current times to seconds
+        $tiempo_transcurrido_segundos = strtotime("1970-01-01 " . $tiempoActual['tiempo_transcurrido'] . " UTC");
+        $tiempo_acumulado_segundos = strtotime("1970-01-01 " . $tiempoActual['tiempo_acumulado'] . " UTC");
+        $tiempo_total_segundos = strtotime("1970-01-01 " . $tiempoActual['tiempo_total'] . " UTC");
+    
         switch ($accion) {
             case 'iniciar':
                 $updateQuery = "UPDATE gestion_tiempo SET 
@@ -67,23 +94,57 @@ try {
                     tiempo_fecha_registro = NOW()
                     WHERE tiempo_id = :tiempo_id";
                 break;
-
+    
             case 'pausar':
+                // Add elapsed time to accumulated and total time
+                $tiempo_acumulado = gmdate("H:i:s", $tiempo_acumulado_segundos + $tiempo_transcurrido_segundos);
+                $tiempo_total = gmdate("H:i:s", $tiempo_total_segundos + $tiempo_transcurrido_segundos);
+                
                 $updateQuery = "UPDATE gestion_tiempo SET 
-                    tiempo_status = 'Pausado'
+                    tiempo_status = 'Pausado',
+                    tiempo_transcurrido = '00:00:00',
+                    tiempo_acumulado = :tiempo_acumulado,
+                    tiempo_total = :tiempo_total
                     WHERE tiempo_id = :tiempo_id";
                 break;
-
+    
+            case 'detener':
+                // Add elapsed time to accumulated and total time
+                $tiempo_acumulado = gmdate("H:i:s", $tiempo_acumulado_segundos + $tiempo_transcurrido_segundos);
+                $tiempo_total = gmdate("H:i:s", $tiempo_total_segundos + $tiempo_transcurrido_segundos);
+                
+                $updateQuery = "UPDATE gestion_tiempo SET 
+                    tiempo_status = 'Pausado',
+                    tiempo_transcurrido = '00:00:00',
+                    tiempo_acumulado = :tiempo_acumulado,
+                    tiempo_total = :tiempo_total
+                    WHERE tiempo_id = :tiempo_id";
+                break;
+    
             case 'ausente':
                 $updateQuery = "UPDATE gestion_tiempo SET 
                     tiempo_status = 'Ausente',
                     tiempo_fecha_registro = NOW()
                     WHERE tiempo_id = :tiempo_id";
                 break;
+    
+            case 'completar':
+                // Check if accumulated time is >= 3 hours (10800 seconds)
+                if ($tiempo_acumulado_segundos >= 10800) {
+                    $updateQuery = "UPDATE gestion_tiempo SET 
+                        tiempo_status = 'Completado',
+                        tiempo_transcurrido = '00:00:00'
+                        WHERE tiempo_id = :tiempo_id";
+                }
+                break;
         }
-
+    
         if (isset($updateQuery)) {
             $stmt = $conn->prepare($updateQuery);
+            if ($accion === 'pausar' || $accion === 'detener') {
+                $stmt->bindParam(':tiempo_acumulado', $tiempo_acumulado, PDO::PARAM_STR);
+                $stmt->bindParam(':tiempo_total', $tiempo_total, PDO::PARAM_STR);
+            }
             $stmt->bindParam(':tiempo_id', $tiempo_id, PDO::PARAM_INT);
             $stmt->execute();
             exit;
@@ -584,29 +645,47 @@ function formatDate($date)
                 const status = row.querySelector('.badge').textContent.trim().toLowerCase();
 
                 if (status === 'corriendo' || status === 'ausente') {
-                    let segundos = parseInt(tiempoElem.dataset.segundos);
-                    segundos++;
-                    tiempoElem.dataset.segundos = segundos;
-
-                    const hours = String(Math.floor(segundos / 3600)).padStart(2, '0');
-                    const minutes = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
-                    const seconds = String(segundos % 60).padStart(2, '0');
-                    const timeString = `${hours}:${minutes}:${seconds}`;
-
-                    tiempoElem.querySelector('span').innerHTML =
-                        `<i class="fas fa-hourglass-half me-1"></i>${timeString}`;
-
-                    fetch('', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: `tiempo_id=${row.dataset.id}&tiempo_transcurrido=${segundos}`
-                    });
+                    const initialSeconds = parseInt(tiempoElem.dataset.segundos || 0);
+                    
+                    if (!tiempoElem.dataset.lastUpdate) {
+                        tiempoElem.dataset.lastUpdate = Date.now();
+                        tiempoElem.dataset.currentSeconds = initialSeconds;
+                    }
+                
+                    const now = Date.now();
+                    const timeDiff = now - parseInt(tiempoElem.dataset.lastUpdate);
+                    const secondsToAdd = Math.floor(timeDiff / 1000);
+                
+                    if (secondsToAdd >= 1) {
+                        const currentSeconds = parseInt(tiempoElem.dataset.currentSeconds) + secondsToAdd;
+                        tiempoElem.dataset.currentSeconds = currentSeconds;
+                        tiempoElem.dataset.lastUpdate = now;
+                    
+                        const hours = Math.floor(currentSeconds / 3600);
+                        const minutes = Math.floor((currentSeconds % 3600) / 60);
+                        const seconds = currentSeconds % 60;
+                    
+                        const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    
+                        tiempoElem.querySelector('span').innerHTML =
+                            `<i class="fas fa-hourglass-half me-1"></i>${timeString}`;
+                    
+                        // Update server every 60 seconds
+                        if (currentSeconds % 60 === 0) {
+                            fetch('', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                body: `tiempo_id=${row.dataset.id}&tiempo_transcurrido=${currentSeconds}`
+                            });
+                        }
+                    }
                 }
             });
         }
 
+        // Update every second
         setInterval(updateTiempoTranscurrido, 1000);
     });
 </script>
