@@ -1,27 +1,30 @@
 <?php
 require_once(CONFIG_PATH . 'bd.php');
 
-class VerificacionManager {
+class VerificacionManager
+{
     private $conn;
     private $session;
 
-    public function __construct($conn, $session) {
+    public function __construct($conn, $session)
+    {
         $this->conn = $conn;
         $this->session = $session;
     }
 
-    public function updateUserStatus($userId, $status) {
+    public function updateUserStatus($userId, $status)
+    {
         try {
             $this->conn->beginTransaction();
-            
+
             $updateQuery = "UPDATE registro_usuario SET verificado = ? WHERE id = ?";
             $updateStmt = $this->conn->prepare($updateQuery);
             $result = $updateStmt->execute([$status, $userId]);
-            
+
             if ($result) {
                 $accion = $status == 1 ? 'Verificación de cuenta' : 'Rechazo de cuenta';
                 $detalles = "Usuario {$this->session['usuario_registro']} ha realizado la acción: $accion para el ID: $userId";
-                
+
                 $blimQuery = "INSERT INTO blim (usuario, accion, detalles, fecha) VALUES (?, ?, ?, NOW())";
                 $blimStmt = $this->conn->prepare($blimQuery);
                 $blimResult = $blimStmt->execute([
@@ -35,7 +38,7 @@ class VerificacionManager {
                     return ['success' => true];
                 }
             }
-            
+
             $this->conn->rollBack();
             return ['success' => false, 'error' => 'Error al actualizar estado'];
         } catch (PDOException $e) {
@@ -45,16 +48,17 @@ class VerificacionManager {
         }
     }
 
-    public function changeUserPassword($userId, $newPassword) {
+    public function changeUserPassword($userId, $newPassword)
+    {
         try {
             $this->conn->beginTransaction();
-            
+
             // Hash the password using the same method as in registration
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
             $updateQuery = "UPDATE registro_usuario SET password_registro = ? WHERE id = ?";
             $updateStmt = $this->conn->prepare($updateQuery);
             $result = $updateStmt->execute([$hashedPassword, $userId]);
-            
+
             if ($result) {
                 // Log in BLIM
                 $blimQuery = "INSERT INTO blim (usuario, accion, detalles, fecha) VALUES (?, ?, ?, NOW())";
@@ -70,7 +74,7 @@ class VerificacionManager {
                     return ['success' => true];
                 }
             }
-            
+
             $this->conn->rollBack();
             return ['success' => false, 'error' => 'Error al cambiar contraseña'];
         } catch (PDOException $e) {
@@ -164,7 +168,7 @@ try {
                                 <td><?= $usuario['fecha_registro'] ?></td>
                                 <td>
                                     <?php
-                                    switch($usuario['verificado']) {
+                                    switch ($usuario['verificado']) {
                                         case 0:
                                             echo '<span class="badge bg-warning">Pendiente</span>';
                                             break;
@@ -199,134 +203,80 @@ try {
     </div>
 </div>
 
+</div>
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-primary">
+                <h5 class="modal-title text-white">
+                    <i class="fas fa-key me-2"></i>Cambiar Contraseña
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="passwordChangeForm">
+                    <input type="hidden" id="userId" name="userId">
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="newPassword" required>
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="passwordHelp" class="form-text">
+                            La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="submitPasswordChange()">
+                    <i class="fas fa-save me-2"></i>Guardar Cambios
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const dataTable = new simpleDatatables.DataTable("#verificationTable", {
-        searchable: true,
-        fixedHeight: true,
-        perPage: 10,
-        labels: {
-            placeholder: "Buscar usuarios...",
-            perPage: "Mostrar {select} registros",
-            noRows: "No se encontraron registros",
-            info: "Mostrando {start} a {end} de {rows} registros",
-            noResults: "No hay resultados"
-        },
-        layout: {
-            top: "{search}",
-            bottom: "{info}{pager}"
-        }
-    });
-});
+    function changePassword(userId) {
+        document.getElementById('userId').value = userId;
+        const modal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+        modal.show();
+    }
 
-function updateStatus(userId, status) {
-    const action = status === 1 ? 'verificar' : 'rechazar';
-    
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: `¿Deseas ${action} este usuario?`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: status === 1 ? '#28a745' : '#dc3545',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Sí, confirmar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const formData = new FormData();
-            formData.append('action', 'updateStatus');
-            formData.append('id', userId);
-            formData.append('status', status);
+    function submitPasswordChange() {
+        const password = document.getElementById('newPassword').value;
+        const userId = document.getElementById('userId').value;
 
-            fetch(window.location.href, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    return Swal.fire({
-                        title: '¡Completado!',
-                        text: `El usuario ha sido ${status === 1 ? 'verificado' : 'rechazado'} exitosamente`,
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false
-                    });
-                } else {
-                    throw new Error(data.error || 'Error al actualizar el estado');
-                }
-            })
-            .then(() => {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1600);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Hubo un error al procesar la solicitud',
-                    icon: 'error'
-                });
-            });
+        // Validate password
+        if (!validatePassword(password)) {
+            return;
         }
-    });
-}
-// Add this function after the updateStatus function
-function changePassword(userId) {
-    Swal.fire({
-        title: 'Cambiar Contraseña',
-        input: 'password',
-        inputLabel: 'Nueva Contraseña',
-        inputPlaceholder: 'Ingrese la nueva contraseña',
-        showCancelButton: true,
-        confirmButtonText: 'Cambiar',
-        cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#ffc107',
-        inputValidator: (value) => {
-            if (!value) {
-                return 'Por favor ingrese una contraseña';
-            }
-            // Validar requisitos de contraseña como en el registro
-            if (value.length < 8) {
-                return 'La contraseña debe tener al menos 8 caracteres';
-            }
-            if (!/[A-Z]/.test(value)) {
-                return 'La contraseña debe contener al menos una mayúscula';
-            }
-            if (!/[a-z]/.test(value)) {
-                return 'La contraseña debe contener al menos una minúscula';
-            }
-            if (!/[0-9]/.test(value)) {
-                return 'La contraseña debe contener al menos un número';
-            }
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const formData = new FormData();
-            formData.append('action', 'changePassword');
-            formData.append('id', userId);
-            formData.append('newPassword', result.value);
 
-            fetch(window.location.href, {
+        const formData = new FormData();
+        formData.append('action', 'changePassword');
+        formData.append('id', userId);
+        formData.append('newPassword', password);
+
+        fetch(window.location.href, {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    bootstrap.Modal.getInstance(document.getElementById('changePasswordModal')).hide();
                     Swal.fire({
-                        title: '¡Completado!',
-                        text: 'La contraseña ha sido actualizada exitosamente',
+                        title: '¡Éxito!',
+                        text: 'La contraseña ha sido actualizada correctamente',
                         icon: 'success',
                         timer: 1500,
                         showConfirmButton: false
                     });
+                    document.getElementById('passwordChangeForm').reset();
                 } else {
                     throw new Error(data.error || 'Error al actualizar la contraseña');
                 }
@@ -338,21 +288,130 @@ function changePassword(userId) {
                     icon: 'error'
                 });
             });
+    }
+
+    function validatePassword(password) {
+        if (password.length < 8) {
+            Swal.fire('Error', 'La contraseña debe tener al menos 8 caracteres', 'error');
+            return false;
         }
+        if (!/[A-Z]/.test(password)) {
+            Swal.fire('Error', 'La contraseña debe contener al menos una mayúscula', 'error');
+            return false;
+        }
+        if (!/[a-z]/.test(password)) {
+            Swal.fire('Error', 'La contraseña debe contener al menos una minúscula', 'error');
+            return false;
+        }
+        if (!/[0-9]/.test(password)) {
+            Swal.fire('Error', 'La contraseña debe contener al menos un número', 'error');
+            return false;
+        }
+        return true;
+    }
+
+    // Add toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('newPassword');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
     });
-}
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dataTable = new simpleDatatables.DataTable("#verificationTable", {
+            searchable: true,
+            fixedHeight: true,
+            perPage: 10,
+            labels: {
+                placeholder: "Buscar usuarios...",
+                perPage: "Mostrar registros",
+                noRows: "No se encontraron registros",
+                info: "Mostrando {start} a {end} de {rows} registros",
+                noResults: "No hay resultados"
+            },
+            layout: {
+                top: "{search}",
+                bottom: "{info}{pager}"
+            }
+        });
+    });
+
+    function updateStatus(userId, status) {
+        const action = status === 1 ? 'verificar' : 'rechazar';
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: `¿Deseas ${action} este usuario?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: status === 1 ? '#28a745' : '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, confirmar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const formData = new FormData();
+                formData.append('action', 'updateStatus');
+                formData.append('id', userId);
+                formData.append('status', status);
+
+                fetch(window.location.href, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            return Swal.fire({
+                                title: '¡Completado!',
+                                text: `El usuario ha sido ${status === 1 ? 'verificado' : 'rechazado'} exitosamente`,
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            throw new Error(data.error || 'Error al actualizar el estado');
+                        }
+                    })
+                    .then(() => {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1600);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Hubo un error al procesar la solicitud',
+                            icon: 'error'
+                        });
+                    });
+            }
+        });
+    }
 </script>
 
 <style>
-.dataTable-table > tbody > tr:hover {
-    background-color: #f8f9fa;
-}
-.badge {
-    font-size: 0.875rem;
-}
-.btn-sm {
-    padding: 0.25rem 0.5rem;
-    margin: 0 2px;
-}
+    .dataTable-table>tbody>tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .badge {
+        font-size: 0.875rem;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        margin: 0 2px;
+    }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

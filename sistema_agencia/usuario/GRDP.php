@@ -1,1 +1,0 @@
-<!-- grafica de pagas titaks -->

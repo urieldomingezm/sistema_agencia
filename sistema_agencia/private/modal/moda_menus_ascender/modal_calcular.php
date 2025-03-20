@@ -299,7 +299,7 @@
             if (tipo === 'trabajador') {
                 campos = `
                     <div class="col-md-6 mb-2">
-                        <label class="form-label">Que rango eres</label>
+                        <label class="form-label">Tu rango</label>
                         <select class="form-select" required id="rango_actual">
                             ${rankOptions}
                         </select>
@@ -311,7 +311,7 @@
                         </select>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <label class="form-label">Que rango deseas</label>
+                        <label class="form-label">Rango deseado</label>
                         <select class="form-select" required id="rango_deseado">
                             <option disabled selected>Seleccione primero su rango actual</option>
                         </select>
@@ -323,7 +323,7 @@
                         </select>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <label class="form-label">Costo</label>
+                        <label class="form-label">Costo total</label>
                         <input type="number" class="form-control" id="costo" readonly required>
                     </div>
                 `;

@@ -82,6 +82,7 @@ if (!isset($_SESSION['user_id'])) {
                             'GEPS.php' => 'grafico de pagas',
                             'VTM.php' => 'ventas_membresias',
                             'VTR.php' => 'venta_rangos',
+                            'GEDV.php' => 'total_ventas',
                         ];
 
                         $results = [];
@@ -152,6 +153,7 @@ if (!isset($_SESSION['user_id'])) {
                                 'venta_rangos' => ['file' => 'VTR.php', 'roles' => ['Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'verificar_usuarios' => ['file' => 'VER.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
                                 'gestionar_usuarios' => ['file' => 'GEUS.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
+                                'total_ventas' => ['file' => 'GEDV.php', 'roles' => ['Tecnico', 'Logistica', 'Supervisor', 'Director', 'Presidente', 'Operativo', 'Junta directiva','Administrador', 'Manager', 'Dueño', 'Fundador']],
                             ];
 
 
@@ -184,7 +186,7 @@ if (!isset($_SESSION['user_id'])) {
                             } else {
                                 echo '<div class="alert alert-danger text-center mt-5">';
                                 echo '<h4 class="alert-heading">Acceso Denegado</h4>';
-                                echo '<p>No tienes los permisos necesarios para acceder a esta página.</p>';
+                                echo '<p>No tienes los permisos necesarios para acceder a esta página u la pagina no existe.</p>';
                                 echo '<p>Tu rango actual es: ' . htmlspecialchars($userRango) . '</p>';
                                 echo '<p>Redirigiendo a la página principal...</p>';
                                 echo '</div>';

@@ -1,4 +1,0 @@
-<!-- grafico de pagas -->
-
-
-ss

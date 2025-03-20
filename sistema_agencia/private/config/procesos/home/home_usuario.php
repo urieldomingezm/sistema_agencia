@@ -203,21 +203,26 @@ class BodyHome
         <?php
     }
 
-    private function getRolName($rolId) {
-        $roles = [
-            0 => 'En espera de ser verificado',
+    private function getRolName($verificado) {
+        $estados = [
+            0 => 'En espera de verificación',
             1 => 'Usuario Verificado',
             2 => 'Usuario Rechazado'
         ];
-        return $roles[$rolId] ?? 'En espera de ser verificado';
+        return $estados[$verificado] ?? 'Estado Desconocido';
     }
 
     private function renderHeader()
     {
         $username = htmlspecialchars($this->userData['username']);
-        // Modificar para usar verificado en lugar de rol_id
         $verificado = $_SESSION['verificado'] ?? 0;
-        $rolName = $this->getRolName($verificado);
+        $estadoName = $this->getRolName($verificado);
+        
+        $badgeClass = match($verificado) {
+            1 => 'bg-success',
+            2 => 'bg-danger',
+            default => 'bg-warning'
+        };
         ?>
         <header class="welcome-header text-center">
             <div class="container">
@@ -228,7 +233,7 @@ class BodyHome
                     Bienvenido <?= $username ?> 
                 </p>
                 <p class="text-white-50">
-                    Estatus: <span class="badge <?= $verificado == 1 ? 'bg-success' : ($verificado == 2 ? 'bg-danger' : 'bg-warning') ?>"><?= $rolName ?></span>
+                    Estado: <span class="badge <?= $badgeClass ?>"><?= $estadoName ?></span>
                 </p>
             </div>
         </header>

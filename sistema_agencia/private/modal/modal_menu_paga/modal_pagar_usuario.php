@@ -10,12 +10,12 @@ class Pago
         $this->conn = $db;
     }
 
-    public function registrarPago($usuario, $recibio, $motivo, $completo, $descripcion)
+    public function registrarPago($usuario, $recibio, $motivo, $completo, $descripcion, $rango)
     {
         try {
             $sql = "INSERT INTO gestion_pagas 
-                    (pagas_usuario, pagas_recibio, pagas_motivo, pagas_completo, pagas_descripcion, pagas_fecha_registro) 
-                    VALUES (:usuario, :recibio, :motivo, :completo, :descripcion, NOW())";
+                    (pagas_usuario, pagas_recibio, pagas_motivo, pagas_rango, pagas_completo, pagas_descripcion, pagas_fecha_registro) 
+                    VALUES (:usuario, :recibio, :motivo, :rango, :completo, :descripcion, NOW())";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
@@ -23,6 +23,7 @@ class Pago
             $stmt->bindParam(':motivo', $motivo);
             $stmt->bindParam(':completo', $completo);
             $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->bindParam(':rango', $rango);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -43,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarPago'])) {
         $_POST['pagas_recibio'],
         $_POST['pagas_motivo'],
         $_POST['pagas_completo'],
-        $_POST['pagas_descripcion']
+        $_POST['pagas_descripcion'],
+        $_POST['pagas_rango']
     );
 
     if ($resultado) {
@@ -68,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarPago'])) {
             confirmButtonText: 'Intentar de nuevo'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/usuario/index.php?page=Pagos';
+                window.location.href = '/usuario/index.php?page=gestion_de_pagas';
             }
         });
         </script>";
@@ -124,9 +126,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarPago'])) {
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="form-floating">
-                                <textarea name="pagas_descripcion" class="form-control" placeholder="Descripción" id="descriptionInput" style="height: 100px"></textarea>
-                                <label for="descriptionInput">Descripción (Opcional)</label>
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="pagas_descripcion" placeholder="Descripción" id="descriptionInput">
+                                        <label for="descriptionInput">(Opcional)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" name="pagas_rango" id="pagas_rango" required>
+                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="Seguridad">Seguridad</option>
+                                            <option value="Tecnico">Tecnico</option>
+                                            <option value="Supervisor">Supervisor</option>
+                                            <option value="Director">Director</option>
+                                            <option value="Presidente">Presidente</option>
+                                            <option value="Operativo">Operativo</option>
+                                            <option value="Junta directiva">Junta directiva</option>
+                                        </select>
+                                        <label for="pagas_rango">Rango de usuario</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,78 +166,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['guardarPago'])) {
 </div>
 
 <style>
-.modal-content {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+    .modal-content {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
 
-.modal-header {
-    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
-    color: white;
-    border-radius: 15px 15px 0 0;
-    border: none;
-    padding: 1.5rem;
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-.payment-form .form-control,
-.payment-form .form-select {
-    border-radius: 10px;
-    border: 2px solid #e0e0e0;
-    transition: all 0.3s ease;
-}
-
-.payment-form .form-control:focus,
-.payment-form .form-select:focus {
-    border-color: #005bea;
-    box-shadow: 0 0 0 0.2rem rgba(0, 91, 234, 0.25);
-}
-
-.payment-form .form-floating label {
-    padding-left: 1rem;
-}
-
-.payment-form .form-floating > .form-control,
-.payment-form .form-floating > .form-select {
-    height: calc(3.5rem + 2px);
-    line-height: 1.25;
-}
-
-.payment-form textarea.form-control {
-    height: 100px !important;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 91, 234, 0.2);
-}
-
-.btn-outline-secondary {
-    border-radius: 10px;
-    padding: 0.75rem 1.5rem;
-}
-
-.invalid-feedback {
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
-
-@media (max-width: 768px) {
-    .modal-body {
+    .modal-header {
+        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        color: white;
+        border-radius: 15px 15px 0 0;
+        border: none;
         padding: 1.5rem;
     }
-}
+
+    .modal-body {
+        padding: 2rem;
+    }
+
+    .payment-form .form-control,
+    .payment-form .form-select {
+        border-radius: 10px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .payment-form .form-control:focus,
+    .payment-form .form-select:focus {
+        border-color: #005bea;
+        box-shadow: 0 0 0 0.2rem rgba(0, 91, 234, 0.25);
+    }
+
+    .payment-form .form-floating label {
+        padding-left: 1rem;
+    }
+
+    .payment-form .form-floating>.form-control,
+    .payment-form .form-floating>.form-select {
+        height: calc(3.5rem + 2px);
+        line-height: 1.25;
+    }
+
+    .payment-form textarea.form-control {
+        height: 100px !important;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 91, 234, 0.2);
+    }
+
+    .btn-outline-secondary {
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .invalid-feedback {
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+        .modal-body {
+            padding: 1.5rem;
+        }
+    }
 </style>

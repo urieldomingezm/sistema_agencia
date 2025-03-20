@@ -241,14 +241,15 @@ class Navbar
       'Gestion de tiempo' => 'fas fa-clock',
       'Gestion ascenso' => 'fas fa-users',
       'Ventas membresias' => 'fas fa-id-card',
-      'Ventas rangos' => 'fas fa-star',
-      'Grafico total ventas' => 'fas fa-chart-line',
-      'Vender membresias y rangos' => 'fas fa-tags',
+      'total ventas' => 'fas fa-chart-line',
       'Gestion de pagas' => 'fas fa-wallet',
       'Pagar usuario' => 'fas fa-hand-holding-usd',
       'Grafico total de pagas' => 'fas fa-chart-pie',
       'Verificar usuarios' => 'fas fa-user-shield', 
-      'Gestionar usuarios' => 'fas fa-users-cog'
+      'Gestionar usuarios' => 'fas fa-users-cog',
+      'Vender membresias' => 'fas fa-tags',
+      'Vender rangos' => 'fas fa-crown',
+      'Ventas rangos' => 'fas fa-star',
     ];
     return $icons[$itemName] ?? 'fas fa-circle';
   }
@@ -274,7 +275,7 @@ $items = [
   ['name' => 'Perfil', 'dropdown' => ['Ver perfil', 'Cerrar session']],
   ['name' => 'Informacion', 'dropdown' => ['Requisitos paga', 'Calcular rango']],
   ['name' => 'Ascenso', 'dropdown' => ['Gestion de tiempo', 'Gestion ascenso']],
-  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'Grafico total ventas', 'divider', 'Vender membresias y rangos']],
+  ['name' => 'Ventas', 'dropdown' => ['Ventas membresias', 'Ventas rangos', 'total ventas', 'divider', 'Vender membresias','Vender rangos']],
   ['name' => 'Paga', 'dropdown' => ['Gestion de pagas', 'Pagar usuario', 'Grafico total de pagas']],
   ['name' => 'Gestion de usuarios', 'dropdown' => ['Verificar usuarios', 'Gestionar usuarios']],
 ];

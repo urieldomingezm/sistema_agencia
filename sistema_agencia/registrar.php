@@ -92,7 +92,7 @@ class UserRegistration
             }
 
             $ip = $this->getClientIP();
-            
+
             if ($this->checkExistingIP($ip)) {
                 return ['success' => false, 'message' => 'Ya existe un registro con esta IP'];
             }
@@ -137,13 +137,13 @@ class UserRegistration
             $query = "INSERT INTO {$this->table} 
                      (usuario_registro, password_registro, nombre_habbo, rol_id, rango, fecha_registro, ip_registro, verificado) 
                      VALUES (:username, :password, :habbo_name, 1, 'Agente', NOW(), :ip, 0)";
-            
+
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':username', $_SESSION['temp_data']['username']);
             $stmt->bindParam(':password', $hashedPassword);
             $stmt->bindParam(':habbo_name', $_SESSION['temp_data']['habbo_name']);
             $stmt->bindParam(':ip', $_SESSION['temp_data']['ip']);
-            
+
             if ($stmt->execute()) {
                 $_SESSION['user_id'] = $this->conn->lastInsertId();
                 $_SESSION['username'] = $_SESSION['temp_data']['username'];
@@ -151,7 +151,7 @@ class UserRegistration
                 unset($_SESSION['temp_data']);
                 return ['success' => true, 'message' => '¡Registro exitoso! Esperando verificación del moderador'];
             }
-            
+
             return ['success' => false, 'message' => 'Error al guardar el registro'];
         } catch (PDOException $e) {
             error_log("Error en registro: " . $e->getMessage());
@@ -186,6 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Add Just-Validate library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
     <style>
         body {
@@ -236,21 +237,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
             transform: translateY(-2px);
         }
-    
-    /* Add validation styles */
-    .just-validate-error-label {
-        color: #dc3545;
-        font-size: 0.875em;
-        margin-top: 0.25rem;
-    }
 
-    .just-validate-error-field {
-        border-color: #dc3545 !important;
-    }
+        /* Add validation styles */
+        .just-validate-error-label {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
 
-    .just-validate-success-field {
-        border-color: #198754 !important;
-    }
+        .just-validate-error-field {
+            border-color: #dc3545 !important;
+        }
+
+        .just-validate-success-field {
+            border-color: #198754 !important;
+        }
     </style>
 </head>
 
@@ -273,9 +274,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="text" class="form-control" name="habboName" required>
                                 <small class="form-text text-muted">Ingresa tu nombre exacto de Habbo</small>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-4">
                                 <label class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" name="password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div id="verificationSection" style="display: none;" class="mb-3">
                                 <label class="form-label">Código de Verificación</label>
@@ -296,14 +302,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+// visualizar contraseña
+document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.querySelector('input[name="password"]');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
         // Initialize Just-Validate
         const validator = new JustValidate('#registrationForm', {
             validateBeforeSubmitting: true,
         });
 
         validator
-            .addField('[name="username"]', [
-                {
+            .addField('[name="username"]', [{
                     rule: 'required',
                     errorMessage: 'El usuario es requerido'
                 },
@@ -313,8 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     errorMessage: 'El usuario debe tener al menos 3 caracteres'
                 }
             ])
-            .addField('[name="habboName"]', [
-                {
+            .addField('[name="habboName"]', [{
                     rule: 'required',
                     errorMessage: 'El nombre de Habbo es requerido'
                 },
@@ -324,8 +336,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     errorMessage: 'El nombre debe tener al menos 3 caracteres'
                 }
             ])
-            .addField('[name="password"]', [
-                {
+            .addField('[name="password"]', [{
                     rule: 'required',
                     errorMessage: 'La contraseña es requerida'
                 },
@@ -337,63 +348,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .onSuccess((event) => {
                 const form = event.target;
                 fetch('registrar.php', {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success && data.verification) {
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'Código de Verificación',
-                            html: `Tu código es: <strong>${data.code}</strong><br>
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.verification) {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Código de Verificación',
+                                html: `Tu código es: <strong>${data.code}</strong><br>
                            Por favor, coloca este código en tu lema/motto de Habbo.<br>
                            Una vez colocado, ingresa el código aquí para completar el registro.`,
-                            confirmButtonColor: '#8B5CF6'
-                        }).then(() => {
-                            document.getElementById('verificationSection').style.display = 'block';
-                            validator.addField('[name="verificationCode"]', [
-                                {
-                                    rule: 'required',
-                                    errorMessage: 'El código de verificación es requerido'
-                                },
-                                {
-                                    rule: 'minLength',
-                                    value: 5,
-                                    errorMessage: 'El código debe tener 5 caracteres'
-                                }
-                            ]);
-                        });
-                    } else if (data.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: '¡Registro Exitoso!',
-                            text: data.message,
-                            confirmButtonColor: '#8B5CF6'
-                        }).then(() => {
-                            window.location.href = 'usuario/index.php';
-                        });
-                    } else {
+                                confirmButtonColor: '#8B5CF6'
+                            }).then(() => {
+                                document.getElementById('verificationSection').style.display = 'block';
+                                validator.addField('[name="verificationCode"]', [{
+                                        rule: 'required',
+                                        errorMessage: 'El código de verificación es requerido'
+                                    },
+                                    {
+                                        rule: 'minLength',
+                                        value: 5,
+                                        errorMessage: 'El código debe tener 5 caracteres'
+                                    }
+                                ]);
+                            });
+                        } else if (data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Registro Exitoso!',
+                                text: data.message,
+                                confirmButtonColor: '#8B5CF6'
+                            }).then(() => {
+                                window.location.href = 'usuario/index.php';
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: data.message,
+                                confirmButtonColor: '#8B5CF6'
+                            });
+                        }
+                    })
+                    .catch(error => {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: data.message,
+                            text: 'Ocurrió un error en el registro',
                             confirmButtonColor: '#8B5CF6'
                         });
-                    }
-                })
-                .catch(error => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Ocurrió un error en el registro',
-                        confirmButtonColor: '#8B5CF6'
                     });
-                });
             });
 
         // Remove the old event listener since Just-Validate handles it now
         // document.getElementById('registrationForm').addEventListener('submit'... 
     </script>
 </body>
+
 </html>

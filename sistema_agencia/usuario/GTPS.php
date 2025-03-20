@@ -3,15 +3,15 @@ require_once(CONFIG_PATH . 'bd.php');
 $db = new Database();
 $conn = $db->getConnection();
 
-$query = "SELECT pagas_usuario, pagas_recibio, pagas_motivo, pagas_completo, pagas_descripcion, pagas_fecha_registro FROM gestion_pagas ORDER BY pagas_fecha_registro DESC";
+$query = "SELECT pagas_usuario, pagas_recibio, pagas_motivo, pagas_completo, pagas_rango, pagas_descripcion, pagas_fecha_registro FROM gestion_pagas ORDER BY pagas_fecha_registro DESC";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="dashboard-container">
-    <div class="dashboard-header">
-        <h1>
+    <div class="dashboard-header bg-gradient-primary py-3 border-0">
+        <h1 class="text-white">
             <i class="fas fa-chart-line"></i>
             Dashboard de Pagas
         </h1>
@@ -47,10 +47,11 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h2><i class="fas fa-table"></i> Registro de Pagas</h2>
             </div>
             <div class="table-container">
-                <table id="pagasTable" class="display-table">
+                <table id="pagasTable" class="table-bordered table-striped display-table table text-center">
                     <thead>
                         <tr>
                             <th>Usuario</th>
+                            <th>Rango</th>
                             <th>Recibió</th>
                             <th>Motivo</th>
                             <th>Completo</th>
@@ -61,7 +62,8 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tbody>
                         <?php foreach ($pagas as $paga): ?>
                             <tr>
-                                <td><i class="fas fa-user"></i> <?php echo htmlspecialchars($paga['pagas_usuario']); ?></td>
+                                <td><?php echo htmlspecialchars($paga['pagas_usuario']); ?></td>
+                                <td><?php echo htmlspecialchars($paga['pagas_rango']); ?></td>
                                 <td><?php echo htmlspecialchars($paga['pagas_recibio']); ?> c</td>
                                 <td><?php echo htmlspecialchars($paga['pagas_motivo']); ?></td>
                                 <td>
@@ -274,6 +276,20 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const dataTable = new simpleDatatables.DataTable("#pagasTable", {
+            searchable: true,
+            fixedHeight: true,
+            labels: {
+                placeholder: "Buscar...",
+                perPage: "Registros por página",
+                noRows: "No hay registros",
+                info: "Mostrando {start} a {end} de {rows} registros",
+            }
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
         const pagas = <?php echo json_encode($pagas); ?>;
 
         // Daily Payments Chart
@@ -310,7 +326,7 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // User Distribution Chart
         const userData = {};
         pagas.forEach(paga => {
-            userData[paga.pagas_usuario] = (userData[paga.pagas_usuario] || 0) + parseInt(paga.pagas_recibio);
+            userData[paga.pagas_rango] = (userData[paga.pagas_rango] || 0) + parseInt(paga.pagas_recibio);
         });
 
         new Chart('userChart', {
@@ -320,8 +336,8 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 datasets: [{
                     data: Object.values(userData),
                     backgroundColor: [
-                        '#00c6fb', '#005bea', '#00fb9a', '#ea00d9',
-                        '#0099cc', '#66ccff', '#3366cc', '#003366'
+                        '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+                        '#FFEEAD', '#D4A5A5', '#9B59B6'
                     ]
                 }]
             },
