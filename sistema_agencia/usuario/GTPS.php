@@ -88,20 +88,28 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="charts-container">
                 <div class="charts-grid">
                     <div class="chart-box">
-                        <h3 class="text-center">Pagos a trabajadores</h3>
-                        <canvas id="dailyChart"></canvas>
+                        <h3 class="chart-title">Pagos a trabajadores</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="dailyChart"></canvas>
+                        </div>
                     </div>
                     <div class="chart-box">
-                        <h3 class="text-center">Pagos mediante rangos</h3>
-                        <canvas id="userChart"></canvas>
+                        <h3 class="chart-title">Pagos mediante rangos</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="userChart"></canvas>
+                        </div>
                     </div>
                     <div class="chart-box">
-                        <h3 class="text-center">Total Acumulado</h3>
-                        <canvas id="accumulatedChart"></canvas>
+                        <h3 class="chart-title">Total Acumulado</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="accumulatedChart"></canvas>
+                        </div>
                     </div>
                     <div class="chart-box">
-                        <h3 class="text-center">Placas mas usadas</h3>
-                        <canvas id="motivoChart"></canvas>
+                        <h3 class="chart-title">Placas mas usadas</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="motivoChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,26 +117,75 @@ $pagas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <style>
                 .charts-container {
                     width: 100%;
-                    padding: 1rem;
+                    padding: 0.5rem;
                 }
 
                 .charts-grid {
                     display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-template-rows: repeat(2, 1fr);
-                    gap: 1.5rem;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 1rem;
+                    margin: 0 auto;
+                    max-width: 1400px;
                 }
 
                 .chart-box {
                     background: #ffffff;
-                    border-radius: 10px;
+                    border-radius: 12px;
                     padding: 1rem;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+                }
+
+                .chart-box:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                }
+
+                .chart-title {
+                    font-size: 1.1rem;
+                    color: #2c3e50;
+                    margin-bottom: 1rem;
+                    text-align: center;
+                    font-weight: 600;
+                }
+
+                .chart-wrapper {
+                    position: relative;
+                    height: 300px;
+                    width: 100%;
+                }
+
+                @media (max-width: 1200px) {
+                    .charts-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
                 }
 
                 @media (max-width: 768px) {
                     .charts-grid {
                         grid-template-columns: 1fr;
+                    }
+                    
+                    .chart-wrapper {
+                        height: 250px;
+                    }
+                    
+                    .chart-box {
+                        padding: 0.75rem;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .charts-container {
+                        padding: 0.25rem;
+                    }
+                    
+                    .chart-wrapper {
+                        height: 200px;
+                    }
+                    
+                    .chart-title {
+                        font-size: 1rem;
                     }
                 }
             </style>
