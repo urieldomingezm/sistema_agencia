@@ -34,7 +34,7 @@ class UserProfile
                     'username' => $userData['usuario_registro'],
                     'role' => $userData['rango'],
                     'mission' => $ascensoData ? $ascensoData['ascenso_mision_nueva'] : 'Sin misión asignada',
-                    'avatar' => 'https://api.a0.dev/assets/image?text=Habbo%20avatar%20with%20brown%20hair&aspect=1:1',
+                    'avatar' => 'https://www.habbo.es/habbo-imaging/avatarimage?user=' . $userData['usuario_registro'] . '&action=none&direction=2&head_direction=2&gesture=&size=sl&headonly=1r',
                     'nextMission' => 'Pendiente',
                     'paymentTime' => '14:00',
                     'paymentDate' => '15',

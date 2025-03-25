@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Commit transaction
             $conn->commit();
-            
+
             echo "<script>window.location.reload();</script>";
             exit();
         } catch (PDOException $e) {
@@ -66,22 +66,20 @@ try {
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-gradient-primary text-white">
-            <h2 class="mb-0">User Verification Management</h2>
+            <h2 class="mb-0">Gestion de usuarios</h2>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead class="thead-dark">
+                <table id="TablaVerificacion" class="table table-hover table-striped table-bordered">
+                    <thead class="thead-dark text-center">
                         <tr class="text-center">
-                            <th>ID</th>
-                            <th>Usuario</th>
-                            <th>Habbo</th>
-                            <th>Rol</th>
-                            <th>Fecha</th>
-                            <th>IP</th>
-                            <th>Verificacion</th>
-                            <th>Rank</th>
-                            <th>Acciones</th>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Usuario</th>
+                            <th class="text-center">Habbo</th>
+                            <th class="text-center">IP</th>
+                            <th class="text-center">Verificacion</th>
+                            <th class="text-center">Rango</th>
+                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,9 +88,7 @@ try {
                                 <td><?php echo htmlspecialchars($row['id']); ?></td>
                                 <td class="font-weight-bold"><?php echo htmlspecialchars($row['usuario_registro']); ?></td>
                                 <td><?php echo htmlspecialchars($row['nombre_habbo']); ?></td>
-                                <td><?php echo htmlspecialchars($row['rol_id']); ?></td>
-                                <td><?php echo htmlspecialchars($row['fecha_registro']); ?></td>
-                                <td><small class="text-muted"><?php echo htmlspecialchars($row['ip_registro']); ?></small></td>
+                                <td><?php echo htmlspecialchars($row['ip_registro']); ?></small></td>
                                 <td>
                                     <span class="badge <?php echo ($row['verificado'] == 1) ? 'bg-success' : 'bg-danger'; ?> p-2">
                                         <?php echo ($row['verificado'] == 1) ? 'Verificado' : 'No Verificado'; ?>
@@ -185,7 +181,9 @@ try {
 
 <script>
     $(document).ready(function() {
+        new simpleDatatables.DataTable('#TablaVerificacion');
         $('.verification-form').on('submit', function(e) {
+
             e.preventDefault();
             $.ajax({
                 url: window.location.href,

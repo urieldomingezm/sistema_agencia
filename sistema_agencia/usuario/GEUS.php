@@ -64,24 +64,24 @@ try {
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    new simpleDatatables.DataTable("#historialTable", {
-        searchable: true,
-        fixedHeight: true,
-        perPage: 10,
-        labels: {
-            placeholder: "Buscar en el historial...",
-            perPage: "Mostrar registros",
-            noRows: "No se encontraron registros",
-            info: "Mostrando {start} a {end} de {rows} registros",
-            noResults: "No hay resultados"
-        }
+    document.addEventListener("DOMContentLoaded", function() {
+        new simpleDatatables.DataTable("#historialTable", {
+            searchable: true,
+            fixedHeight: true,
+            perPage: 10,
+            labels: {
+                placeholder: "Buscar en el historial...",
+                perPage: "Mostrar registros",
+                noRows: "No se encontraron registros",
+                info: "Mostrando {start} a {end} de {rows} registros",
+                noResults: "No hay resultados"
+            }
+        });
     });
-});
 </script>
 
 <style>
-.badge {
-    font-size: 0.875rem;
-}
+    .badge {
+        font-size: 0.875rem;
+    }
 </style>
