@@ -5,16 +5,34 @@ $database = new Database();
 $conn = $database->getConnection();
 
 // Handle verification and password updates
+// Update the verification handling section
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['userId']) && isset($_POST['status'])) {
         try {
+            // Begin transaction
+            $conn->beginTransaction();
+
+            // Update user verification status
             $stmt = $conn->prepare("UPDATE registro_usuario SET verificado = :status WHERE id = :userId");
             $stmt->bindParam(':status', $_POST['status']);
             $stmt->bindParam(':userId', $_POST['userId']);
             $stmt->execute();
+
+            // Insert into verification history
+            $stmt = $conn->prepare("INSERT INTO historial_verificaciones (usuario_id, verificado_por, fecha_verificacion, estado_verificacion) VALUES (:userId, :verificador, NOW(), :estado)");
+            $stmt->bindParam(':userId', $_POST['userId']);
+            $stmt->bindParam(':verificador', $_SESSION['nombre_habbo']); // Assuming you store the verifier's Habbo name in session
+            $stmt->bindParam(':estado', $_POST['status']);
+            $stmt->execute();
+
+            // Commit transaction
+            $conn->commit();
+            
             echo "<script>window.location.reload();</script>";
             exit();
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
+            // Rollback in case of error
+            $conn->rollBack();
             error_log("Error updating verification: " . $e->getMessage());
         }
     } elseif (isset($_POST['userId']) && isset($_POST['newPassword'])) {
@@ -26,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             echo json_encode(['success' => true]);
             exit();
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             error_log("Error updating password: " . $e->getMessage());
             echo json_encode(['success' => false]);
             exit();
@@ -39,7 +57,7 @@ try {
     $stmt = $conn->prepare("SELECT id, usuario_registro, password_registro, rol_id, fecha_registro, ip_registro, nombre_habbo, verificado, rango FROM registro_usuario");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     error_log("Error fetching users: " . $e->getMessage());
     $result = [];
 }
@@ -63,11 +81,11 @@ try {
                             <th>IP</th>
                             <th>Verificacion</th>
                             <th>Rank</th>
-                            <th>Actions</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($result as $row) { ?>
+                        <?php foreach ($result as $row) { ?>
                             <tr class="align-middle text-center">
                                 <td><?php echo htmlspecialchars($row['id']); ?></td>
                                 <td class="font-weight-bold"><?php echo htmlspecialchars($row['usuario_registro']); ?></td>
@@ -87,12 +105,12 @@ try {
                                         <input type="hidden" name="status" value="<?php echo $row['verificado'] == 1 ? '0' : '1'; ?>">
                                         <button type="submit" class="btn btn-sm <?php echo ($row['verificado'] == 1) ? 'btn-danger' : 'btn-success'; ?>">
                                             <i class="fas fa-<?php echo ($row['verificado'] == 1) ? 'times' : 'check'; ?>"></i>
-                                            <?php echo ($row['verificado'] == 1) ? 'Desverificar' : 'Verificar'; ?>
+                                            <?php echo ($row['verificado'] == 1) ? 'Rechazar' : 'Verificar'; ?>
                                         </button>
                                     </form>
-                                    <button type="button" class="btn btn-sm btn-warning ms-2" 
-                                            onclick="openPasswordModal('<?php echo htmlspecialchars($row['id']); ?>', '<?php echo htmlspecialchars($row['usuario_registro']); ?>')">
-                                        <i class="fas fa-key"></i> Cambiar Contraseña
+                                    <button type="button" class="btn btn-sm btn-warning ms-2"
+                                        onclick="openPasswordModal('<?php echo htmlspecialchars($row['id']); ?>', '<?php echo htmlspecialchars($row['usuario_registro']); ?>')">
+                                        <i class="fas fa-key"></i> Cambio
                                     </button>
                                 </td>
                             </tr>
@@ -138,88 +156,99 @@ try {
 </div>
 
 <style>
-.table { font-size: 0.95rem; }
-.badge { font-size: 0.85rem; }
-.card {
-    border-radius: 10px;
-    border: none;
-}
-.card-header {
-    border-radius: 10px 10px 0 0 !important;
-}
-.btn-sm { padding: 0.25rem 0.75rem; }
-.thead-dark th {
-    background-color: #343a40;
-    color: white;
-}
+    .table {
+        font-size: 0.95rem;
+    }
+
+    .badge {
+        font-size: 0.85rem;
+    }
+
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.75rem;
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        color: white;
+    }
 </style>
 
 <script>
-$(document).ready(function() {
-    $('.verification-form').on('submit', function(e) {
-        e.preventDefault();
+    $(document).ready(function() {
+        $('.verification-form').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: window.location.href,
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function() {
+                    window.location.reload();
+                }
+            });
+        });
+    });
+
+    function openPasswordModal(userId, username) {
+        document.getElementById('modalUserId').value = userId;
+        document.getElementById('modalUsername').value = username;
+        var modal = new bootstrap.Modal(document.getElementById('passwordModal'));
+        modal.show();
+    }
+
+    function updatePassword() {
+        var form = document.getElementById('passwordForm');
+        var password = form.elements['newPassword'].value;
+        var confirm = document.getElementById('confirmPassword').value;
+
+        if (password !== confirm) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Las contraseñas no coinciden'
+            });
+            return;
+        }
+
         $.ajax({
             url: window.location.href,
             type: 'POST',
-            data: $(this).serialize(),
-            success: function() {
-                window.location.reload();
-            }
-        });
-    });
-});
-
-function openPasswordModal(userId, username) {
-    document.getElementById('modalUserId').value = userId;
-    document.getElementById('modalUsername').value = username;
-    var modal = new bootstrap.Modal(document.getElementById('passwordModal'));
-    modal.show();
-}
-
-function updatePassword() {
-    var form = document.getElementById('passwordForm');
-    var password = form.elements['newPassword'].value;
-    var confirm = document.getElementById('confirmPassword').value;
-    
-    if (password !== confirm) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Las contraseñas no coinciden'
-        });
-        return;
-    }
-    
-    $.ajax({
-        url: window.location.href,
-        type: 'POST',
-        data: $(form).serialize(),
-        success: function(response) {
-            var result = JSON.parse(response);
-            if (result.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Éxito',
-                    text: 'Contraseña actualizada correctamente'
-                });
-                var modal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
-                modal.hide();
-                form.reset();
-            } else {
+            data: $(form).serialize(),
+            success: function(response) {
+                var result = JSON.parse(response);
+                if (result.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: 'Contraseña actualizada correctamente'
+                    });
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
+                    modal.hide();
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error al actualizar la contraseña'
+                    });
+                }
+            },
+            error: function() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: 'Error al actualizar la contraseña'
                 });
             }
-        },
-        error: function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Error al actualizar la contraseña'
-            });
-        }
-    });
-}
+        });
+    }
 </script>
